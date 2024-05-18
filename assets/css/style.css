@@ -3,6 +3,7 @@ html {
     margin: 0;
     padding: 0;
     line-height: 1.4;
+    /* Scroll suave */
     scroll-behavior: smooth;
     scroll-padding-top: 9rem;
 }
@@ -45,18 +46,6 @@ body {
     text-align: left;
 }
 
-nav {
-    max-width: 80%;
-    padding: 10px;
-    border: 1px solid #CCCCCC;
-    border-radius: 4px 4px 4px 4px;
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    margin: 0px auto 0px auto;
-    box-shadow: 1px 2px 0px 0px rgba(0, 0, 0, 0.1);
-}
-
 #topo {
     width: 100%;
     position: fixed;
@@ -95,7 +84,20 @@ h2 {
     font-style: italic;
 }
 
-nav li {
+/* Menu Principal */
+nav ul {
+    max-width: 80%;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 0px auto;
+    box-shadow: 1px 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li {
     display: list-item;
     padding: 0px 10px;
 }
@@ -104,6 +106,7 @@ nav a:link, a:visited {
     color: #505050;
 }
 
+/* Alterna as cores das seções do site */
 main article:nth-child(odd) {
     background-color: #FFFFFF;
 }
@@ -112,6 +115,7 @@ main article:nth-child(even) {
     background-color: #EEEEEE;
 }
 
+/* Linha do tempo para acompanhamento de históricos */
 .timeline .timespan {
     grid-column: span 1;
     font-size: 14px;
@@ -144,6 +148,7 @@ main article:nth-child(even) {
 
 .timeline .row {
     display: grid;
+    /* Define o tamanho das colunas */ 
     grid-template-columns: repeat(12, 1fr);
 }
 
@@ -214,6 +219,7 @@ hr {
     border: 0;
 }
 
+/* Tratamento de responsividade */
 @media (min-width: 500px) {
     .video-yt {
         width: 500px;

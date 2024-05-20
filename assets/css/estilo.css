@@ -21,6 +21,7 @@ body {
 
 #conteudo {
     width: 100%;
+    margin-top: 150px;
 }
 
 #conteudo article {
@@ -220,27 +221,28 @@ hr {
 }
 
 /* Tratamento de responsividade */
-@media (min-width: 500px) {
+@media only screen and (min-width: 500px) {
     .video-yt {
         width: 500px;
         height: 315px;
     }
 }
 
-@media (max-width: 500px) {
+@media only screen and (max-width: 500px) {
     .video-yt {
         width: 100%;
         height: 315px;
     }
 }
 
-@media (max-width: 992px) {
+/* Em dispositivos móveis o formulário de contato deve ocupar o tamanho máximo da largura disponível */
+@media only screen and (max-width: 992px) {
     .form-contato {
         width: 100%;
     }
 }
 
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     .form-contato {
         width: 30%;
     }

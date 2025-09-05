@@ -19,9 +19,13 @@ body {
     color: #333333;
 }
 
+#my-picture {
+    margin-top: 5px;
+}
+
 #conteudo {
     width: 100%;
-    margin-top: 160px;
+    margin-top: 200px;
 }
 
 #conteudo article {

@@ -1,0 +1,231 @@
+html {
+    font-family: "Merriweather";
+    background: #ebebeb;
+    color: #000000;
+}
+
+@keyframes rotate-my-picture {
+    0% {
+        transform: rotate(0);
+        filter: brightness(0);
+    }
+    5% {
+        transform: rotate(20deg);
+    }
+    10% {
+        transform: rotate(40deg);
+        filter: brightness(1);
+    }
+    15% {
+        transform: rotate(60deg);
+    }
+    20% {
+        transform: rotate(80deg);
+    }
+    25% {
+        transform: rotate(100deg);
+        filter: brightness(2);
+    }
+    30% {
+        transform: rotate(120deg);
+    }
+    35% {
+        transform: rotate(140deg);
+    }
+    40% {
+        transform: rotate(160deg);
+    }
+    45% {
+        transform: rotate(180deg);
+        filter: brightness(3);
+    }
+    50% {
+        transform: rotate(200deg);
+    }
+    55% {
+        transform: rotate(220deg);
+    }
+    60% {
+        transform: rotate(240deg);
+        filter: brightness(4) blur(3px);
+    }
+    65% {
+        transform: rotate(260deg);
+    }
+    70% {
+        transform: rotate(280deg);
+    }
+    75% {
+        transform: rotate(300deg);
+    }
+    80% {
+        transform: rotate(320deg);
+    }
+    85% {
+        transform: rotate(340deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.my-picture {
+    border-radius: 100%;
+}
+
+.my-picture:hover {
+    animation: rotate-my-picture 2s steps(1, start) infinite;
+    filter: brightness(2);
+    cursor: pointer;
+}
+
+main ul > li {
+    list-style-type: '🚀';
+}
+
+main ul > li > ul > li {
+    list-style-type: '🚁';
+}
+
+main ul > li > ul > li > ul > li {
+    list-style-type: '🚆';
+}
+
+nav {
+    margin-top: 5svh;
+}
+
+nav > ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 0px 16px 16px;
+}
+
+nav > ul > li {
+    list-style-type: none;
+}
+
+nav > ul > li > a:hover {
+	filter: blur(0.8px);
+}
+
+a {
+    font-style: italic;
+}
+
+a:link, a:visited {
+    color: #333333;
+    padding: 1svw;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-shadow: 1px 2px #ff9900;
+}
+
+nav > ul > li:nth-child(1n) > a:hover {
+    text-shadow: 1px 2px #ff0000;
+}
+
+nav > ul > li:nth-child(2n) > a:hover {
+    text-shadow: 1px 2px #ff9900;
+}
+
+h1.profile-name {
+    font-family: "Honk";
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+@keyframes blink {
+    0% { 
+        text-shadow: 1px 2px #ff0000;
+    }
+    10% {
+        text-shadow: 1px 2px #ff0000;
+    }
+    50% {
+        text-shadow: 1px 2px #ff0000;
+    }
+    100% {
+        text-shadow: 1px 20px #ff9900;
+    }
+}
+
+p.profile-description {
+    font-family: "Coral Pixels";
+    font-size: 1.2rem;
+    animation: blink 1s steps(1, start) infinite;
+    padding: 0px;
+    margin-top: 0px;
+}
+
+h2 {
+    font-family: "Nabla";
+    text-shadow: 1px 1px #333333;
+}
+
+header {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    font-family: "Rubik Lines";
+}
+
+#projetos > ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 0px;
+}
+
+#projetos > ul > li {
+    display: flex;
+    flex-direction: column;
+    box-shadow: #ff9900 3px 3px 0px 0px;
+    background-color: #F1F1F1F1;
+    border: 1px solid #333333;
+    padding: 10px;
+    line-height: 1.3em;
+    border-radius: 5px;
+}
+
+.linkedin-video {
+    width: 30svw;
+    height: 50svh;
+}
+
+@media (max-width: 768px) {
+    #projetos > ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .linkedin-video {
+        width: 100%;
+        height: 40svh;
+    }
+}
+
+@media (max-width: 384px) {
+    nav > ul > li > a {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .video-yt {
+        width: 500px;
+        height: 315px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .video-yt {
+        width: 100%;
+        height: 315px;
+    }
+}

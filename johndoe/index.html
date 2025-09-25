@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE-edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+            <link rel="manifest" href="assets/favicon/site.webmanifest">
+            <meta name="description" content="John Doe - O Técnico"/>
+            <meta name="author" content="Christian Rafael" />
+            <meta name="keywords" content="game,john,doe,technical"/>
+            <meta name="application-name" content="Meu Portifólio" />
+            <meta name="robots" content="index, follow" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Coral+Pixels&family=Frijole&family=Honk&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Nabla&family=Rubik+Broken+Fax&family=Rubik+Lines&family=Rubik+Maze&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="assets/css/normalize.css" />
+            <link rel="stylesheet" href="assets/css/style.css" />
+            <title>John Doe - O Técnico</title>
+        </head>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#inicio">Início</a>
+                    </li>
+                    <li>
+                        <a href="#sobre">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="#galeria">Galeria</a>
+                    </li>
+                    <li>
+                        <a href="#especificacoes">Especificações</a>
+                    </li>
+                    <li>
+                        <a href="#solicitar-produto">Solicitar Produto</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="inicio">
+                <h1>John Doe - O Técnico</h1>
+                <h2>O jogo do ano</h2>
+                <video autoplay loop muted>
+                    <source src="assets/video/video.mp4" />
+                </video>
+            </section>
+            <section id="sobre">
+                <h2>Sobre</h2>
+                <p>
+                    Ajude John Doe o técnico a desbravar o mundo da manutenção de transformadores de distribuição.
+                    <br/> Corra por florestas, salte sobre obstáculos, enfrente desafios e ajude a levar energia elétrica a comunidades ribeirinhas em ambientes inóspitos.
+                </p>
+            </section>
+            <section id="galeria">
+                <h2>Galeria</h2>
+                <ul>
+                    <li>
+                        <img
+                            src="assets/img/galeria-1.png"                            
+                            class="cover"
+                            alt="John Doe na floresta"
+                            title="John Doe na floresta" />
+                    </li>
+                    <li>
+                        <img
+                            src="assets/img/galeria-2.png"
+                            class="cover"
+                            alt="Floresta inóspita"
+                            title="Floresta inóspita" />
+                    </li>
+                    <li>
+                        <img
+                            src="assets/img/galeria-3.png"
+                            class="cover"
+                            alt="John Doe admirando uma árvore"
+                            title="John Doe admirando uma árvore" />
+                    </li>
+                </ul>
+            </section>
+            <section id="especificacoes">
+                <h2>Planos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Descrição</th>
+                            <th>Valor (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pacote 1</td>
+                            <td>Roupas Personalizadas + Armadura + Poderes</td>
+                            <td>29,90 mensais</td>
+                        </tr>
+                        <tr>
+                            <td>Pacote 2</td>
+                            <td>Roupas Personalizadas + Armadura + Poderes + Maleta de Engenharia Elétrica</td>
+                            <td>50,00 mensais</td>
+                        </tr>
+                        <tr>
+                            <td>Pacote 3</td>
+                            <td>Roupas Personalizadas + Armadura + Poderes + Maleta de Engenharia Nuclear</td>
+                            <td>75,00 mensais</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">* Valores meramente ilustrativos</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="solicitar-produto">
+                <h2>Solicitar produto</h2>
+                <form action="#" method="post">
+                    <div>
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="John Doe" required/>
+                    </div>
+                    <div>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@email.com" required/>
+                    </div>
+                    <div>
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" name="telefone" placeholder="(00) 0 0000-0000 (Números e letras)" required/>
+                    </div>
+                    <div>
+                        <button type="submit">Solicitar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <audio controls autoplay loop>
+                <source src="assets/audio/flinstones.mp3"/>
+            </audio>
+            <br >
+            &copy; 2025 John Doe Technician. Todos os direitos reservados.
+        </footer>
+    </body>
+</html>

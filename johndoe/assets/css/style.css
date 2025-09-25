@@ -1,1 +1,189 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+body {
+    line-height: 2.4em;
+    font-family: "Bitcount Prop Single", system-ui;
+    background-color: #5e5e5e;
+}
+
+nav > ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 0px 16px 16px;
+    margin: 0;
+}
+
+nav > ul > li {
+    list-style-type: none;
+}
+
+nav > ul > li > a:hover {
+	filter: blur(0.3px);
+}
+
+a {
+    font-style: italic;
+}
+
+a:link, a:visited {
+    color: #ff9900;
+    padding: 1svw;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav > ul > li:nth-child(1n) > a:hover {
+    color: #FFFFFF;
+}
+
+nav > ul > li:nth-child(2n) > a:hover {
+    color: #FFFFFF;
+}
+
+h2 {
+    font-family: "Nabla";
+    text-shadow: 1px 1px #333333;
+}
+
+header {
+    width: 100%;
+    padding-top: 0.9svw;
+    text-align: center;
+    background-color: rgba(38,36,35,.9);
+}
+
+footer {
+    margin-top: 1dvh;
+    text-align: center;
+    color: #000000;
+}
+
+section {
+    padding: 0.9svw;
+    background-color: #333333;
+    color: #f2f2f2;
+}
+
+section:nth-child(odd) {
+    background-color: #474747;
+}
+
+section:nth-child(odd) > h1 {
+    color: #ff9900;
+    text-align: center;
+}
+
+section {
+    font-size: 1.3em;
+}
+
+section p {
+    font-size: 1.4em;
+}
+
+#inicio video {
+    width: 100%;
+}
+
+#galeria > ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 0px;
+}
+
+#galeria > ul > li {
+    display: flex;
+    flex-direction: column;
+    box-shadow: #ff9900 3px 3px 0px 0px;
+    background-color: #F1F1F1F1;
+    border: 1px solid #333333;
+    padding: 10px;
+    line-height: 1.3em;
+    border-radius: 5px;
+}
+
+.linkedin-video {
+    width: 30svw;
+    height: 50svh;
+}
+
+#galeria .video {
+    width: 100%;
+    height: 315px;
+}
+
+#galeria .cover {
+    width: 100%;
+    height: 40svh;
+}
+
+#especificacoes table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#especificacoes table > thead > tr > th {
+    background-color: #ff8800;
+    color: #000000;
+    text-align: left;
+}
+
+#especificacoes table th, td {
+    border: 1px solid #ccc;
+    padding: 0.2svw;
+}
+
+#especificacoes tfoot > tr > th {
+    text-align: left;
+}
+
+#especificacoes table tr:nth-child(even) {
+    background-color: #5e5e5e;
+}
+
+#solicitar-produto form > div {
+    margin-top: 10px;
+}
+
+#solicitar-produto form > div > label {
+    display: block;
+}
+
+#solicitar-produto form > div > input {
+    display: block;
+    width: 30dvw;
+    height: 4dvh;
+    padding: 3px;
+    border: 1px solid #141414;
+}
+
+#solicitar-produto form > div > button {
+    display: block;
+    width: 30.6dvw;
+    height: 6dvh;
+    background-color: #ff9900;
+    border: 1px solid #141414;
+}
+
+@media (max-width: 768px) {
+    #galeria > ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .linkedin-video {
+        width: 100%;
+        height: 40svh;
+    }
+}
+
+@media (max-width: 384px) {
+    nav > ul > li > a {
+        font-size: 0.8rem;
+    }
+}

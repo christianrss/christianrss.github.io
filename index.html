@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Software engineer focused on ML systems, AI infrastructure, LLM training and inference, operating systems, compilers, runtimes and low-level software.">
   <meta name="author" content="Christian Rafael de Souza Silva">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#f4f4ef">
@@ -191,7 +190,8 @@ a:focus-visible {
 }
 
 .hero-actions a,
-.section > p:last-child a {
+.section > a.action,
+.card > a.action {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
@@ -206,7 +206,8 @@ a:focus-visible {
 }
 
 .hero-actions a:hover,
-.section > p:last-child a:hover {
+.section > a.action:hover,
+.card > a.action:hover {
   border-color: var(--text);
 }
 
@@ -298,6 +299,11 @@ code {
 
 #contact > p {
   max-width: 720px;
+}
+
+.section > a.action,
+.card > a.action {
+  margin: 8px 6px 0 0;
 }
 
 .site-footer {
@@ -450,7 +456,7 @@ code {
     </div>
   </header>
 
-  <main id="main" class="shell">
+  <div id="main" class="shell">
     <main class="page"><section id="home" data-attr-eyebrow="Software Engineer · Birigui, São Paulo, Brazil" class="hero">
   <div class="hero-copy">
     <p class="hero-eyebrow">Software Engineer · Birigui, São Paulo, Brazil</p>
@@ -622,7 +628,7 @@ code {
 <a class="action external" href="mailto:crafael2030@gmail.com" rel="noopener noreferrer" target="_blank">Email</a>
 </section>
 </main>
-  </main>
+  </div>
 
   <footer class="site-footer">
     <div class="shell footer-shell">

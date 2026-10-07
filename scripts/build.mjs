@@ -12,7 +12,7 @@ const pages = [
 
 for (const page of pages) {
   await mkdir(dirname(page.output), {recursive:true});
-  execFileSync(mds,["build",page.input,"--theme",page.theme,"--output",page.output],{stdio:"inherit"});
+  execFileSync(mds,["build",page.input,"--theme",resolve(page.theme),"--output",page.output],{stdio:"inherit"});
   let html=await readFile(page.output,"utf8");
   const alternateTags=Object.entries(page.alternates).map(([lang,href])=>`<link rel="alternate" hreflang="${lang}" href="${href}">`).join("\n  ");
   const seo=`<link rel="canonical" href="${page.canonical}">

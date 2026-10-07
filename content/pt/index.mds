@@ -74,7 +74,7 @@ Sistema operacional experimental x86-64 e playground de baixo nível para desenv
 
 **C · C++ · x86-64 · OSDev · compiladores**
 
-[Código >> https://github.com/christianrss/ChrisOS] · [Documentação >> https://os.christiansoftware.org]
+[Código](https://github.com/christianrss/ChrisOS) · [Documentação](https://os.christiansoftware.org)
 :::
 
 ::: project period="2026" label="Pré-treinamento de LLM"
@@ -83,7 +83,7 @@ GPT-2 de 124,5M parâmetros treinado do zero em aproximadamente 10 bilhões de t
 
 **Python · PyTorch · CUDA · NCCL · treinamento distribuído**
 
-[Código >> https://github.com/christianrss/chris-gpt-2] · [Modelo >> https://huggingface.co/christianrss/chris-gpt-2-124m] · [GGUF >> https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF]
+[Código](https://github.com/christianrss/chris-gpt-2) · [Modelo](https://huggingface.co/christianrss/chris-gpt-2-124m) · [GGUF](https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF)
 :::
 
 ::: project period="2026 —" label="Inferência de LLM"
@@ -92,7 +92,7 @@ Runtime experimental de inferência de LLM em C para estudar carregamento GGUF, 
 
 **C · GGUF · inferência · quantização · CPU/GPU**
 
-[Código >> https://github.com/christianrss/chris-llama]
+[Código](https://github.com/christianrss/chris-llama)
 :::
 
 ::: project period="2026 —" label="Sistemas de deep learning"
@@ -101,7 +101,7 @@ Framework de deep learning orientado ao estudo, desenvolvido do zero com tensore
 
 **C++ · Python · autograd · redes neurais · GPU**
 
-[Código >> https://github.com/christianrss/chris-torch]
+[Código](https://github.com/christianrss/chris-torch)
 :::
 
 ::: project period="2026 —" label="Plataforma de pesquisa"
@@ -110,7 +110,7 @@ Plataforma independente de pesquisa sobre macroeconomia, mercados, geopolítica,
 
 **Economia · dados · pesquisa · publicação**
 
-[Acessar >> https://marginalthinking.org/] · [Código >> https://github.com/logicvisionai/marginalthinking]
+[Acessar](https://marginalthinking.org/) · [Código](https://github.com/logicvisionai/marginalthinking)
 :::
 
 ::: project period="2026 —" label="Software de mercados"
@@ -128,14 +128,14 @@ Workspace de inteligência de mercados e carteiras combinando múltiplos portfó
 ### A Reproducible 10-Billion-Token Pretraining Run of GPT-2 124M
 Relatório técnico sobre configuração de treinamento, avaliação e reprodutibilidade do pré-treinamento do Chris-GPT-2.
 
-[Artigo >> https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M]
+[Artigo](https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M)
 :::
 
 ::: entry period="2026" label="Especialização de modelos"
 ### Specializing a 124M-Parameter GPT-2 for Linux
 Estudo de continued pretraining e instruction tuning canônico para um GPT-2 especializado em Linux, incluindo análise de falhas.
 
-[Artigo >> https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis]
+[Artigo](https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis)
 :::
 :::
 
@@ -178,7 +178,7 @@ Formação técnica em eletrônica, mecânica, automação e sistemas embarcados
 ::: section contact
 ## Links
 
-[GitHub >> https://github.com/christianrss] · [LinkedIn >> https://www.linkedin.com/in/christianrss/] · [Hugging Face >> https://huggingface.co/christianrss] · [E-mail >> mailto:crafael2030@gmail.com]
+[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [E-mail](mailto:crafael2030@gmail.com)
 
 Para uma versão profissional compacta, consulte o [currículo em HTML](../resume/pt/) ou [baixe o PDF](../resume/christian-rafael-cv-pt.pdf).
 :::

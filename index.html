@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Software engineer focused on ML systems, AI infrastructure, LLM training and inference, operating systems, compilers, runtimes and low-level software.">
+  <meta name="author" content="Christian Rafael de Souza Silva">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#f4f4ef">
+  <link rel="canonical" href="https://christianrss.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Christian Rafael de Souza Silva — ML Systems &amp; Systems Software">
+  <meta property="og:description" content="Software engineer focused on ML systems, AI infrastructure, LLM training and inference, operating systems, compilers, runtimes and low-level software.">
+  <meta property="og:url" content="https://christianrss.github.io/">
+  <meta name="twitter:card" content="summary">
+  <title>Christian Rafael de Souza Silva — ML Systems &amp; Systems Software</title>
+    <meta name="description" content="Software engineer focused on ML systems, AI infrastructure, LLM training and inference, operating systems, compilers, runtimes and low-level software.">
+  <style>:root {
+  color-scheme: light;
+  --bg: #f4f4ef;
+  --surface: #fbfbf8;
+  --text: #151515;
+  --muted: #666861;
+  --line: #d7d8d0;
+  --accent: #1748a0;
+  --accent-soft: #e8eef9;
+  --max: 1120px;
+  --radius: 14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.shell {
+  width: min(calc(100% - 40px), var(--max));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  transform: translateY(-160%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.nav-shell {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+.hero {
+  min-height: min(760px, calc(100vh - 68px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(72px, 11vw, 150px) 0 clamp(72px, 9vw, 120px);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-copy {
+  max-width: 960px;
+}
+
+.hero-eyebrow {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.hero-title h1 {
+  max-width: 920px;
+  margin: 0;
+  font-size: clamp(45px, 7vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  font-weight: 700;
+}
+
+.hero-title h2 {
+  max-width: 860px;
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-size: clamp(24px, 3.1vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.hero-body {
+  max-width: 820px;
+  margin-top: 38px;
+  color: #393a36;
+  font-size: clamp(17px, 1.7vw, 20px);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.hero-actions a,
+.section > p:last-child a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.hero-actions a:hover,
+.section > p:last-child a:hover {
+  border-color: var(--text);
+}
+
+.section {
+  padding: clamp(70px, 9vw, 116px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.section > h2 {
+  margin: 0 0 16px;
+  max-width: 860px;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.052em;
+}
+
+.section > h2 + p {
+  max-width: 720px;
+  margin: 0 0 42px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.card {
+  min-width: 0;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+}
+
+.card h3 + p {
+  margin-top: 0;
+}
+
+.card p {
+  color: #444640;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+code {
+  display: inline-block;
+  margin: 2px 3px 2px 0;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #243a67;
+  font-family: var(--mono);
+  font-size: 0.74em;
+  white-space: nowrap;
+}
+
+#experience .card,
+#education .card {
+  background: transparent;
+}
+
+#stack > p {
+  max-width: 880px;
+  margin: 14px 0;
+}
+
+#contact {
+  padding-bottom: clamp(84px, 11vw, 140px);
+}
+
+#contact > p {
+  max-width: 720px;
+}
+
+.site-footer {
+  padding: 28px 0 44px;
+}
+
+.footer-shell {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.footer-shell p {
+  margin: 0;
+}
+
+.footer-shell a {
+  color: inherit;
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(calc(100% - 28px), var(--max));
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  .nav-shell {
+    min-height: 60px;
+  }
+
+  .site-nav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 16px;
+    padding-block: 18px;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav a:nth-last-child(-n+2) {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 76px;
+  }
+
+  .hero-title h1 {
+    font-size: clamp(42px, 15vw, 70px);
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-shell {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #111311;
+    --surface: #171917;
+    --text: #f1f2ec;
+    --muted: #a2a59c;
+    --line: #30332d;
+    --accent: #9cbcff;
+    --accent-soft: #1a2842;
+  }
+
+  .hero-body,
+  .card p {
+    color: #c5c8bf;
+  }
+
+  code {
+    color: #c8d8ff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Christian Rafael de Souza Silva",
+    "url": "https://christianrss.github.io/",
+    "jobTitle": "Software Engineer",
+    "sameAs": [
+      "https://github.com/christianrss",
+      "https://www.linkedin.com/in/christianrss/",
+      "https://huggingface.co/christianrss"
+    ],
+    "knowsAbout": [
+      "Machine Learning Systems",
+      "AI Infrastructure",
+      "Large Language Models",
+      "Operating Systems",
+      "Compilers",
+      "GPU Computing"
+    ]
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XBNJTK0EG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4XBNJTK0EG');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="#home" aria-label="Christian Rafael home">CR</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <main class="page"><section id="home" data-attr-eyebrow="Software Engineer · Birigui, São Paulo, Brazil" class="hero">
+  <div class="hero-copy">
+    <p class="hero-eyebrow">Software Engineer · Birigui, São Paulo, Brazil</p>
+    <div class="hero-title"><h1>Christian Rafael de Souza Silva</h1>
+<h2>ML Systems, AI Infrastructure &#x26; Systems Software</h2></div>
+    <div class="hero-body"><p>I build software across two layers: production systems used by businesses and experimental systems built to understand the stack from first principles.</p>
+<p>My current technical focus is <strong>LLM training and inference, operating systems, compilers, virtual machines, GPU computing and low-level software</strong>. I have worked professionally in software development since 2012 across enterprise systems, APIs, web and desktop applications.</p></div>
+    <div class="hero-actions"><a class="action external" href="https://github.com/christianrss" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="action external" href="https://www.linkedin.com/in/christianrss/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="action external" href="https://huggingface.co/christianrss" rel="noopener noreferrer" target="_blank">Hugging Face</a></div>
+    
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Selected projects</h2>
+<p>A small set of projects that best represent my current work.</p>
+<div class="cards">
+  <article id="chrisos" class="card">
+  <h3>ChrisOS</h3>
+<p><strong>Operating systems · compilers · virtual machines</strong></p>
+<p>An experimental x86-64 operating system and systems playground for building kernels, memory management, drivers, graphics, filesystems, compilers, assemblers, linkers, virtual machines and emulation components from scratch.</p>
+<p><code>C</code> <code>C++</code> <code>x86-64</code> <code>OSDev</code> <code>Compilers</code></p>
+<a class="action external" href="https://github.com/christianrss/ChrisOS" rel="noopener noreferrer" target="_blank">Source</a>
+<a class="action external" href="https://os.christiansoftware.org" rel="noopener noreferrer" target="_blank">Documentation</a>
+</article>
+
+<article id="chris-gpt-2" class="card">
+  <h3>Chris-GPT-2</h3>
+<p><strong>LLM pretraining · distributed GPU training</strong></p>
+<p>A 124.5M-parameter GPT-2 trained from scratch on approximately 10B FineWeb-Edu tokens using 4× NVIDIA A100 GPUs, with reproducible training artifacts and SafeTensors/GGUF exports.</p>
+<p><code>Python</code> <code>PyTorch</code> <code>CUDA</code> <code>NCCL</code> <code>LLM Training</code></p>
+<a class="action external" href="https://github.com/christianrss/chris-gpt-2" rel="noopener noreferrer" target="_blank">Source</a>
+<a class="action external" href="https://huggingface.co/christianrss/chris-gpt-2-124m" rel="noopener noreferrer" target="_blank">Model</a>
+<a class="action external" href="https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF" rel="noopener noreferrer" target="_blank">GGUF</a>
+</article>
+
+<article id="chris-llama" class="card">
+  <h3>Chris-Llama</h3>
+<p><strong>LLM inference runtime</strong></p>
+<p>An experimental inference runtime in C for studying GGUF loading, tokenization, attention, KV cache, quantization, memory layout and CPU/GPU execution without hiding the implementation behind a large framework.</p>
+<p><code>C</code> <code>GGUF</code> <code>Inference</code> <code>Quantization</code> <code>CPU/GPU</code></p>
+<a class="action external" href="https://github.com/christianrss/chris-llama" rel="noopener noreferrer" target="_blank">Source</a>
+</article>
+
+<article id="chris-torch" class="card">
+  <h3>Chris-Torch</h3>
+<p><strong>Deep learning framework from scratch</strong></p>
+<p>A learning-oriented deep learning framework implementing tensors, automatic differentiation, neural-network components, optimizers and accelerated execution backends.</p>
+<p><code>C++</code> <code>Python</code> <code>Autograd</code> <code>Neural Networks</code> <code>GPU</code></p>
+<a class="action external" href="https://github.com/christianrss/chris-torch" rel="noopener noreferrer" target="_blank">Source</a>
+</article>
+
+<article id="marginal-thinking" class="card">
+  <h3>Marginal Thinking</h3>
+<p><strong>Macroeconomics · markets · geopolitics</strong></p>
+<p>An independent research platform focused on political economy, markets, technology and global systems, with recurring reports, country research, structural datasets and primary-source analysis.</p>
+<p><code>Research</code> <code>Economics</code> <code>Data</code> <code>Publishing</code></p>
+<a class="action external" href="https://marginalthinking.org/" rel="noopener noreferrer" target="_blank">Visit</a>
+<a class="action external" href="https://github.com/logicvisionai/marginalthinking" rel="noopener noreferrer" target="_blank">Source</a>
+</article>
+
+<article id="sharpex" class="card">
+  <h3>SharpEx</h3>
+<p><strong>Portfolio and market intelligence</strong></p>
+<p>A market and portfolio-intelligence product covering multi-portfolio accounting, cross-asset market data, digital assets, risk-adjusted analytics and structural research integration.</p>
+<p><code>JavaScript</code> <code>Cloudflare Workers</code> <code>Market Data</code> <code>Risk Analytics</code></p>
+</article>
+
+</div>
+
+</section>
+
+<section id="research" class="section">
+  <h2>Research &#x26; technical writing</h2>
+<div class="cards">
+  <article id="reproducible-gpt-2-pretraining" class="card">
+  <h3>Reproducible GPT-2 pretraining</h3>
+<p>Technical report documenting the 10-billion-token GPT-2 124M pretraining run, training setup, evaluation and reproducibility considerations.</p>
+<a class="action external" href="https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M" rel="noopener noreferrer" target="_blank">Paper</a>
+</article>
+
+<article id="specializing-gpt-2-for-linux" class="card">
+  <h3>Specializing GPT-2 for Linux</h3>
+<p>Study of continued pretraining and canonical instruction tuning for a Linux-focused 124M-parameter GPT-2, including failure analysis.</p>
+<a class="action external" href="https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis" rel="noopener noreferrer" target="_blank">Paper</a>
+</article>
+
+</div>
+
+</section>
+
+<section id="experience" class="section">
+  <h2>Experience</h2>
+<div class="cards">
+  <article id="information-systems-programmer" class="card">
+  <h3>Information Systems Programmer</h3>
+<p><strong>ITB Equipamentos Elétricos · Nov 2023 — Present</strong></p>
+<p>Development of internal management and engineering systems spanning finance, accounting, production planning and engineering. Work includes C++, Delphi, MySQL, .NET/C#, React, PostgreSQL, APIs, DDD/CQRS, layered architecture and automated testing.</p>
+</article>
+
+<article id="full-stack-developer" class="card">
+  <h3>Full Stack Developer</h3>
+<p><strong>Gigatron Franchising / Dotbank · Feb 2016 — Nov 2023</strong></p>
+<p>Built web, mobile and desktop software for retail automation, fiscal documents, delivery, ticketing, messaging and internal products using PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic and Delphi. Also worked with Linux/Windows Server, DigitalOcean, AWS and Cloudflare.</p>
+</article>
+
+<article id="full-stack-developer-2" class="card">
+  <h3>Full Stack Developer</h3>
+<p><strong>Netstart Informática · Jul 2014 — Feb 2016</strong></p>
+<p>Worked on retail automation, SAT fiscal processing, desktop update infrastructure, PHP/CodeIgniter APIs, PostgreSQL, Redis, internal tooling, shell scripts and cloud storage/querying of fiscal documents.</p>
+</article>
+
+<article id="earlier-software-roles" class="card">
+  <h3>Earlier software roles</h3>
+<p><strong>Gigatron · Assessor Público (MV &#x26; P) · 2012 — 2014</strong></p>
+<p>Started professionally with Delphi, then worked with PHP/MySQL, Python-based SMS tooling, GeneXus applications, R&#x26;D, AWS administration and OpenVPN.</p>
+</article>
+
+</div>
+
+</section>
+
+<section id="education" class="section">
+  <h2>Education</h2>
+<div class="cards">
+  <article id="postgraduate-degree-electronic-engineering-robotics" class="card">
+  <h3>Postgraduate Degree — Electronic Engineering &#x26; Robotics</h3>
+<p><strong>UNINTER · 2026</strong></p>
+<p>Completed postgraduate study focused on electronics, robotics and autonomous systems.</p>
+</article>
+
+<article id="associate-degree-data-science" class="card">
+  <h3>Associate Degree — Data Science</h3>
+<p><strong>UNINTER · 2023 — 2025</strong></p>
+<p>Machine learning, deep learning, NLP, computer vision, big data, statistics, databases and software engineering.</p>
+</article>
+
+<article id="bachelors-degree-electrical-engineering" class="card">
+  <h3>Bachelor's Degree — Electrical Engineering</h3>
+<p><strong>UNINTER · 2025 — 2030 · In progress</strong></p>
+<p>Electrical engineering, mathematics, control, electronics and related engineering foundations.</p>
+</article>
+
+<article id="technical-degree-mechatronics" class="card">
+  <h3>Technical Degree — Mechatronics</h3>
+<p><strong>Colégio Salesiano Dom Lasagna · 2012 — 2014</strong></p>
+<p>Technical training across electronics, mechanics, automation and embedded systems.</p>
+</article>
+
+</div>
+
+</section>
+
+<section id="stack" class="section">
+  <h2>Working stack</h2>
+<p><strong>Languages:</strong> C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.</p>
+<p><strong>Systems &#x26; ML:</strong> Linux, LLM training/inference, GPU computing, distributed training, operating systems, compilers, virtual machines, emulators and low-level debugging.</p>
+<p><strong>Application engineering:</strong> .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS and automated testing.</p>
+<p><strong>Infrastructure:</strong> Git, GitHub Actions, Cloudflare, AWS, DigitalOcean, Linux/Windows Server.</p>
+</section>
+
+<section id="contact" class="section">
+  <h2>Contact</h2>
+<p>For source code, current experiments and public research, use the links below.</p>
+<a class="action external" href="https://github.com/christianrss" rel="noopener noreferrer" target="_blank">GitHub</a>
+<a class="action external" href="https://www.linkedin.com/in/christianrss/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+<a class="action external" href="https://huggingface.co/christianrss" rel="noopener noreferrer" target="_blank">Hugging Face</a>
+<a class="action external" href="mailto:crafael2030@gmail.com" rel="noopener noreferrer" target="_blank">Email</a>
+</section>
+</main>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-shell">
+      <p>Christian Rafael de Souza Silva · 2026</p>
+      <p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a></p>
+    </div>
+  </footer>
+  
+</body>
+</html>

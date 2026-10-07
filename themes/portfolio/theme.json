@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "portfolio",
+  "label": "Christian Portfolio",
+  "description": "Minimal technical portfolio theme for Christian Rafael de Souza Silva.",
+  "tags": ["portfolio", "resume", "technical", "responsive"],
+  "supportedBlocks": ["hero", "section", "cards", "card"],
+  "css": "style.css",
+  "shell": "shell.html",
+  "blocks": "blocks"
+}

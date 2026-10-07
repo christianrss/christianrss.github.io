@@ -1,0 +1,220 @@
+---
+title: Christian Rafael de Souza Silva — ML Systems & Systems Software
+description: Software engineer focused on ML systems, AI infrastructure, LLM training and inference, operating systems, compilers, runtimes and low-level software.
+lang: en
+theme: ./themes/portfolio
+---
+
+::: hero home eyebrow="Software Engineer · Birigui, São Paulo, Brazil"
+
+--- title
+# Christian Rafael de Souza Silva
+
+## ML Systems, AI Infrastructure & Systems Software
+
+--- body
+I build software across two layers: production systems used by businesses and experimental systems built to understand the stack from first principles.
+
+My current technical focus is **LLM training and inference, operating systems, compilers, virtual machines, GPU computing and low-level software**. I have worked professionally in software development since 2012 across enterprise systems, APIs, web and desktop applications.
+
+--- actions
+[GitHub >> https://github.com/christianrss]
+[LinkedIn >> https://www.linkedin.com/in/christianrss/]
+[Hugging Face >> https://huggingface.co/christianrss]
+
+:::
+
+::: section projects
+## Selected projects
+
+A small set of projects that best represent my current work.
+
+::: cards
+
+::: card
+### ChrisOS
+**Operating systems · compilers · virtual machines**
+
+An experimental x86-64 operating system and systems playground for building kernels, memory management, drivers, graphics, filesystems, compilers, assemblers, linkers, virtual machines and emulation components from scratch.
+
+`C` `C++` `x86-64` `OSDev` `Compilers`
+
+[Source >> https://github.com/christianrss/ChrisOS]
+[Documentation >> https://os.christiansoftware.org]
+:::
+
+::: card
+### Chris-GPT-2
+**LLM pretraining · distributed GPU training**
+
+A 124.5M-parameter GPT-2 trained from scratch on approximately 10B FineWeb-Edu tokens using 4× NVIDIA A100 GPUs, with reproducible training artifacts and SafeTensors/GGUF exports.
+
+`Python` `PyTorch` `CUDA` `NCCL` `LLM Training`
+
+[Source >> https://github.com/christianrss/chris-gpt-2]
+[Model >> https://huggingface.co/christianrss/chris-gpt-2-124m]
+[GGUF >> https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF]
+:::
+
+::: card
+### Chris-Llama
+**LLM inference runtime**
+
+An experimental inference runtime in C for studying GGUF loading, tokenization, attention, KV cache, quantization, memory layout and CPU/GPU execution without hiding the implementation behind a large framework.
+
+`C` `GGUF` `Inference` `Quantization` `CPU/GPU`
+
+[Source >> https://github.com/christianrss/chris-llama]
+:::
+
+::: card
+### Chris-Torch
+**Deep learning framework from scratch**
+
+A learning-oriented deep learning framework implementing tensors, automatic differentiation, neural-network components, optimizers and accelerated execution backends.
+
+`C++` `Python` `Autograd` `Neural Networks` `GPU`
+
+[Source >> https://github.com/christianrss/chris-torch]
+:::
+
+::: card
+### Marginal Thinking
+**Macroeconomics · markets · geopolitics**
+
+An independent research platform focused on political economy, markets, technology and global systems, with recurring reports, country research, structural datasets and primary-source analysis.
+
+`Research` `Economics` `Data` `Publishing`
+
+[Visit >> https://marginalthinking.org/]
+[Source >> https://github.com/logicvisionai/marginalthinking]
+:::
+
+::: card
+### SharpEx
+**Portfolio and market intelligence**
+
+A market and portfolio-intelligence product covering multi-portfolio accounting, cross-asset market data, digital assets, risk-adjusted analytics and structural research integration.
+
+`JavaScript` `Cloudflare Workers` `Market Data` `Risk Analytics`
+:::
+
+:::
+:::
+
+::: section research
+## Research & technical writing
+
+::: cards
+
+::: card
+### Reproducible GPT-2 pretraining
+Technical report documenting the 10-billion-token GPT-2 124M pretraining run, training setup, evaluation and reproducibility considerations.
+
+[Paper >> https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M]
+:::
+
+::: card
+### Specializing GPT-2 for Linux
+Study of continued pretraining and canonical instruction tuning for a Linux-focused 124M-parameter GPT-2, including failure analysis.
+
+[Paper >> https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis]
+:::
+
+:::
+:::
+
+::: section experience
+## Experience
+
+::: cards
+
+::: card
+### Information Systems Programmer
+**ITB Equipamentos Elétricos · Nov 2023 — Present**
+
+Development of internal management and engineering systems spanning finance, accounting, production planning and engineering. Work includes C++, Delphi, MySQL, .NET/C#, React, PostgreSQL, APIs, DDD/CQRS, layered architecture and automated testing.
+:::
+
+::: card
+### Full Stack Developer
+**Gigatron Franchising / Dotbank · Feb 2016 — Nov 2023**
+
+Built web, mobile and desktop software for retail automation, fiscal documents, delivery, ticketing, messaging and internal products using PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic and Delphi. Also worked with Linux/Windows Server, DigitalOcean, AWS and Cloudflare.
+:::
+
+::: card
+### Full Stack Developer
+**Netstart Informática · Jul 2014 — Feb 2016**
+
+Worked on retail automation, SAT fiscal processing, desktop update infrastructure, PHP/CodeIgniter APIs, PostgreSQL, Redis, internal tooling, shell scripts and cloud storage/querying of fiscal documents.
+:::
+
+::: card
+### Earlier software roles
+**Gigatron · Assessor Público (MV & P) · 2012 — 2014**
+
+Started professionally with Delphi, then worked with PHP/MySQL, Python-based SMS tooling, GeneXus applications, R&D, AWS administration and OpenVPN.
+:::
+
+:::
+:::
+
+::: section education
+## Education
+
+::: cards
+
+::: card
+### Postgraduate Degree — Electronic Engineering & Robotics
+**UNINTER · 2026**
+
+Completed postgraduate study focused on electronics, robotics and autonomous systems.
+:::
+
+::: card
+### Associate Degree — Data Science
+**UNINTER · 2023 — 2025**
+
+Machine learning, deep learning, NLP, computer vision, big data, statistics, databases and software engineering.
+:::
+
+::: card
+### Bachelor's Degree — Electrical Engineering
+**UNINTER · 2025 — 2030 · In progress**
+
+Electrical engineering, mathematics, control, electronics and related engineering foundations.
+:::
+
+::: card
+### Technical Degree — Mechatronics
+**Colégio Salesiano Dom Lasagna · 2012 — 2014**
+
+Technical training across electronics, mechanics, automation and embedded systems.
+:::
+
+:::
+:::
+
+::: section stack
+## Working stack
+
+**Languages:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.
+
+**Systems & ML:** Linux, LLM training/inference, GPU computing, distributed training, operating systems, compilers, virtual machines, emulators and low-level debugging.
+
+**Application engineering:** .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS and automated testing.
+
+**Infrastructure:** Git, GitHub Actions, Cloudflare, AWS, DigitalOcean, Linux/Windows Server.
+:::
+
+::: section contact
+## Contact
+
+For source code, current experiments and public research, use the links below.
+
+[GitHub >> https://github.com/christianrss]
+[LinkedIn >> https://www.linkedin.com/in/christianrss/]
+[Hugging Face >> https://huggingface.co/christianrss]
+[Email >> mailto:crafael2030@gmail.com]
+:::

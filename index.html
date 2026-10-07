@@ -10,13 +10,7 @@
   <link rel="alternate" hreflang="en" href="https://christianrss.github.io/en/">
   <link rel="alternate" hreflang="pt-BR" href="https://christianrss.github.io/pt/">
   <link rel="alternate" hreflang="x-default" href="https://christianrss.github.io/">
-  <script>
-    (function () {
-      var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
-      var pt = langs.some(function (lang) { return String(lang).toLowerCase().startsWith("pt"); });
-      location.replace(pt ? "./pt/" : "./en/");
-    }());
-  </script>
+  <script>(function(){var langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];var pt=langs.some(function(lang){return String(lang).toLowerCase().startsWith("pt")});location.replace(pt?"./pt/":"./en/")}());</script>
   <noscript><meta http-equiv="refresh" content="0; url=./en/"></noscript>
   <style>body{font:16px/1.5 system-ui,sans-serif;max-width:680px;margin:12vh auto;padding:0 24px;color:#171815;background:#f7f7f3}a{color:#174b9b}</style>
 </head>

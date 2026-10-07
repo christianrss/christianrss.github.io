@@ -3,72 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ description }}">
   <meta name="author" content="Christian Rafael de Souza Silva">
   <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#f4f4ef">
-  <link rel="canonical" href="https://christianrss.github.io/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ description }}">
-  <meta property="og:url" content="https://christianrss.github.io/">
-  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f7f7f3">
   <title>{{ title }}</title>
   {{ head }}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Christian Rafael de Souza Silva",
-    "url": "https://christianrss.github.io/",
-    "jobTitle": "Software Engineer",
-    "sameAs": [
-      "https://github.com/christianrss",
-      "https://www.linkedin.com/in/christianrss/",
-      "https://huggingface.co/christianrss"
-    ],
-    "knowsAbout": [
-      "Machine Learning Systems",
-      "AI Infrastructure",
-      "Large Language Models",
-      "Operating Systems",
-      "Compilers",
-      "GPU Computing"
-    ]
-  }
-  </script>
+  <!-- SEO_INJECTION -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Christian Rafael de Souza Silva","url":"https://christianrss.github.io/","jobTitle":"Software Engineer","sameAs":["https://github.com/christianrss","https://www.linkedin.com/in/christianrss/","https://huggingface.co/christianrss"],"knowsAbout":["Machine Learning Systems","AI Infrastructure","Large Language Models","Operating Systems","Compilers","GPU Computing"]}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XBNJTK0EG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4XBNJTK0EG');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-4XBNJTK0EG');</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="shell nav-shell">
-      <a class="brand" href="#home" aria-label="Christian Rafael home">CR</a>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#research">Research</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <div id="main" class="shell">
-    {{ body }}
-  </div>
-
-  <footer class="site-footer">
-    <div class="shell footer-shell">
-      <p>Christian Rafael de Souza Silva · 2026</p>
-      <p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a></p>
-    </div>
-  </footer>
+  <a class="skip-link" href="#home">Skip to content</a>
+  <div class="site-shell">{{ body }}</div>
   {{ scripts }}
 </body>
 </html>

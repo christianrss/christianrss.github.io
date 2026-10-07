@@ -1,0 +1,24 @@
+# Christian Rafael de Souza Silva
+
+Software engineer working across ML systems, AI infrastructure, systems software and production applications.
+
+Canonical profiles:
+- English: https://christianrss.github.io/en/
+- Portuguese: https://christianrss.github.io/pt/
+- GitHub: https://github.com/christianrss
+- Hugging Face: https://huggingface.co/christianrss
+- LinkedIn: https://www.linkedin.com/in/christianrss/
+
+Selected work:
+- ChrisOS: https://github.com/christianrss/ChrisOS
+- ChrisOS documentation: https://os.christiansoftware.org
+- Chris-GPT-2: https://github.com/christianrss/chris-gpt-2
+- Chris-Llama: https://github.com/christianrss/chris-llama
+- Chris-Torch: https://github.com/christianrss/chris-torch
+- Marginal Thinking: https://marginalthinking.org/
+
+Professional résumé:
+- English HTML: https://christianrss.github.io/resume/en/
+- Portuguese HTML: https://christianrss.github.io/resume/pt/
+- English PDF: https://christianrss.github.io/resume/christian-rafael-cv-en.pdf
+- Portuguese PDF: https://christianrss.github.io/resume/christian-rafael-cv-pt.pdf

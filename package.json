@@ -1,18 +1,20 @@
 {
   "name": "christianrss-github-io",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Christian Rafael de Souza Silva — personal portfolio authored in MDS.",
-  "engines": {
-    "node": ">=20.19"
-  },
+  "description": "Multilingual MDS-authored technical portfolio and professional resume.",
+  "engines": {"node": ">=20.19"},
   "scripts": {
-    "check": "mds check index.mds",
-    "build": "mds build index.mds --theme ./themes/portfolio --output index.html",
-    "edit": "mds edit index.mds",
+    "check": "mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds",
+    "build": "node scripts/build.mjs",
+    "pdf": "node scripts/render-pdf.mjs",
+    "build:all": "npm run check && npm run build && npm run pdf",
+    "edit:en": "mds edit content/en/index.mds",
+    "edit:pt": "mds edit content/pt/index.mds",
     "preview": "python3 -m http.server 8000"
   },
   "devDependencies": {
-    "@mds-crate/cli": "0.1.0-beta.2"
+    "@mds-crate/cli": "0.1.0-beta.2",
+    "playwright": "1.63.0"
   }
 }

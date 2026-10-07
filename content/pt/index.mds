@@ -1,0 +1,188 @@
+---
+title: Christian Rafael de Souza Silva — Engenheiro de Software
+description: Engenheiro de software com atuação em ML Systems, infraestrutura de IA, sistemas operacionais, compiladores, runtimes e software de produção.
+lang: pt-BR
+theme: ../../themes/portfolio
+---
+
+::: nav primary
+[Christian Rafael](#home)
+[Atuação](#work)
+[Projetos](#projects)
+[Pesquisa](#research)
+[Formação](#education)
+[CV](../resume/pt/)
+[PDF](../resume/christian-rafael-cv-pt.pdf)
+[EN](../en/) · **PT**
+:::
+
+::: hero home eyebrow="Engenheiro de Software · ML Systems · Systems Software"
+
+--- title
+# Christian Rafael de Souza Silva
+
+--- body
+Desenvolvo software desde as camadas de aplicação até runtimes e sistemas operacionais.
+
+Minha atuação combina **software de produção, ML Systems, treinamento e inferência de LLMs, compiladores, máquinas virtuais, computação em GPU e sistemas de baixo nível**. Trabalho profissionalmente com desenvolvimento de software desde 2012 e uso projetos próprios para estudar as partes da pilha que abstrações normalmente escondem.
+
+--- actions
+[GitHub >> https://github.com/christianrss]
+[LinkedIn >> https://www.linkedin.com/in/christianrss/]
+[Hugging Face >> https://huggingface.co/christianrss]
+
+:::
+
+::: section about
+## Foco atual
+
+Interesso-me por sistemas que permitam compreender a computação de ponta a ponta: como dados se transformam em pesos de modelos, como modelos se tornam grafos executáveis de inferência, como runtimes distribuem trabalho entre CPUs e GPUs e como sistemas operacionais, compiladores e hardware determinam o comportamento final.
+
+Esse interesse também se estende à camada de produto. Minha experiência profissional inclui sistemas corporativos, APIs, aplicações desktop e web, software fiscal e de varejo, infraestrutura e ferramentas internas de engenharia.
+:::
+
+::: section work
+## Experiência
+
+::: entry period="2023 — atual" label="ITB Equipamentos Elétricos"
+### Programador de Sistemas de Informação
+Atuo em sistemas internos de gestão e engenharia cobrindo financeiro, contabilidade, PCP e engenharia. A stack inclui C++, Delphi, MySQL, .NET/C#, React e PostgreSQL, com APIs, testes automatizados e padrões arquiteturais como DDD e CQRS.
+:::
+
+::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
+### Programador Full Stack
+Desenvolvi produtos web, mobile e desktop para automação comercial, documentos fiscais, delivery, venda de ingressos e mensageria. Trabalhei com PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean e Cloudflare.
+:::
+
+::: entry period="2014 — 2016" label="Netstart Informática"
+### Programador Full Stack
+Atuei em automação comercial, processamento fiscal SAT, infraestrutura de atualização desktop, APIs PHP/CodeIgniter, PostgreSQL, Redis, ferramentas internas e armazenamento/consulta de documentos fiscais em nuvem.
+:::
+
+::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
+### Primeiras experiências profissionais
+Iniciei profissionalmente com Delphi e depois trabalhei com PHP/MySQL, ferramentas de SMS em Python, aplicações GeneXus, pesquisa e desenvolvimento, administração AWS e OpenVPN.
+:::
+:::
+
+::: section projects
+## Projetos selecionados
+
+::: project period="2025 —" label="Sistemas operacionais"
+### ChrisOS
+Sistema operacional experimental x86-64 e playground de baixo nível para desenvolvimento do zero de kernel, memória, drivers, gráficos, filesystem, compiladores, assemblers, linkers, máquinas virtuais e componentes de emulação.
+
+**C · C++ · x86-64 · OSDev · compiladores**
+
+[Código >> https://github.com/christianrss/ChrisOS] · [Documentação >> https://os.christiansoftware.org]
+:::
+
+::: project period="2026" label="Pré-treinamento de LLM"
+### Chris-GPT-2
+GPT-2 de 124,5M parâmetros treinado do zero em aproximadamente 10 bilhões de tokens FineWeb-Edu utilizando 4× NVIDIA A100, com artefatos reproduzíveis e exportação SafeTensors/GGUF.
+
+**Python · PyTorch · CUDA · NCCL · treinamento distribuído**
+
+[Código >> https://github.com/christianrss/chris-gpt-2] · [Modelo >> https://huggingface.co/christianrss/chris-gpt-2-124m] · [GGUF >> https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF]
+:::
+
+::: project period="2026 —" label="Inferência de LLM"
+### Chris-Llama
+Runtime experimental de inferência de LLM em C para estudar carregamento GGUF, tokenização, atenção, KV cache, quantização, layout de memória e execução CPU/GPU sem esconder a implementação atrás de um grande framework.
+
+**C · GGUF · inferência · quantização · CPU/GPU**
+
+[Código >> https://github.com/christianrss/chris-llama]
+:::
+
+::: project period="2026 —" label="Sistemas de deep learning"
+### Chris-Torch
+Framework de deep learning orientado ao estudo, desenvolvido do zero com tensores, diferenciação automática, componentes de redes neurais, otimizadores e backends de execução acelerada.
+
+**C++ · Python · autograd · redes neurais · GPU**
+
+[Código >> https://github.com/christianrss/chris-torch]
+:::
+
+::: project period="2026 —" label="Plataforma de pesquisa"
+### Marginal Thinking
+Plataforma independente de pesquisa sobre macroeconomia, mercados, geopolítica, tecnologia e sistemas globais, com relatórios recorrentes, pesquisas por país, bases estruturais e análise de fontes primárias.
+
+**Economia · dados · pesquisa · publicação**
+
+[Acessar >> https://marginalthinking.org/] · [Código >> https://github.com/logicvisionai/marginalthinking]
+:::
+
+::: project period="2026 —" label="Software de mercados"
+### SharpEx
+Workspace de inteligência de mercados e carteiras combinando múltiplos portfólios, dados multiativos, ativos digitais, métricas de risco ajustadas e integração com pesquisa estrutural.
+
+**JavaScript · Cloudflare Workers · dados de mercado · análise de risco**
+:::
+:::
+
+::: section research
+## Pesquisa e escrita técnica
+
+::: entry period="2026" label="Treinamento de LLM"
+### A Reproducible 10-Billion-Token Pretraining Run of GPT-2 124M
+Relatório técnico sobre configuração de treinamento, avaliação e reprodutibilidade do pré-treinamento do Chris-GPT-2.
+
+[Artigo >> https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M]
+:::
+
+::: entry period="2026" label="Especialização de modelos"
+### Specializing a 124M-Parameter GPT-2 for Linux
+Estudo de continued pretraining e instruction tuning canônico para um GPT-2 especializado em Linux, incluindo análise de falhas.
+
+[Artigo >> https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis]
+:::
+:::
+
+::: section education
+## Formação
+
+::: entry period="2026" label="UNINTER"
+### Pós-Graduação — Engenharia Eletrônica e Robótica
+Formação com foco em eletrônica, robótica e sistemas autônomos.
+:::
+
+::: entry period="2023 — 2025" label="UNINTER"
+### Tecnologia — Ciência de Dados
+Machine learning, deep learning, NLP, visão computacional, big data, estatística, bancos de dados e engenharia de software.
+:::
+
+::: entry period="2025 — 2030" label="UNINTER"
+### Bacharelado — Engenharia Elétrica
+Em andamento. Engenharia elétrica, matemática, controle, eletrônica e fundamentos correlatos.
+:::
+
+::: entry period="2012 — 2014" label="Colégio Salesiano Dom Lasagna"
+### Técnico — Mecatrônica
+Formação técnica em eletrônica, mecânica, automação e sistemas embarcados.
+:::
+:::
+
+::: section stack
+## Stack de trabalho
+
+**Linguagens:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP e Delphi.
+
+**Sistemas e ML:** Linux, treinamento/inferência de LLMs, computação em GPU, treinamento distribuído, sistemas operacionais, compiladores, máquinas virtuais, emuladores e depuração de baixo nível.
+
+**Engenharia de aplicações:** .NET, React, Laravel, APIs REST, PostgreSQL, MySQL, Redis, DDD, CQRS e testes automatizados.
+
+**Infraestrutura:** Git, GitHub Actions, Cloudflare, AWS, DigitalOcean e Linux/Windows Server.
+:::
+
+::: section contact
+## Links
+
+[GitHub >> https://github.com/christianrss] · [LinkedIn >> https://www.linkedin.com/in/christianrss/] · [Hugging Face >> https://huggingface.co/christianrss] · [E-mail >> mailto:crafael2030@gmail.com]
+
+Para uma versão profissional compacta, consulte o [currículo em HTML](../resume/pt/) ou [baixe o PDF](../resume/christian-rafael-cv-pt.pdf).
+:::
+
+::: footer
+[English](../en/) · Português · Construído em MDS e publicado como HTML estático.
+:::

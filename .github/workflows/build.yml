@@ -1,4 +1,4 @@
-name: Build MDS portfolio
+name: Build multilingual MDS portfolio
 
 on:
   push:
@@ -21,7 +21,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -35,40 +35,59 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci --no-audit --no-fund
-          else
-            npm install --no-audit --no-fund
-          fi
+        run: npm install --no-audit --no-fund
 
-      - name: Validate MDS
+      - name: Install Chromium for PDF rendering
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate MDS sources
         run: npm run check
 
-      - name: Render standalone HTML
+      - name: Build multilingual site
         run: npm run build
 
-      - name: Verify generated page
+      - name: Render professional PDFs
+        run: npm run pdf
+
+      - name: Verify generated outputs
         run: |
           test -s index.html
-          grep -q "Christian Rafael de Souza Silva" index.html
-          grep -q "ChrisOS" index.html
-          grep -q "ML Systems" index.html
+          test -s en/index.html
+          test -s pt/index.html
+          test -s resume/en/index.html
+          test -s resume/pt/index.html
+          test -s resume/christian-rafael-cv-en.pdf
+          test -s resume/christian-rafael-cv-pt.pdf
+          grep -q "Selected projects" en/index.html
+          grep -q "Projetos selecionados" pt/index.html
+          grep -q "Professional Resume" resume/en/index.html
+          grep -q "Currículo Profissional" resume/pt/index.html
+          grep -q 'hreflang="pt-BR"' en/index.html
+          grep -q 'hreflang="en"' pt/index.html
 
-      - name: Commit generated artifact
+      - name: Commit generated artifacts
         if: github.event_name == 'push'
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- index.html package-lock.json)" ]; then
+          GENERATED=(
+            index.html
+            en/index.html
+            pt/index.html
+            resume/en/index.html
+            resume/pt/index.html
+            resume/christian-rafael-cv-en.pdf
+            resume/christian-rafael-cv-pt.pdf
+            package-lock.json
+          )
+
+          if [ -z "$(git status --porcelain -- "${GENERATED[@]}")" ]; then
             echo "Generated output is already current."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html package-lock.json
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "build: render portfolio from MDS [skip ci]"
+          git add -- "${GENERATED[@]}"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "build: render multilingual site and resumes [skip ci]"
           git push

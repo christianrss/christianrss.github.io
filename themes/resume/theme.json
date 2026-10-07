@@ -1,0 +1,1 @@
+{"version":1,"name":"resume","label":"Professional Resume","description":"A4-first professional resume theme.","tags":["resume","cv","print","a4"],"supportedBlocks":["resume-header","resume-section","resume-entry"],"css":"style.css","shell":"shell.html","blocks":"blocks"}

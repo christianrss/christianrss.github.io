@@ -174,7 +174,8 @@ a:focus-visible {
 }
 
 .hero-actions a,
-.section > p:last-child a {
+.section > a.action,
+.card > a.action {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
@@ -189,7 +190,8 @@ a:focus-visible {
 }
 
 .hero-actions a:hover,
-.section > p:last-child a:hover {
+.section > a.action:hover,
+.card > a.action:hover {
   border-color: var(--text);
 }
 
@@ -281,6 +283,11 @@ code {
 
 #contact > p {
   max-width: 720px;
+}
+
+.section > a.action,
+.card > a.action {
+  margin: 8px 6px 0 0;
 }
 
 .site-footer {

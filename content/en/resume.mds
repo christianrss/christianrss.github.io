@@ -1,0 +1,124 @@
+---
+title: Christian Rafael de Souza Silva — Professional Resume
+description: Professional resume of Christian Rafael de Souza Silva, software engineer focused on ML systems, AI infrastructure and systems software.
+lang: en
+theme: ../../themes/resume
+---
+
+::: resume-header
+# Christian Rafael de Souza Silva
+
+**Software Engineer — ML Systems, AI Infrastructure & Systems Software**
+
+Birigui, São Paulo, Brazil · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
+
+15 years of software development experience across enterprise systems, APIs, web and desktop applications, with additional focus on ML systems, AI infrastructure, low-level systems and data-driven products.
+:::
+
+::: resume-section
+## Experience
+
+::: resume-entry period="Nov 2023 — Present"
+### Information Systems Programmer — ITB Equipamentos Elétricos
+**Birigui, SP, Brazil**
+
+- Internal management system covering finance, accounting, production planning and engineering.
+- C++, MySQL and Delphi; Horse APIs and Swagger documentation.
+- .NET Core, EF Core, C#, JavaScript, React and PostgreSQL.
+- DDD, CQRS, layered architecture and automated testing.
+- AI-assisted agile development and Spec Driven Development practices.
+:::
+
+::: resume-entry period="Feb 2016 — Nov 2023"
+### Full Stack Developer — Gigatron Franchising / Dotbank
+**Birigui, SP, Brazil**
+
+- PHP, Laravel, Angular, Vue and PostgreSQL; Android apps in Java/Kotlin and hybrid React/Ionic apps.
+- APIs and products for ZIP code lookup, SMS, food delivery, retail automation, fiscal documents and ticketing.
+- Linux/Windows Server administration; DigitalOcean, AWS and Cloudflare.
+- Delphi application for production sheet stacking and printing.
+:::
+
+::: resume-entry period="Jul 2014 — Feb 2016"
+### Full Stack Developer — Netstart Informática
+**Birigui, SP, Brazil**
+
+- Retail automation with Delphi/PostgreSQL and SAT fiscal queue processing with Redis.
+- Desktop updater; PHP/CodeIgniter API and panel with jQuery and PostgreSQL.
+- Internal tools, Bash scripts and cloud storage/querying of fiscal documents.
+:::
+
+::: resume-entry period="Jan 2014 — Jul 2014"
+### Full Stack Developer — Gigatron Franchising
+**Birigui, SP, Brazil**
+
+- PHP/MySQL applications, server administration and SMS service using Python with a modem.
+:::
+
+::: resume-entry period="Aug 2012 — Jun 2013"
+### Programmer Apprentice — Assessor Público (MV & P Tecnologia)
+**Araçatuba, SP, Brazil**
+
+- GeneXus applications, R&D, AWS server administration and OpenVPN.
+:::
+
+::: resume-entry period="Jan 2012 — Jul 2012"
+### Programmer Apprentice — Gigatron Tecnologia
+**Birigui, SP, Brazil**
+
+- Internal applications in Delphi.
+:::
+:::
+
+::: resume-section
+## Selected projects
+
+::: resume-entry period="2025 —"
+### ChrisOS
+Experimental operating system and low-level playground for kernels, compilers, toolchains, virtual machines, emulators, drivers and graphics subsystems. [GitHub](https://github.com/christianrss/ChrisOS) · [Documentation](https://os.christiansoftware.org)
+:::
+
+::: resume-entry period="2026"
+### Chris-GPT-2
+124M-parameter GPT-2 trained from scratch on ~10B FineWeb-Edu tokens using 4× A100 GPUs, with SafeTensors/GGUF exports. [GitHub](https://github.com/christianrss/chris-gpt-2) · [Hugging Face](https://huggingface.co/christianrss/chris-gpt-2-124m)
+:::
+
+::: resume-entry period="2026 —"
+### Chris-Llama
+Experimental LLM inference runtime in C covering GGUF, tokenization, attention, KV cache, quantization and CPU/GPU execution. [GitHub](https://github.com/christianrss/chris-llama)
+:::
+
+::: resume-entry period="2026 —"
+### Chris-Torch
+Deep learning framework built from scratch with tensors, autograd, neural-network components, optimizers and accelerated backends. [GitHub](https://github.com/christianrss/chris-torch)
+:::
+
+::: resume-entry period="2026 —"
+### SharpEx
+Market and portfolio-intelligence workspace with multiple portfolios, risk/return metrics, crypto, market data and structural research integration.
+:::
+
+::: resume-entry period="2026 —"
+### Marginal Thinking
+Independent macroeconomics, markets and geopolitics research platform with recurring reports, structural datasets and primary-source analysis. [marginalthinking.org](https://marginalthinking.org/)
+:::
+:::
+
+::: resume-section
+## Education
+
+- **Postgraduate Degree in Electronic Engineering & Robotics** — UNINTER, 2026
+- **Associate Degree in Data Science** — UNINTER, 2023 — 2025
+- **Bachelor's Degree in Electrical Engineering** — UNINTER, 2025 — 2030, in progress
+- **Technical Degree in Mechatronics** — Colégio Salesiano Dom Lasagna, 2012 — 2014
+:::
+
+::: resume-section
+## Technical profile
+
+**Languages:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.
+
+**ML & systems:** LLM training/inference, PyTorch, CUDA, distributed training, GGUF, quantization, Linux, operating systems, compilers, virtual machines and emulators.
+
+**Applications & infrastructure:** .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS, GitHub Actions, Cloudflare, AWS and DigitalOcean.
+:::

@@ -1,0 +1,124 @@
+---
+title: Christian Rafael de Souza Silva — Currículo Profissional
+description: Currículo profissional de Christian Rafael de Souza Silva, engenheiro de software com foco em ML Systems, infraestrutura de IA e systems software.
+lang: pt-BR
+theme: ../../themes/resume
+---
+
+::: resume-header
+# Christian Rafael de Souza Silva
+
+**Engenheiro de Software — ML Systems, Infraestrutura de IA & Systems Software**
+
+Birigui, São Paulo, Brasil · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
+
+15 anos de experiência em desenvolvimento de software, sistemas corporativos, APIs e aplicações web e desktop, com atuação adicional em ML Systems, infraestrutura de IA, sistemas de baixo nível e produtos orientados a dados.
+:::
+
+::: resume-section
+## Experiência
+
+::: resume-entry period="nov 2023 — atual"
+### Programador de Sistemas de Informação — ITB Equipamentos Elétricos
+**Birigui, SP, Brasil**
+
+- Sistema de gestão interno cobrindo financeiro, contabilidade, PCP e engenharia.
+- C++, MySQL e Delphi; APIs Horse e documentação Swagger.
+- .NET Core, EF Core, C#, JavaScript, React e PostgreSQL.
+- DDD, CQRS, arquitetura em camadas e testes automatizados.
+- Desenvolvimento ágil assistido por IA e práticas de Spec Driven Development.
+:::
+
+::: resume-entry period="fev 2016 — nov 2023"
+### Programador Full Stack — Gigatron Franchising / Dotbank
+**Birigui, SP, Brasil**
+
+- PHP, Laravel, Angular, Vue e PostgreSQL; aplicativos Android em Java/Kotlin e híbridos React/Ionic.
+- APIs e produtos para CEP, SMS, delivery, automação comercial, documentos fiscais e venda de ingressos.
+- Administração Linux/Windows Server; DigitalOcean, AWS e Cloudflare.
+- Aplicação Delphi para empilhamento e impressão de fichas de produção.
+:::
+
+::: resume-entry period="jul 2014 — fev 2016"
+### Programador Full Stack — Netstart Informática
+**Birigui, SP, Brasil**
+
+- Automação comercial com Delphi/PostgreSQL e fila de processamento fiscal SAT com Redis.
+- Atualizador desktop; API e painel PHP/CodeIgniter com jQuery e PostgreSQL.
+- Ferramentas internas, scripts Bash e armazenamento/consulta de documentos fiscais em nuvem.
+:::
+
+::: resume-entry period="jan 2014 — jul 2014"
+### Programador Full Stack — Gigatron Franchising
+**Birigui, SP, Brasil**
+
+- Aplicações PHP/MySQL, administração de servidores e serviço de SMS utilizando Python com modem.
+:::
+
+::: resume-entry period="ago 2012 — jun 2013"
+### Programador Aprendiz — Assessor Público (MV & P Tecnologia)
+**Araçatuba, SP, Brasil**
+
+- Aplicações GeneXus, pesquisa e desenvolvimento, administração de servidores AWS e OpenVPN.
+:::
+
+::: resume-entry period="jan 2012 — jul 2012"
+### Programador Aprendiz — Gigatron Tecnologia
+**Birigui, SP, Brasil**
+
+- Aplicações internas em Delphi.
+:::
+:::
+
+::: resume-section
+## Projetos selecionados
+
+::: resume-entry period="2025 —"
+### ChrisOS
+Sistema operacional experimental e playground de baixo nível para kernel, compiladores, toolchain, máquinas virtuais, emuladores, drivers e subsistemas gráficos. [GitHub](https://github.com/christianrss/ChrisOS) · [Documentação](https://os.christiansoftware.org)
+:::
+
+::: resume-entry period="2026"
+### Chris-GPT-2
+GPT-2 de 124M parâmetros treinado do zero em ~10 bilhões de tokens FineWeb-Edu utilizando 4× A100, com exportação SafeTensors/GGUF. [GitHub](https://github.com/christianrss/chris-gpt-2) · [Hugging Face](https://huggingface.co/christianrss/chris-gpt-2-124m)
+:::
+
+::: resume-entry period="2026 —"
+### Chris-Llama
+Runtime experimental de inferência de LLM em C cobrindo GGUF, tokenização, atenção, KV cache, quantização e execução CPU/GPU. [GitHub](https://github.com/christianrss/chris-llama)
+:::
+
+::: resume-entry period="2026 —"
+### Chris-Torch
+Framework de deep learning desenvolvido do zero com tensores, autograd, componentes de redes neurais, otimizadores e backends acelerados. [GitHub](https://github.com/christianrss/chris-torch)
+:::
+
+::: resume-entry period="2026 —"
+### SharpEx
+Workspace de inteligência de mercados e carteiras com múltiplos portfólios, métricas de risco/retorno, cripto, dados de mercado e integração de pesquisa estrutural.
+:::
+
+::: resume-entry period="2026 —"
+### Marginal Thinking
+Plataforma independente de pesquisa macroeconômica, mercados e geopolítica com relatórios recorrentes, bases estruturais e análise de fontes primárias. [marginalthinking.org](https://marginalthinking.org/)
+:::
+:::
+
+::: resume-section
+## Formação
+
+- **Pós-Graduação em Engenharia Eletrônica e Robótica** — UNINTER, 2026
+- **Tecnologia em Ciência de Dados** — UNINTER, 2023 — 2025
+- **Bacharelado em Engenharia Elétrica** — UNINTER, 2025 — 2030, em andamento
+- **Técnico em Mecatrônica** — Colégio Salesiano Dom Lasagna, 2012 — 2014
+:::
+
+::: resume-section
+## Perfil técnico
+
+**Linguagens:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.
+
+**ML e sistemas:** treinamento/inferência de LLMs, PyTorch, CUDA, treinamento distribuído, GGUF, quantização, Linux, sistemas operacionais, compiladores, máquinas virtuais e emuladores.
+
+**Aplicações e infraestrutura:** .NET, React, Laravel, APIs REST, PostgreSQL, MySQL, Redis, DDD, CQRS, GitHub Actions, Cloudflare, AWS e DigitalOcean.
+:::

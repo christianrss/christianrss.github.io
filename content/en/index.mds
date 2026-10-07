@@ -1,0 +1,188 @@
+---
+title: Christian Rafael de Souza Silva — Software Engineer
+description: Software engineer working across ML systems, AI infrastructure, operating systems, compilers, runtimes and production software.
+lang: en
+theme: ../../themes/portfolio
+---
+
+::: nav primary
+[Christian Rafael](#home)
+[Work](#work)
+[Projects](#projects)
+[Research](#research)
+[Education](#education)
+[CV](../resume/en/)
+[PDF](../resume/christian-rafael-cv-en.pdf)
+**EN** · [PT](../pt/)
+:::
+
+::: hero home eyebrow="Software Engineer · ML Systems · Systems Software"
+
+--- title
+# Christian Rafael de Souza Silva
+
+--- body
+I build software from application layers down to runtimes and operating systems.
+
+My work spans **production software, ML systems, LLM training and inference, compilers, virtual machines, GPU computing and low-level systems**. I have worked professionally in software development since 2012 and use side projects to study the parts of the stack that abstractions normally hide.
+
+--- actions
+[GitHub >> https://github.com/christianrss]
+[LinkedIn >> https://www.linkedin.com/in/christianrss/]
+[Hugging Face >> https://huggingface.co/christianrss]
+
+:::
+
+::: section about
+## Current focus
+
+I am interested in systems that make computation understandable end to end: how data becomes model weights, how models become executable inference graphs, how runtimes map work to CPUs and GPUs, and how operating systems, compilers and hardware shape the final behavior.
+
+That interest also extends upward into real products. My professional work has covered enterprise systems, APIs, desktop and web applications, fiscal and retail software, infrastructure and internal engineering tools.
+:::
+
+::: section work
+## Experience
+
+::: entry period="2023 — present" label="ITB Equipamentos Elétricos"
+### Information Systems Programmer
+I work on internal management and engineering systems covering finance, accounting, production planning and engineering. The stack includes C++, Delphi, MySQL, .NET/C#, React and PostgreSQL, with APIs, automated tests and architecture patterns such as DDD and CQRS.
+:::
+
+::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
+### Full Stack Developer
+Built web, mobile and desktop products for retail automation, fiscal documents, delivery, ticketing and messaging. Worked with PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean and Cloudflare.
+:::
+
+::: entry period="2014 — 2016" label="Netstart Informática"
+### Full Stack Developer
+Worked on retail automation, SAT fiscal processing, desktop update infrastructure, PHP/CodeIgniter APIs, PostgreSQL, Redis, internal tooling and cloud storage/querying of fiscal documents.
+:::
+
+::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
+### Early software roles
+Started professionally with Delphi and later worked with PHP/MySQL, Python-based SMS tooling, GeneXus applications, R&D, AWS administration and OpenVPN.
+:::
+:::
+
+::: section projects
+## Selected projects
+
+::: project period="2025 —" label="Operating systems"
+### ChrisOS
+An experimental x86-64 operating system and low-level playground for building kernels, memory management, drivers, graphics, filesystems, compilers, assemblers, linkers, virtual machines and emulation components from scratch.
+
+**C · C++ · x86-64 · OSDev · Compilers**
+
+[Source](https://github.com/christianrss/ChrisOS) · [Documentation](https://os.christiansoftware.org)
+:::
+
+::: project period="2026" label="LLM pretraining"
+### Chris-GPT-2
+A 124.5M-parameter GPT-2 trained from scratch on approximately 10B FineWeb-Edu tokens using 4× NVIDIA A100 GPUs, with reproducible training artifacts and SafeTensors/GGUF exports.
+
+**Python · PyTorch · CUDA · NCCL · distributed training**
+
+[Source](https://github.com/christianrss/chris-gpt-2) · [Model](https://huggingface.co/christianrss/chris-gpt-2-124m) · [GGUF](https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF)
+:::
+
+::: project period="2026 —" label="LLM inference"
+### Chris-Llama
+An experimental LLM inference runtime in C for studying GGUF loading, tokenization, attention, KV cache, quantization, memory layout and CPU/GPU execution without hiding the implementation behind a large framework.
+
+**C · GGUF · inference · quantization · CPU/GPU**
+
+[Source](https://github.com/christianrss/chris-llama)
+:::
+
+::: project period="2026 —" label="Deep learning systems"
+### Chris-Torch
+A learning-oriented deep learning framework built from scratch with tensors, automatic differentiation, neural-network components, optimizers and accelerated execution backends.
+
+**C++ · Python · autograd · neural networks · GPU**
+
+[Source](https://github.com/christianrss/chris-torch)
+:::
+
+::: project period="2026 —" label="Research platform"
+### Marginal Thinking
+An independent research platform on macroeconomics, markets, geopolitics, technology and global systems, with recurring reports, country research, structural datasets and primary-source analysis.
+
+**Economics · data · research · publishing**
+
+[Visit](https://marginalthinking.org/) · [Source](https://github.com/logicvisionai/marginalthinking)
+:::
+
+::: project period="2026 —" label="Market software"
+### SharpEx
+A market and portfolio-intelligence workspace combining multi-portfolio accounting, cross-asset data, digital assets, risk-adjusted analytics and structural research integration.
+
+**JavaScript · Cloudflare Workers · market data · risk analytics**
+:::
+:::
+
+::: section research
+## Research & technical writing
+
+::: entry period="2026" label="LLM training"
+### A Reproducible 10-Billion-Token Pretraining Run of GPT-2 124M
+Technical report covering the training setup, evaluation and reproducibility of the Chris-GPT-2 pretraining run.
+
+[Paper](https://www.researchgate.net/publication/412096883_A_Reproducible_10-Billion-Token_Pretraining_Run_of_GPT-2_124M)
+:::
+
+::: entry period="2026" label="Model specialization"
+### Specializing a 124M-Parameter GPT-2 for Linux
+Study of continued pretraining and canonical instruction tuning for a Linux-focused GPT-2, including failure analysis.
+
+[Paper](https://www.researchgate.net/publication/412275606_Specializing_a_124M-Parameter_GPT-2_for_Linux_Continued_Pretraining_Canonical_Instruction_Tuning_and_Failure_Analysis)
+:::
+:::
+
+::: section education
+## Education
+
+::: entry period="2026" label="UNINTER"
+### Postgraduate Degree — Electronic Engineering & Robotics
+Postgraduate study focused on electronics, robotics and autonomous systems.
+:::
+
+::: entry period="2023 — 2025" label="UNINTER"
+### Associate Degree — Data Science
+Machine learning, deep learning, NLP, computer vision, big data, statistics, databases and software engineering.
+:::
+
+::: entry period="2025 — 2030" label="UNINTER"
+### Bachelor's Degree — Electrical Engineering
+In progress. Electrical engineering, mathematics, control, electronics and related engineering foundations.
+:::
+
+::: entry period="2012 — 2014" label="Colégio Salesiano Dom Lasagna"
+### Technical Degree — Mechatronics
+Technical training across electronics, mechanics, automation and embedded systems.
+:::
+:::
+
+::: section stack
+## Working stack
+
+**Languages:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP and Delphi.
+
+**Systems & ML:** Linux, LLM training/inference, GPU computing, distributed training, operating systems, compilers, virtual machines, emulators and low-level debugging.
+
+**Application engineering:** .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS and automated testing.
+
+**Infrastructure:** Git, GitHub Actions, Cloudflare, AWS, DigitalOcean and Linux/Windows Server.
+:::
+
+::: section contact
+## Elsewhere
+
+[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com)
+
+For a compact professional version, see the [HTML résumé](../resume/en/) or [download the PDF](../resume/christian-rafael-cv-en.pdf).
+:::
+
+::: footer
+English · [Português](../pt/) · Built from MDS and published as static HTML.
+:::

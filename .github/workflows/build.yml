@@ -59,7 +59,7 @@ jobs:
         if: github.event_name == 'push'
         shell: bash
         run: |
-          if git diff --quiet -- index.html package-lock.json && [ -f package-lock.json ]; then
+          if [ -z "$(git status --porcelain -- index.html package-lock.json)" ]; then
             echo "Generated output is already current."
             exit 0
           fi

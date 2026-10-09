@@ -64,6 +64,16 @@ jobs:
           grep -q "Currículo Profissional" resume/pt/index.html
           grep -q 'hreflang="pt-BR"' en/index.html
           grep -q 'hreflang="en"' pt/index.html
+          grep -q 'https://me.christiansoftware.org/' index.html
+          grep -q 'https://me.christiansoftware.org/en/' en/index.html
+          grep -q 'https://me.christiansoftware.org/pt/' pt/index.html
+          grep -q 'https://me.christiansoftware.org/resume/en/' resume/en/index.html
+          grep -q 'https://me.christiansoftware.org/resume/pt/' resume/pt/index.html
+          grep -q 'https://me.christiansoftware.org/sitemap.xml' robots.txt
+          grep -q 'https://me.christiansoftware.org/en/' sitemap.xml
+          grep -q 'https://me.christiansoftware.org/en/' llms.txt
+          test "$(tr -d '\r\n' < CNAME)" = "me.christiansoftware.org"
+          ! grep -q 'https://christianrss.github.io' index.html en/index.html pt/index.html resume/en/index.html resume/pt/index.html sitemap.xml robots.txt llms.txt
 
       - name: Commit generated artifacts
         if: github.event_name == 'push'

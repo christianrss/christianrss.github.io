@@ -2,6 +2,8 @@
 
 Personal technical website and professional résumé for Christian Rafael de Souza Silva.
 
+Production: https://me.christiansoftware.org/
+
 The site is authored in [MDS](https://github.com/ziyu/mds), compiled to static HTML, and published with GitHub Pages. English and Portuguese are first-class content variants.
 
 ## Information architecture

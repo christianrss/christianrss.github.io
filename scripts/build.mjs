@@ -4,10 +4,10 @@ import { dirname, resolve } from "node:path";
 
 const mds = resolve("node_modules/.bin/mds");
 const pages = [
-  {input:"content/en/index.mds",theme:"themes/portfolio",output:"en/index.html",canonical:"https://christianrss.github.io/en/",locale:"en_US",alternates:{en:"https://christianrss.github.io/en/","pt-BR":"https://christianrss.github.io/pt/","x-default":"https://christianrss.github.io/"}},
-  {input:"content/pt/index.mds",theme:"themes/portfolio",output:"pt/index.html",canonical:"https://christianrss.github.io/pt/",locale:"pt_BR",alternates:{en:"https://christianrss.github.io/en/","pt-BR":"https://christianrss.github.io/pt/","x-default":"https://christianrss.github.io/"}},
-  {input:"content/en/resume.mds",theme:"themes/resume",output:"resume/en/index.html",canonical:"https://christianrss.github.io/resume/en/",locale:"en_US",alternates:{en:"https://christianrss.github.io/resume/en/","pt-BR":"https://christianrss.github.io/resume/pt/"}},
-  {input:"content/pt/resume.mds",theme:"themes/resume",output:"resume/pt/index.html",canonical:"https://christianrss.github.io/resume/pt/",locale:"pt_BR",alternates:{en:"https://christianrss.github.io/resume/en/","pt-BR":"https://christianrss.github.io/resume/pt/"}}
+  {input:"content/en/index.mds",theme:"themes/portfolio",output:"en/index.html",canonical:"https://me.christiansoftware.org/en/",locale:"en_US",alternates:{en:"https://me.christiansoftware.org/en/","pt-BR":"https://me.christiansoftware.org/pt/","x-default":"https://me.christiansoftware.org/"}},
+  {input:"content/pt/index.mds",theme:"themes/portfolio",output:"pt/index.html",canonical:"https://me.christiansoftware.org/pt/",locale:"pt_BR",alternates:{en:"https://me.christiansoftware.org/en/","pt-BR":"https://me.christiansoftware.org/pt/","x-default":"https://me.christiansoftware.org/"}},
+  {input:"content/en/resume.mds",theme:"themes/resume",output:"resume/en/index.html",canonical:"https://me.christiansoftware.org/resume/en/",locale:"en_US",alternates:{en:"https://me.christiansoftware.org/resume/en/","pt-BR":"https://me.christiansoftware.org/resume/pt/"}},
+  {input:"content/pt/resume.mds",theme:"themes/resume",output:"resume/pt/index.html",canonical:"https://me.christiansoftware.org/resume/pt/",locale:"pt_BR",alternates:{en:"https://me.christiansoftware.org/resume/en/","pt-BR":"https://me.christiansoftware.org/resume/pt/"}}
 ];
 
 for (const page of pages) {
@@ -34,10 +34,10 @@ const router=`<!doctype html>
   <title>Christian Rafael de Souza Silva</title>
   <meta name="description" content="Software engineer working across ML systems, AI infrastructure and systems software.">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://christianrss.github.io/">
-  <link rel="alternate" hreflang="en" href="https://christianrss.github.io/en/">
-  <link rel="alternate" hreflang="pt-BR" href="https://christianrss.github.io/pt/">
-  <link rel="alternate" hreflang="x-default" href="https://christianrss.github.io/">
+  <link rel="canonical" href="https://me.christiansoftware.org/">
+  <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/en/">
+  <link rel="alternate" hreflang="pt-BR" href="https://me.christiansoftware.org/pt/">
+  <link rel="alternate" hreflang="x-default" href="https://me.christiansoftware.org/">
   <script>(function(){var langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];var pt=langs.some(function(lang){return String(lang).toLowerCase().startsWith("pt")});location.replace(pt?"./pt/":"./en/")}());</script>
   <noscript><meta http-equiv="refresh" content="0; url=./en/"></noscript>
   <style>body{font:16px/1.5 system-ui,sans-serif;max-width:680px;margin:12vh auto;padding:0 24px;color:#171815;background:#f7f7f3}a{color:#174b9b}</style>

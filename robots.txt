@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://christianrss.github.io/sitemap.xml
+Sitemap: https://me.christiansoftware.org/sitemap.xml

@@ -3,8 +3,8 @@
 Software engineer working across ML systems, AI infrastructure, systems software and production applications.
 
 Canonical profiles:
-- English: https://christianrss.github.io/en/
-- Portuguese: https://christianrss.github.io/pt/
+- English: https://me.christiansoftware.org/en/
+- Portuguese: https://me.christiansoftware.org/pt/
 - GitHub: https://github.com/christianrss
 - Hugging Face: https://huggingface.co/christianrss
 - LinkedIn: https://www.linkedin.com/in/christianrss/
@@ -18,7 +18,7 @@ Selected work:
 - Marginal Thinking: https://marginalthinking.org/
 
 Professional résumé:
-- English HTML: https://christianrss.github.io/resume/en/
-- Portuguese HTML: https://christianrss.github.io/resume/pt/
-- English PDF: https://christianrss.github.io/resume/christian-rafael-cv-en.pdf
-- Portuguese PDF: https://christianrss.github.io/resume/christian-rafael-cv-pt.pdf
+- English HTML: https://me.christiansoftware.org/resume/en/
+- Portuguese HTML: https://me.christiansoftware.org/resume/pt/
+- English PDF: https://me.christiansoftware.org/resume/christian-rafael-cv-en.pdf
+- Portuguese PDF: https://me.christiansoftware.org/resume/christian-rafael-cv-pt.pdf

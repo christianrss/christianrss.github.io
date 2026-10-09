@@ -59,7 +59,9 @@ jobs:
           test -s resume/christian-rafael-cv-en.pdf
           test -s resume/christian-rafael-cv-pt.pdf
           grep -q "Selected projects" en/index.html
+          grep -q "Systems map" en/index.html
           grep -q "Projetos selecionados" pt/index.html
+          grep -q "Mapa de sistemas" pt/index.html
           grep -q "Professional Resume" resume/en/index.html
           grep -q "Currículo Profissional" resume/pt/index.html
           grep -q 'hreflang="pt-BR"' en/index.html

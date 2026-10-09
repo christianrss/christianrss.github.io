@@ -7,9 +7,10 @@ theme: ../../themes/portfolio
 
 ::: nav primary
 [Christian Rafael](#home)
-[Work](#work)
+[Systems](#systems)
 [Projects](#projects)
 [Research](#research)
+[Experience](#work)
 [Education](#education)
 [CV](../resume/en/)
 [PDF](../resume/christian-rafael-cv-en.pdf)
@@ -22,47 +23,30 @@ theme: ../../themes/portfolio
 # Christian Rafael de Souza Silva
 
 --- body
-I build software from application layers down to runtimes and operating systems.
+Software engineer working across the computing stack — from production applications and ML systems to runtimes, compilers, virtual machines and operating systems.
 
-My work spans **production software, ML systems, LLM training and inference, compilers, virtual machines, GPU computing and low-level systems**. I have worked professionally in software development since 2012 and use side projects to study the parts of the stack that abstractions normally hide.
+I have worked professionally in software development since 2012. This site is an index of the systems I build, the research I publish and the technical areas I study.
 
 --- actions
-[GitHub >> https://github.com/christianrss]
-[LinkedIn >> https://www.linkedin.com/in/christianrss/]
-[Hugging Face >> https://huggingface.co/christianrss]
+[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com)
 
 :::
 
-::: section about
-## Current focus
+::: section systems
+## Systems map
 
-I am interested in systems that make computation understandable end to end: how data becomes model weights, how models become executable inference graphs, how runtimes map work to CPUs and GPUs, and how operating systems, compilers and hardware shape the final behavior.
+I use personal projects as a vertical laboratory for understanding computation end to end rather than as isolated demos.
 
-That interest also extends upward into real products. My professional work has covered enterprise systems, APIs, desktop and web applications, fiscal and retail software, infrastructure and internal engineering tools.
-:::
+`models → inference → ML runtime → toolchains / VMs → operating system → hardware`
 
-::: section work
-## Experience
+- **Models** — [Chris-GPT-2](https://github.com/christianrss/chris-gpt-2): pretraining, evaluation and reproducibility.
+- **Inference** — [Chris-Llama](https://github.com/christianrss/chris-llama): GGUF, tokenization, attention, KV cache, quantization and CPU/GPU execution.
+- **ML runtime** — [Chris-Torch](https://github.com/christianrss/chris-torch): tensors, autograd, neural-network components and accelerated backends.
+- **Toolchains / VMs** — compiler, assembler, linker and virtual-machine experiments developed around ChrisOS.
+- **Operating system** — [ChrisOS](https://github.com/christianrss/ChrisOS): kernel, memory, drivers, graphics, filesystems and low-level infrastructure.
+- **Hardware** — electrical engineering, electronics and robotics as the physical layer beneath the software stack.
 
-::: entry period="2023 — present" label="ITB Equipamentos Elétricos"
-### Information Systems Programmer
-I work on internal management and engineering systems covering finance, accounting, production planning and engineering. The stack includes C++, Delphi, MySQL, .NET/C#, React and PostgreSQL, with APIs, automated tests and architecture patterns such as DDD and CQRS.
-:::
-
-::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
-### Full Stack Developer
-Built web, mobile and desktop products for retail automation, fiscal documents, delivery, ticketing and messaging. Worked with PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean and Cloudflare.
-:::
-
-::: entry period="2014 — 2016" label="Netstart Informática"
-### Full Stack Developer
-Worked on retail automation, SAT fiscal processing, desktop update infrastructure, PHP/CodeIgniter APIs, PostgreSQL, Redis, internal tooling and cloud storage/querying of fiscal documents.
-:::
-
-::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
-### Early software roles
-Started professionally with Delphi and later worked with PHP/MySQL, Python-based SMS tooling, GeneXus applications, R&D, AWS administration and OpenVPN.
-:::
+My professional work sits above and across this stack: enterprise systems, APIs, desktop and web applications, fiscal and retail software, infrastructure and internal engineering tools.
 :::
 
 ::: section projects
@@ -139,6 +123,30 @@ Study of continued pretraining and canonical instruction tuning for a Linux-focu
 :::
 :::
 
+::: section work
+## Experience
+
+::: entry period="2023 — present" label="ITB Equipamentos Elétricos"
+### Information Systems Programmer
+I work on internal management and engineering systems covering finance, accounting, production planning and engineering. The stack includes C++, Delphi, MySQL, .NET/C#, React and PostgreSQL, with APIs, automated tests and architecture patterns such as DDD and CQRS.
+:::
+
+::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
+### Full Stack Developer
+Built web, mobile and desktop products for retail automation, fiscal documents, delivery, ticketing and messaging. Worked with PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean and Cloudflare.
+:::
+
+::: entry period="2014 — 2016" label="Netstart Informática"
+### Full Stack Developer
+Worked on retail automation, SAT fiscal processing, desktop update infrastructure, PHP/CodeIgniter APIs, PostgreSQL, Redis, internal tooling and cloud storage/querying of fiscal documents.
+:::
+
+::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
+### Early software roles
+Started professionally with Delphi and later worked with PHP/MySQL, Python-based SMS tooling, GeneXus applications, R&D, AWS administration and OpenVPN.
+:::
+:::
+
 ::: section education
 ## Education
 
@@ -164,7 +172,7 @@ Technical training across electronics, mechanics, automation and embedded system
 :::
 
 ::: section stack
-## Working stack
+## Technical index
 
 **Languages:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP and Delphi.
 
@@ -184,5 +192,5 @@ For a compact professional version, see the [HTML résumé](../resume/en/) or [d
 :::
 
 ::: footer
-English · [Português](../pt/) · Built from MDS and published as static HTML.
+English · [Português](../pt/) · static HTML · MDS · updated 2026-10-09.
 :::

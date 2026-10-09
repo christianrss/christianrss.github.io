@@ -40,6 +40,8 @@ const router=`<!doctype html>
   <link rel="alternate" hreflang="x-default" href="https://me.christiansoftware.org/">
   <script>(function(){var langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];var pt=langs.some(function(lang){return String(lang).toLowerCase().startsWith("pt")});location.replace(pt?"./pt/":"./en/")}());</script>
   <noscript><meta http-equiv="refresh" content="0; url=./en/"></noscript>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJZ32MBJRQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJZ32MBJRQ');</script>
   <style>body{font:16px/1.55 Georgia,"Times New Roman",serif;max-width:760px;margin:10vh auto;padding:0 22px;color:#171713;background:#fbfbf8}h1{font-size:32px;line-height:1.08}a{color:#0645ad}p{max-width:620px}</style>
 </head>
 <body>

@@ -71,6 +71,9 @@ jobs:
           grep -q 'https://me.christiansoftware.org/pt/' pt/index.html
           grep -q 'G-YJZ32MBJRQ' en/index.html
           grep -q 'G-YJZ32MBJRQ' pt/index.html
+          grep -q 'G-YJZ32MBJRQ' index.html
+          grep -q 'G-YJZ32MBJRQ' resume/en/index.html
+          grep -q 'G-YJZ32MBJRQ' resume/pt/index.html
           ! grep -q 'G-4XBNJTK0EG' en/index.html pt/index.html
           grep -q 'https://me.christiansoftware.org/resume/en/' resume/en/index.html
           grep -q 'https://me.christiansoftware.org/resume/pt/' resume/pt/index.html

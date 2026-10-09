@@ -88,6 +88,15 @@ A learning-oriented deep learning framework built from scratch with tensors, aut
 [Source](https://github.com/christianrss/chris-torch)
 :::
 
+::: project period="2026 —" label="Computer science reference"
+### Engineering Manual
+An independent, bilingual reference for computer science and software engineering, covering foundational topics in data structures, algorithms, operating systems, databases and system design. Built with a static publishing pipeline, full-text search, structured learning tracks, editorial validation and automated deployment.
+
+**Python · Jinja2 · Markdown · JavaScript · GitHub Actions**
+
+[Read](https://manual.christiansoftware.org/en/) · [Source](https://github.com/christianrss/manual)
+:::
+
 ::: project period="2026 —" label="Research platform"
 ### Marginal Thinking
 An independent research platform on macroeconomics, markets, geopolitics, technology and global systems, with recurring reports, country research, structural datasets and primary-source analysis.

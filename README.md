@@ -55,3 +55,7 @@ npm run edit:pt
 GitHub Actions validates all MDS sources, renders static HTML, generates both PDFs with headless Chromium, verifies language/SEO invariants and commits generated artifacts. GitHub Pages continues to publish from the repository root on `main`.
 
 The runtime website itself ships no frontend framework.
+
+## Design direction
+
+The public portfolio intentionally uses an austere research-homepage aesthetic: plain HTML structure, native fonts, classic text links, compact chronology and no card/dashboard UI. The information architecture combines an academic homepage, a durable research index and Unix-manual-like metadata. Projects and research are presented before résumé chronology, and the systems map explains how the main technical projects relate across the computing stack.

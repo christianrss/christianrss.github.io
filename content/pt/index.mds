@@ -7,9 +7,10 @@ theme: ../../themes/portfolio
 
 ::: nav primary
 [Christian Rafael](#home)
-[Atuação](#work)
+[Sistemas](#systems)
 [Projetos](#projects)
 [Pesquisa](#research)
+[Experiência](#work)
 [Formação](#education)
 [CV](../resume/pt/)
 [PDF](../resume/christian-rafael-cv-pt.pdf)
@@ -22,47 +23,30 @@ theme: ../../themes/portfolio
 # Christian Rafael de Souza Silva
 
 --- body
-Desenvolvo software desde as camadas de aplicação até runtimes e sistemas operacionais.
+Engenheiro de software atuando ao longo da pilha computacional — de aplicações de produção e ML Systems a runtimes, compiladores, máquinas virtuais e sistemas operacionais.
 
-Minha atuação combina **software de produção, ML Systems, treinamento e inferência de LLMs, compiladores, máquinas virtuais, computação em GPU e sistemas de baixo nível**. Trabalho profissionalmente com desenvolvimento de software desde 2012 e uso projetos próprios para estudar as partes da pilha que abstrações normalmente escondem.
+Trabalho profissionalmente com desenvolvimento de software desde 2012. Este site funciona como um índice dos sistemas que construo, das pesquisas que publico e das áreas técnicas que estudo.
 
 --- actions
-[GitHub >> https://github.com/christianrss]
-[LinkedIn >> https://www.linkedin.com/in/christianrss/]
-[Hugging Face >> https://huggingface.co/christianrss]
+[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [E-mail](mailto:crafael2030@gmail.com)
 
 :::
 
-::: section about
-## Foco atual
+::: section systems
+## Mapa de sistemas
 
-Interesso-me por sistemas que permitam compreender a computação de ponta a ponta: como dados se transformam em pesos de modelos, como modelos se tornam grafos executáveis de inferência, como runtimes distribuem trabalho entre CPUs e GPUs e como sistemas operacionais, compiladores e hardware determinam o comportamento final.
+Uso projetos próprios como um laboratório vertical para compreender a computação de ponta a ponta, e não como demonstrações isoladas.
 
-Esse interesse também se estende à camada de produto. Minha experiência profissional inclui sistemas corporativos, APIs, aplicações desktop e web, software fiscal e de varejo, infraestrutura e ferramentas internas de engenharia.
-:::
+`modelos → inferência → runtime de ML → toolchains / VMs → sistema operacional → hardware`
 
-::: section work
-## Experiência
+- **Modelos** — [Chris-GPT-2](https://github.com/christianrss/chris-gpt-2): pré-treinamento, avaliação e reprodutibilidade.
+- **Inferência** — [Chris-Llama](https://github.com/christianrss/chris-llama): GGUF, tokenização, atenção, KV cache, quantização e execução CPU/GPU.
+- **Runtime de ML** — [Chris-Torch](https://github.com/christianrss/chris-torch): tensores, autograd, componentes de redes neurais e backends acelerados.
+- **Toolchains / VMs** — experimentos de compilador, assembler, linker e máquina virtual desenvolvidos em torno do ChrisOS.
+- **Sistema operacional** — [ChrisOS](https://github.com/christianrss/ChrisOS): kernel, memória, drivers, gráficos, filesystem e infraestrutura de baixo nível.
+- **Hardware** — engenharia elétrica, eletrônica e robótica como a camada física abaixo da pilha de software.
 
-::: entry period="2023 — atual" label="ITB Equipamentos Elétricos"
-### Programador de Sistemas de Informação
-Atuo em sistemas internos de gestão e engenharia cobrindo financeiro, contabilidade, PCP e engenharia. A stack inclui C++, Delphi, MySQL, .NET/C#, React e PostgreSQL, com APIs, testes automatizados e padrões arquiteturais como DDD e CQRS.
-:::
-
-::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
-### Programador Full Stack
-Desenvolvi produtos web, mobile e desktop para automação comercial, documentos fiscais, delivery, venda de ingressos e mensageria. Trabalhei com PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean e Cloudflare.
-:::
-
-::: entry period="2014 — 2016" label="Netstart Informática"
-### Programador Full Stack
-Atuei em automação comercial, processamento fiscal SAT, infraestrutura de atualização desktop, APIs PHP/CodeIgniter, PostgreSQL, Redis, ferramentas internas e armazenamento/consulta de documentos fiscais em nuvem.
-:::
-
-::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
-### Primeiras experiências profissionais
-Iniciei profissionalmente com Delphi e depois trabalhei com PHP/MySQL, ferramentas de SMS em Python, aplicações GeneXus, pesquisa e desenvolvimento, administração AWS e OpenVPN.
-:::
+Minha atuação profissional fica acima e atravessa essa pilha: sistemas corporativos, APIs, aplicações desktop e web, software fiscal e de varejo, infraestrutura e ferramentas internas de engenharia.
 :::
 
 ::: section projects
@@ -139,6 +123,30 @@ Estudo de continued pretraining e instruction tuning canônico para um GPT-2 esp
 :::
 :::
 
+::: section work
+## Experiência
+
+::: entry period="2023 — atual" label="ITB Equipamentos Elétricos"
+### Programador de Sistemas de Informação
+Atuo em sistemas internos de gestão e engenharia cobrindo financeiro, contabilidade, PCP e engenharia. A stack inclui C++, Delphi, MySQL, .NET/C#, React e PostgreSQL, com APIs, testes automatizados e padrões arquiteturais como DDD e CQRS.
+:::
+
+::: entry period="2016 — 2023" label="Gigatron Franchising / Dotbank"
+### Programador Full Stack
+Desenvolvi produtos web, mobile e desktop para automação comercial, documentos fiscais, delivery, venda de ingressos e mensageria. Trabalhei com PHP/Laravel, Angular, Vue, PostgreSQL, Java/Kotlin, React/Ionic, Delphi, Linux/Windows Server, AWS, DigitalOcean e Cloudflare.
+:::
+
+::: entry period="2014 — 2016" label="Netstart Informática"
+### Programador Full Stack
+Atuei em automação comercial, processamento fiscal SAT, infraestrutura de atualização desktop, APIs PHP/CodeIgniter, PostgreSQL, Redis, ferramentas internas e armazenamento/consulta de documentos fiscais em nuvem.
+:::
+
+::: entry period="2012 — 2014" label="Gigatron · Assessor Público"
+### Primeiras experiências profissionais
+Iniciei profissionalmente com Delphi e depois trabalhei com PHP/MySQL, ferramentas de SMS em Python, aplicações GeneXus, pesquisa e desenvolvimento, administração AWS e OpenVPN.
+:::
+:::
+
 ::: section education
 ## Formação
 
@@ -164,7 +172,7 @@ Formação técnica em eletrônica, mecânica, automação e sistemas embarcados
 :::
 
 ::: section stack
-## Stack de trabalho
+## Índice técnico
 
 **Linguagens:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP e Delphi.
 
@@ -184,5 +192,5 @@ Para uma versão profissional compacta, consulte o [currículo em HTML](../resum
 :::
 
 ::: footer
-[English](../en/) · Português · Construído em MDS e publicado como HTML estático.
+[English](../en/) · Português · HTML estático · MDS · atualizado em 2026-10-09.
 :::

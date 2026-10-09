@@ -88,6 +88,15 @@ Framework de deep learning orientado ao estudo, desenvolvido do zero com tensore
 [Código](https://github.com/christianrss/chris-torch)
 :::
 
+::: project period="2026 —" label="Referência de ciência da computação"
+### Engineering Manual
+Referência independente e bilíngue de ciência da computação e engenharia de software, com conteúdos fundamentais sobre estruturas de dados, algoritmos, sistemas operacionais, bancos de dados e projeto de sistemas. Desenvolvida com publicação estática, busca textual, trilhas estruturadas de estudo, validação editorial e deploy automatizado.
+
+**Python · Jinja2 · Markdown · JavaScript · GitHub Actions**
+
+[Acessar](https://manual.christiansoftware.org/pt/) · [Código](https://github.com/christianrss/manual)
+:::
+
 ::: project period="2026 —" label="Plataforma de pesquisa"
 ### Marginal Thinking
 Plataforma independente de pesquisa sobre macroeconomia, mercados, geopolítica, tecnologia e sistemas globais, com relatórios recorrentes, pesquisas por país, bases estruturais e análise de fontes primárias.

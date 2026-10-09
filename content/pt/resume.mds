@@ -94,6 +94,11 @@ Framework de deep learning desenvolvido do zero com tensores, autograd, componen
 :::
 
 ::: resume-entry period="2026 —"
+### Engineering Manual
+Referência aberta e bilíngue de ciência da computação e engenharia de software, com busca textual, trilhas estruturadas, validação editorial e publicação estática automatizada. [Site](https://manual.christiansoftware.org/pt/) · [GitHub](https://github.com/christianrss/manual)
+:::
+
+::: resume-entry period="2026 —"
 ### SharpEx
 Workspace de inteligência de mercados e carteiras com múltiplos portfólios, métricas de risco/retorno, cripto, dados de mercado e integração de pesquisa estrutural.
 :::

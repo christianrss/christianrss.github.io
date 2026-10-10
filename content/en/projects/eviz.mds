@@ -1,24 +1,23 @@
 ---
-title: Eviz — Multi-Tenant CRM and Publishing SaaS — Engineering Case Study
-description: Technical case study of Eviz — Multi-Tenant CRM and Publishing SaaS; architecture, trade-offs, test evidence and limitations.
+title: Eviz — Business Identity and CRM SaaS
+description: Digital profiles, content publishing and relationship management.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfolio](/en/)
-[All products](/en/#products)
-[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Projects](/en/#products)
 [Português](/projects/pt/eviz/) · **EN**
 :::
 
-::: hero home eyebrow="CRM · publishing · SaaS"
+::: hero home eyebrow="Public architecture"
 
 --- title
-# Eviz — Multi-Tenant CRM and Publishing SaaS
+# Eviz — Business Identity and CRM SaaS
 
 --- body
-A multi-account business-identity application spanning digital cards, public landing pages, lead capture, CRM and paid services.
+Digital profiles, content publishing and relationship management.
 
 --- actions
 [Back to projects](/en/#products) · [Português](/projects/pt/eviz/)
@@ -26,41 +25,48 @@ A multi-account business-identity application spanning digital cards, public lan
 :::
 
 ::: section architecture
-## System boundary and architecture
+## Architecture overview
 
-The backend uses NestJS, Prisma and configurable relational storage. React/Vite implements the web interface. The API is split into auth, companies, cards, landing pages, forms, leads, CRM, proposals, notifications, payments and privacy modules. Public landing and card reads have a different access profile than authenticated editor and CRM operations.
+Eviz combines digital professional profiles, published landing pages, lead acquisition and customer relationship workflows in a SaaS product.
+
+Its major responsibilities are:
+- identity and account management;
+- editing and publishing digital pages and cards;
+- forms, lead intake and relationship records;
+- commercial workflows and external services;
+- analytics and administrative capabilities.
+
+The public site does not document private tenancy boundaries, internal schemas or integration credentials.
 :::
 
-::: section implementation
-## Implementation choices
+::: section engineering
+## Decisions and trade-offs
 
-Landing page configuration uses typed sections, media and action objects with theme, navigation and capture settings; the publication layer resolves public slugs and analytics. CRM stores contacts, interactions, opportunities, tags and attachments, and exposes synchronization operations with conflict reporting. Integrations include object storage through a Cloudflare R2 service and payment flows via Asaas/Stripe. Roles, JWT refresh tokens and rate-limiting guards appear in the API.
+The platform links the publishing experience with the relationship-management process, reducing handoffs between separate systems. A configurable presentation model supports different page types while sharing a common application layer.
+
+The trade-off is greater coupling among publishing, customer data and commercial workflows. Separating domain responsibilities and treating public-read experiences differently from authenticated editing improves conceptual clarity.
 :::
 
 ::: section alternatives
-## Alternatives and trade-offs
+## Alternative architectures
 
-A generic CMS could replace the bespoke landing builder but would limit native coupling with lead capture and cards. A third-party CRM could shorten time-to-market while creating data-model and tenancy dependencies. Using one large service per domain simplifies initial coordination but can increase cognitive complexity; `landings.service.ts` and `crm.service.ts` are substantial and invite use-case extraction.
+A hosted CMS plus third-party CRM would reduce custom development but introduce workflow fragmentation and integration dependency. Separate microservices could isolate scaling and delivery, at the cost of distributed-state and operational complexity. A modular application backend is a reasonable middle ground where domain boundaries are explicit and measured.
 :::
 
-::: section testing
-## Evidence of tests
+::: section verification
+## Quality strategy and evidence
 
-NestJS Jest specs are present for auth, users, companies, cards and pricing. The `backend/test/app.e2e-spec.ts` file is a scaffold for the default GET route, **not** evidence of complete end-to-end verification of registration, payments, CRM and landing publication. No coverage report or passing CI run was validated in this review.
+The private backend contains unit tests for selected core modules. Available end-to-end coverage is limited in the inspected sources; therefore this page does not claim complete verification of payment, publishing or CRM workflows.
+
+The validation agenda covers account isolation, publication lifecycle, form capture, record consistency, integration errors, accessibility and privacy requirements. No customer volume, conversion or production performance is asserted without audited data.
 :::
 
-::: section limitations
-## Known limits and next validation
+::: section constraints
+## Constraints and evolution
 
-Priorities: ensure tenant isolation with adversarial authorization tests, idempotent webhook processing, per-domain service modularization, public-form spam resistance, data-subject request workflows and privacy review of event tracking. Add integration tests for card publishing, capture→CRM linkage, lead deduplication and failed payments; measure ingestion throughput and rollback behavior.
-:::
-
-::: section evidence
-## Source inventory
-
-`backend/src/landings/landings.service.ts`; `backend/src/crm/crm.service.ts`; `backend/src/auth/`; `backend/src/payments/`; `backend/src/privacy/`; `backend/src/upload/r2.service.ts`; `backend/test/app.e2e-spec.ts`; `frontend/src/`.
+Content publishing, user permissions, transactions and privacy obligations have different failure and regulatory profiles. Evolving the system requires contract tests between domains, stronger end-to-end coverage and observable operational behavior, without exposing internal safeguards publicly.
 :::
 
 ::: footer
-Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
 :::

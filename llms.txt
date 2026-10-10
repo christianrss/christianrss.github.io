@@ -26,6 +26,13 @@ Selected commercial / applied engineering:
 
 The commercial repositories are private. Product URLs lead to public-facing sites, not public source code.
 
+Architecture, engineering decisions, trade-offs, limitations and test evidence (bilingual):
+- kaduo: https://me.christiansoftware.org/projects/en/kaduo/ (PT: https://me.christiansoftware.org/projects/pt/kaduo/)
+- velis: https://me.christiansoftware.org/projects/en/velis/ (PT: https://me.christiansoftware.org/projects/pt/velis/)
+- eviz: https://me.christiansoftware.org/projects/en/eviz/ (PT: https://me.christiansoftware.org/projects/pt/eviz/)
+- chris-cleaner: https://me.christiansoftware.org/projects/en/chris-cleaner/ (PT: https://me.christiansoftware.org/projects/pt/chris-cleaner/)
+- logv-learn: https://me.christiansoftware.org/projects/en/logv-learn/ (PT: https://me.christiansoftware.org/projects/pt/logv-learn/)
+
 Professional résumé:
 - English HTML: https://me.christiansoftware.org/resume/en/
 - Portuguese HTML: https://me.christiansoftware.org/resume/pt/

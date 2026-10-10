@@ -1,0 +1,66 @@
+---
+title: Eviz — Multi-Tenant CRM and Publishing SaaS — Engineering Case Study
+description: Technical case study of Eviz — Multi-Tenant CRM and Publishing SaaS; architecture, trade-offs, test evidence and limitations.
+lang: en
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfolio](/en/)
+[All products](/en/#products)
+[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Português](/projects/pt/eviz/) · **EN**
+:::
+
+::: hero home eyebrow="CRM · publishing · SaaS"
+
+--- title
+# Eviz — Multi-Tenant CRM and Publishing SaaS
+
+--- body
+A multi-account business-identity application spanning digital cards, public landing pages, lead capture, CRM and paid services.
+
+--- actions
+[Back to projects](/en/#products) · [Português](/projects/pt/eviz/)
+
+:::
+
+::: section architecture
+## System boundary and architecture
+
+The backend uses NestJS, Prisma and configurable relational storage. React/Vite implements the web interface. The API is split into auth, companies, cards, landing pages, forms, leads, CRM, proposals, notifications, payments and privacy modules. Public landing and card reads have a different access profile than authenticated editor and CRM operations.
+:::
+
+::: section implementation
+## Implementation choices
+
+Landing page configuration uses typed sections, media and action objects with theme, navigation and capture settings; the publication layer resolves public slugs and analytics. CRM stores contacts, interactions, opportunities, tags and attachments, and exposes synchronization operations with conflict reporting. Integrations include object storage through a Cloudflare R2 service and payment flows via Asaas/Stripe. Roles, JWT refresh tokens and rate-limiting guards appear in the API.
+:::
+
+::: section alternatives
+## Alternatives and trade-offs
+
+A generic CMS could replace the bespoke landing builder but would limit native coupling with lead capture and cards. A third-party CRM could shorten time-to-market while creating data-model and tenancy dependencies. Using one large service per domain simplifies initial coordination but can increase cognitive complexity; `landings.service.ts` and `crm.service.ts` are substantial and invite use-case extraction.
+:::
+
+::: section testing
+## Evidence of tests
+
+NestJS Jest specs are present for auth, users, companies, cards and pricing. The `backend/test/app.e2e-spec.ts` file is a scaffold for the default GET route, **not** evidence of complete end-to-end verification of registration, payments, CRM and landing publication. No coverage report or passing CI run was validated in this review.
+:::
+
+::: section limitations
+## Known limits and next validation
+
+Priorities: ensure tenant isolation with adversarial authorization tests, idempotent webhook processing, per-domain service modularization, public-form spam resistance, data-subject request workflows and privacy review of event tracking. Add integration tests for card publishing, capture→CRM linkage, lead deduplication and failed payments; measure ingestion throughput and rollback behavior.
+:::
+
+::: section evidence
+## Source inventory
+
+`backend/src/landings/landings.service.ts`; `backend/src/crm/crm.service.ts`; `backend/src/auth/`; `backend/src/payments/`; `backend/src/privacy/`; `backend/src/upload/r2.service.ts`; `backend/test/app.e2e-spec.ts`; `frontend/src/`.
+:::
+
+::: footer
+Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+:::

@@ -84,11 +84,15 @@ jobs:
             grep -q 'class="hero case-hero"' "projects/pt/$project/index.html"
             ! grep -q 'class="hero-photo"' "projects/en/$project/index.html"
             ! grep -q 'class="hero-photo"' "projects/pt/$project/index.html"
+            grep -q '<h2>Architecture</h2>' "projects/en/$project/index.html"
+            grep -q '<h2>Technologies</h2>' "projects/en/$project/index.html"
+            grep -q '<h2>Arquitetura</h2>' "projects/pt/$project/index.html"
+            grep -q '<h2>Tecnologias</h2>' "projects/pt/$project/index.html"
           done
-          grep -q "The studio" projects/en/kaduo/index.html
-          grep -q "O estúdio" projects/pt/kaduo/index.html
-          grep -q "Verification" projects/en/kaduo/index.html
-          grep -q "Verificação" projects/pt/kaduo/index.html
+          grep -q "<h2>Architecture</h2>" projects/en/kaduo/index.html
+          grep -q "<h2>Arquitetura</h2>" projects/pt/kaduo/index.html
+          grep -q "<h2>Technologies</h2>" projects/en/kaduo/index.html
+          grep -q "<h2>Tecnologias</h2>" projects/pt/kaduo/index.html
           for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn"; do
             grep -q "$product" en/index.html
             grep -q "$product" pt/index.html

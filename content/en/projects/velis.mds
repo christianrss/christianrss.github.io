@@ -1,0 +1,68 @@
+---
+title: Velis — Offline-First Collaboration Architecture — Engineering Case Study
+description: Technical case study of Velis — Offline-First Collaboration Architecture; architecture, trade-offs, test evidence and limitations.
+lang: en
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfolio](/en/)
+[All products](/en/#products)
+[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Português](/projects/pt/velis/) · **EN**
+:::
+
+::: hero home eyebrow="Local-first applications"
+
+--- title
+# Velis — Offline-First Collaboration Architecture
+
+--- body
+A workspace for structured documents, boards, tasks and communication built around local persistence and asynchronous synchronization.
+
+--- actions
+[Back to projects](/en/#products) · [Português](/projects/pt/velis/)
+
+:::
+
+::: section architecture
+## System boundary and architecture
+
+A TypeScript monorepo hosts a Next.js application, a NestJS API and shared contracts, backed by PostgreSQL/Prisma, Redis and browser IndexedDB. The product has editing, workspace governance, file handling, chat and billing subsystems. The offline sync path is distinct from the real-time notification path.
+
+**Data flow:** user edit → local IndexedDB mutation queue → coalescing and size-constrained batches → API push → per-mutation acceptance/conflict record → server event cursor → pull and local projection. The application also uses WebSockets for near-real-time updates. Local edits must be durable before the network is available.
+:::
+
+::: section implementation
+## Implementation choices
+
+The client sync engine batches at most 80 mutations and a roughly 450 kB serialized payload per batch, retries transient statuses and keeps explicit conflict states. The API unit tests show processed-mutation idempotency and conflict outcomes. A document editor includes an operation log, a command bus and a kernel that orders operations by logical clock and dependencies. Tests simulate three concurrent replicas and random operation ordering. Access policies distinguish workspace membership and page-level actions.
+:::
+
+::: section alternatives
+## Alternatives and trade-offs
+
+Alternatives for the synchronization layer include periodic full-document replacement (simpler, more conflicting writes), event-sourced append logs (strong audit trail with compaction needs), and external CRDT frameworks such as Yjs (mature collaborative primitives but different editor/data contracts). The repository contains an operation-based convergence kernel; it must not be described as proof that every document feature is fully conflict-free. Redis pub/sub improves event distribution but introduces operational dependency.
+:::
+
+::: section testing
+## Evidence of tests
+
+`apps/web/src/lib/sync-engine.test.ts` uses fake IndexedDB to test retries, pulls and client-to-client updates. `apps/web/src/components/editor/core/crdt-kernel.test.ts` checks convergence with three replicas and randomized command streams. `apps/api/src/sync/sync.service.test.ts` checks idempotency and conflicts. Other tests cover auth, billing and selected canvas/drive features. This is source-level test evidence, not a fresh test run or published coverage metric.
+:::
+
+::: section limitations
+## Known limits and next validation
+
+The README notes that a simple strict last-write-wins strategy should evolve when collaboration density increases. Potential weak spots include concurrent structural edits, schema migrations while offline, IndexedDB quotas, replay ordering after reconnect, conflict UX and authorization changes during disconnection. Measure p95 synchronization latency, multi-device convergence under partitions, request duplication, data loss and editor correctness under randomized operations; publish artifacts and CI logs before claiming reliability.
+:::
+
+::: section evidence
+## Source inventory
+
+`apps/web/src/lib/sync-engine.ts`; `apps/web/src/components/editor/core/crdt-kernel.ts`; `apps/web/src/components/editor/core/command-bus.ts`; `apps/api/src/sync/sync.service.ts`; `apps/api/src/common/access-policy.service.ts`; relevant `*.test.ts` files and `README.md`.
+:::
+
+::: footer
+Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+:::

@@ -1,72 +1,53 @@
 ---
-title: Eviz — Business Identity and CRM SaaS
-description: Digital profiles, content publishing and relationship management.
+title: Eviz — SaaS / business identity
+description: Digital business cards and public pages linked to lead capture and relationship management.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfolio](/en/)
-[Projects](/en/#products)
-[Português](/projects/pt/eviz/) · **EN**
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/eviz/)
 :::
 
-::: hero home eyebrow="Public architecture"
+::: case-hero home eyebrow="SaaS / business identity"
 
 --- title
-# Eviz — Business Identity and CRM SaaS
+# Eviz
 
 --- body
-Digital profiles, content publishing and relationship management.
+Digital business cards and public pages linked to lead capture and relationship management.
 
 --- actions
-[Back to projects](/en/#products) · [Português](/projects/pt/eviz/)
-
+[Product website](https://www.eviz.me/) · [All products](/en/#products)
 :::
 
-::: section architecture
-## Architecture overview
+::: section topic-1
+## From publishing to CRM
 
-Eviz combines digital professional profiles, published landing pages, lead acquisition and customer relationship workflows in a SaaS product.
+A public business card or landing page is one end of a longer process. A visitor opens the page, follows a contact action or submits a form; the resulting information enters a workflow where it can be organized and followed up. Eviz treats publishing and relationship management as parts of that same product.
 
-Its major responsibilities are:
-- identity and account management;
-- editing and publishing digital pages and cards;
-- forms, lead intake and relationship records;
-- commercial workflows and external services;
-- analytics and administrative capabilities.
-
-The public site does not document private tenancy boundaries, internal schemas or integration credentials.
+The experience therefore spans two very different contexts: public content intended for visitors and authenticated tools used by the account owner.
 :::
 
-::: section engineering
-## Decisions and trade-offs
+::: section topic-2
+## Application boundaries
 
-The platform links the publishing experience with the relationship-management process, reducing handoffs between separate systems. A configurable presentation model supports different page types while sharing a common application layer.
+Page presentation, lead collection, contact history and commercial records are separate concerns. A shared application model makes it possible to connect them without requiring every feature to know the details of the others.
 
-The trade-off is greater coupling among publishing, customer data and commercial workflows. Separating domain responsibilities and treating public-read experiences differently from authenticated editing improves conceptual clarity.
+A modular SaaS application is a practical choice here. Splitting every capability into an independently deployed service could add operational complexity before there is evidence that the individual workloads require it.
 :::
 
-::: section alternatives
-## Alternative architectures
+::: section topic-3
+## Data and verification
 
-A hosted CMS plus third-party CRM would reduce custom development but introduce workflow fragmentation and integration dependency. Separate microservices could isolate scaling and delivery, at the cost of distributed-state and operational complexity. A modular application backend is a reasonable middle ground where domain boundaries are explicit and measured.
-:::
+The important properties are correct ownership of business records, predictable publication behavior and reliable transfer of information from public forms to the working CRM. Those properties require more than isolated component tests.
 
-::: section verification
-## Quality strategy and evidence
-
-The private backend contains unit tests for selected core modules. Available end-to-end coverage is limited in the inspected sources; therefore this page does not claim complete verification of payment, publishing or CRM workflows.
-
-The validation agenda covers account isolation, publication lifecycle, form capture, record consistency, integration errors, accessibility and privacy requirements. No customer volume, conversion or production performance is asserted without audited data.
-:::
-
-::: section constraints
-## Constraints and evolution
-
-Content publishing, user permissions, transactions and privacy obligations have different failure and regulatory profiles. Evolving the system requires contract tests between domains, stronger end-to-end coverage and observable operational behavior, without exposing internal safeguards publicly.
+The reviewed code contains tests for selected application modules. Complete end-to-end coverage of publication, commercial processing and contact workflows has not been established by this review.
 :::
 
 ::: footer
-Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
+[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/eviz/)
 :::

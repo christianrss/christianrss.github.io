@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Velis — Arquitetura Local-First e Colaboração — Estudo Técnico</title>
-    <meta name="description" content="Documentação técnica de Velis — Arquitetura Local-First e Colaboração; arquitetura, alternativas, testes e limitações.">
+  <title>Velis — Arquitetura de Colaboração Local-First</title>
+    <meta name="description" content="Workspaces com funcionamento offline e consistência entre dispositivos.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,32 +283,38 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/pt/">← Portfólio</a>
-<a href="/pt/#products">Todos os produtos</a>
-<a href="/resume/christian-rafael-cv-pt.pdf">Currículo PDF</a>
+<a href="/pt/#products">Projetos</a>
 <a href="/projects/en/velis/">English</a> · <strong>PT</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Aplicações local-first" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Aplicações local-first</p><div class="hero-title"><h1>Velis — Arquitetura Local-First e Colaboração</h1></div><div class="hero-body"><p>Workspace de documentos, quadros, tarefas e comunicação estruturado em torno de persistência local, sincronização assíncrona e políticas de acesso.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos projetos</a> · <a href="/projects/en/velis/">English</a></p></div></header>
+<header id="home" data-attr-eyebrow="Arquitetura pública" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Arquitetura pública</p><div class="hero-title"><h1>Velis — Arquitetura de Colaboração Local-First</h1></div><div class="hero-body"><p>Workspaces com funcionamento offline e consistência entre dispositivos.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos projetos</a> · <a href="/projects/en/velis/">English</a></p></div></header>
 
-<section id="architecture" class="section"><h2>Escopo e arquitetura</h2>
-<p>Monorepo TypeScript com frontend Next.js, API NestJS e contratos compartilhados, PostgreSQL/Prisma, Redis e IndexedDB no navegador. Os módulos incluem editor de documentos, tarefas, gestão de workspaces, arquivos, chat e faturamento.</p>
-<p><strong>Caminho dos dados:</strong> edição → persistência da mutação no IndexedDB → coalescência e envio em lotes → API com registro de aplicação ou conflito → cursor de eventos do servidor → atualização das projeções locais. WebSocket complementa a atualização em tempo real; não substitui a persistência offline.</p></section>
+<section id="architecture" class="section"><h2>Visão geral da arquitetura</h2>
+<p>Velis é um workspace de documentos, tarefas, notas estruturadas e colaboração. Seu princípio arquitetural central é local-first: o usuário pode manipular informação localmente, enquanto a sincronização coordena as mudanças entre clientes conectados.</p>
+<ul>
+<li><strong>Experiência cliente:</strong> edição, navegação e operações de workspace.</li>
+<li><strong>Dados locais:</strong> estado persistente no dispositivo e alterações pendentes.</li>
+<li><strong>Sincronização:</strong> troca ordenada de alterações locais e remotas.</li>
+<li><strong>Serviços de aplicação:</strong> colaboração, permissões e integrações.</li>
+<li><strong>Persistência e eventos compartilhados:</strong> armazenamento e notificações de colaboração.</li>
+</ul>
+<p>Persistência offline e atualização em tempo real têm funções complementares, não equivalentes.</p></section>
 
-<section id="implementation" class="section"><h2>Decisões de implementação</h2>
-<p>O mecanismo de sincronização possui limite de 80 mutações e aproximadamente 450 kB serializados por lote, com retentativas para falhas transitórias e estado explícito de conflito. A API considera mutações já processadas e retornos idempotentes. O editor contém log de operações, command bus e kernel de convergência que ordena operações com relógios lógicos e dependências. Testes simulam três réplicas concorrentes e ordens diferentes de aplicação. O serviço de políticas distingue acesso ao workspace e permissões por recurso.</p></section>
+<section id="engineering" class="section"><h2>Decisões de engenharia</h2>
+<p>O modelo local-first mantém continuidade quando há instabilidade de conexão. A sincronização precisa considerar repetição de envios, entregas duplicadas e conflitos entre edições. O editor utiliza conceitos orientados a operações, separando a manipulação de documentos da comunicação em rede.</p>
+<p>Os serviços também distinguem participação em um workspace das ações autorizadas sobre determinados recursos. Apenas essas responsabilidades gerais são divulgadas; políticas internas e mecanismos específicos ficam privados.</p></section>
 
-<section id="alternatives" class="section"><h2>Alternativas e compensações</h2>
-<p>Substituir a fila por salvamento integral simplificaria a escrita, mas ampliaria perdas por concorrência. Um log de eventos completo favoreceria auditoria e replay, mas exigiria compactação. Bibliotecas CRDT consolidadas, como Yjs, ofereceriam primitivas conhecidas em troca de adequação ao contrato atual do editor. Os testes de um kernel de operações não demonstram, por si, comportamento correto de todos os tipos de edição em rede.</p></section>
+<section id="alternatives" class="section"><h2>Alternativas e compromissos</h2>
+<p>Uma arquitetura server-first simplifica o estado local, mas aumenta a dependência de conectividade. A substituição integral de documentos é simples, porém mais sujeita a sobrescritas concorrentes. Operações incrementais permitem sincronização granular, exigindo propriedades bem definidas de convergência e tratamento compreensível dos conflitos.</p>
+<p>Bibliotecas consolidadas de colaboração podem reduzir risco de implementação, mas impor outros contratos de edição e armazenamento. São alternativas técnicas, não decisões históricas comprovadas.</p></section>
 
-<section id="testing" class="section"><h2>Evidências de testes</h2>
-<p><code>apps/web/src/lib/sync-engine.test.ts</code>: testes com fake IndexedDB, falhas recuperáveis, sincronização e puxada de eventos. <code>apps/web/src/components/editor/core/crdt-kernel.test.ts</code>: três réplicas e streams aleatórias de comandos. <code>apps/api/src/sync/sync.service.test.ts</code>: mutações repetidas e conflitos. Há testes adicionais para autenticação, faturamento, canvas e drive. Identifiquei os testes no código; não executei a suíte nem medi cobertura nesta revisão.</p></section>
+<section id="verification" class="section"><h2>Qualidade e evidências</h2>
+<p>O repositório privado contém testes para aspectos de sincronização, conflitos e convergência de operações concorrentes. Os testes foram inspecionados como código, mas não reexecutados nesta documentação pública.</p>
+<p>A validação futura deve incluir sequências de edições concorrentes, transições offline/online, navegadores distintos, evolução de esquema e preservação de dados. Não são atribuídos números de latência, garantias para todas as funcionalidades ou disponibilidade sem medições.</p></section>
 
-<section id="limitations" class="section"><h2>Limites e validação</h2>
-<p>A documentação do projeto indica necessidade de evoluir estratégias simples de resolução de conflitos à medida que a colaboração crescer. Ainda exigem ensaios as edições estruturais concorrentes, mudanças de schema durante longos períodos offline, limites do IndexedDB, mudanças de permissão após desconexão, duplicação de eventos e experiência de resolução de conflitos. Medir latência p95 de sincronização, preservação de dados e convergência sob partições.</p></section>
+<section id="constraints" class="section"><h2>Limites e evolução</h2>
+<p>Capacidade de armazenamento do dispositivo, informações desatualizadas, documentos grandes, períodos longos offline e edições simultâneas são restrições relevantes. A evolução da arquitetura depende de preservar comportamento previsível à medida que a colaboração cresce. Detalhes internos e fragilidades operacionais específicas não são divulgados.</p></section>
 
-<section id="evidence" class="section"><h2>Arquivos examinados</h2>
-<p><code>apps/web/src/lib/sync-engine.ts</code>; <code>apps/web/src/components/editor/core/crdt-kernel.ts</code>; <code>apps/web/src/components/editor/core/command-bus.ts</code>; <code>apps/api/src/sync/sync.service.ts</code>; <code>apps/api/src/common/access-policy.service.ts</code>; testes <code>*.test.ts</code> correspondentes; <code>README.md</code>.</p></section>
-
-<footer class="footer"><p>Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · <a href="/pt/">Portfólio</a></p></footer>
+<footer class="footer"><p>Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · <a href="/pt/">Portfólio</a></p></footer>
 </main></div>
   
 </body>

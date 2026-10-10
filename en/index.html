@@ -347,31 +347,31 @@ code{
 </section>
 
 <section id="products" class="section"><h2>Product engineering</h2>
-<p>Selected commercial and applied software. These projects complement the systems and ML work above with application architecture, data consistency, integrations and operational tooling. Their source repositories are private; links below point to public product sites.</p>
+<p>These products demonstrate application architecture, real-time systems, local-first collaboration and desktop engineering. The links below contain public, architecture-level case studies; implementation and operational details remain private.</p>
 <article id="velis" data-attr-period="2026 —" data-attr-label="Local-first collaboration" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Local-first collaboration</span></div><div class="entry-body"><h3>Velis</h3>
-<p>A local-first workspace for documents, tasks, boards, files and team communication. The implementation includes IndexedDB-backed offline mutations with batch replay and retry handling, an operation-based collaborative editor with deterministic convergence tests, WebSocket updates and resource-level access policies.</p>
-<p><strong>Next.js · NestJS · TypeScript · PostgreSQL · Redis · IndexedDB · WebSockets</strong></p>
-<p><a href="https://velis.vu/">Product</a> · <a href="/projects/en/velis/">Engineering case study</a></p></div></article>
+<p>Collaborative workspace for documents, tasks and team workflows. The architecture connects local persistence, multi-device synchronization and shared application services, balancing offline continuity with coordination.</p>
+<p><strong>TypeScript · Web applications · Local-first systems · Collaboration</strong></p>
+<p><a href="https://velis.vu/">Product</a> · <a href="/projects/en/velis/">Architecture case study</a></p></div></article>
 
-<article id="kaduo" data-attr-period="2026 —" data-attr-label="Real-time media · social commerce" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Real-time media · social commerce</span></div><div class="entry-body"><h3>Kaduo</h3>
-<p>A social-commerce and live-video engineering platform. Its device-camera studio composites video, text, images, products, coupons and chat into a Canvas capture stream, then publishes over WebRTC/WHIP through a dedicated media bridge and OvenMediaEngine to Mux. The broader platform includes resumable video uploads, creator recording, real-time chat, event analytics and modular commerce services.</p>
-<p><strong>WebRTC · WHIP · OvenMediaEngine · Mux · MediaRecorder · Canvas · NestJS · React · PostgreSQL · Redis</strong></p>
-<p><a href="https://kaduo.shop/">Product</a> · <a href="/projects/en/kaduo/">Engineering case study</a></p></div></article>
+<article id="kaduo" data-attr-period="2026 —" data-attr-label="Real-time media systems" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Real-time media systems</span></div><div class="entry-body"><h3>Kaduo</h3>
+<p>Social-commerce and video platform combining a browser-based production studio, live video composition, media publication and playback with shopping experiences, creator tools and real-time audience participation.</p>
+<p><strong>WebRTC · Browser media APIs · Canvas · TypeScript · Real-time applications</strong></p>
+<p><a href="https://kaduo.shop/">Product</a> · <a href="/projects/en/kaduo/">Architecture case study</a></p></div></article>
 
-<article id="eviz" data-attr-period="2026 —" data-attr-label="CRM and SaaS" class="entry project"><div class="entry-meta"><span>2026 —</span><span>CRM and SaaS</span></div><div class="entry-body"><h3>Eviz</h3>
-<p>A multi-account digital identity and relationship-management SaaS spanning business cards, landing pages, forms, lead capture, CRM, proposals and commercial workflows. Engineering work includes authenticated APIs, public publishing flows, contact synchronization, analytics and integrations for payments and media storage.</p>
-<p><strong>NestJS · React · TypeScript · Prisma · PostgreSQL · Cloudflare R2 · Stripe / Asaas</strong></p>
-<p><a href="https://www.eviz.me/">Product</a> · <a href="/projects/en/eviz/">Engineering case study</a></p></div></article>
+<article id="eviz" data-attr-period="2026 —" data-attr-label="Business SaaS" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Business SaaS</span></div><div class="entry-body"><h3>Eviz</h3>
+<p>Digital business identity and CRM SaaS connecting public-facing profiles and pages with lead capture, contact management and commercial workflows through modular application services.</p>
+<p><strong>Web applications · SaaS · CRM · Relational data</strong></p>
+<p><a href="https://www.eviz.me/">Product</a> · <a href="/projects/en/eviz/">Architecture case study</a></p></div></article>
 
-<article id="chris-cleaner" data-attr-period="2026 —" data-attr-label="Desktop systems" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Desktop systems</span></div><div class="entry-body"><h3>Chris Cleaner</h3>
-<p>A desktop disk-analysis and cleanup utility with native Windows filesystem enumeration, NTFS USN Journal monitoring, resumable catalog scans, binary indexing, an optional background Windows service and safety rules for cleanup operations. A separate multilingual Christian Software storefront supports the product's distribution and licensing.</p>
-<p><strong>C# · .NET 8 · Avalonia · Win32 / P/Invoke · LiteDB</strong></p>
-<p><a href="https://christiansoftware.org/">Product website</a> · <a href="/projects/en/chris-cleaner/">Engineering case study</a></p></div></article>
+<article id="chris-cleaner" data-attr-period="2026 —" data-attr-label="Desktop and systems engineering" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Desktop and systems engineering</span></div><div class="entry-body"><h3>Chris Cleaner</h3>
+<p>Desktop utility focused on disk usage analysis, filesystem cataloging and user-controlled cleanup. Its architecture separates native system adapters, background processing, persistence and user-interface responsibilities.</p>
+<p><strong>C# · .NET · Desktop software · Filesystems · Concurrency</strong></p>
+<p><a href="https://christiansoftware.org/">Product website</a> · <a href="/projects/en/chris-cleaner/">Architecture case study</a></p></div></article>
 
-<article id="logv-learn" data-attr-period="2026" data-attr-label="Learning platform" class="entry project"><div class="entry-meta"><span>2026</span><span>Learning platform</span></div><div class="entry-body"><h3>LOGV Learn</h3>
-<p>A course-management platform with lessons, progress tracking, administrative publishing tools and paid enrollment. Built around a Next.js application, Prisma persistence, Clerk authentication and Asaas payment flows and webhooks.</p>
-<p><strong>Next.js · TypeScript · Prisma · PostgreSQL · Clerk · Asaas</strong></p>
-<p><a href="/projects/en/logv-learn/">Engineering case study</a></p></div></article>
+<article id="logv-learn" data-attr-period="2026" data-attr-label="Education platform" class="entry project"><div class="entry-meta"><span>2026</span><span>Education platform</span></div><div class="entry-body"><h3>LOGV Learn</h3>
+<p>Learning platform for course publication, student progress and enrollment. The application separates learning content, identity, commercial access and learner experience as business domains.</p>
+<p><strong>Next.js · TypeScript · Education platforms · Transactions</strong></p>
+<p><a href="/projects/en/logv-learn/">Architecture case study</a></p></div></article>
 </section>
 
 <section id="research" class="section"><h2>Research &#x26; technical writing</h2>

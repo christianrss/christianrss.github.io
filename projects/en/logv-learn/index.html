@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>LOGV Learn — Courses, Enrollment and Billing — Engineering Case Study</title>
-    <meta name="description" content="Technical case study of LOGV Learn — Courses, Enrollment and Billing; architecture, trade-offs, test evidence and limitations.">
+  <title>LOGV Learn — Education Platform Architecture</title>
+    <meta name="description" content="Course authoring, learner progress and commercial enrollment.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,31 +283,35 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">All products</a>
-<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/en/#products">Projects</a>
 <a href="/projects/pt/logv-learn/">Português</a> · <strong>EN</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Education · transactional web" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Education · transactional web</p><div class="hero-title"><h1>LOGV Learn — Courses, Enrollment and Billing</h1></div><div class="hero-body"><p>A Next.js course platform bringing content management, progress tracking, authentication and paid access together.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/logv-learn/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>LOGV Learn — Education Platform Architecture</h1></div><div class="hero-body"><p>Course authoring, learner progress and commercial enrollment.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/logv-learn/">Português</a></p></div></header>
 
-<section id="architecture" class="section"><h2>System boundary and architecture</h2>
-<p>Next.js App Router serves learner/admin pages and server actions. Prisma/PostgreSQL defines users, courses, modules, lessons, purchases and progress. Clerk manages authentication and an Asaas integration provisions payment requests; incoming provider webhook events attempt to grant or revoke access. React/TanStack Query components implement lesson playback, comments and backoffice screens.</p></section>
+<section id="architecture" class="section"><h2>Architecture overview</h2>
+<p>LOGV Learn organizes teaching content, learner experiences and course access in a web application. Its public architecture can be described through four domains:</p>
+<ul>
+<li><strong>Content management:</strong> courses, modules, lessons and authoring workflows.</li>
+<li><strong>Learning experience:</strong> enrollment, playback, study progress and learner interaction.</li>
+<li><strong>Identity and authorization:</strong> accounts and access to learner and administrative experiences.</li>
+<li><strong>Commercial lifecycle:</strong> purchase initiation, payment confirmation and corresponding course access.</li>
+</ul>
+<p>These flows share application persistence while requiring separate business rules and validation.</p></section>
 
-<section id="implementation" class="section"><h2>Implementation choices</h2>
-<p>The platform separates course authoring and learner progression into server actions; API route handlers own payment and authentication callbacks. This simplifies a compact monolithic deployment, but payment lifecycle and access control must be treated as an independently testable domain.</p></section>
+<section id="engineering" class="section"><h2>Design decisions and trade-offs</h2>
+<p>A cohesive application makes it easier for course and learner experiences to share state. Payment events, however, arrive asynchronously and must be reconciled with enrollment. Identity, entitlement and content navigation remain distinct conceptual responsibilities even if deployed together.</p></section>
 
-<section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
-<p>A hosted LMS reduces operational effort but limits product-specific workflows. An external billing entitlement service can improve isolation; keeping purchase rows in Prisma is simpler for an early application. PostgreSQL transactions and idempotency constraints are essential when asynchronous webhooks modify enrollment.</p></section>
+<section id="alternatives" class="section"><h2>Alternative architectures</h2>
+<p>A hosted learning management system reduces product development and operations but limits customization. Independent payment and entitlement services increase isolation but expand the number of systems to operate. A modular monolith offers a practical progression if boundaries remain explicit and testable.</p></section>
 
-<section id="testing" class="section"><h2>Evidence and concrete defect</h2>
-<p>The inspected tree contains <code>src/actions/course-progress.ts</code>, <code>src/actions/payment.ts</code>, <code>src/app/api/webhooks/asaas/route.ts</code>, and <code>prisma/schema.prisma</code>. No project test files were identified in the tree. In the Asaas handler the comparison string <code>PAYMET_RECEIVED</code> differs from the switch case <code>PAYMENT_RECEIVED</code>; this appears to be a reachable logic defect, subject to test confirmation. Code presence is not evidence of payment correctness.</p></section>
+<section id="verification" class="section"><h2>Quality strategy and evidence</h2>
+<p>The codebase contains education and payment-related application flows, but no comprehensive automated test suite was established in this review. This case study therefore describes intended validation practices rather than claiming passing acceptance tests.</p>
+<p>Coverage should include course publication, access rules, progress continuity, payment-state transitions, cancellations, duplicate notifications and usability. Detailed financial processing, provider credentials and any identified implementation defects remain restricted to private engineering records.</p></section>
 
-<section id="limitations" class="section"><h2>Known limits and next validation</h2>
-<p>Focus on webhook signature validation, replay protection, paid enrollment authorization, refund semantics and idempotency under simultaneous deliveries. Add unit and integration tests for PIX and card cases, grant-on-confirmation, refund rollback, duplicate deliveries and database failures. The package build command uses the Windows <code>set</code> shell syntax and should be made cross-platform for Linux CI.</p></section>
+<section id="constraints" class="section"><h2>Constraints and evolution</h2>
+<p>Educational content must remain accessible and consistent across browsers, while paid access depends on reliable asynchronous processes. Privacy, accessibility, operational support and clear learner-facing recovery are important parts of the architecture. Internal operational specifics are intentionally omitted.</p></section>
 
-<section id="evidence" class="section"><h2>Source inventory</h2>
-<p><code>src/app/api/webhooks/asaas/route.ts</code>; <code>src/actions/payment.ts</code>; <code>src/actions/course-progress.ts</code>; <code>src/app/(with-layout)/admin/</code>; <code>prisma/schema.prisma</code>; <code>package.json</code>.</p></section>
-
-<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
 </main></div>
   
 </body>

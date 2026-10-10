@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Chris Cleaner — Native Filesystem Indexing — Engineering Case Study</title>
-    <meta name="description" content="Technical case study of Chris Cleaner — Native Filesystem Indexing; architecture, trade-offs, test evidence and limitations.">
+  <title>Chris Cleaner — Desktop and Filesystem Engineering</title>
+    <meta name="description" content="Native disk analysis, background processing and conservative cleanup.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,32 +283,37 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">All products</a>
-<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/en/#products">Projects</a>
 <a href="/projects/pt/chris-cleaner/">Português</a> · <strong>EN</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Desktop · Windows internals" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Desktop · Windows internals</p><div class="hero-title"><h1>Chris Cleaner — Native Filesystem Indexing</h1></div><div class="hero-body"><p>An Avalonia/.NET desktop utility that combines disk cataloging, heuristic cleanup and optional background indexing service, with a separate multilingual distribution website.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/chris-cleaner/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Chris Cleaner — Desktop and Filesystem Engineering</h1></div><div class="hero-body"><p>Native disk analysis, background processing and conservative cleanup.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/chris-cleaner/">Português</a></p></div></header>
 
-<section id="architecture" class="section"><h2>System boundary and architecture</h2>
-<p>The desktop application targets .NET 8 and uses Avalonia for cross-platform UI. A scanner produces file metadata into bounded concurrent channels; a catalog/index store, a checkpoint service and a UI view-model consume the results. Windows-specific adapters use native enumeration APIs, NTFS journal tracking and platform APIs for virtual-memory operations. An optional Windows service refreshes the catalog while the UI is closed.</p>
-<p>A separate React/Vite <code>christian-software-web</code> frontend handles product presentation, SEO and licensing/purchase flows; it is not the filesystem indexing engine.</p></section>
+<section id="architecture" class="section"><h2>Architecture overview</h2>
+<p>Chris Cleaner is a desktop application for understanding disk usage, organizing file information and providing configurable cleanup workflows. The architecture separates desktop presentation from filesystem access, catalog processing, local persistence and operating-system adapters.</p>
+<ul>
+<li><strong>Desktop interface:</strong> dashboards, filtering, task management and confirmation experiences.</li>
+<li><strong>Filesystem services:</strong> file discovery, metadata analysis and operating-system-specific capabilities.</li>
+<li><strong>Catalog processing:</strong> background enumeration, indexing and incremental state maintenance.</li>
+<li><strong>Local storage:</strong> application preferences, catalog metadata and process continuity.</li>
+<li><strong>Safety boundary:</strong> evaluation and user confirmation before potentially destructive operations.</li>
+</ul>
+<p>The commercial website is a distribution and product-information layer; it is not the filesystem engine.</p></section>
 
-<section id="implementation" class="section"><h2>Implementation choices</h2>
-<p>The scanner declares channel capacities of 8,192 file entries and 2,048 directories with bounded waiting, supporting backpressure under large directory trees. Reparse points are skipped to reduce recursion traps. The resume checkpoint is persisted under application data. Windows USN Journal handling checks reset/rollback by comparing journal identity and next sequence number. The application README also describes a compact binary index and LiteDB for local state.</p></section>
+<section id="engineering" class="section"><h2>Engineering decisions</h2>
+<p>Asynchronous processing and bounded work queues support responsive interaction during large scans. Abstracting platform-specific operations allows shared application logic to run with different desktop environments and capabilities.</p>
+<p>Incremental catalog maintenance can reduce repeated full scans; however, native filesystem features require compatibility fallbacks and careful lifecycle management. Exact operating-system calls and internal safety rules are not disclosed in this public description.</p></section>
 
 <section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
-<p>A naive recursive filesystem walk is simpler but less responsive and less scalable for giant trees. An NTFS Master File Table/USN-based path can be faster on supported Windows volumes but needs privilege and filesystem-specific fallback. SQLite could replace LiteDB/binary index with mature query primitives at the cost of adapting the persistence model. A platform-native WPF UI would narrow distribution compared with Avalonia.</p></section>
+<p>A direct synchronous directory walk is easier to reason about but may degrade the user experience on large volumes. A database-centric index can simplify queries, while custom compact storage may optimize a specialized access pattern. A Windows-specific UI offers native integration; a cross-platform UI framework favors portability at the cost of adaptation.</p></section>
 
-<section id="testing" class="section"><h2>Evidence of tests</h2>
-<p>Source inspection confirmed <code>FileScannerService.cs</code>, <code>CatalogScanCheckpointService.cs</code>, <code>WindowsUsnJournalMonitorService.cs</code> and Windows index-service classes. No dedicated automated test suite or recorded benchmark results were identified from the repository tree, so correctness and speed cannot be claimed from tests. The README documents local run, self-contained publishing and installation.</p></section>
+<section id="verification" class="section"><h2>Quality strategy and evidence</h2>
+<p>The private codebase contains implementation evidence of concurrent scanning, catalog continuity and platform adapters. A comprehensive automated test suite and reproducible performance benchmark were not independently verified during the review; this page does not claim measured speedups or deletion safety.</p>
+<p>A responsible validation plan uses disposable test volumes, permission variations, large directory trees, interrupted scans and confirmation flows. Destructive operations require particularly conservative testing and clear user communication.</p></section>
 
-<section id="limitations" class="section"><h2>Known limits and next validation</h2>
-<p>Deletion safety is the highest-priority risk. Test deny-lists of protected directories, symbolic links/junctions, TOCTOU races, locked files, privilege transitions and rollback/recovery. Create disposable-disk fixtures with 1M+ entries and compare enumeration time, memory, checkpoint restore and index consistency. Windows-only NTFS optimizations must degrade safely on Linux and other filesystems. Do not present cleanup or performance improvements as measured until repeatable benchmarks exist.</p></section>
+<section id="constraints" class="section"><h2>Constraints and evolution</h2>
+<p>Filesystem features vary by operating system, permissions and file format. Performance depends on storage hardware and the size and structure of the tree being examined. Platform coverage, indexing accuracy and cautious cleanup remain primary engineering concerns. Operational and security internals are not published.</p></section>
 
-<section id="evidence" class="section"><h2>Source inventory</h2>
-<p><code>ChrisCleaner/Services/FileScannerService.cs</code>; <code>ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs</code>; <code>ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs</code>; <code>ChrisCleaner/Services/CatalogScanCheckpointService.cs</code>; <code>ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs</code>; <code>ChrisCleaner/README.md</code>; <code>christian-software-web/src/lib/seo.ts</code>.</p></section>
-
-<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
 </main></div>
   
 </body>

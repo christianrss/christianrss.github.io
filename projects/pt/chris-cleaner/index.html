@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Chris Cleaner — Indexação Nativa de Sistemas de Arquivos — Estudo Técnico</title>
-    <meta name="description" content="Documentação técnica de Chris Cleaner — Indexação Nativa de Sistemas de Arquivos; arquitetura, alternativas, testes e limitações.">
+  <title>Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos</title>
+    <meta name="description" content="Análise nativa de discos, processamento em segundo plano e limpeza conservadora.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,32 +283,37 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/pt/">← Portfólio</a>
-<a href="/pt/#products">Todos os produtos</a>
-<a href="/resume/christian-rafael-cv-pt.pdf">Currículo PDF</a>
+<a href="/pt/#products">Projetos</a>
 <a href="/projects/en/chris-cleaner/">English</a> · <strong>PT</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Desktop · internals do Windows" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Desktop · internals do Windows</p><div class="hero-title"><h1>Chris Cleaner — Indexação Nativa de Sistemas de Arquivos</h1></div><div class="hero-body"><p>Utilitário .NET/Avalonia de análise, catalogação e limpeza de discos, com acesso nativo ao Windows e serviço opcional de indexação. O site Christian Software é sua camada comercial separada.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos projetos</a> · <a href="/projects/en/chris-cleaner/">English</a></p></div></header>
+<header id="home" data-attr-eyebrow="Arquitetura pública" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Arquitetura pública</p><div class="hero-title"><h1>Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos</h1></div><div class="hero-body"><p>Análise nativa de discos, processamento em segundo plano e limpeza conservadora.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos projetos</a> · <a href="/projects/en/chris-cleaner/">English</a></p></div></header>
 
-<section id="architecture" class="section"><h2>Escopo e arquitetura</h2>
-<p>O aplicativo desktop usa .NET 8 e Avalonia. O scanner cataloga metadados em canais concorrentes limitados, enquanto armazenamento de índice, checkpoints e view-models materializam o estado. Adaptações Windows utilizam enumeração nativa, monitoramento do NTFS USN Journal e APIs de memória virtual. O serviço Windows opcional mantém o índice atualizado sem a interface aberta.</p>
-<p>O repositório <code>christian-software-web</code> implementa um site React/Vite multilíngue de distribuição, apresentação e licenciamento; não é o mecanismo de varredura de arquivos.</p></section>
+<section id="architecture" class="section"><h2>Visão geral da arquitetura</h2>
+<p>Chris Cleaner é um aplicativo desktop para analisar utilização de discos, organizar informações sobre arquivos e oferecer fluxos configuráveis de limpeza. A arquitetura separa interface, acesso a sistemas de arquivos, processamento do catálogo, persistência local e adaptadores do sistema operacional.</p>
+<ul>
+<li><strong>Interface desktop:</strong> painéis, filtros, tarefas e confirmação das operações.</li>
+<li><strong>Serviços de arquivos:</strong> descoberta, análise de metadados e recursos específicos do sistema.</li>
+<li><strong>Processamento do catálogo:</strong> varredura em segundo plano, indexação e atualização incremental.</li>
+<li><strong>Armazenamento local:</strong> preferências, metadados e continuidade de operações.</li>
+<li><strong>Fronteira de segurança:</strong> avaliação e confirmação antes de ações potencialmente destrutivas.</li>
+</ul>
+<p>O site comercial corresponde à camada de distribuição e apresentação do produto, não ao mecanismo de varredura.</p></section>
 
-<section id="implementation" class="section"><h2>Decisões de implementação</h2>
-<p>O scanner define capacidades de 8.192 arquivos e 2.048 diretórios, com bloqueio quando os canais estão cheios: mecanismo explícito de backpressure. Ignora reparse points para reduzir ciclos acidentais. Checkpoints são serializados em AppData. O monitor do USN Journal identifica reinícios do journal e retrocessos de sequência; o README também descreve índice binário compacto e LiteDB para estado local.</p></section>
+<section id="engineering" class="section"><h2>Decisões de engenharia</h2>
+<p>Processamento assíncrono e filas de trabalho limitadas permitem preservar a responsividade durante varreduras grandes. Abstrair operações dependentes de plataforma facilita compartilhar lógica com ambientes desktop distintos.</p>
+<p>A manutenção incremental do catálogo pode reduzir varreduras repetidas; em contrapartida, recursos nativos exigem alternativas compatíveis e controle de ciclo de vida. Chamadas específicas ao sistema operacional e regras internas de segurança não são expostas publicamente.</p></section>
 
-<section id="alternatives" class="section"><h2>Alternativas e compensações</h2>
-<p>Percorrer diretórios recursivamente é mais simples, porém pode custar mais tempo e memória. APIs específicas de NTFS podem acelerar indexação, com custo de privilégios e fallback em outros filesystems. SQLite substituiria LiteDB/índice customizado com uma camada SQL mais conhecida, mas exigiria outra modelagem. WPF seria específico do Windows; Avalonia preserva a possibilidade de interface em Linux.</p></section>
+<section id="alternatives" class="section"><h2>Alternativas e compromissos</h2>
+<p>Uma varredura síncrona direta é mais simples, mas pode prejudicar a interface em volumes extensos. Um índice baseado em banco de dados simplifica consultas; um armazenamento compacto especializado pode atender melhor determinados padrões de acesso. Uma interface exclusiva de Windows favorece integração nativa; uma base multiplataforma prioriza portabilidade e requer adaptações.</p></section>
 
-<section id="testing" class="section"><h2>Evidências de testes</h2>
-<p>A inspeção confirmou implementações em <code>FileScannerService.cs</code>, <code>CatalogScanCheckpointService.cs</code>, <code>WindowsUsnJournalMonitorService.cs</code> e serviços Windows. Não identifiquei suíte dedicada de testes automatizados nem benchmarks reprodutíveis na árvore do repositório. O README documenta compilação, publicação e instalador. A existência do código não demonstra ganhos de velocidade ou segurança absoluta.</p></section>
+<section id="verification" class="section"><h2>Qualidade e evidências</h2>
+<p>O código privado comprova a existência de componentes de varredura concorrente, continuidade de catálogo e adaptação por plataforma. Não foi verificada nesta análise uma suíte automatizada abrangente nem um benchmark reprodutível; portanto a página não promete ganhos mensurados de velocidade nem segurança absoluta de limpeza.</p>
+<p>Um plano adequado usa volumes descartáveis, cenários variados de permissão, árvores extensas, interrupções de varredura e processos de confirmação. Operações destrutivas exigem testes particularmente conservadores e comunicação clara com o usuário.</p></section>
 
-<section id="limitations" class="section"><h2>Limites e validação</h2>
-<p>A limpeza é potencialmente destrutiva: exigir testes de caminhos protegidos, junctions e symlinks, condições TOCTOU, arquivos bloqueados, permissões e recuperação. Usar volumes descartáveis com milhões de entradas para medir tempo, memória, restauração de checkpoints e consistência do índice. Otimizações NTFS devem degradar com segurança em Linux ou filesystems não suportados. Comparar configurações e registrar ambiente antes de publicar indicadores.</p></section>
+<section id="constraints" class="section"><h2>Limites e evolução</h2>
+<p>As possibilidades de varredura variam conforme sistema operacional, permissões e filesystem. O desempenho depende do armazenamento e da estrutura de diretórios. Compatibilidade, precisão dos índices e limpeza cautelosa continuam sendo preocupações centrais. Detalhes operacionais e de proteção ficam reservados.</p></section>
 
-<section id="evidence" class="section"><h2>Arquivos examinados</h2>
-<p><code>ChrisCleaner/Services/FileScannerService.cs</code>; <code>ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs</code>; <code>ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs</code>; <code>ChrisCleaner/Services/CatalogScanCheckpointService.cs</code>; <code>ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs</code>; <code>ChrisCleaner/README.md</code>; <code>christian-software-web/src/lib/seo.ts</code>.</p></section>
-
-<footer class="footer"><p>Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · <a href="/pt/">Portfólio</a></p></footer>
+<footer class="footer"><p>Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · <a href="/pt/">Portfólio</a></p></footer>
 </main></div>
   
 </body>

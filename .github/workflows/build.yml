@@ -77,6 +77,8 @@ jobs:
           ! grep -q 'G-4XBNJTK0EG' en/index.html pt/index.html
           grep -q 'https://me.christiansoftware.org/resume/en/' resume/en/index.html
           grep -q 'https://me.christiansoftware.org/resume/pt/' resume/pt/index.html
+          grep -q 'href="https://me.christiansoftware.org/">me.christiansoftware.org</a>' resume/en/index.html
+          grep -q 'href="https://me.christiansoftware.org/">me.christiansoftware.org</a>' resume/pt/index.html
           grep -q 'https://me.christiansoftware.org/sitemap.xml' robots.txt
           grep -q 'https://me.christiansoftware.org/en/' sitemap.xml
           grep -q 'https://me.christiansoftware.org/en/' llms.txt

@@ -49,6 +49,9 @@ jobs:
       - name: Render professional PDFs
         run: npm run pdf
 
+      - name: Smoke test routes and responsive layouts
+        run: npm run verify:site
+
       - name: Verify generated outputs
         run: |
           test -s index.html

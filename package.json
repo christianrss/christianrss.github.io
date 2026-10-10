@@ -7,7 +7,7 @@
     "node": ">=20.19"
   },
   "scripts": {
-    "check": "mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds content/en/projects/kaduo.mds content/pt/projects/kaduo.mds content/en/projects/velis.mds content/pt/projects/velis.mds content/en/projects/eviz.mds content/pt/projects/eviz.mds content/en/projects/chris-cleaner.mds content/pt/projects/chris-cleaner.mds content/en/projects/logv-learn.mds content/pt/projects/logv-learn.mds",
+    "check": "mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds && mds check content/en/projects/kaduo.mds && mds check content/pt/projects/kaduo.mds && mds check content/en/projects/velis.mds && mds check content/pt/projects/velis.mds && mds check content/en/projects/eviz.mds && mds check content/pt/projects/eviz.mds && mds check content/en/projects/chris-cleaner.mds && mds check content/pt/projects/chris-cleaner.mds && mds check content/en/projects/logv-learn.mds && mds check content/pt/projects/logv-learn.mds",
     "build": "node scripts/build.mjs",
     "pdf": "node scripts/render-pdf.mjs",
     "build:all": "npm run check && npm run build && npm run pdf",

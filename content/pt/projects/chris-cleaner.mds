@@ -1,24 +1,23 @@
 ---
-title: Chris Cleaner — Indexação Nativa de Sistemas de Arquivos — Estudo Técnico
-description: Documentação técnica de Chris Cleaner — Indexação Nativa de Sistemas de Arquivos; arquitetura, alternativas, testes e limitações.
+title: Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos
+description: Análise nativa de discos, processamento em segundo plano e limpeza conservadora.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfólio](/pt/)
-[Todos os produtos](/pt/#products)
-[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[Projetos](/pt/#products)
 [English](/projects/en/chris-cleaner/) · **PT**
 :::
 
-::: hero home eyebrow="Desktop · internals do Windows"
+::: hero home eyebrow="Arquitetura pública"
 
 --- title
-# Chris Cleaner — Indexação Nativa de Sistemas de Arquivos
+# Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos
 
 --- body
-Utilitário .NET/Avalonia de análise, catalogação e limpeza de discos, com acesso nativo ao Windows e serviço opcional de indexação. O site Christian Software é sua camada comercial separada.
+Análise nativa de discos, processamento em segundo plano e limpeza conservadora.
 
 --- actions
 [Voltar aos projetos](/pt/#products) · [English](/projects/en/chris-cleaner/)
@@ -26,43 +25,47 @@ Utilitário .NET/Avalonia de análise, catalogação e limpeza de discos, com ac
 :::
 
 ::: section architecture
-## Escopo e arquitetura
+## Visão geral da arquitetura
 
-O aplicativo desktop usa .NET 8 e Avalonia. O scanner cataloga metadados em canais concorrentes limitados, enquanto armazenamento de índice, checkpoints e view-models materializam o estado. Adaptações Windows utilizam enumeração nativa, monitoramento do NTFS USN Journal e APIs de memória virtual. O serviço Windows opcional mantém o índice atualizado sem a interface aberta.
+Chris Cleaner é um aplicativo desktop para analisar utilização de discos, organizar informações sobre arquivos e oferecer fluxos configuráveis de limpeza. A arquitetura separa interface, acesso a sistemas de arquivos, processamento do catálogo, persistência local e adaptadores do sistema operacional.
 
-O repositório `christian-software-web` implementa um site React/Vite multilíngue de distribuição, apresentação e licenciamento; não é o mecanismo de varredura de arquivos.
+- **Interface desktop:** painéis, filtros, tarefas e confirmação das operações.
+- **Serviços de arquivos:** descoberta, análise de metadados e recursos específicos do sistema.
+- **Processamento do catálogo:** varredura em segundo plano, indexação e atualização incremental.
+- **Armazenamento local:** preferências, metadados e continuidade de operações.
+- **Fronteira de segurança:** avaliação e confirmação antes de ações potencialmente destrutivas.
+
+O site comercial corresponde à camada de distribuição e apresentação do produto, não ao mecanismo de varredura.
 :::
 
-::: section implementation
-## Decisões de implementação
+::: section engineering
+## Decisões de engenharia
 
-O scanner define capacidades de 8.192 arquivos e 2.048 diretórios, com bloqueio quando os canais estão cheios: mecanismo explícito de backpressure. Ignora reparse points para reduzir ciclos acidentais. Checkpoints são serializados em AppData. O monitor do USN Journal identifica reinícios do journal e retrocessos de sequência; o README também descreve índice binário compacto e LiteDB para estado local.
+Processamento assíncrono e filas de trabalho limitadas permitem preservar a responsividade durante varreduras grandes. Abstrair operações dependentes de plataforma facilita compartilhar lógica com ambientes desktop distintos.
+
+A manutenção incremental do catálogo pode reduzir varreduras repetidas; em contrapartida, recursos nativos exigem alternativas compatíveis e controle de ciclo de vida. Chamadas específicas ao sistema operacional e regras internas de segurança não são expostas publicamente.
 :::
 
 ::: section alternatives
-## Alternativas e compensações
+## Alternativas e compromissos
 
-Percorrer diretórios recursivamente é mais simples, porém pode custar mais tempo e memória. APIs específicas de NTFS podem acelerar indexação, com custo de privilégios e fallback em outros filesystems. SQLite substituiria LiteDB/índice customizado com uma camada SQL mais conhecida, mas exigiria outra modelagem. WPF seria específico do Windows; Avalonia preserva a possibilidade de interface em Linux.
+Uma varredura síncrona direta é mais simples, mas pode prejudicar a interface em volumes extensos. Um índice baseado em banco de dados simplifica consultas; um armazenamento compacto especializado pode atender melhor determinados padrões de acesso. Uma interface exclusiva de Windows favorece integração nativa; uma base multiplataforma prioriza portabilidade e requer adaptações.
 :::
 
-::: section testing
-## Evidências de testes
+::: section verification
+## Qualidade e evidências
 
-A inspeção confirmou implementações em `FileScannerService.cs`, `CatalogScanCheckpointService.cs`, `WindowsUsnJournalMonitorService.cs` e serviços Windows. Não identifiquei suíte dedicada de testes automatizados nem benchmarks reprodutíveis na árvore do repositório. O README documenta compilação, publicação e instalador. A existência do código não demonstra ganhos de velocidade ou segurança absoluta.
+O código privado comprova a existência de componentes de varredura concorrente, continuidade de catálogo e adaptação por plataforma. Não foi verificada nesta análise uma suíte automatizada abrangente nem um benchmark reprodutível; portanto a página não promete ganhos mensurados de velocidade nem segurança absoluta de limpeza.
+
+Um plano adequado usa volumes descartáveis, cenários variados de permissão, árvores extensas, interrupções de varredura e processos de confirmação. Operações destrutivas exigem testes particularmente conservadores e comunicação clara com o usuário.
 :::
 
-::: section limitations
-## Limites e validação
+::: section constraints
+## Limites e evolução
 
-A limpeza é potencialmente destrutiva: exigir testes de caminhos protegidos, junctions e symlinks, condições TOCTOU, arquivos bloqueados, permissões e recuperação. Usar volumes descartáveis com milhões de entradas para medir tempo, memória, restauração de checkpoints e consistência do índice. Otimizações NTFS devem degradar com segurança em Linux ou filesystems não suportados. Comparar configurações e registrar ambiente antes de publicar indicadores.
-:::
-
-::: section evidence
-## Arquivos examinados
-
-`ChrisCleaner/Services/FileScannerService.cs`; `ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs`; `ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs`; `ChrisCleaner/Services/CatalogScanCheckpointService.cs`; `ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs`; `ChrisCleaner/README.md`; `christian-software-web/src/lib/seo.ts`.
+As possibilidades de varredura variam conforme sistema operacional, permissões e filesystem. O desempenho depende do armazenamento e da estrutura de diretórios. Compatibilidade, precisão dos índices e limpeza cautelosa continuam sendo preocupações centrais. Detalhes operacionais e de proteção ficam reservados.
 :::
 
 ::: footer
-Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
 :::

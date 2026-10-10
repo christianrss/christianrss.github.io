@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Christian Rafael de Souza Silva">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
+  <title>Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social — Estudo Técnico</title>
+    <meta name="description" content="Documentação técnica de Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social; arquitetura, alternativas, testes e limitações.">
+  <style>:root{
+  color-scheme:light dark;
+  --bg:#fbfbf8;
+  --paper:#ffffff;
+  --text:#171713;
+  --muted:#62625a;
+  --line:#cfcfc7;
+  --soft:#ecece6;
+  --link:#0645ad;
+  --max:790px;
+  --meta:122px;
+  --serif:Georgia,"Times New Roman",Times,serif;
+  --sans:Arial,Helvetica,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.58;
+  text-rendering:optimizeLegibility
+}
+a{
+  color:var(--link);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:.16em
+}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+code{
+  font-family:var(--mono);
+  font-size:.82em
+}
+.site-shell{
+  width:min(calc(100% - 34px),var(--max));
+  margin:0 auto;
+  padding-bottom:48px
+}
+.skip-link{
+  position:fixed;
+  left:10px;
+  top:10px;
+  z-index:100;
+  transform:translateY(-180%);
+  padding:6px 9px;
+  background:var(--text);
+  color:var(--bg);
+  font-family:var(--mono);
+  font-size:12px
+}
+.skip-link:focus{transform:translateY(0)}
+.site-nav{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:6px 14px;
+  margin:0;
+  padding:24px 0 13px;
+  border-bottom:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.5
+}
+.site-nav p{display:contents}
+.site-nav a,.site-nav strong{white-space:nowrap}
+.site-nav a:first-child{
+  margin-right:auto;
+  color:var(--text);
+  font-weight:700;
+  text-decoration:none
+}
+.site-nav strong{font-weight:700}
+.hero{
+  padding:38px 0 30px
+}
+.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
+.hero::after{content:"";display:block;clear:both}
+.hero-eyebrow{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10.5px;
+  line-height:1.4;
+  letter-spacing:.06em;
+  text-transform:uppercase
+}
+.hero-title h1{
+  max-width:680px;
+  margin:0;
+  font-family:var(--serif);
+  font-size:clamp(30px,5.2vw,42px);
+  font-weight:700;
+  line-height:1.06;
+  letter-spacing:-.025em
+}
+.hero-body{
+  max-width:710px;
+  margin-top:18px;
+  font-size:17px
+}
+.hero-body p{margin:0 0 10px}
+.hero-actions{
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:11.5px
+}
+.hero-actions p{margin:0}
+.section{
+  padding:27px 0 31px;
+  border-top:1px solid var(--line)
+}
+.section>h2{
+  margin:0 0 16px;
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:.065em;
+  text-transform:uppercase
+}
+.section>p{
+  max-width:720px;
+  margin:0 0 12px
+}
+.section>p:last-child{margin-bottom:0}
+#systems>p:nth-of-type(2){
+  margin:17px 0;
+  padding:9px 11px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  overflow-x:auto;
+  white-space:nowrap
+}
+#systems>p:nth-of-type(2) code{
+  color:var(--muted);
+  font-size:11px
+}
+#systems ul{
+  list-style:none;
+  margin:18px 0;
+  padding:0;
+  border-top:1px solid var(--line)
+}
+#systems li{
+  margin:0;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15px
+}
+#systems li strong{
+  display:inline-block;
+  min-width:128px;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.035em;
+  text-transform:uppercase
+}
+.entry{
+  display:grid;
+  grid-template-columns:var(--meta) minmax(0,1fr);
+  gap:22px;
+  padding:16px 0;
+  border-top:1px dotted var(--line)
+}
+.section>.entry:first-of-type{
+  margin-top:5px;
+  border-top:0
+}
+.entry-meta{
+  padding-top:2px;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px;
+  line-height:1.45
+}
+.entry-meta span{display:block}
+.entry-meta span+span{margin-top:4px}
+.entry-body h3{
+  margin:0 0 5px;
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.3
+}
+.entry-body p{margin:6px 0 0}
+.entry-body ul{margin:8px 0 0;padding-left:20px}
+.entry-body a{display:inline}
+.project .entry-body>p:first-of-type{color:var(--text)}
+.project .entry-body>p strong{
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em
+}
+.footer{
+  padding:22px 0 0;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px
+}
+.footer p{margin:0}
+@media(max-width:680px){
+  body{font-size:15.5px}
+  .site-shell{width:min(calc(100% - 28px),var(--max))}
+  .site-nav{
+    align-items:flex-start;
+    gap:5px 11px;
+    padding-top:18px
+  }
+  .site-nav a:first-child{
+    flex-basis:100%;
+    margin:0 0 3px
+  }
+  .hero{padding:31px 0 25px}
+  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
+  .hero-body{font-size:16px}
+  .entry{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:14px 0
+  }
+  .entry-meta span{display:inline}
+  .entry-meta span+span:before{content:" · "}
+  #systems>p:nth-of-type(2){white-space:normal}
+  #systems li strong{
+    display:block;
+    min-width:0;
+    margin-bottom:2px
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#11110f;
+    --paper:#171714;
+    --text:#ecece5;
+    --muted:#aaa99e;
+    --line:#3b3b34;
+    --soft:#25251f;
+    --link:#8ab4f8
+  }
+}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--text:#000;--muted:#444;--line:#bbb;--link:#000}
+  body{background:#fff;color:#000;font-size:11pt}
+  .site-shell{width:100%;max-width:none;padding:0}
+  .site-nav,.skip-link{display:none}
+  .hero{padding-top:0}
+  a{color:#000}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+  <link rel="canonical" href="https://me.christiansoftware.org/projects/pt/kaduo/">
+  <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/projects/en/kaduo/">
+  <link rel="alternate" hreflang="pt-BR" href="https://me.christiansoftware.org/projects/pt/kaduo/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://me.christiansoftware.org/projects/pt/kaduo/">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary">
+  <meta name="generator" content="MDS">
+  <meta property="og:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <meta name="twitter:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Christian Rafael de Souza Silva","url":"https://me.christiansoftware.org/","jobTitle":"Software Engineer","sameAs":["https://github.com/christianrss","https://www.linkedin.com/in/christianrss/","https://huggingface.co/christianrss"],"knowsAbout":["Machine Learning Systems","AI Infrastructure","Large Language Models","Operating Systems","Compilers","GPU Computing"]}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJZ32MBJRQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJZ32MBJRQ');</script>
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
+  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/pt/">← Portfólio</a>
+<a href="/pt/#products">Todos os produtos</a>
+<a href="/resume/christian-rafael-cv-pt.pdf">Currículo PDF</a>
+<a href="/projects/en/kaduo/">English</a> · <strong>PT</strong></p></nav>
+
+<header id="home" data-attr-eyebrow="Mídia em tempo real · comércio social" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Mídia em tempo real · comércio social</p><div class="hero-title"><h1>Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social</h1></div><div class="hero-body"><p>A Kaduo combina comércio social e uma infraestrutura própria de produção de lives no navegador, controle de sessões, ingestão WebRTC e distribuição de vídeo. Este estudo distingue código existente, decisões de implementação, alternativas, evidências e pontos ainda não validados.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos projetos</a> · <a href="/projects/en/kaduo/">English</a></p></div></header>
+
+<section id="architecture" class="section"><h2>Escopo e arquitetura</h2>
+<p>A aplicação reúne frontend React/Vite, API NestJS, PostgreSQL transacional, Redis, ClickHouse analítico, um media bridge em Node, OvenMediaEngine e provedores externos de vídeo. O <code>docker-compose.yml</code> define os serviços e sua conectividade; não constitui prova isolada de disponibilidade em produção.</p>
+<ul>
+<li><strong>Transmissão ao vivo:</strong> câmera e microfone → renderização em Canvas com efeitos → <code>canvas.captureStream()</code> + trilhas de áudio originais → oferta <code>RTCPeerConnection</code>/WHIP → media bridge autenticado → ingestão WebRTC no OvenMediaEngine → encaminhamento RTMP → Mux → reprodução.</li>
+<li><strong>Plano de controle:</strong> NestJS verifica proprietário, estados, sessões de estúdio, expiração de tokens e chaves de transmissão; Socket.IO distribui eventos, estados e telemetria.</li>
+<li><strong>Gravações:</strong> MediaRecorder para vídeos curtos e uploads retomáveis em partes de 5 MiB usando tus, com tentativas de recuperação; Bunny Stream para fluxos gerenciados de vídeo e webhooks.</li>
+<li><strong>Comércio:</strong> catálogo, lojas, carrinhos, cupons, chat e analytics de lojistas permanecem em serviços do domínio comercial, separados do tráfego bruto de vídeo.</li>
+</ul></section>
+
+<section id="implementation" class="section"><h2>Compositor visual e Live Studio</h2>
+<p>O componente <code>DeviceLiveStudio.tsx</code> captura frames de uma fonte de vídeo e aplica camadas em uma ordem de desenho: base de vídeo, efeitos de imagem, textos configuráveis, overlays de imagem, efeitos de cena, produtos e cupons, mensagens do chat, contadores de audiência e animações. A trilha de vídeo composta sai do Canvas e é anexada ao fluxo de áudio original. Portanto, os elementos são <strong>embutidos nos pixels transmitidos</strong> e não apenas renderizados na interface do público.</p>
+<p>O estúdio possui perfis de resolução/FPS, troca de dispositivos, presets de cenas, reposicionamento visual, histórico de arraste, efeitos e métricas de conexão. Há funcionalidades condicionadas por flags, incluindo textos embutidos, documentadas para o modo <code>device_camera</code>; não há evidência equivalente para o modo de encoder externo. O arquivo principal do estúdio ultrapassa 11 mil linhas, criando risco concreto de acoplamento e dificuldades de teste.</p></section>
+
+<section id="alternatives" class="section"><h2>Decisões de engenharia observáveis</h2>
+<ul>
+<li><strong>Composição em Canvas no cliente:</strong> dispensa um compositor gráfico adicional no servidor para transmissões por câmera e permite resposta imediata durante a edição. Em contrapartida, a capacidade do dispositivo e do navegador afeta FPS, consumo e estabilidade.</li>
+<li><strong>WHIP/WebRTC no ingresso e RTMP para distribuição:</strong> separa a publicação pelo navegador do serviço gerenciado de reprodução e distribuição.</li>
+<li><strong>Autorização temporária:</strong> o backend cria token aleatório, grava hash e tempo de validade; o bridge verifica o token com comparação em tempo constante.</li>
+<li><strong>Rotas de mídia distintas:</strong> transmissão ao vivo, gravação MediaRecorder e uploads via tus/Bunny resolvem necessidades diferentes.</li>
+<li><strong>Backend em camadas:</strong> o código possui entidades, casos de uso, repositórios e infraestrutura separados. O grau de isolamento arquitetural ainda precisa ser verificado por testes e dependências automatizadas.</li>
+</ul></section>
+
+<section id="testing" class="section"><h2>Alternativas e compensações</h2>
+<p>São comparações técnicas, <strong>não decisões históricas comprovadas</strong> do desenvolvimento:</p>
+<ul>
+<li>Compositor em FFmpeg/GStreamer no servidor: maior uniformidade de renderização e controle multicâmera, em troca de custo de transcodificação e manutenção.</li>
+<li>OBS/RTMP: adequado a encoders externos e operação profissional; o estúdio WebRTC reduz a barreira para uso em dispositivos móveis. O código oferece os dois modos.</li>
+<li>Ingestão totalmente gerenciada sem OvenMediaEngine: reduz infraestrutura própria, mas aumenta acoplamento ao provedor e altera o caminho de publicação.</li>
+<li>Armazenar sessões do media bridge em Redis/SQL: permitiria recuperação e múltiplas instâncias; atualmente elas são mantidas em um <code>Map</code> no processo.</li>
+</ul></section>
+
+<section id="limitations" class="section"><h2>Evidências de testes e reprodução</h2>
+<p><strong>Evidências identificadas no repositório; não executei as suítes neste levantamento:</strong></p>
+<ul>
+<li><code>backend/test/streaming.controller.spec.ts</code>: encaminhamento de corpo bruto de webhooks e rejeição quando indisponível.</li>
+<li><code>backend/test/manage-live-stream-webhooks.spec.ts</code>: casos de assinatura inválida e payload malformado de Mux/Bunny.</li>
+<li><code>backend/test/analytics-events.spec.ts</code>: cobertura pontual de eventos analíticos.</li>
+<li><code>docs/live-embedded-text.md</code>: roteiro manual para observar texto embutido no vídeo publicado, não apenas na prévia.</li>
+<li><code>media-server/oven/Server.xml</code>: perfil H.264/AAC; <code>docker-compose.yml</code>: topologia para reproduzir localmente.</li>
+</ul>
+<p>Para reproduzir: provisionar variáveis não secretas, PostgreSQL/Redis/ClickHouse, bridge/OME e credenciais de homologação, subir o Compose, rodar <code>npm run test:unit</code> no backend e executar uma live <code>device_camera</code> até a reprodução pública. Registrar logs, FPS, RTT, jitter, perda de pacotes, CPU e latência ponta a ponta. O roteiro é proposto, não afirma que esses indicadores já foram medidos.</p></section>
+
+<section id="evidence" class="section"><h2>Limitações, riscos e próximos testes</h2>
+<p>Não foram comprovadas, nesta análise estática, simultaneidade suportada, p95 de latência vidro-a-vidro, estabilidade após reinício do bridge, custo por hora, taxa de falhas ou desempenho dos filtros visuais em celulares modestos. O uso da tag <code>latest</code> para OvenMediaEngine dificulta repetibilidade. Sessões em memória não sobrevivem ao reinício e dificultam escala horizontal.</p>
+<p><strong>Validação prioritária:</strong> testes automatizados de funções puras do compositor; testes de navegador com permissões e cenas; expiração/reuso indevido do token WHIP; reconexões; medição de orçamento de quadro a 30/60 FPS; ensaios com 1/10/100 publicadores; matriz de dispositivos e codecs; monitoramento da distribuição e da reprodução. Esses números são metas de ensaio, não resultados medidos.</p></section>
+
+<section id="detail-6" class="section"><h2>Arquivos examinados</h2>
+<p><code>frontend/src/pages/DeviceLiveStudio.tsx</code>; <code>frontend/src/features/creator/useVideoRecorder.ts</code>; <code>frontend/src/features/creator/uploadVideoTus.ts</code>; <code>media-server/src/server.js</code>; <code>media-server/oven/Server.xml</code>; <code>backend/src/application/use-cases/streaming/manage-live-stream.use-case.ts</code>; <code>backend/src/infrastructure/services/live-media-bridge.service.ts</code>; <code>backend/src/infrastructure/services/mux-live.service.ts</code>; <code>backend/src/infrastructure/services/bunny-stream.service.ts</code>; <code>backend/src/interfaces/websocket/live-studio.gateway.ts</code>. Os repositórios são privados: os caminhos são referências para revisão autorizada.</p></section>
+
+<footer class="footer"><p>Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · <a href="/pt/">Portfólio</a></p></footer>
+</main></div>
+  
+</body>
+</html>

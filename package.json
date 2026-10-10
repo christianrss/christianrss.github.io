@@ -15,7 +15,8 @@
     "edit:pt": "mds edit content/pt/index.mds",
     "preview": "python3 -m http.server 8000",
     "check:public": "node scripts/check-public-content.mjs",
-    "check:editorial": "node scripts/check-editorial-content.mjs"
+    "check:editorial": "node scripts/check-editorial-content.mjs",
+    "verify:site": "node scripts/verify-rendered-pages.mjs"
   },
   "devDependencies": {
     "@mds-crate/cli": "0.1.0-beta.2",

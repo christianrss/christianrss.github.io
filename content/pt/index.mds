@@ -127,17 +127,17 @@ Workspace local-first para documentos, tarefas, quadros, arquivos e comunicaçã
 
 **Next.js · NestJS · TypeScript · PostgreSQL · Redis · IndexedDB · WebSockets**
 
-[Produto](https://velis.vu/)
+[Produto](https://velis.vu/) · [Estudo técnico](/projects/pt/velis/)
 :::
 
-::: project period="2026 —" label="Comércio social"
+::: project period="2026 —" label="Mídia em tempo real · comércio social"
 ### Kaduo
-Plataforma de comércio social com lojas, catálogo, carrinho, checkout, conteúdo de vídeos curtos e compras ao vivo. O backend separa domínio, aplicação e infraestrutura; a camada analítica de lojistas inclui ingestão e deduplicação de eventos e funis, enquanto os serviços em tempo real atendem interações comerciais e uma interface de compras assistida por IA com ações controladas.
+Plataforma de comércio social e engenharia de vídeo ao vivo. O estúdio de câmera compõe vídeo, textos, imagens, produtos, cupons e chat em um fluxo capturado via Canvas e publicado por WebRTC/WHIP, com media bridge e OvenMediaEngine encaminhando o sinal à Mux. Também inclui uploads retomáveis, gravação de vídeos, chat em tempo real, analytics de eventos e serviços comerciais modularizados.
 
-**NestJS · React · TypeScript · Prisma · PostgreSQL · Redis · Socket.IO**
+**WebRTC · WHIP · OvenMediaEngine · Mux · MediaRecorder · Canvas · NestJS · React · PostgreSQL · Redis**
 
-[Produto](https://kaduo.shop/)
-:::
+[Produto](https://kaduo.shop/) · [Estudo técnico](/projects/pt/kaduo/)
+::
 
 ::: project period="2026 —" label="CRM e SaaS"
 ### Eviz
@@ -145,7 +145,7 @@ SaaS multi-conta de identidade digital e gestão de relacionamentos, com cartõe
 
 **NestJS · React · TypeScript · Prisma · PostgreSQL · Cloudflare R2 · Stripe / Asaas**
 
-[Produto](https://www.eviz.me/)
+[Produto](https://www.eviz.me/) · [Estudo técnico](/projects/pt/eviz/)
 :::
 
 ::: project period="2026 —" label="Sistemas desktop"
@@ -154,7 +154,7 @@ Utilitário desktop de análise de disco e limpeza, com enumeração nativa do s
 
 **C# · .NET 8 · Avalonia · Win32 / P/Invoke · LiteDB**
 
-[Site do produto](https://christiansoftware.org/)
+[Site do produto](https://christiansoftware.org/) · [Estudo técnico](/projects/pt/chris-cleaner/)
 :::
 
 ::: project period="2026" label="Plataforma educacional"
@@ -162,6 +162,8 @@ Utilitário desktop de análise de disco e limpeza, com enumeração nativa do s
 Plataforma de gestão de cursos com aulas, acompanhamento de progresso, ferramentas administrativas de publicação e matrículas pagas. Desenvolvida com Next.js, persistência Prisma, autenticação Clerk e fluxos de pagamento e webhooks Asaas.
 
 **Next.js · TypeScript · Prisma · PostgreSQL · Clerk · Asaas**
+
+[Estudo técnico](/projects/pt/logv-learn/)
 :::
 :::
 

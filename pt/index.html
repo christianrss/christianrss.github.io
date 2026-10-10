@@ -89,6 +89,8 @@ code{
 .hero{
   padding:38px 0 30px
 }
+.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
+.hero::after{content:"";display:block;clear:both}
 .hero-eyebrow{
   margin:0 0 12px;
   color:var(--muted);
@@ -227,6 +229,7 @@ code{
     margin:0 0 3px
   }
   .hero{padding:31px 0 25px}
+  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
   .hero-body{font-size:16px}
   .entry{
     grid-template-columns:1fr;
@@ -272,6 +275,8 @@ code{
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary">
   <meta name="generator" content="MDS">
+  <meta property="og:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <meta name="twitter:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Christian Rafael de Souza Silva","url":"https://me.christiansoftware.org/","jobTitle":"Software Engineer","sameAs":["https://github.com/christianrss","https://www.linkedin.com/in/christianrss/","https://huggingface.co/christianrss"],"knowsAbout":["Machine Learning Systems","AI Infrastructure","Large Language Models","Operating Systems","Compilers","GPU Computing"]}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJZ32MBJRQ"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJZ32MBJRQ');</script>
@@ -288,7 +293,7 @@ code{
 <a href="../resume/christian-rafael-cv-pt.pdf">PDF</a>
 <a href="../en/">EN</a> · <strong>PT</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Engenheiro de Software · ML Systems · Systems Software" class="hero"><p class="hero-eyebrow">Engenheiro de Software · ML Systems · Systems Software</p><div class="hero-title"><h1>Christian Rafael de Souza Silva</h1></div><div class="hero-body"><p>Engenheiro de software atuando ao longo da pilha computacional — de aplicações de produção e ML Systems a runtimes, compiladores, máquinas virtuais e sistemas operacionais.</p>
+<header id="home" data-attr-eyebrow="Engenheiro de Software · ML Systems · Systems Software" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Engenheiro de Software · ML Systems · Systems Software</p><div class="hero-title"><h1>Christian Rafael de Souza Silva</h1></div><div class="hero-body"><p>Engenheiro de software atuando ao longo da pilha computacional — de aplicações de produção e ML Systems a runtimes, compiladores, máquinas virtuais e sistemas operacionais.</p>
 <p>Trabalho profissionalmente com desenvolvimento de software desde 2012. Este site funciona como um índice dos sistemas que construo, das pesquisas que publico e das áreas técnicas que estudo.</p></div><div class="hero-actions"><p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a> · <a href="https://huggingface.co/christianrss">Hugging Face</a> · <a href="mailto:crafael2030@gmail.com">E-mail</a></p></div></header>
 
 <section id="systems" class="section"><h2>Mapa de sistemas</h2>

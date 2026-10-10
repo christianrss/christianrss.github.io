@@ -12,7 +12,7 @@ theme: ../../themes/resume
 
 Birigui, São Paulo, Brazil · [me.christiansoftware.org](https://me.christiansoftware.org/) · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
 
-15 years of software development experience across enterprise systems, APIs, web and desktop applications, with additional focus on ML systems, AI infrastructure, low-level systems and data-driven products.
+Software development since 2012, with professional experience in enterprise systems, retail and fiscal applications, APIs and desktop software. Independent projects focus on ML infrastructure and systems programming.
 :::
 
 ::: resume-section
@@ -26,7 +26,7 @@ Birigui, São Paulo, Brazil · [me.christiansoftware.org](https://me.christianso
 - C++, MySQL and Delphi; Horse APIs and Swagger documentation.
 - .NET Core, EF Core, C#, JavaScript, React and PostgreSQL.
 - DDD, CQRS, layered architecture and automated testing.
-- AI-assisted agile development and Spec Driven Development practices.
+- Maintenance and extension of production systems, application APIs and automated testing.
 :::
 
 ::: resume-entry period="Feb 2016 — Nov 2023"
@@ -95,12 +95,12 @@ Deep learning framework built from scratch with tensors, autograd, neural-networ
 
 ::: resume-entry period="2026 —"
 ### Velis
-Local-first collaboration platform combining offline-capable workspaces, multi-device synchronization and shared business services. [Product](https://velis.vu/)
+Collaborative workspace with device-local changes and multi-device synchronization. [Product](https://velis.vu/)
 :::
 
 ::: resume-entry period="2026 —"
 ### Chris Cleaner
-C#/.NET desktop utility that separates filesystem analysis, background cataloging and conservative cleanup workflows from the user interface. [Product](https://christiansoftware.org/)
+C#/.NET desktop application for disk analysis, background file cataloging and user-controlled cleanup. [Product](https://christiansoftware.org/)
 :::
 
 ::: resume-entry period="2026 —"

@@ -95,12 +95,12 @@ Framework de deep learning desenvolvido do zero com tensores, autograd, componen
 
 ::: resume-entry period="2026 —"
 ### Velis
-Workspace colaborativo local-first em Next.js, NestJS, PostgreSQL e Redis; replay de mutações offline, lógica de convergência do editor, sincronização via WebSocket e controle granular de acesso. [Produto](https://velis.vu/)
+Plataforma colaborativa local-first com trabalho offline, sincronização entre dispositivos e serviços compartilhados. [Produto](https://velis.vu/)
 :::
 
 ::: resume-entry period="2026 —"
 ### Chris Cleaner
-Utilitário desktop C#/.NET de análise de disco com Avalonia, enumeração nativa Win32, monitoramento do NTFS USN Journal, indexação retomável e serviço Windows em segundo plano. [Produto](https://christiansoftware.org/)
+Utilitário desktop C#/.NET que separa análise de sistemas de arquivos, catalogação em segundo plano e fluxos cautelosos de limpeza da interface. [Produto](https://christiansoftware.org/)
 :::
 
 ::: resume-entry period="2026 —"

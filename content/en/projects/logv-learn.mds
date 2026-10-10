@@ -1,68 +1,53 @@
 ---
-title: LOGV Learn — Education Platform Architecture
-description: Course authoring, learner progress and commercial enrollment.
+title: LOGV Learn — Education / web applications
+description: Course publishing, study progress and paid enrollment within a single learning product.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfolio](/en/)
-[Projects](/en/#products)
-[Português](/projects/pt/logv-learn/) · **EN**
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/logv-learn/)
 :::
 
-::: hero home eyebrow="Public architecture"
+::: case-hero home eyebrow="Education / web applications"
 
 --- title
-# LOGV Learn — Education Platform Architecture
+# LOGV Learn
 
 --- body
-Course authoring, learner progress and commercial enrollment.
+Course publishing, study progress and paid enrollment within a single learning product.
 
 --- actions
-[Back to projects](/en/#products) · [Português](/projects/pt/logv-learn/)
-
+[All products](/en/#products)
 :::
 
-::: section architecture
-## Architecture overview
+::: section topic-1
+## Content and study
 
-LOGV Learn organizes teaching content, learner experiences and course access in a web application. Its public architecture can be described through four domains:
+The content model distinguishes a course from its modules and lessons. Administrative work concerns editing and publishing those materials; the learner's experience concerns viewing content, resuming a course and preserving progress.
 
-- **Content management:** courses, modules, lessons and authoring workflows.
-- **Learning experience:** enrollment, playback, study progress and learner interaction.
-- **Identity and authorization:** accounts and access to learner and administrative experiences.
-- **Commercial lifecycle:** purchase initiation, payment confirmation and corresponding course access.
-
-These flows share application persistence while requiring separate business rules and validation.
+Keeping these activities separate matters because the person editing a lesson and the person who completed it have different reasons to access the same content.
 :::
 
-::: section engineering
-## Design decisions and trade-offs
+::: section topic-2
+## Enrollment and access
 
-A cohesive application makes it easier for course and learner experiences to share state. Payment events, however, arrive asynchronously and must be reconciled with enrollment. Identity, entitlement and content navigation remain distinct conceptual responsibilities even if deployed together.
+Paid enrollment adds an asynchronous boundary. A payment may be initiated in one request while confirmation arrives later. The learning application must connect that outcome to a record of who is entitled to access the course.
+
+A single web application can host these functions without treating publishing, student progress and commercial access as one undifferentiated workflow.
 :::
 
-::: section alternatives
-## Alternative architectures
+::: section topic-3
+## Engineering considerations
 
-A hosted learning management system reduces product development and operations but limits customization. Independent payment and entitlement services increase isolation but expand the number of systems to operate. A modular monolith offers a practical progression if boundaries remain explicit and testable.
-:::
+The important consistency questions concern repeated payment notifications, changes in enrollment status and progress that should survive a new session. Reliable access cannot depend solely on what the client interface displays.
 
-::: section verification
-## Quality strategy and evidence
-
-The codebase contains education and payment-related application flows, but no comprehensive automated test suite was established in this review. This case study therefore describes intended validation practices rather than claiming passing acceptance tests.
-
-Coverage should include course publication, access rules, progress continuity, payment-state transitions, cancellations, duplicate notifications and usability. Detailed financial processing, provider credentials and any identified implementation defects remain restricted to private engineering records.
-:::
-
-::: section constraints
-## Constraints and evolution
-
-Educational content must remain accessible and consistent across browsers, while paid access depends on reliable asynchronous processes. Privacy, accessibility, operational support and clear learner-facing recovery are important parts of the architecture. Internal operational specifics are intentionally omitted.
+The reviewed repository establishes the existence of these application flows. Comprehensive automated coverage of the purchase-to-access lifecycle was not demonstrated in this review.
 :::
 
 ::: footer
-Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
+[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/logv-learn/)
 :::

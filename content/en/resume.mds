@@ -94,6 +94,16 @@ Deep learning framework built from scratch with tensors, autograd, neural-networ
 :::
 
 ::: resume-entry period="2026 —"
+### Velis
+Local-first collaborative workspace built with Next.js, NestJS, PostgreSQL and Redis; implemented offline mutation replay, editor convergence logic, WebSocket synchronization and granular access control. [Product](https://velis.vu/)
+:::
+
+::: resume-entry period="2026 —"
+### Chris Cleaner
+C#/.NET desktop disk-analysis utility with Avalonia UI, Win32-native file enumeration, NTFS USN Journal monitoring, resumable indexing and a background Windows service. [Product](https://christiansoftware.org/)
+:::
+
+::: resume-entry period="2026 —"
 ### Engineering Manual
 Open, bilingual computer science and software engineering reference with full-text search, structured study tracks, editorial checks and automated static publishing. [Website](https://manual.christiansoftware.org/en/) · [GitHub](https://github.com/christianrss/manual)
 :::

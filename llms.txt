@@ -17,6 +17,15 @@ Selected work:
 - Chris-Torch: https://github.com/christianrss/chris-torch
 - Marginal Thinking: https://marginalthinking.org/
 
+Selected commercial / applied engineering:
+- Velis (offline-first collaboration, sync, real-time editing): https://velis.vu/
+- Kaduo (social commerce, live shopping, seller analytics): https://kaduo.shop/
+- Eviz (digital business cards, CRM, landing pages): https://www.eviz.me/
+- Chris Cleaner (native Windows disk indexing and desktop cleanup): https://christiansoftware.org/
+- LOGV Learn (course platform, learning progress, payment integration): https://me.christiansoftware.org/en/#products
+
+The commercial repositories are private. Product URLs lead to public-facing sites, not public source code.
+
 Professional résumé:
 - English HTML: https://me.christiansoftware.org/resume/en/
 - Portuguese HTML: https://me.christiansoftware.org/resume/pt/

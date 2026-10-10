@@ -1,24 +1,23 @@
 ---
-title: LOGV Learn — Courses, Enrollment and Billing — Engineering Case Study
-description: Technical case study of LOGV Learn — Courses, Enrollment and Billing; architecture, trade-offs, test evidence and limitations.
+title: LOGV Learn — Education Platform Architecture
+description: Course authoring, learner progress and commercial enrollment.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfolio](/en/)
-[All products](/en/#products)
-[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Projects](/en/#products)
 [Português](/projects/pt/logv-learn/) · **EN**
 :::
 
-::: hero home eyebrow="Education · transactional web"
+::: hero home eyebrow="Public architecture"
 
 --- title
-# LOGV Learn — Courses, Enrollment and Billing
+# LOGV Learn — Education Platform Architecture
 
 --- body
-A Next.js course platform bringing content management, progress tracking, authentication and paid access together.
+Course authoring, learner progress and commercial enrollment.
 
 --- actions
 [Back to projects](/en/#products) · [Português](/projects/pt/logv-learn/)
@@ -26,41 +25,44 @@ A Next.js course platform bringing content management, progress tracking, authen
 :::
 
 ::: section architecture
-## System boundary and architecture
+## Architecture overview
 
-Next.js App Router serves learner/admin pages and server actions. Prisma/PostgreSQL defines users, courses, modules, lessons, purchases and progress. Clerk manages authentication and an Asaas integration provisions payment requests; incoming provider webhook events attempt to grant or revoke access. React/TanStack Query components implement lesson playback, comments and backoffice screens.
+LOGV Learn organizes teaching content, learner experiences and course access in a web application. Its public architecture can be described through four domains:
+
+- **Content management:** courses, modules, lessons and authoring workflows.
+- **Learning experience:** enrollment, playback, study progress and learner interaction.
+- **Identity and authorization:** accounts and access to learner and administrative experiences.
+- **Commercial lifecycle:** purchase initiation, payment confirmation and corresponding course access.
+
+These flows share application persistence while requiring separate business rules and validation.
 :::
 
-::: section implementation
-## Implementation choices
+::: section engineering
+## Design decisions and trade-offs
 
-The platform separates course authoring and learner progression into server actions; API route handlers own payment and authentication callbacks. This simplifies a compact monolithic deployment, but payment lifecycle and access control must be treated as an independently testable domain.
+A cohesive application makes it easier for course and learner experiences to share state. Payment events, however, arrive asynchronously and must be reconciled with enrollment. Identity, entitlement and content navigation remain distinct conceptual responsibilities even if deployed together.
 :::
 
 ::: section alternatives
-## Alternatives and trade-offs
+## Alternative architectures
 
-A hosted LMS reduces operational effort but limits product-specific workflows. An external billing entitlement service can improve isolation; keeping purchase rows in Prisma is simpler for an early application. PostgreSQL transactions and idempotency constraints are essential when asynchronous webhooks modify enrollment.
+A hosted learning management system reduces product development and operations but limits customization. Independent payment and entitlement services increase isolation but expand the number of systems to operate. A modular monolith offers a practical progression if boundaries remain explicit and testable.
 :::
 
-::: section testing
-## Evidence and concrete defect
+::: section verification
+## Quality strategy and evidence
 
-The inspected tree contains `src/actions/course-progress.ts`, `src/actions/payment.ts`, `src/app/api/webhooks/asaas/route.ts`, and `prisma/schema.prisma`. No project test files were identified in the tree. In the Asaas handler the comparison string `PAYMET_RECEIVED` differs from the switch case `PAYMENT_RECEIVED`; this appears to be a reachable logic defect, subject to test confirmation. Code presence is not evidence of payment correctness.
+The codebase contains education and payment-related application flows, but no comprehensive automated test suite was established in this review. This case study therefore describes intended validation practices rather than claiming passing acceptance tests.
+
+Coverage should include course publication, access rules, progress continuity, payment-state transitions, cancellations, duplicate notifications and usability. Detailed financial processing, provider credentials and any identified implementation defects remain restricted to private engineering records.
 :::
 
-::: section limitations
-## Known limits and next validation
+::: section constraints
+## Constraints and evolution
 
-Focus on webhook signature validation, replay protection, paid enrollment authorization, refund semantics and idempotency under simultaneous deliveries. Add unit and integration tests for PIX and card cases, grant-on-confirmation, refund rollback, duplicate deliveries and database failures. The package build command uses the Windows `set` shell syntax and should be made cross-platform for Linux CI.
-:::
-
-::: section evidence
-## Source inventory
-
-`src/app/api/webhooks/asaas/route.ts`; `src/actions/payment.ts`; `src/actions/course-progress.ts`; `src/app/(with-layout)/admin/`; `prisma/schema.prisma`; `package.json`.
+Educational content must remain accessible and consistent across browsers, while paid access depends on reliable asynchronous processes. Privacy, accessibility, operational support and clear learner-facing recovery are important parts of the architecture. Internal operational specifics are intentionally omitted.
 :::
 
 ::: footer
-Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
 :::

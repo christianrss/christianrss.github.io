@@ -1,6 +1,6 @@
 ---
-title: Eviz — SaaS / identidade profissional
-description: Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.
+title: Eviz — Arquitetura e tecnologias
+description: SaaS de cartões digitais, landing pages, captação de leads e CRM.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,42 @@ theme: ../../../themes/portfolio
 [English](/projects/en/eviz/)
 :::
 
-::: case-hero home eyebrow="SaaS / identidade profissional"
+::: case-hero home eyebrow="SaaS e CRM"
 
 --- title
 # Eviz
 
 --- body
-Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.
+SaaS de cartões digitais, landing pages, captação de leads e CRM.
 
 --- actions
-[Site do produto](https://www.eviz.me/) · [Voltar aos produtos](/pt/#products)
+[Produto](https://www.eviz.me/) · [Portfólio](/pt/#products)
 :::
 
-::: section topic-1
-## Da publicação ao CRM
+::: section architecture
+## Arquitetura
 
-Um cartão digital ou uma landing page pública é apenas uma etapa do relacionamento. O visitante acessa a página, utiliza um canal de contato ou envia um formulário; a informação passa a integrar um fluxo de acompanhamento. A Eviz trata publicação e gestão de contatos como partes do mesmo produto.
+A Eviz conecta páginas comerciais públicas à administração de contas e aos processos de relacionamento com clientes.
 
-A aplicação atende, portanto, dois contextos distintos: conteúdo aberto ao visitante e ferramentas autenticadas de operação comercial.
+- **Publicação:** cartões digitais, landing pages e conteúdo configurável.
+- **Interações públicas:** formulários e canais de contato associados às páginas.
+- **CRM:** registros de leads, contatos e atividades comerciais.
+- **Serviços da aplicação:** identidade, contas, publicação, formulários, registros comerciais e cobrança.
+- **Persistência:** dados relacionais acessados pelos serviços de backend.
+
+As páginas públicas e a área autenticada de gerenciamento utilizam os mesmos domínios da aplicação em interfaces distintas.
 :::
 
-::: section topic-2
-## Limites entre módulos
+::: section technologies
+## Tecnologias
 
-Apresentação de páginas, captação de leads, histórico de contatos e registros comerciais têm responsabilidades diferentes. Um modelo compartilhado permite relacioná-las sem fazer cada funcionalidade depender de todos os detalhes das demais.
-
-Uma aplicação SaaS modular é uma escolha adequada para esse domínio. Transformar cada funcionalidade em um serviço independente acrescentaria complexidade operacional sem, necessariamente, resolver um problema real de escala.
-:::
-
-::: section topic-3
-## Dados e verificação
-
-Os pontos críticos são a atribuição correta dos registros às respectivas contas, a previsibilidade da publicação e a transferência consistente das informações captadas até o CRM. Essas propriedades exigem testes de integração, não apenas testes isolados de componentes.
-
-O código examinado contém testes de módulos selecionados. A revisão não estabeleceu cobertura ponta a ponta completa para publicação, processos comerciais e fluxos de contato.
+- **Frontend:** React, TypeScript, Vite e TipTap.
+- **Backend:** NestJS, TypeScript e APIs REST.
+- **Dados:** Prisma e PostgreSQL.
+- **Recursos em tempo real:** Socket.IO.
+- **Pagamentos:** integrações com Stripe e Asaas.
 :::
 
 ::: footer
-[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/eviz/)
+[Christian Rafael](/pt/) · [Produtos](/pt/#products) · [English](/projects/en/eviz/)
 :::

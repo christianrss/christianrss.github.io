@@ -1,6 +1,6 @@
 ---
-title: LOGV Learn — Education / web applications
-description: Course publishing, study progress and paid enrollment within a single learning product.
+title: LOGV Learn — Architecture and technologies
+description: Web learning platform for course content, student progress and enrollment.
 lang: en
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,43 @@ theme: ../../../themes/portfolio
 [Português](/projects/pt/logv-learn/)
 :::
 
-::: case-hero home eyebrow="Education / web applications"
+::: case-hero home eyebrow="Learning platform"
 
 --- title
 # LOGV Learn
 
 --- body
-Course publishing, study progress and paid enrollment within a single learning product.
+Web learning platform for course content, student progress and enrollment.
 
 --- actions
-[All products](/en/#products)
+[Portfolio](/en/#products)
 :::
 
-::: section topic-1
-## Content and study
+::: section architecture
+## Architecture
 
-The content model distinguishes a course from its modules and lessons. Administrative work concerns editing and publishing those materials; the learner's experience concerns viewing content, resuming a course and preserving progress.
+LOGV Learn is a web application organized around course management, learner activity and commercial enrollment.
 
-Keeping these activities separate matters because the person editing a lesson and the person who completed it have different reasons to access the same content.
+- **Course management:** courses, modules, lessons and publication of educational content.
+- **Learning interface:** content playback and records of student progress.
+- **Identity:** user accounts and authenticated access.
+- **Enrollment:** purchase and payment-related application flows.
+- **Persistence:** relational models for course information, users and enrollment state.
+
+The course administration and learner-facing experience share application services and persistent data.
 :::
 
-::: section topic-2
-## Enrollment and access
+::: section technologies
+## Technologies
 
-Paid enrollment adds an asynchronous boundary. A payment may be initiated in one request while confirmation arrives later. The learning application must connect that outcome to a record of who is entitled to access the course.
-
-A single web application can host these functions without treating publishing, student progress and commercial access as one undifferentiated workflow.
-:::
-
-::: section topic-3
-## Engineering considerations
-
-The important consistency questions concern repeated payment notifications, changes in enrollment status and progress that should survive a new session. Reliable access cannot depend solely on what the client interface displays.
-
-The reviewed repository establishes the existence of these application flows. Comprehensive automated coverage of the purchase-to-access lifecycle was not demonstrated in this review.
+- **Application:** Next.js, React, TypeScript.
+- **Database:** PostgreSQL and Prisma.
+- **Authentication:** Clerk.
+- **Content editing and playback:** TipTap and Vidstack.
+- **Payments:** Asaas integration.
+- **File storage integration:** Amazon S3 SDK.
 :::
 
 ::: footer
-[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/logv-learn/)
+[Christian Rafael](/en/) · [Products](/en/#products) · [Português](/projects/pt/logv-learn/)
 :::

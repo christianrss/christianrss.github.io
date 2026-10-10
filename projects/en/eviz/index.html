@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Eviz — SaaS / business identity</title>
-    <meta name="description" content="Digital business cards and public pages linked to lead capture and relationship management.">
+  <title>Eviz — Architecture and technologies</title>
+    <meta name="description" content="SaaS for digital business cards, landing pages, lead capture and CRM.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,29 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/en/#products">Products</a>
 <a href="/projects/pt/eviz/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="SaaS / business identity" class="hero case-hero"><p class="hero-eyebrow">SaaS / business identity</p><div class="hero-title"><h1>Eviz</h1></div><div class="hero-body"><p>Digital business cards and public pages linked to lead capture and relationship management.</p></div><div class="hero-actions"><p><a href="https://www.eviz.me/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
+<header id="home" data-attr-eyebrow="SaaS and CRM" class="hero case-hero"><p class="hero-eyebrow">SaaS and CRM</p><div class="hero-title"><h1>Eviz</h1></div><div class="hero-body"><p>SaaS for digital business cards, landing pages, lead capture and CRM.</p></div><div class="hero-actions"><p><a href="https://www.eviz.me/">Product</a> · <a href="/en/#products">Portfolio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>From publishing to CRM</h2>
-<p>A public business card or landing page is one end of a longer process. A visitor opens the page, follows a contact action or submits a form; the resulting information enters a workflow where it can be organized and followed up. Eviz treats publishing and relationship management as parts of that same product.</p>
-<p>The experience therefore spans two very different contexts: public content intended for visitors and authenticated tools used by the account owner.</p></section>
+<section id="architecture" class="section"><h2>Architecture</h2>
+<p>Eviz connects public business pages to account management and customer relationship workflows.</p>
+<ul>
+<li><strong>Page publishing:</strong> digital cards, landing pages and configurable content.</li>
+<li><strong>Public interactions:</strong> forms and contact channels associated with published pages.</li>
+<li><strong>CRM:</strong> lead and contact records, commercial activities and related workflows.</li>
+<li><strong>Application services:</strong> identity, accounts, publishing, forms, business records and billing.</li>
+<li><strong>Persistence:</strong> relational data accessed through the backend.</li>
+</ul>
+<p>The public pages and the authenticated management interface use the same application domains through distinct web experiences.</p></section>
 
-<section id="topic-2" class="section"><h2>Application boundaries</h2>
-<p>Page presentation, lead collection, contact history and commercial records are separate concerns. A shared application model makes it possible to connect them without requiring every feature to know the details of the others.</p>
-<p>A modular SaaS application is a practical choice here. Splitting every capability into an independently deployed service could add operational complexity before there is evidence that the individual workloads require it.</p></section>
+<section id="technologies" class="section"><h2>Technologies</h2>
+<ul>
+<li><strong>Frontend:</strong> React, TypeScript, Vite, TipTap.</li>
+<li><strong>Backend:</strong> NestJS, TypeScript, REST APIs.</li>
+<li><strong>Data:</strong> Prisma, PostgreSQL.</li>
+<li><strong>Real-time features:</strong> Socket.IO.</li>
+<li><strong>Payments:</strong> Stripe and Asaas integrations.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Data and verification</h2>
-<p>The important properties are correct ownership of business records, predictable publication behavior and reliable transfer of information from public forms to the working CRM. Those properties require more than isolated component tests.</p>
-<p>The reviewed code contains tests for selected application modules. Complete end-to-end coverage of publication, commercial processing and contact workflows has not been established by this review.</p></section>
-
-<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/eviz/">Português</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">Products</a> · <a href="/projects/pt/eviz/">Português</a></p></footer>
 </main></div>
   
 </body>

@@ -1,6 +1,6 @@
 ---
-title: Velis — Colaboração / local-first
-description: Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.
+title: Velis — Arquitetura e tecnologias
+description: Workspace local-first com edição colaborativa e sincronização entre dispositivos.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,42 @@ theme: ../../../themes/portfolio
 [English](/projects/en/velis/)
 :::
 
-::: case-hero home eyebrow="Colaboração / local-first"
+::: case-hero home eyebrow="Colaboração local-first"
 
 --- title
 # Velis
 
 --- body
-Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.
+Workspace local-first com edição colaborativa e sincronização entre dispositivos.
 
 --- actions
-[Site do produto](https://velis.vu/) · [Voltar aos produtos](/pt/#products)
+[Produto](https://velis.vu/) · [Portfólio](/pt/#products)
 :::
 
-::: section topic-1
-## Estado local
+::: section architecture
+## Arquitetura
 
-Em um editor capaz de trabalhar offline, a primeira cópia persistente de uma alteração não pode depender de uma requisição bem-sucedida ao servidor. O Velis mantém o estado local do workspace e conserva alterações pendentes para sincronização posterior.
+O Velis reúne uma aplicação web, persistência local no dispositivo e serviços de colaboração.
 
-Isso modifica o modelo da aplicação: abrir, editar e sincronizar um documento são operações distintas. Uma interrupção temporária de rede não precisa interromper a edição nem transformar o servidor no único lugar em que o trabalho existe.
+- **Workspace:** documentos, notas, tarefas, editores e recursos compartilhados.
+- **Persistência local:** armazenamento no navegador e retenção de alterações para trabalho offline.
+- **Sincronização:** troca de alterações locais e atualizações remotas com os serviços da aplicação.
+- **Edição colaborativa:** operações sobre documentos e módulos de colaboração em tempo real.
+- **Servidor:** gerenciamento de workspaces, recursos compartilhados, persistência e distribuição de eventos.
+
+A interface de edição trabalha com estado local; a camada de sincronização conecta essas alterações aos dados compartilhados.
 :::
 
-::: section topic-2
-## Sincronização
+::: section technologies
+## Tecnologias
 
-Na reconexão surgem dois problemas diferentes: entrega repetida e edições concorrentes. O mecanismo precisa reconhecer alterações já processadas e explicitar conflitos. Em conteúdo estruturado, também é necessário definir em que ordem as operações passam a ser observadas pelos demais participantes.
-
-Em vez de transmitir o documento inteiro após cada modificação, o editor trabalha com operações menores. A granularidade melhora a colaboração, mas torna o comportamento de edições estruturais simultâneas mais difícil de validar.
-:::
-
-::: section topic-3
-## Fronteiras de engenharia
-
-Persistência local, regras de edição, sincronização e permissões do workspace possuem responsabilidades distintas. Eventos em tempo real complementam a sincronização; não substituem a troca durável de alterações.
-
-Há testes para cenários selecionados de sincronização offline, conflitos e operações concorrentes. O desafio central de um produto local-first é preservar convergência sob edições simultâneas e conexões instáveis, e não apenas salvar uma página quando há rede.
+- **Web:** Next.js, React, TypeScript e Zustand.
+- **Armazenamento local:** IndexedDB e Dexie.
+- **Colaboração:** Yjs, WebSocket e Socket.IO.
+- **Backend:** NestJS, Prisma e PostgreSQL.
+- **Mensageria e serviços:** Redis.
 :::
 
 ::: footer
-[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/velis/)
+[Christian Rafael](/pt/) · [Produtos](/pt/#products) · [English](/projects/en/velis/)
 :::

@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Kaduo — Media systems / social commerce</title>
-    <meta name="description" content="Live video production in the browser, integrated with the commercial activity taking place around a broadcast.">
+  <title>Kaduo — Architecture and technologies</title>
+    <meta name="description" content="Social commerce, short-form video and live broadcasting with a browser-based production studio.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,24 +198,29 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/en/#products">Products</a>
 <a href="/projects/pt/kaduo/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Media systems / social commerce" class="hero case-hero"><p class="hero-eyebrow">Media systems / social commerce</p><div class="hero-title"><h1>Kaduo</h1></div><div class="hero-body"><p>Live video production in the browser, integrated with the commercial activity taking place around a broadcast.</p></div><div class="hero-actions"><p><a href="https://kaduo.shop/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
+<header id="home" data-attr-eyebrow="Real-time media" class="hero case-hero"><p class="hero-eyebrow">Real-time media</p><div class="hero-title"><h1>Kaduo</h1></div><div class="hero-body"><p>Social commerce, short-form video and live broadcasting with a browser-based production studio.</p></div><div class="hero-actions"><p><a href="https://kaduo.shop/">Product</a> · <a href="/en/#products">Portfolio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>The studio</h2>
-<p>A live broadcast begins with the device's camera and microphone. The production interface handles preview, framing and visual elements that must appear in the transmitted image: captions, product information, promotional graphics and selected audience interactions.</p>
-<p>The key distinction is between <strong>drawing over a video player</strong> and <strong>composing the video itself</strong>. Kaduo uses browser media capabilities to produce a composed outgoing stream; supported graphics are therefore part of the broadcast image.</p></section>
+<section id="architecture" class="section"><h2>Architecture</h2>
+<p>Kaduo is organized around three areas: a social and commercial application, a media pipeline and a live production interface.</p>
+<ul>
+<li><strong>Application:</strong> creator profiles, feeds, product catalog, shopping interactions and live-session management.</li>
+<li><strong>Production studio:</strong> camera and microphone capture, Canvas composition, scene elements and a video track generated from the composed image.</li>
+<li><strong>Live media:</strong> WebRTC publication, media ingestion, distribution and playback.</li>
+<li><strong>Recorded media:</strong> browser recording, video uploads and video-on-demand playback.</li>
+<li><strong>Real-time interactions:</strong> live chat, audience events and studio status updates.</li>
+</ul>
+<p>The video stream and the commercial application exchange session and product information through application services.</p></section>
 
-<section id="topic-2" class="section"><h2>Media and commerce</h2>
-<p>The media path has different requirements from the shopping path. Video needs continuous transport, timing and adaptive handling of network conditions; catalog, orders and promotional information need transactional consistency. Mixing those responsibilities would make both harder to change.</p>
-<p>The system also covers recorded short-form video and audience interaction during live sessions. The studio can be used from a camera-equipped device without requiring a separate desktop production application.</p></section>
+<section id="technologies" class="section"><h2>Technologies</h2>
+<ul>
+<li><strong>Frontend:</strong> React, TypeScript, Vite, Canvas API, MediaStream, MediaRecorder.</li>
+<li><strong>Live video:</strong> WebRTC, WHIP, OvenMediaEngine, Mux.</li>
+<li><strong>Video uploads and playback:</strong> tus, Bunny Stream.</li>
+<li><strong>Application services:</strong> NestJS, WebSocket / Socket.IO.</li>
+<li><strong>Data:</strong> PostgreSQL, Prisma, Redis, ClickHouse.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>The engineering trade-off</h2>
-<p>Browser-side composition keeps production close to the camera and makes visual adjustments immediate. It also makes rendering dependent on browser capabilities and the device's available processing power. A server-side compositor would offer a more uniform rendering environment, at the cost of additional processing infrastructure.</p>
-<p>Current engineering work focuses on separating device selection, capture configuration, composed-media assembly and transmission monitoring. Those boundaries can be tested independently; broadcast reliability still requires testing on physical devices and real networks.</p></section>
-
-<section id="topic-4" class="section"><h2>Verification</h2>
-<p>Isolated regression tests cover selected media-processing rules, input selection and stream composition. A production frontend build is checked in CI. Those checks do not establish end-to-end latency or the number of viewers a deployment can sustain. Those claims require instrumented broadcasts and measurements under defined network conditions.</p></section>
-
-<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/kaduo/">Português</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">Products</a> · <a href="/projects/pt/kaduo/">Português</a></p></footer>
 </main></div>
   
 </body>

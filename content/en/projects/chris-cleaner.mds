@@ -1,6 +1,6 @@
 ---
-title: Chris Cleaner — Desktop / filesystems
-description: Disk analysis and file cataloging with native system integration and background processing.
+title: Chris Cleaner — Architecture and technologies
+description: Desktop disk analysis, file indexing and cleanup tools with native filesystem integration.
 lang: en
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,43 @@ theme: ../../../themes/portfolio
 [Português](/projects/pt/chris-cleaner/)
 :::
 
-::: case-hero home eyebrow="Desktop / filesystems"
+::: case-hero home eyebrow="Desktop and filesystems"
 
 --- title
 # Chris Cleaner
 
 --- body
-Disk analysis and file cataloging with native system integration and background processing.
+Desktop disk analysis, file indexing and cleanup tools with native filesystem integration.
 
 --- actions
-[Product website](https://christiansoftware.org/) · [All products](/en/#products)
+[Product](https://christiansoftware.org/) · [Portfolio](/en/#products)
 :::
 
-::: section topic-1
-## Scanning at scale
+::: section architecture
+## Architecture
 
-A disk catalog is built from a large number of filesystem entries whose metadata is not always cheap to collect. Chris Cleaner separates enumeration from the interface, allowing information to arrive incrementally instead of waiting for an entire volume to be scanned.
+Chris Cleaner is a desktop application divided into presentation, file-analysis services and local catalog storage.
 
-Bounded concurrent work is useful here: producers cannot fill memory indefinitely when indexing or presentation is slower than file discovery.
+- **Desktop interface:** dashboards, file listings, filters and user operations.
+- **File discovery:** directory enumeration and collection of filesystem metadata.
+- **Catalog:** local file indexing, scan checkpoints and incremental updates.
+- **Background execution:** asynchronous scanning and task processing.
+- **Platform adapters:** Windows filesystem integration and operating-system-specific services.
+- **Cleanup:** separate services for identified file categories and cleanup operations.
+
+The application maintains a local catalog for browsing and analyzing results of filesystem scans.
 :::
 
-::: section topic-2
-## Native capabilities
+::: section technologies
+## Technologies
 
-The application uses .NET and a desktop interface, with system-specific adapters for operations that cannot be expressed through a generic cross-platform API. On Windows, filesystem facilities support incremental observation and catalog maintenance.
-
-This leaves an explicit portability boundary. A feature available on one filesystem or operating system may require a different implementation—or a simpler fallback—elsewhere.
-:::
-
-::: section topic-3
-## Cleanup is a separate responsibility
-
-Finding a file and deciding to remove it are not the same operation. Disk analysis should remain useful independently of cleanup. Any destructive workflow needs clear user review and conservative defaults.
-
-The code includes concurrent scanning and catalog-related components. Repeatable performance measurements and comprehensive deletion-safety tests were not established during the review, so no quantitative speed or safety claim is made.
+- **Desktop:** C#, .NET 8, Avalonia UI.
+- **Presentation model:** CommunityToolkit.Mvvm.
+- **Local database:** LiteDB.
+- **Background services:** .NET hosting, asynchronous tasks and channels.
+- **Native filesystem:** NTFS metadata and USN Journal integration on Windows.
 :::
 
 ::: footer
-[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/chris-cleaner/)
+[Christian Rafael](/en/) · [Products](/en/#products) · [Português](/projects/pt/chris-cleaner/)
 :::

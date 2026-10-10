@@ -23,7 +23,7 @@ The site is authored in [MDS](https://github.com/ziyu/mds), compiled to static H
 - `content/pt/index.mds`
 - `content/en/resume.mds`
 - `content/pt/resume.mds`
-- `content/en/projects/*.mds` and `content/pt/projects/*.mds` — individual technical case studies, high-level architecture, trade-offs and verification principles without private implementation disclosure.
+- `content/en/projects/*.mds` and `content/pt/projects/*.mds` — individual project descriptions limited to architecture, verified components and technology stack.
 
 Themes:
 
@@ -60,7 +60,7 @@ The runtime website itself ships no frontend framework.
 
 ## Editorial and visual direction
 
-The public site is a concise technical index, not a product-marketing landing page. White background, restrained serif body copy, monospaced metadata, ordinary hyperlinks and deliberate whitespace are part of its design. The landing page prioritizes concrete work and externally verifiable artifacts. Individual product notes explain real engineering problems rather than repeating fixed templates.
+The public site is a concise technical index, not a product-marketing landing page. White background, restrained serif body copy, monospaced metadata, ordinary hyperlinks and deliberate whitespace are part of its design. The landing page prioritizes concrete work and externally verifiable artifacts. Individual project pages document system architecture and technologies without speculation, test commentary or recommendations.
 
 English and Portuguese are edited independently. The résumé is a separate print-first artifact; neither its content nor the public website should be padded with broad lists of unverifiable claims.
 
@@ -75,4 +75,4 @@ English and Portuguese are edited independently. The résumé is a separate prin
 
 ## Public disclosure rules
 
-Architecture case studies describe systems at the conceptual level. Do not publish private repository paths, security internals, service addresses, configuration, credentials, raw logs, unreviewed vulnerabilities, internal test fixtures or unverified performance figures. Restricted evidence stays in private engineering repositories. The build pipeline checks these disclosure rules automatically.
+Project pages describe system responsibilities, component boundaries and technologies identified in source. Do not publish private repository paths, security internals, service addresses, configuration, credentials, raw logs, unreviewed vulnerabilities, internal test fixtures or unverified performance figures. Restricted evidence stays in private engineering repositories. The build pipeline checks these disclosure rules automatically.

@@ -1,6 +1,6 @@
 ---
-title: Chris Cleaner — Desktop / sistemas de arquivos
-description: Análise de disco e catalogação de arquivos com integração nativa e processamento em segundo plano.
+title: Chris Cleaner — Arquitetura e tecnologias
+description: Aplicativo desktop de análise de disco, indexação de arquivos e limpeza com integração nativa ao sistema de arquivos.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,43 @@ theme: ../../../themes/portfolio
 [English](/projects/en/chris-cleaner/)
 :::
 
-::: case-hero home eyebrow="Desktop / sistemas de arquivos"
+::: case-hero home eyebrow="Desktop e sistemas de arquivos"
 
 --- title
 # Chris Cleaner
 
 --- body
-Análise de disco e catalogação de arquivos com integração nativa e processamento em segundo plano.
+Aplicativo desktop de análise de disco, indexação de arquivos e limpeza com integração nativa ao sistema de arquivos.
 
 --- actions
-[Site do produto](https://christiansoftware.org/) · [Voltar aos produtos](/pt/#products)
+[Produto](https://christiansoftware.org/) · [Portfólio](/pt/#products)
 :::
 
-::: section topic-1
-## Varredura de volumes
+::: section architecture
+## Arquitetura
 
-Um catálogo de disco resulta da leitura de um grande número de entradas de sistema de arquivos. Obter esses metadados nem sempre é barato. O Chris Cleaner separa a enumeração da interface, permitindo apresentar resultados progressivamente, sem aguardar a varredura integral de um volume.
+O Chris Cleaner é organizado em interface desktop, serviços de análise de arquivos e armazenamento local do catálogo.
 
-O processamento concorrente com filas limitadas impede que a descoberta de arquivos ocupe memória indefinidamente quando a indexação ou a apresentação são mais lentas.
+- **Interface:** painéis, listagem de arquivos, filtros e operações do usuário.
+- **Descoberta:** enumeração de diretórios e leitura de metadados do sistema de arquivos.
+- **Catálogo:** indexação local, checkpoints de varredura e atualizações incrementais.
+- **Execução em segundo plano:** varredura assíncrona e processamento de tarefas.
+- **Adaptadores de plataforma:** integração com recursos nativos do Windows e serviços específicos do sistema operacional.
+- **Limpeza:** serviços separados por categorias de arquivos e operações de remoção.
+
+A aplicação mantém um catálogo local para consulta e análise dos resultados das varreduras.
 :::
 
-::: section topic-2
-## Integração nativa
+::: section technologies
+## Tecnologias
 
-O aplicativo utiliza .NET e uma interface desktop, com adaptadores específicos para recursos que não cabem em uma API uniforme entre sistemas operacionais. No Windows, mecanismos do sistema de arquivos auxiliam a observação incremental e a manutenção do catálogo.
-
-Essa arquitetura estabelece uma fronteira de portabilidade: uma capacidade disponível em determinado filesystem pode exigir outra implementação — ou uma alternativa mais simples — em plataformas diferentes.
-:::
-
-::: section topic-3
-## Analisar não é apagar
-
-Localizar um arquivo e decidir removê-lo são operações distintas. A análise de disco precisa ter utilidade própria, independente da limpeza. Qualquer rotina destrutiva exige revisão clara pelo usuário e comportamento conservador.
-
-O código contém componentes de varredura concorrente e catalogação. A revisão não estabeleceu benchmarks reprodutíveis nem uma suíte abrangente de segurança de exclusão; por isso não são apresentados ganhos quantitativos ou garantias absolutas.
+- **Desktop:** C#, .NET 8 e Avalonia UI.
+- **Modelo de apresentação:** CommunityToolkit.Mvvm.
+- **Banco local:** LiteDB.
+- **Serviços em segundo plano:** .NET hosting, tarefas assíncronas e channels.
+- **Sistema de arquivos:** metadados NTFS e integração com USN Journal no Windows.
 :::
 
 ::: footer
-[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/chris-cleaner/)
+[Christian Rafael](/pt/) · [Produtos](/pt/#products) · [English](/projects/en/chris-cleaner/)
 :::

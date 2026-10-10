@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Chris Cleaner — Desktop / filesystems</title>
-    <meta name="description" content="Disk analysis and file cataloging with native system integration and background processing.">
+  <title>Chris Cleaner — Architecture and technologies</title>
+    <meta name="description" content="Desktop disk analysis, file indexing and cleanup tools with native filesystem integration.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,30 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/en/#products">Products</a>
 <a href="/projects/pt/chris-cleaner/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Desktop / filesystems" class="hero case-hero"><p class="hero-eyebrow">Desktop / filesystems</p><div class="hero-title"><h1>Chris Cleaner</h1></div><div class="hero-body"><p>Disk analysis and file cataloging with native system integration and background processing.</p></div><div class="hero-actions"><p><a href="https://christiansoftware.org/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
+<header id="home" data-attr-eyebrow="Desktop and filesystems" class="hero case-hero"><p class="hero-eyebrow">Desktop and filesystems</p><div class="hero-title"><h1>Chris Cleaner</h1></div><div class="hero-body"><p>Desktop disk analysis, file indexing and cleanup tools with native filesystem integration.</p></div><div class="hero-actions"><p><a href="https://christiansoftware.org/">Product</a> · <a href="/en/#products">Portfolio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>Scanning at scale</h2>
-<p>A disk catalog is built from a large number of filesystem entries whose metadata is not always cheap to collect. Chris Cleaner separates enumeration from the interface, allowing information to arrive incrementally instead of waiting for an entire volume to be scanned.</p>
-<p>Bounded concurrent work is useful here: producers cannot fill memory indefinitely when indexing or presentation is slower than file discovery.</p></section>
+<section id="architecture" class="section"><h2>Architecture</h2>
+<p>Chris Cleaner is a desktop application divided into presentation, file-analysis services and local catalog storage.</p>
+<ul>
+<li><strong>Desktop interface:</strong> dashboards, file listings, filters and user operations.</li>
+<li><strong>File discovery:</strong> directory enumeration and collection of filesystem metadata.</li>
+<li><strong>Catalog:</strong> local file indexing, scan checkpoints and incremental updates.</li>
+<li><strong>Background execution:</strong> asynchronous scanning and task processing.</li>
+<li><strong>Platform adapters:</strong> Windows filesystem integration and operating-system-specific services.</li>
+<li><strong>Cleanup:</strong> separate services for identified file categories and cleanup operations.</li>
+</ul>
+<p>The application maintains a local catalog for browsing and analyzing results of filesystem scans.</p></section>
 
-<section id="topic-2" class="section"><h2>Native capabilities</h2>
-<p>The application uses .NET and a desktop interface, with system-specific adapters for operations that cannot be expressed through a generic cross-platform API. On Windows, filesystem facilities support incremental observation and catalog maintenance.</p>
-<p>This leaves an explicit portability boundary. A feature available on one filesystem or operating system may require a different implementation—or a simpler fallback—elsewhere.</p></section>
+<section id="technologies" class="section"><h2>Technologies</h2>
+<ul>
+<li><strong>Desktop:</strong> C#, .NET 8, Avalonia UI.</li>
+<li><strong>Presentation model:</strong> CommunityToolkit.Mvvm.</li>
+<li><strong>Local database:</strong> LiteDB.</li>
+<li><strong>Background services:</strong> .NET hosting, asynchronous tasks and channels.</li>
+<li><strong>Native filesystem:</strong> NTFS metadata and USN Journal integration on Windows.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Cleanup is a separate responsibility</h2>
-<p>Finding a file and deciding to remove it are not the same operation. Disk analysis should remain useful independently of cleanup. Any destructive workflow needs clear user review and conservative defaults.</p>
-<p>The code includes concurrent scanning and catalog-related components. Repeatable performance measurements and comprehensive deletion-safety tests were not established during the review, so no quantitative speed or safety claim is made.</p></section>
-
-<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/chris-cleaner/">Português</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">Products</a> · <a href="/projects/pt/chris-cleaner/">Português</a></p></footer>
 </main></div>
   
 </body>

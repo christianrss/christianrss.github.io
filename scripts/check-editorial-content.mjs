@@ -33,11 +33,17 @@ for (const file of sourceFiles) {
     if (phrase.test(text)) errors.push(`${file}: boilerplate editorial pattern ${phrase}`);
   }
   if (/\/projects\//.test(file)) {
-    const headings = [...text.matchAll(/^## /gm)].length;
-    if (!text.includes('::: case-hero home') || headings < 3 || headings > 5) {
-      errors.push(`${file}: case study must have a distinctive title and 3–5 technical sections`);
+    const headings = [...text.matchAll(/^## (.+)$/gm)].map(m => m[1]);
+    const lang = file.includes('/pt/') ? 'pt' : 'en';
+    const expected = lang === 'pt' ? ['Arquitetura', 'Tecnologias'] : ['Architecture', 'Technologies'];
+    if (!text.includes('::: case-hero home') || JSON.stringify(headings) !== JSON.stringify(expected)) {
+      errors.push(`${file}: only architecture and technologies sections are permitted`);
     }
     if (text.includes('::: hero home')) errors.push(`${file}: generic personal-portrait hero must not appear`);
+    if (/\b(?:tests?|testing|verification|evidence|recommendations?|alternatives?|limitations?|benchmarks?|reliability|considerations?|trade-offs)\b/i.test(text) ||
+        /\b(?:testes?|testagem|verificação|evidências?|recomendações?|alternativas?|limitações?|confiabilidade|considerações?|compromissos|validação)\b/i.test(text)) {
+      errors.push(`${file}: non-architectural editorial commentary must not appear`);
+    }
   }
 }
 for (const lang of ['en','pt']) {

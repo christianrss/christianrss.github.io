@@ -1,0 +1,68 @@
+---
+title: Velis — Arquitetura Local-First e Colaboração — Estudo Técnico
+description: Documentação técnica de Velis — Arquitetura Local-First e Colaboração; arquitetura, alternativas, testes e limitações.
+lang: pt-BR
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfólio](/pt/)
+[Todos os produtos](/pt/#products)
+[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[English](/projects/en/velis/) · **PT**
+:::
+
+::: hero home eyebrow="Aplicações local-first"
+
+--- title
+# Velis — Arquitetura Local-First e Colaboração
+
+--- body
+Workspace de documentos, quadros, tarefas e comunicação estruturado em torno de persistência local, sincronização assíncrona e políticas de acesso.
+
+--- actions
+[Voltar aos projetos](/pt/#products) · [English](/projects/en/velis/)
+
+:::
+
+::: section architecture
+## Escopo e arquitetura
+
+Monorepo TypeScript com frontend Next.js, API NestJS e contratos compartilhados, PostgreSQL/Prisma, Redis e IndexedDB no navegador. Os módulos incluem editor de documentos, tarefas, gestão de workspaces, arquivos, chat e faturamento.
+
+**Caminho dos dados:** edição → persistência da mutação no IndexedDB → coalescência e envio em lotes → API com registro de aplicação ou conflito → cursor de eventos do servidor → atualização das projeções locais. WebSocket complementa a atualização em tempo real; não substitui a persistência offline.
+:::
+
+::: section implementation
+## Decisões de implementação
+
+O mecanismo de sincronização possui limite de 80 mutações e aproximadamente 450 kB serializados por lote, com retentativas para falhas transitórias e estado explícito de conflito. A API considera mutações já processadas e retornos idempotentes. O editor contém log de operações, command bus e kernel de convergência que ordena operações com relógios lógicos e dependências. Testes simulam três réplicas concorrentes e ordens diferentes de aplicação. O serviço de políticas distingue acesso ao workspace e permissões por recurso.
+:::
+
+::: section alternatives
+## Alternativas e compensações
+
+Substituir a fila por salvamento integral simplificaria a escrita, mas ampliaria perdas por concorrência. Um log de eventos completo favoreceria auditoria e replay, mas exigiria compactação. Bibliotecas CRDT consolidadas, como Yjs, ofereceriam primitivas conhecidas em troca de adequação ao contrato atual do editor. Os testes de um kernel de operações não demonstram, por si, comportamento correto de todos os tipos de edição em rede.
+:::
+
+::: section testing
+## Evidências de testes
+
+`apps/web/src/lib/sync-engine.test.ts`: testes com fake IndexedDB, falhas recuperáveis, sincronização e puxada de eventos. `apps/web/src/components/editor/core/crdt-kernel.test.ts`: três réplicas e streams aleatórias de comandos. `apps/api/src/sync/sync.service.test.ts`: mutações repetidas e conflitos. Há testes adicionais para autenticação, faturamento, canvas e drive. Identifiquei os testes no código; não executei a suíte nem medi cobertura nesta revisão.
+:::
+
+::: section limitations
+## Limites e validação
+
+A documentação do projeto indica necessidade de evoluir estratégias simples de resolução de conflitos à medida que a colaboração crescer. Ainda exigem ensaios as edições estruturais concorrentes, mudanças de schema durante longos períodos offline, limites do IndexedDB, mudanças de permissão após desconexão, duplicação de eventos e experiência de resolução de conflitos. Medir latência p95 de sincronização, preservação de dados e convergência sob partições.
+:::
+
+::: section evidence
+## Arquivos examinados
+
+`apps/web/src/lib/sync-engine.ts`; `apps/web/src/components/editor/core/crdt-kernel.ts`; `apps/web/src/components/editor/core/command-bus.ts`; `apps/api/src/sync/sync.service.ts`; `apps/api/src/common/access-policy.service.ts`; testes `*.test.ts` correspondentes; `README.md`.
+:::
+
+::: footer
+Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+:::

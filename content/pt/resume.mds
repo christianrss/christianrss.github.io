@@ -12,7 +12,7 @@ theme: ../../themes/resume
 
 Birigui, São Paulo, Brasil · [me.christiansoftware.org](https://me.christiansoftware.org/) · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
 
-15 anos de experiência em desenvolvimento de software, sistemas corporativos, APIs e aplicações web e desktop, com atuação adicional em ML Systems, infraestrutura de IA, sistemas de baixo nível e produtos orientados a dados.
+Desenvolvimento profissional desde 2012, com experiência em sistemas corporativos, aplicações fiscais e comerciais, APIs e software desktop. Projetos independentes voltados à infraestrutura de ML e programação de sistemas.
 :::
 
 ::: resume-section
@@ -26,7 +26,7 @@ Birigui, São Paulo, Brasil · [me.christiansoftware.org](https://me.christianso
 - C++, MySQL e Delphi; APIs Horse e documentação Swagger.
 - .NET Core, EF Core, C#, JavaScript, React e PostgreSQL.
 - DDD, CQRS, arquitetura em camadas e testes automatizados.
-- Desenvolvimento ágil assistido por IA e práticas de Spec Driven Development.
+- Manutenção e evolução de sistemas de produção, APIs e testes automatizados.
 :::
 
 ::: resume-entry period="fev 2016 — nov 2023"
@@ -95,12 +95,12 @@ Framework de deep learning desenvolvido do zero com tensores, autograd, componen
 
 ::: resume-entry period="2026 —"
 ### Velis
-Plataforma colaborativa local-first com trabalho offline, sincronização entre dispositivos e serviços compartilhados. [Produto](https://velis.vu/)
+Workspace colaborativo com alterações locais e sincronização entre dispositivos. [Produto](https://velis.vu/)
 :::
 
 ::: resume-entry period="2026 —"
 ### Chris Cleaner
-Utilitário desktop C#/.NET que separa análise de sistemas de arquivos, catalogação em segundo plano e fluxos cautelosos de limpeza da interface. [Produto](https://christiansoftware.org/)
+Aplicação desktop em C#/.NET para análise de discos, catalogação de arquivos em segundo plano e limpeza controlada pelo usuário. [Produto](https://christiansoftware.org/)
 :::
 
 ::: resume-entry period="2026 —"

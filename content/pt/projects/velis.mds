@@ -1,24 +1,23 @@
 ---
-title: Velis — Arquitetura Local-First e Colaboração — Estudo Técnico
-description: Documentação técnica de Velis — Arquitetura Local-First e Colaboração; arquitetura, alternativas, testes e limitações.
+title: Velis — Arquitetura de Colaboração Local-First
+description: Workspaces com funcionamento offline e consistência entre dispositivos.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfólio](/pt/)
-[Todos os produtos](/pt/#products)
-[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[Projetos](/pt/#products)
 [English](/projects/en/velis/) · **PT**
 :::
 
-::: hero home eyebrow="Aplicações local-first"
+::: hero home eyebrow="Arquitetura pública"
 
 --- title
-# Velis — Arquitetura Local-First e Colaboração
+# Velis — Arquitetura de Colaboração Local-First
 
 --- body
-Workspace de documentos, quadros, tarefas e comunicação estruturado em torno de persistência local, sincronização assíncrona e políticas de acesso.
+Workspaces com funcionamento offline e consistência entre dispositivos.
 
 --- actions
 [Voltar aos projetos](/pt/#products) · [English](/projects/en/velis/)
@@ -26,43 +25,49 @@ Workspace de documentos, quadros, tarefas e comunicação estruturado em torno d
 :::
 
 ::: section architecture
-## Escopo e arquitetura
+## Visão geral da arquitetura
 
-Monorepo TypeScript com frontend Next.js, API NestJS e contratos compartilhados, PostgreSQL/Prisma, Redis e IndexedDB no navegador. Os módulos incluem editor de documentos, tarefas, gestão de workspaces, arquivos, chat e faturamento.
+Velis é um workspace de documentos, tarefas, notas estruturadas e colaboração. Seu princípio arquitetural central é local-first: o usuário pode manipular informação localmente, enquanto a sincronização coordena as mudanças entre clientes conectados.
 
-**Caminho dos dados:** edição → persistência da mutação no IndexedDB → coalescência e envio em lotes → API com registro de aplicação ou conflito → cursor de eventos do servidor → atualização das projeções locais. WebSocket complementa a atualização em tempo real; não substitui a persistência offline.
+- **Experiência cliente:** edição, navegação e operações de workspace.
+- **Dados locais:** estado persistente no dispositivo e alterações pendentes.
+- **Sincronização:** troca ordenada de alterações locais e remotas.
+- **Serviços de aplicação:** colaboração, permissões e integrações.
+- **Persistência e eventos compartilhados:** armazenamento e notificações de colaboração.
+
+Persistência offline e atualização em tempo real têm funções complementares, não equivalentes.
 :::
 
-::: section implementation
-## Decisões de implementação
+::: section engineering
+## Decisões de engenharia
 
-O mecanismo de sincronização possui limite de 80 mutações e aproximadamente 450 kB serializados por lote, com retentativas para falhas transitórias e estado explícito de conflito. A API considera mutações já processadas e retornos idempotentes. O editor contém log de operações, command bus e kernel de convergência que ordena operações com relógios lógicos e dependências. Testes simulam três réplicas concorrentes e ordens diferentes de aplicação. O serviço de políticas distingue acesso ao workspace e permissões por recurso.
+O modelo local-first mantém continuidade quando há instabilidade de conexão. A sincronização precisa considerar repetição de envios, entregas duplicadas e conflitos entre edições. O editor utiliza conceitos orientados a operações, separando a manipulação de documentos da comunicação em rede.
+
+Os serviços também distinguem participação em um workspace das ações autorizadas sobre determinados recursos. Apenas essas responsabilidades gerais são divulgadas; políticas internas e mecanismos específicos ficam privados.
 :::
 
 ::: section alternatives
-## Alternativas e compensações
+## Alternativas e compromissos
 
-Substituir a fila por salvamento integral simplificaria a escrita, mas ampliaria perdas por concorrência. Um log de eventos completo favoreceria auditoria e replay, mas exigiria compactação. Bibliotecas CRDT consolidadas, como Yjs, ofereceriam primitivas conhecidas em troca de adequação ao contrato atual do editor. Os testes de um kernel de operações não demonstram, por si, comportamento correto de todos os tipos de edição em rede.
+Uma arquitetura server-first simplifica o estado local, mas aumenta a dependência de conectividade. A substituição integral de documentos é simples, porém mais sujeita a sobrescritas concorrentes. Operações incrementais permitem sincronização granular, exigindo propriedades bem definidas de convergência e tratamento compreensível dos conflitos.
+
+Bibliotecas consolidadas de colaboração podem reduzir risco de implementação, mas impor outros contratos de edição e armazenamento. São alternativas técnicas, não decisões históricas comprovadas.
 :::
 
-::: section testing
-## Evidências de testes
+::: section verification
+## Qualidade e evidências
 
-`apps/web/src/lib/sync-engine.test.ts`: testes com fake IndexedDB, falhas recuperáveis, sincronização e puxada de eventos. `apps/web/src/components/editor/core/crdt-kernel.test.ts`: três réplicas e streams aleatórias de comandos. `apps/api/src/sync/sync.service.test.ts`: mutações repetidas e conflitos. Há testes adicionais para autenticação, faturamento, canvas e drive. Identifiquei os testes no código; não executei a suíte nem medi cobertura nesta revisão.
+O repositório privado contém testes para aspectos de sincronização, conflitos e convergência de operações concorrentes. Os testes foram inspecionados como código, mas não reexecutados nesta documentação pública.
+
+A validação futura deve incluir sequências de edições concorrentes, transições offline/online, navegadores distintos, evolução de esquema e preservação de dados. Não são atribuídos números de latência, garantias para todas as funcionalidades ou disponibilidade sem medições.
 :::
 
-::: section limitations
-## Limites e validação
+::: section constraints
+## Limites e evolução
 
-A documentação do projeto indica necessidade de evoluir estratégias simples de resolução de conflitos à medida que a colaboração crescer. Ainda exigem ensaios as edições estruturais concorrentes, mudanças de schema durante longos períodos offline, limites do IndexedDB, mudanças de permissão após desconexão, duplicação de eventos e experiência de resolução de conflitos. Medir latência p95 de sincronização, preservação de dados e convergência sob partições.
-:::
-
-::: section evidence
-## Arquivos examinados
-
-`apps/web/src/lib/sync-engine.ts`; `apps/web/src/components/editor/core/crdt-kernel.ts`; `apps/web/src/components/editor/core/command-bus.ts`; `apps/api/src/sync/sync.service.ts`; `apps/api/src/common/access-policy.service.ts`; testes `*.test.ts` correspondentes; `README.md`.
+Capacidade de armazenamento do dispositivo, informações desatualizadas, documentos grandes, períodos longos offline e edições simultâneas são restrições relevantes. A evolução da arquitetura depende de preservar comportamento previsível à medida que a colaboração cresce. Detalhes internos e fragilidades operacionais específicas não são divulgados.
 :::
 
 ::: footer
-Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
 :::

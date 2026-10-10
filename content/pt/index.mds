@@ -9,6 +9,7 @@ theme: ../../themes/portfolio
 [Christian Rafael](#home)
 [Sistemas](#systems)
 [Projetos](#projects)
+[Produtos](#products)
 [Pesquisa](#research)
 [Experiência](#work)
 [Formação](#education)
@@ -114,6 +115,56 @@ Workspace de inteligência de mercados e carteiras combinando múltiplos portfó
 :::
 :::
 
+
+::: section products
+## Engenharia de produtos
+
+Seleção de plataformas comerciais e software aplicado. Esses projetos complementam o trabalho em sistemas e ML com arquitetura de aplicações, consistência de dados, integrações e ferramentas operacionais. O código-fonte é privado; os links abaixo levam aos sites públicos dos produtos.
+
+::: project period="2026 —" label="Colaboração local-first"
+### Velis
+Workspace local-first para documentos, tarefas, quadros, arquivos e comunicação de equipes. A implementação inclui mutações offline em IndexedDB com replay em lotes e tentativas de recuperação, editor colaborativo baseado em operações com testes de convergência determinística, atualizações via WebSocket e políticas de acesso por recurso.
+
+**Next.js · NestJS · TypeScript · PostgreSQL · Redis · IndexedDB · WebSockets**
+
+[Produto](https://velis.vu/)
+:::
+
+::: project period="2026 —" label="Comércio social"
+### Kaduo
+Plataforma de comércio social com lojas, catálogo, carrinho, checkout, conteúdo de vídeos curtos e compras ao vivo. O backend separa domínio, aplicação e infraestrutura; a camada analítica de lojistas inclui ingestão e deduplicação de eventos e funis, enquanto os serviços em tempo real atendem interações comerciais e uma interface de compras assistida por IA com ações controladas.
+
+**NestJS · React · TypeScript · Prisma · PostgreSQL · Redis · Socket.IO**
+
+[Produto](https://kaduo.shop/)
+:::
+
+::: project period="2026 —" label="CRM e SaaS"
+### Eviz
+SaaS multi-conta de identidade digital e gestão de relacionamentos, com cartões de visita, landing pages, formulários, captura de leads, CRM, propostas e fluxos comerciais. O trabalho de engenharia envolve APIs autenticadas, publicação pública, sincronização de contatos, analytics e integrações de pagamento e armazenamento de mídia.
+
+**NestJS · React · TypeScript · Prisma · PostgreSQL · Cloudflare R2 · Stripe / Asaas**
+
+[Produto](https://www.eviz.me/)
+:::
+
+::: project period="2026 —" label="Sistemas desktop"
+### Chris Cleaner
+Utilitário desktop de análise de disco e limpeza, com enumeração nativa do sistema de arquivos Windows, monitoramento do NTFS USN Journal, varreduras retomáveis, indexação binária, serviço Windows opcional em segundo plano e regras de segurança para limpeza. Um site comercial multilíngue separado, Christian Software, apoia a distribuição e o licenciamento do produto.
+
+**C# · .NET 8 · Avalonia · Win32 / P/Invoke · LiteDB**
+
+[Site do produto](https://christiansoftware.org/)
+:::
+
+::: project period="2026" label="Plataforma educacional"
+### LOGV Learn
+Plataforma de gestão de cursos com aulas, acompanhamento de progresso, ferramentas administrativas de publicação e matrículas pagas. Desenvolvida com Next.js, persistência Prisma, autenticação Clerk e fluxos de pagamento e webhooks Asaas.
+
+**Next.js · TypeScript · Prisma · PostgreSQL · Clerk · Asaas**
+:::
+:::
+
 ::: section research
 ## Pesquisa e escrita técnica
 
@@ -201,5 +252,5 @@ Para uma versão profissional compacta, consulte o [currículo em HTML](../resum
 :::
 
 ::: footer
-[English](../en/) · Português · HTML estático · MDS · atualizado em 2026-10-09.
+[English](../en/) · Português · HTML estático · MDS · atualizado em 2026-10-10.
 :::

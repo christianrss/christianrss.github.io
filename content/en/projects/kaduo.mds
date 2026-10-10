@@ -1,85 +1,59 @@
 ---
-title: Kaduo — Real-Time Media and Social Commerce
-description: Browser video production, live media delivery and commerce-aware interactions.
+title: Kaduo — Media systems / social commerce
+description: Live video production in the browser, integrated with the commercial activity taking place around a broadcast.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfolio](/en/)
-[Projects](/en/#products)
-[Português](/projects/pt/kaduo/) · **EN**
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/kaduo/)
 :::
 
-::: hero home eyebrow="Public architecture"
+::: case-hero home eyebrow="Media systems / social commerce"
 
 --- title
-# Kaduo — Real-Time Media and Social Commerce
+# Kaduo
 
 --- body
-Browser video production, live media delivery and commerce-aware interactions.
+Live video production in the browser, integrated with the commercial activity taking place around a broadcast.
 
 --- actions
-[Back to projects](/en/#products) · [Português](/projects/pt/kaduo/)
-
+[Product website](https://kaduo.shop/) · [All products](/en/#products)
 :::
 
-::: section architecture
-## Architecture overview
+::: section topic-1
+## The studio
 
-Kaduo brings social commerce, video publishing and live shopping into one product, while treating media delivery and business transactions as distinct domains. The public description follows logical responsibilities rather than exposing infrastructure topology.
+A live broadcast begins with the device's camera and microphone. The production interface handles preview, framing and visual elements that must appear in the transmitted image: captions, product information, promotional graphics and selected audience interactions.
 
-- **Creator experience:** device capture, video preview, live visual composition and production controls.
-- **Media workflow:** media publishing, ingestion, processing or forwarding, delivery and playback.
-- **Commerce workflow:** sellers, catalogs, featured products, transactions and customer interactions.
-- **Real-time experience:** live conversation, audience-facing events and status updates.
-- **Data and operations:** product state, creator settings, event analysis and operational observability.
-
-These domains are connected by application interfaces, but video transport is conceptually independent from the order lifecycle.
+The key distinction is between **drawing over a video player** and **composing the video itself**. Kaduo uses browser media capabilities to produce a composed outgoing stream; supported graphics are therefore part of the broadcast image.
 :::
 
-::: section engineering
-## Real-time video and production studio
+::: section topic-2
+## Media and commerce
 
-The production studio supports camera and microphone capture and live composition. Visual elements such as titles, images, product information, promotional graphics and audience interactions can be arranged while the creator is broadcasting. Rendering occurs in the media-production workflow so that supported visual elements become part of the outgoing video rather than only the creator's preview.
+The media path has different requirements from the shopping path. Video needs continuous transport, timing and adaptive handling of network conditions; catalog, orders and promotional information need transactional consistency. Mixing those responsibilities would make both harder to change.
 
-The broader platform includes recording and publishing shorter videos, live sessions, playback experiences and controls for broadcast quality. Protocol-based media transport such as WebRTC supports interactive publication. Specific network routes, provider configurations, credentials, deployment topology and operational parameters are intentionally not published.
+The system also covers recorded short-form video and audience interaction during live sessions. The studio can be used from a camera-equipped device without requiring a separate desktop production application.
 :::
 
-::: section alternatives
-## Design choices and trade-offs
+::: section topic-3
+## The engineering trade-off
 
-**Client-side composition:** reduces the need for a dedicated server-side graphics renderer for each creator session, but requires careful performance and browser-compatibility engineering.
+Browser-side composition keeps production close to the camera and makes visual adjustments immediate. It also makes rendering dependent on browser capabilities and the device's available processing power. A server-side compositor would offer a more uniform rendering environment, at the cost of additional processing infrastructure.
 
-**Separate media and commerce responsibilities:** live video can evolve independently from catalog and checkout rules. The cost is coordinating state that viewers see with the media timeline.
-
-**Dedicated real-time interaction channel:** audience events and studio controls should not rely on the bandwidth and lifecycle of the video stream alone.
-
-**Protocol-oriented integrations:** open media standards improve interoperability, while external services introduce platform and operational dependencies.
+Current engineering work focuses on separating device selection, capture configuration, composed-media assembly and transmission monitoring. Those boundaries can be tested independently; broadcast reliability still requires testing on physical devices and real networks.
 :::
 
-::: section verification
-## Alternative architectures
+::: section topic-4
+## Verification
 
-A server-side compositor could provide more controlled rendering and advanced production workflows, at the cost of computational capacity and increased operations. A fully managed broadcast stack would simplify infrastructure ownership but reduce control over the authoring experience. An external-encoder-only approach would suit professional studios while excluding some creators who prefer broadcasting directly from a phone or browser. These are architectural comparisons, not claims about the project's development history.
-:::
-
-::: section constraints
-## Quality strategy and evidence
-
-The private codebase includes unit tests around portions of media lifecycle handling and event processing. Their existence was reviewed, but the complete product test suites, throughput and end-to-end broadcast reliability were not independently executed or measured for this public case study.
-
-A sound validation program covers capture permissions, supported browsers and devices, composition correctness, playback, network interruptions, recording and upload recovery, cross-device interaction and accessibility. Published measurements should include test methodology, hardware and network conditions; this page intentionally does not claim specific latency, uptime or audience capacity.
-:::
-
-::: section more
-## Boundaries and maturity
-
-Media quality depends on capture hardware, browser capabilities and network conditions. Interactive graphics create a trade-off between visual richness and smooth frames. Distribution, storage and business operations have different scaling characteristics, so each requires independent capacity planning.
-
-The architecture described here is a technical overview. It is not a public audit of internal controls, dependencies, security posture or production service levels.
+Isolated regression tests cover selected media-processing rules, input selection and stream composition. A production frontend build is checked in CI. Those checks do not establish end-to-end latency or the number of viewers a deployment can sustain. Those claims require instrumented broadcasts and measurements under defined network conditions.
 :::
 
 ::: footer
-Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
+[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/kaduo/)
 :::

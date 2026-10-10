@@ -58,9 +58,20 @@ GitHub Actions validates all MDS sources and ten engineering case-study pages, r
 
 The runtime website itself ships no frontend framework.
 
-## Design direction
+## Editorial and visual direction
 
-The public portfolio intentionally uses an austere research-homepage aesthetic: plain HTML structure, native fonts, classic text links, compact chronology and no card/dashboard UI. The information architecture combines an academic homepage, a durable research index and Unix-manual-like metadata. Projects and research are presented before résumé chronology, and the systems map explains how the main technical projects relate across the computing stack.
+The public site is a concise technical index, not a product-marketing landing page. White background, restrained serif body copy, monospaced metadata, ordinary hyperlinks and deliberate whitespace are part of its design. The landing page prioritizes concrete work and externally verifiable artifacts. Individual product notes explain real engineering problems rather than repeating fixed templates.
+
+English and Portuguese are edited independently. The résumé is a separate print-first artifact; neither its content nor the public website should be padded with broad lists of unverifiable claims.
+
+## Quality gates
+
+- `npm run check` verifies editorial patterns, public disclosure rules and MDS validity.
+- `npm run build` renders both language indexes, both résumés and ten product notes.
+- `npm run pdf` renders the résumé PDFs.
+- `npm run verify:site` checks every published route at desktop/mobile widths in Chromium, including loaded portraits, headings and horizontal overflow.
+- GitHub Actions also verifies language alternates, canonical URLs, route presence and publication artifacts.
+
 
 ## Public disclosure rules
 

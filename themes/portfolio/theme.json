@@ -1,1 +1,26 @@
-{"version":1,"name":"portfolio","label":"Christian Research Index","description":"Minimal academic research index combining early-web simplicity, durable technical indexing and Unix-manual hierarchy.","tags":["portfolio","research","technical","minimal","academic","responsive"],"supportedBlocks":["nav","hero","section","entry","project","footer"],"css":"style.css","shell":"shell.html","blocks":"blocks"}
+{
+  "version": 1,
+  "name": "portfolio",
+  "label": "Christian Research Index",
+  "description": "Editorial engineering portfolio and independent technical writing.",
+  "tags": [
+    "portfolio",
+    "research",
+    "technical",
+    "minimal",
+    "academic",
+    "responsive"
+  ],
+  "supportedBlocks": [
+    "nav",
+    "hero",
+    "section",
+    "entry",
+    "project",
+    "footer",
+    "case-hero"
+  ],
+  "css": "style.css",
+  "shell": "shell.html",
+  "blocks": "blocks"
+}

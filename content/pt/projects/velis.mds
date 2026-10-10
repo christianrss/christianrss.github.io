@@ -1,73 +1,53 @@
 ---
-title: Velis — Arquitetura de Colaboração Local-First
-description: Workspaces com funcionamento offline e consistência entre dispositivos.
+title: Velis — Colaboração / local-first
+description: Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfólio](/pt/)
-[Projetos](/pt/#products)
-[English](/projects/en/velis/) · **PT**
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/velis/)
 :::
 
-::: hero home eyebrow="Arquitetura pública"
+::: case-hero home eyebrow="Colaboração / local-first"
 
 --- title
-# Velis — Arquitetura de Colaboração Local-First
+# Velis
 
 --- body
-Workspaces com funcionamento offline e consistência entre dispositivos.
+Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.
 
 --- actions
-[Voltar aos projetos](/pt/#products) · [English](/projects/en/velis/)
-
+[Site do produto](https://velis.vu/) · [Voltar aos produtos](/pt/#products)
 :::
 
-::: section architecture
-## Visão geral da arquitetura
+::: section topic-1
+## Estado local
 
-Velis é um workspace de documentos, tarefas, notas estruturadas e colaboração. Seu princípio arquitetural central é local-first: o usuário pode manipular informação localmente, enquanto a sincronização coordena as mudanças entre clientes conectados.
+Em um editor capaz de trabalhar offline, a primeira cópia persistente de uma alteração não pode depender de uma requisição bem-sucedida ao servidor. O Velis mantém o estado local do workspace e conserva alterações pendentes para sincronização posterior.
 
-- **Experiência cliente:** edição, navegação e operações de workspace.
-- **Dados locais:** estado persistente no dispositivo e alterações pendentes.
-- **Sincronização:** troca ordenada de alterações locais e remotas.
-- **Serviços de aplicação:** colaboração, permissões e integrações.
-- **Persistência e eventos compartilhados:** armazenamento e notificações de colaboração.
-
-Persistência offline e atualização em tempo real têm funções complementares, não equivalentes.
+Isso modifica o modelo da aplicação: abrir, editar e sincronizar um documento são operações distintas. Uma interrupção temporária de rede não precisa interromper a edição nem transformar o servidor no único lugar em que o trabalho existe.
 :::
 
-::: section engineering
-## Decisões de engenharia
+::: section topic-2
+## Sincronização
 
-O modelo local-first mantém continuidade quando há instabilidade de conexão. A sincronização precisa considerar repetição de envios, entregas duplicadas e conflitos entre edições. O editor utiliza conceitos orientados a operações, separando a manipulação de documentos da comunicação em rede.
+Na reconexão surgem dois problemas diferentes: entrega repetida e edições concorrentes. O mecanismo precisa reconhecer alterações já processadas e explicitar conflitos. Em conteúdo estruturado, também é necessário definir em que ordem as operações passam a ser observadas pelos demais participantes.
 
-Os serviços também distinguem participação em um workspace das ações autorizadas sobre determinados recursos. Apenas essas responsabilidades gerais são divulgadas; políticas internas e mecanismos específicos ficam privados.
+Em vez de transmitir o documento inteiro após cada modificação, o editor trabalha com operações menores. A granularidade melhora a colaboração, mas torna o comportamento de edições estruturais simultâneas mais difícil de validar.
 :::
 
-::: section alternatives
-## Alternativas e compromissos
+::: section topic-3
+## Fronteiras de engenharia
 
-Uma arquitetura server-first simplifica o estado local, mas aumenta a dependência de conectividade. A substituição integral de documentos é simples, porém mais sujeita a sobrescritas concorrentes. Operações incrementais permitem sincronização granular, exigindo propriedades bem definidas de convergência e tratamento compreensível dos conflitos.
+Persistência local, regras de edição, sincronização e permissões do workspace possuem responsabilidades distintas. Eventos em tempo real complementam a sincronização; não substituem a troca durável de alterações.
 
-Bibliotecas consolidadas de colaboração podem reduzir risco de implementação, mas impor outros contratos de edição e armazenamento. São alternativas técnicas, não decisões históricas comprovadas.
-:::
-
-::: section verification
-## Qualidade e evidências
-
-O repositório privado contém testes para aspectos de sincronização, conflitos e convergência de operações concorrentes. Os testes foram inspecionados como código, mas não reexecutados nesta documentação pública.
-
-A validação futura deve incluir sequências de edições concorrentes, transições offline/online, navegadores distintos, evolução de esquema e preservação de dados. Não são atribuídos números de latência, garantias para todas as funcionalidades ou disponibilidade sem medições.
-:::
-
-::: section constraints
-## Limites e evolução
-
-Capacidade de armazenamento do dispositivo, informações desatualizadas, documentos grandes, períodos longos offline e edições simultâneas são restrições relevantes. A evolução da arquitetura depende de preservar comportamento previsível à medida que a colaboração cresce. Detalhes internos e fragilidades operacionais específicas não são divulgados.
+Há testes para cenários selecionados de sincronização offline, conflitos e operações concorrentes. O desafio central de um produto local-first é preservar convergência sob edições simultâneas e conexões instáveis, e não apenas salvar uma página quando há rede.
 :::
 
 ::: footer
-Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
+[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/velis/)
 :::

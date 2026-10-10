@@ -1,72 +1,53 @@
 ---
-title: Eviz — SaaS de Identidade Digital e CRM
-description: Perfis profissionais, publicação de conteúdo e gestão de relacionamentos.
+title: Eviz — SaaS / identidade profissional
+description: Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfólio](/pt/)
-[Projetos](/pt/#products)
-[English](/projects/en/eviz/) · **PT**
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/eviz/)
 :::
 
-::: hero home eyebrow="Arquitetura pública"
+::: case-hero home eyebrow="SaaS / identidade profissional"
 
 --- title
-# Eviz — SaaS de Identidade Digital e CRM
+# Eviz
 
 --- body
-Perfis profissionais, publicação de conteúdo e gestão de relacionamentos.
+Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.
 
 --- actions
-[Voltar aos projetos](/pt/#products) · [English](/projects/en/eviz/)
-
+[Site do produto](https://www.eviz.me/) · [Voltar aos produtos](/pt/#products)
 :::
 
-::: section architecture
-## Visão geral da arquitetura
+::: section topic-1
+## Da publicação ao CRM
 
-A Eviz combina perfis profissionais digitais, landing pages publicadas, aquisição de leads e processos de relacionamento com clientes em um produto SaaS.
+Um cartão digital ou uma landing page pública é apenas uma etapa do relacionamento. O visitante acessa a página, utiliza um canal de contato ou envia um formulário; a informação passa a integrar um fluxo de acompanhamento. A Eviz trata publicação e gestão de contatos como partes do mesmo produto.
 
-As principais responsabilidades são:
-- identidade e gestão de contas;
-- edição e publicação de páginas e cartões;
-- formulários, captação de leads e registros de relacionamento;
-- fluxos comerciais e serviços externos;
-- analytics e administração.
-
-A documentação pública não detalha regras internas de isolamento, esquemas de dados ou credenciais de integração.
+A aplicação atende, portanto, dois contextos distintos: conteúdo aberto ao visitante e ferramentas autenticadas de operação comercial.
 :::
 
-::: section engineering
-## Decisões e compromissos
+::: section topic-2
+## Limites entre módulos
 
-A plataforma aproxima a experiência de publicação da gestão de relacionamento, reduzindo a necessidade de integrar sistemas isolados. Um modelo configurável de apresentação atende diversos tipos de página compartilhando a mesma camada de aplicação.
+Apresentação de páginas, captação de leads, histórico de contatos e registros comerciais têm responsabilidades diferentes. Um modelo compartilhado permite relacioná-las sem fazer cada funcionalidade depender de todos os detalhes das demais.
 
-O compromisso é o maior acoplamento entre publicação, dados de clientes e processos comerciais. Separar responsabilidades por domínio e distinguir a leitura pública da edição autenticada melhora a clareza arquitetural.
+Uma aplicação SaaS modular é uma escolha adequada para esse domínio. Transformar cada funcionalidade em um serviço independente acrescentaria complexidade operacional sem, necessariamente, resolver um problema real de escala.
 :::
 
-::: section alternatives
-## Alternativas arquiteturais
+::: section topic-3
+## Dados e verificação
 
-Um CMS hospedado conectado a um CRM externo reduziria desenvolvimento próprio, mas poderia fragmentar fluxos e criar dependências de integração. Microsserviços isolariam escalabilidade e entregas, porém elevariam custos de operação e consistência distribuída. Um backend modular pode equilibrar essas forças quando os limites entre domínios são claros e verificados.
-:::
+Os pontos críticos são a atribuição correta dos registros às respectivas contas, a previsibilidade da publicação e a transferência consistente das informações captadas até o CRM. Essas propriedades exigem testes de integração, não apenas testes isolados de componentes.
 
-::: section verification
-## Qualidade e evidências
-
-O backend privado contém testes unitários para módulos selecionados. A cobertura ponta a ponta identificada é limitada; por isso não há afirmação de validação completa dos fluxos de cobrança, publicação ou CRM.
-
-O plano de qualidade deve contemplar isolamento entre contas, ciclo de publicação, captação de formulários, consistência dos registros, erros de integrações, acessibilidade e privacidade. Não são atribuídos volumes de clientes ou resultados comerciais sem dados auditáveis.
-:::
-
-::: section constraints
-## Limites e evolução
-
-Publicação de conteúdo, permissões, transações e obrigações de privacidade apresentam perfis distintos de falhas e responsabilidades. A evolução requer contratos entre domínios, maior cobertura de integração e observabilidade sem divulgar medidas internas de proteção.
+O código examinado contém testes de módulos selecionados. A revisão não estabeleceu cobertura ponta a ponta completa para publicação, processos comerciais e fluxos de contato.
 :::
 
 ::: footer
-Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
+[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/eviz/)
 :::

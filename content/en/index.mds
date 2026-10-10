@@ -7,47 +7,35 @@ theme: ../../themes/portfolio
 
 ::: nav primary
 [Christian Rafael](#home)
-[Systems](#systems)
-[Projects](#projects)
+[Work](#projects)
 [Products](#products)
-[Research](#research)
+[Writing](#research)
 [Experience](#work)
-[Education](#education)
-[CV](../resume/en/)
-[PDF](../resume/christian-rafael-cv-en.pdf)
-**EN** · [PT](../pt/)
+[Résumé](/resume/en/)
+[PT](/pt/) · **EN**
 :::
 
-::: hero home eyebrow="Software Engineer · ML Systems · Systems Software"
+::: hero home eyebrow="Software engineer · systems and machine learning"
 
 --- title
 # Christian Rafael de Souza Silva
 
 --- body
-Software engineer working across the computing stack — from production applications and ML systems to runtimes, compilers, virtual machines and operating systems.
-
-I have worked professionally in software development since 2012. This site is an index of the systems I build, the research I publish and the technical areas I study.
+Software engineer working on business applications, machine-learning infrastructure and systems software. Professional development since 2012; independent work includes language-model training, inference runtimes, compiler tooling and operating-system development.
 
 --- actions
-[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com)
-
+[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com) · [CV (PDF)](/resume/christian-rafael-cv-en.pdf)
 :::
 
 ::: section systems
-## Systems map
+## Areas of work
 
-I use personal projects as a vertical laboratory for understanding computation end to end rather than as isolated demos.
+**Production software.** Enterprise management systems, fiscal and retail applications, desktop software, APIs and engineering tools.
 
-`models → inference → ML runtime → toolchains / VMs → operating system → hardware`
+**Machine learning.** Model pretraining, evaluation, GGUF inference, tensor computation and GPU-oriented execution.
 
-- **Models** — [Chris-GPT-2](https://github.com/christianrss/chris-gpt-2): pretraining, evaluation and reproducibility.
-- **Inference** — [Chris-Llama](https://github.com/christianrss/chris-llama): GGUF, tokenization, attention, KV cache, quantization and CPU/GPU execution.
-- **ML runtime** — [Chris-Torch](https://github.com/christianrss/chris-torch): tensors, autograd, neural-network components and accelerated backends.
-- **Toolchains / VMs** — compiler, assembler, linker and virtual-machine experiments developed around ChrisOS.
-- **Operating system** — [ChrisOS](https://github.com/christianrss/ChrisOS): kernel, memory, drivers, graphics, filesystems and low-level infrastructure.
-- **Hardware** — electrical engineering, electronics and robotics as the physical layer beneath the software stack.
+**Systems software.** An x86-64 operating system, language toolchains, virtual machines and experiments with memory, drivers and graphics.
 
-My professional work sits above and across this stack: enterprise systems, APIs, desktop and web applications, fiscal and retail software, infrastructure and internal engineering tools.
 :::
 
 ::: section projects
@@ -55,7 +43,7 @@ My professional work sits above and across this stack: enterprise systems, APIs,
 
 ::: project period="2025 —" label="Operating systems"
 ### ChrisOS
-An experimental x86-64 operating system and low-level playground for building kernels, memory management, drivers, graphics, filesystems, compilers, assemblers, linkers, virtual machines and emulation components from scratch.
+Experimental x86-64 operating system with kernel, memory-management, driver, graphics and filesystem development; also used for compiler and virtual-machine work.
 
 **C · C++ · x86-64 · OSDev · Compilers**
 
@@ -64,7 +52,7 @@ An experimental x86-64 operating system and low-level playground for building ke
 
 ::: project period="2026" label="LLM pretraining"
 ### Chris-GPT-2
-A 124.5M-parameter GPT-2 trained from scratch on approximately 10B FineWeb-Edu tokens using 4× NVIDIA A100 GPUs, with reproducible training artifacts and SafeTensors/GGUF exports.
+GPT-2 124M pretrained on approximately 10 billion FineWeb-Edu tokens using four NVIDIA A100 GPUs. Training artifacts and SafeTensors/GGUF model exports are available.
 
 **Python · PyTorch · CUDA · NCCL · distributed training**
 
@@ -73,7 +61,7 @@ A 124.5M-parameter GPT-2 trained from scratch on approximately 10B FineWeb-Edu t
 
 ::: project period="2026 —" label="LLM inference"
 ### Chris-Llama
-An experimental LLM inference runtime in C for studying GGUF loading, tokenization, attention, KV cache, quantization, memory layout and CPU/GPU execution without hiding the implementation behind a large framework.
+LLM inference runtime in C: GGUF loading, tokenization, attention, KV cache, quantization and CPU/GPU execution.
 
 **C · GGUF · inference · quantization · CPU/GPU**
 
@@ -82,7 +70,7 @@ An experimental LLM inference runtime in C for studying GGUF loading, tokenizati
 
 ::: project period="2026 —" label="Deep learning systems"
 ### Chris-Torch
-A learning-oriented deep learning framework built from scratch with tensors, automatic differentiation, neural-network components, optimizers and accelerated execution backends.
+Deep-learning implementation covering tensors, automatic differentiation, optimizers and accelerated execution backends.
 
 **C++ · Python · autograd · neural networks · GPU**
 
@@ -91,7 +79,7 @@ A learning-oriented deep learning framework built from scratch with tensors, aut
 
 ::: project period="2026 —" label="Computer science reference"
 ### Engineering Manual
-An independent, bilingual reference for computer science and software engineering, covering foundational topics in data structures, algorithms, operating systems, databases and system design. Built with a static publishing pipeline, full-text search, structured learning tracks, editorial validation and automated deployment.
+Bilingual technical reference on algorithms, data structures, operating systems, databases and system design, with structured learning paths and searchable articles.
 
 **Python · Jinja2 · Markdown · JavaScript · GitHub Actions**
 
@@ -100,7 +88,7 @@ An independent, bilingual reference for computer science and software engineerin
 
 ::: project period="2026 —" label="Research platform"
 ### Marginal Thinking
-An independent research platform on macroeconomics, markets, geopolitics, technology and global systems, with recurring reports, country research, structural datasets and primary-source analysis.
+Research publication on macroeconomics, geopolitics and technology, including country profiles, recurring reports and primary-source analysis.
 
 **Economics · data · research · publishing**
 
@@ -109,7 +97,7 @@ An independent research platform on macroeconomics, markets, geopolitics, techno
 
 ::: project period="2026 —" label="Market software"
 ### SharpEx
-A market and portfolio-intelligence workspace combining multi-portfolio accounting, cross-asset data, digital assets, risk-adjusted analytics and structural research integration.
+Market-data and portfolio workspace for cross-asset tracking, risk metrics and portfolio-level analysis.
 
 **JavaScript · Cloudflare Workers · market data · risk analytics**
 :::
@@ -119,53 +107,54 @@ A market and portfolio-intelligence workspace combining multi-portfolio accounti
 ::: section products
 ## Product engineering
 
-These products demonstrate application architecture, real-time systems, local-first collaboration and desktop engineering. The links below contain public, architecture-level case studies; implementation and operational details remain private.
+Applied software projects spanning collaborative workspaces, live video, business applications, desktop utilities and online education.
 
-::: project period="2026 —" label="Local-first collaboration"
+::: project period="2026 —" label="Offline collaboration"
 ### Velis
-Collaborative workspace for documents, tasks and team workflows. The architecture connects local persistence, multi-device synchronization and shared application services, balancing offline continuity with coordination.
+Collaborative documents, tasks and workspaces with local persistence and synchronization between devices.
 
-**TypeScript · Web applications · Local-first systems · Collaboration**
+**TypeScript · local-first · collaborative editing**
 
-[Product](https://velis.vu/) · [Architecture case study](/projects/en/velis/)
+[Product](https://velis.vu/) · [Technical note](/projects/en/velis/)
 :::
 
-::: project period="2026 —" label="Real-time media systems"
+::: project period="2026 —" label="Live media"
 ### Kaduo
-Social-commerce and video platform combining a browser-based production studio, live video composition, media publication and playback with shopping experiences, creator tools and real-time audience participation.
+Browser-based live production with video composition, visual overlays, audience interaction and commerce during broadcasts.
 
-**WebRTC · Browser media APIs · Canvas · TypeScript · Real-time applications**
+**TypeScript · WebRTC · Canvas · media processing**
 
-[Product](https://kaduo.shop/) · [Architecture case study](/projects/en/kaduo/)
+[Product](https://kaduo.shop/) · [Technical note](/projects/en/kaduo/)
 :::
 
-::: project period="2026 —" label="Business SaaS"
+::: project period="2026 —" label="Business applications"
 ### Eviz
-Digital business identity and CRM SaaS connecting public-facing profiles and pages with lead capture, contact management and commercial workflows through modular application services.
+Digital business cards and landing pages linked to lead collection, contact records and CRM operations.
 
-**Web applications · SaaS · CRM · Relational data**
+**Web applications · relational data · CRM**
 
-[Product](https://www.eviz.me/) · [Architecture case study](/projects/en/eviz/)
+[Product](https://www.eviz.me/) · [Technical note](/projects/en/eviz/)
 :::
 
-::: project period="2026 —" label="Desktop and systems engineering"
+::: project period="2026 —" label="Desktop and filesystems"
 ### Chris Cleaner
-Desktop utility focused on disk usage analysis, filesystem cataloging and user-controlled cleanup. Its architecture separates native system adapters, background processing, persistence and user-interface responsibilities.
+Disk-usage analysis and file cataloging with background scanning and native filesystem capabilities.
 
-**C# · .NET · Desktop software · Filesystems · Concurrency**
+**C# · .NET · Avalonia · filesystem APIs**
 
-[Product website](https://christiansoftware.org/) · [Architecture case study](/projects/en/chris-cleaner/)
+[Product](https://christiansoftware.org/) · [Technical note](/projects/en/chris-cleaner/)
 :::
 
-::: project period="2026" label="Education platform"
+::: project period="2026" label="Learning applications"
 ### LOGV Learn
-Learning platform for course publication, student progress and enrollment. The application separates learning content, identity, commercial access and learner experience as business domains.
+Course administration, lessons, student progress and paid enrollment in a web application.
 
-**Next.js · TypeScript · Education platforms · Transactions**
+**Next.js · TypeScript · database-backed workflows**
 
-[Architecture case study](/projects/en/logv-learn/)
+[Technical note](/projects/en/logv-learn/)
 :::
 :::
+
 ::: section research
 ## Research & technical writing
 
@@ -245,13 +234,11 @@ Technical training across electronics, mechanics, automation and embedded system
 :::
 
 ::: section contact
-## Elsewhere
+## Contact
 
-[GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com)
-
-For a compact professional version, see the [HTML résumé](../resume/en/) or [download the PDF](../resume/christian-rafael-cv-en.pdf).
+[Email](mailto:crafael2030@gmail.com) · [GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [CV](../resume/en/) · [PDF](../resume/christian-rafael-cv-en.pdf)
 :::
 
 ::: footer
-English · [Português](../pt/) · static HTML · MDS · updated 2026-10-10.
+Christian Rafael de Souza Silva · [Português](/pt/) · [Top](#home)
 :::

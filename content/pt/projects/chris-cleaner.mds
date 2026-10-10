@@ -1,71 +1,53 @@
 ---
-title: Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos
-description: Análise nativa de discos, processamento em segundo plano e limpeza conservadora.
+title: Chris Cleaner — Desktop / sistemas de arquivos
+description: Análise de disco e catalogação de arquivos com integração nativa e processamento em segundo plano.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfólio](/pt/)
-[Projetos](/pt/#products)
-[English](/projects/en/chris-cleaner/) · **PT**
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/chris-cleaner/)
 :::
 
-::: hero home eyebrow="Arquitetura pública"
+::: case-hero home eyebrow="Desktop / sistemas de arquivos"
 
 --- title
-# Chris Cleaner — Engenharia Desktop e de Sistemas de Arquivos
+# Chris Cleaner
 
 --- body
-Análise nativa de discos, processamento em segundo plano e limpeza conservadora.
+Análise de disco e catalogação de arquivos com integração nativa e processamento em segundo plano.
 
 --- actions
-[Voltar aos projetos](/pt/#products) · [English](/projects/en/chris-cleaner/)
-
+[Site do produto](https://christiansoftware.org/) · [Voltar aos produtos](/pt/#products)
 :::
 
-::: section architecture
-## Visão geral da arquitetura
+::: section topic-1
+## Varredura de volumes
 
-Chris Cleaner é um aplicativo desktop para analisar utilização de discos, organizar informações sobre arquivos e oferecer fluxos configuráveis de limpeza. A arquitetura separa interface, acesso a sistemas de arquivos, processamento do catálogo, persistência local e adaptadores do sistema operacional.
+Um catálogo de disco resulta da leitura de um grande número de entradas de sistema de arquivos. Obter esses metadados nem sempre é barato. O Chris Cleaner separa a enumeração da interface, permitindo apresentar resultados progressivamente, sem aguardar a varredura integral de um volume.
 
-- **Interface desktop:** painéis, filtros, tarefas e confirmação das operações.
-- **Serviços de arquivos:** descoberta, análise de metadados e recursos específicos do sistema.
-- **Processamento do catálogo:** varredura em segundo plano, indexação e atualização incremental.
-- **Armazenamento local:** preferências, metadados e continuidade de operações.
-- **Fronteira de segurança:** avaliação e confirmação antes de ações potencialmente destrutivas.
-
-O site comercial corresponde à camada de distribuição e apresentação do produto, não ao mecanismo de varredura.
+O processamento concorrente com filas limitadas impede que a descoberta de arquivos ocupe memória indefinidamente quando a indexação ou a apresentação são mais lentas.
 :::
 
-::: section engineering
-## Decisões de engenharia
+::: section topic-2
+## Integração nativa
 
-Processamento assíncrono e filas de trabalho limitadas permitem preservar a responsividade durante varreduras grandes. Abstrair operações dependentes de plataforma facilita compartilhar lógica com ambientes desktop distintos.
+O aplicativo utiliza .NET e uma interface desktop, com adaptadores específicos para recursos que não cabem em uma API uniforme entre sistemas operacionais. No Windows, mecanismos do sistema de arquivos auxiliam a observação incremental e a manutenção do catálogo.
 
-A manutenção incremental do catálogo pode reduzir varreduras repetidas; em contrapartida, recursos nativos exigem alternativas compatíveis e controle de ciclo de vida. Chamadas específicas ao sistema operacional e regras internas de segurança não são expostas publicamente.
+Essa arquitetura estabelece uma fronteira de portabilidade: uma capacidade disponível em determinado filesystem pode exigir outra implementação — ou uma alternativa mais simples — em plataformas diferentes.
 :::
 
-::: section alternatives
-## Alternativas e compromissos
+::: section topic-3
+## Analisar não é apagar
 
-Uma varredura síncrona direta é mais simples, mas pode prejudicar a interface em volumes extensos. Um índice baseado em banco de dados simplifica consultas; um armazenamento compacto especializado pode atender melhor determinados padrões de acesso. Uma interface exclusiva de Windows favorece integração nativa; uma base multiplataforma prioriza portabilidade e requer adaptações.
-:::
+Localizar um arquivo e decidir removê-lo são operações distintas. A análise de disco precisa ter utilidade própria, independente da limpeza. Qualquer rotina destrutiva exige revisão clara pelo usuário e comportamento conservador.
 
-::: section verification
-## Qualidade e evidências
-
-O código privado comprova a existência de componentes de varredura concorrente, continuidade de catálogo e adaptação por plataforma. Não foi verificada nesta análise uma suíte automatizada abrangente nem um benchmark reprodutível; portanto a página não promete ganhos mensurados de velocidade nem segurança absoluta de limpeza.
-
-Um plano adequado usa volumes descartáveis, cenários variados de permissão, árvores extensas, interrupções de varredura e processos de confirmação. Operações destrutivas exigem testes particularmente conservadores e comunicação clara com o usuário.
-:::
-
-::: section constraints
-## Limites e evolução
-
-As possibilidades de varredura variam conforme sistema operacional, permissões e filesystem. O desempenho depende do armazenamento e da estrutura de diretórios. Compatibilidade, precisão dos índices e limpeza cautelosa continuam sendo preocupações centrais. Detalhes operacionais e de proteção ficam reservados.
+O código contém componentes de varredura concorrente e catalogação. A revisão não estabeleceu benchmarks reprodutíveis nem uma suíte abrangente de segurança de exclusão; por isso não são apresentados ganhos quantitativos ou garantias absolutas.
 :::
 
 ::: footer
-Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
+[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/chris-cleaner/)
 :::

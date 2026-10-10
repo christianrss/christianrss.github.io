@@ -1,73 +1,53 @@
 ---
-title: Velis — Local-First Collaboration Architecture
-description: Offline-capable workspaces and multi-device information consistency.
+title: Velis — Collaboration / local-first
+description: A collaborative workspace designed around documents that remain editable when the network is unavailable.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfolio](/en/)
-[Projects](/en/#products)
-[Português](/projects/pt/velis/) · **EN**
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/velis/)
 :::
 
-::: hero home eyebrow="Public architecture"
+::: case-hero home eyebrow="Collaboration / local-first"
 
 --- title
-# Velis — Local-First Collaboration Architecture
+# Velis
 
 --- body
-Offline-capable workspaces and multi-device information consistency.
+A collaborative workspace designed around documents that remain editable when the network is unavailable.
 
 --- actions
-[Back to projects](/en/#products) · [Português](/projects/pt/velis/)
-
+[Product website](https://velis.vu/) · [All products](/en/#products)
 :::
 
-::: section architecture
-## Architecture overview
+::: section topic-1
+## Local state
 
-Velis is a workspace for documents, tasks, structured notes and collaboration. Its architectural center is the local-first model: users can create and manipulate information locally while synchronization coordinates changes across connected clients.
+In an offline-capable editor, the first durable copy of a change cannot depend on a successful request to the server. Velis maintains local workspace state and retains pending changes for later exchange with the shared service.
 
-- **Client experience:** editing, navigation and workspace interactions.
-- **Local data layer:** durable device-side state and pending changes.
-- **Synchronization layer:** orderly exchange of local updates and server changes.
-- **Application services:** collaboration permissions, workspace operations and integrations.
-- **Shared persistence and events:** authoritative service-side state and collaboration notifications.
-
-Local persistence and real-time updates have complementary responsibilities rather than being interchangeable.
+This changes the application model: loading a document, modifying it and synchronizing it are distinct operations. The user can continue editing during a temporary disconnection without treating the network as the only place where work exists.
 :::
 
-::: section engineering
-## Engineering decisions
+::: section topic-2
+## Synchronization
 
-A local-first architecture improves continuity when connectivity is unstable. Synchronization must account for retries, duplicate deliveries and conflicting edits. The editing layer uses operation-oriented concepts and keeps document manipulation separate from transport concerns.
+Reconnecting creates two separate problems: repeated delivery and concurrent edits. The synchronization path therefore has to recognize changes already handled and make conflicts explicit. Collaboration on structured content also requires rules for the order in which operations become visible.
 
-The service architecture also distinguishes workspace membership from actions on particular resources. Only these conceptual boundaries are published; internal permission policies and synchronization mechanics remain private.
+Rather than moving entire documents after each keystroke, the editor works with smaller editing operations. That increases flexibility, but the behavior under simultaneous structural edits is harder to establish than single-user editing.
 :::
 
-::: section alternatives
-## Alternatives and trade-offs
+::: section topic-3
+## Engineering boundary
 
-A server-first design reduces local-state complexity but depends more heavily on consistent connectivity. Whole-document replacement is simpler to implement, yet more prone to overwrite conflicts. Operation-based collaboration can support finer-grained updates, but it requires carefully defined convergence properties and a clear user experience when edits conflict.
+The application separates local persistence, editing behavior, synchronization and workspace permissions. Real-time notifications complement synchronization; they are not a substitute for the durable exchange of changes.
 
-An established collaboration framework can reduce implementation risk but may constrain storage and editor contracts. These are relevant alternatives, not a reconstructed history of project decisions.
-:::
-
-::: section verification
-## Quality strategy and evidence
-
-The private repository contains tests covering portions of synchronization behavior, conflict cases and convergence of concurrent editing operations. Those source tests were inspected, not re-run for this public documentation.
-
-Further validation should combine randomized concurrent edit sequences, offline/online transition tests, multi-browser scenarios, schema evolution and data-loss checks. No specific synchronization latency, consistency guarantee across all features or production uptime is claimed here.
-:::
-
-::: section constraints
-## Constraints and roadmap
-
-Device storage capacity, stale data, large documents, long offline periods and simultaneous edits are important engineering constraints. The next architectural challenge is maintaining predictable behavior while expanding collaboration features and workload scale. Internal implementation details and specific operational weaknesses are excluded from this public summary.
+Tests exist for selected offline synchronization, conflict and concurrent-operation scenarios. The remaining question for any local-first product is convergence under sustained, adversarial editing across devices, not whether a connected editor can save a page.
 :::
 
 ::: footer
-Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
+[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/velis/)
 :::

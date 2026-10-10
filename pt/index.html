@@ -9,262 +9,173 @@
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
   <title>Christian Rafael de Souza Silva — Engenheiro de Software</title>
     <meta name="description" content="Engenheiro de software com atuação em ML Systems, infraestrutura de IA, sistemas operacionais, compiladores, runtimes e software de produção.">
-  <style>:root{
-  color-scheme:light dark;
-  --bg:#fbfbf8;
-  --paper:#ffffff;
-  --text:#171713;
-  --muted:#62625a;
-  --line:#cfcfc7;
-  --soft:#ecece6;
-  --link:#0645ad;
-  --max:790px;
-  --meta:122px;
-  --serif:Georgia,"Times New Roman",Times,serif;
-  --sans:Arial,Helvetica,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace
+  <style>:root {
+  color-scheme: light;
+  --bg: #fff;
+  --paper: #fff;
+  --text: #171d24;
+  --muted: #59636f;
+  --rule: #d9dee2;
+  --link: #164b83;
+  --width: 940px;
+  --sans: Arial, Helvetica, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--serif);
-  font-size:16px;
-  line-height:1.58;
-  text-rendering:optimizeLegibility
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-a{
-  color:var(--link);
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:.16em
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .17em;
 }
-a:hover{text-decoration-thickness:2px}
-a:focus-visible{outline:2px solid var(--link);outline-offset:3px}
-code{
-  font-family:var(--mono);
-  font-size:.82em
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+code { font: .82em var(--mono); overflow-wrap: anywhere; }
+.site-shell { width: min(calc(100% - 52px), var(--width)); margin: 0 auto; padding-bottom: 65px; }
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 20; padding: 8px 12px;
+  transform: translateY(-170%); background: var(--text); color: #fff;
+  font: 12px var(--mono);
 }
-.site-shell{
-  width:min(calc(100% - 34px),var(--max));
-  margin:0 auto;
-  padding-bottom:48px
+.skip-link:focus { transform: none; }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px 20px;
+  border-bottom: 1px solid var(--rule);
+  padding: 26px 0 17px;
+  font: 12px/1.55 var(--mono);
 }
-.skip-link{
-  position:fixed;
-  left:10px;
-  top:10px;
-  z-index:100;
-  transform:translateY(-180%);
-  padding:6px 9px;
-  background:var(--text);
-  color:var(--bg);
-  font-family:var(--mono);
-  font-size:12px
+.site-nav p { display: contents; }
+.site-nav a, .site-nav strong { white-space: nowrap; }
+.site-nav a:first-child { color: var(--text); font-weight: 700; margin-right: auto; text-decoration: none; }
+.site-nav strong { font-weight: 700; }
+.hero { padding: 53px 0 49px; }
+.hero::after { content: ""; display: block; clear: both; }
+.hero-photo {
+  float: right; width: 145px; height: 145px; object-fit: cover;
+  margin: 2px 0 18px 32px; border: 1px solid var(--rule);
 }
-.skip-link:focus{transform:translateY(0)}
-.site-nav{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:6px 14px;
-  margin:0;
-  padding:24px 0 13px;
-  border-bottom:1px solid var(--line);
-  font-family:var(--mono);
-  font-size:11px;
-  line-height:1.5
+.hero-eyebrow {
+  margin: 0 0 17px;
+  font: 11px/1.5 var(--mono);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.site-nav p{display:contents}
-.site-nav a,.site-nav strong{white-space:nowrap}
-.site-nav a:first-child{
-  margin-right:auto;
-  color:var(--text);
-  font-weight:700;
-  text-decoration:none
+.hero-title h1 {
+  max-width: 740px; margin: 0;
+  font: 700 clamp(32px, 5.4vw, 46px)/1.1 var(--serif);
+  letter-spacing: -.027em;
 }
-.site-nav strong{font-weight:700}
-.hero{
-  padding:38px 0 30px
+.hero-body { max-width: 700px; margin-top: 22px; font-size: 17px; line-height: 1.66; }
+.hero-body p { margin: 0 0 12px; }
+.hero-actions { margin-top: 19px; font: 12px/1.7 var(--mono); }
+.hero-actions p { margin: 0; }
+.section {
+  border-top: 1px solid var(--rule);
+  padding: 32px 0 38px 176px;
+  position: relative;
 }
-.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
-.hero::after{content:"";display:block;clear:both}
-.hero-eyebrow{
-  margin:0 0 12px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10.5px;
-  line-height:1.4;
-  letter-spacing:.06em;
-  text-transform:uppercase
+.section > h2 {
+  position: absolute; left: 0; top: 36px; width: 145px;
+  margin: 0; font: 700 12px/1.45 var(--mono);
+  letter-spacing: .02em; color: var(--text);
 }
-.hero-title h1{
-  max-width:680px;
-  margin:0;
-  font-family:var(--serif);
-  font-size:clamp(30px,5.2vw,42px);
-  font-weight:700;
-  line-height:1.06;
-  letter-spacing:-.025em
+.section > p { max-width: 70ch; margin: 0 0 13px; }
+.section > p:last-child { margin-bottom: 0; }
+.section > ul { margin: 9px 0 15px; padding-left: 19px; }
+.section > ul li { margin: 6px 0; }
+.section > p strong { color: var(--text); }
+.entry {
+  display: grid; grid-template-columns: 102px minmax(0,1fr);
+  gap: 22px; padding: 17px 0 19px;
+  border-top: 1px solid var(--rule);
 }
-.hero-body{
-  max-width:710px;
-  margin-top:18px;
-  font-size:17px
+.section > .entry:first-of-type { border-top: 0; padding-top: 7px; }
+.entry-meta { font: 11px/1.5 var(--mono); color: var(--muted); padding-top: 3px; }
+.entry-meta span { display: block; }
+.entry-meta span + span { margin-top: 5px; }
+.entry-body { min-width: 0; }
+.entry-body h3 { margin: 0 0 6px; font: 700 19px/1.35 var(--serif); letter-spacing: -.012em; }
+.entry-body p { margin: 5px 0 0; max-width: 66ch; }
+.entry-body ul { padding-left: 18px; margin: 9px 0 0; }
+.project .entry-body > p strong {
+  font: 11px/1.6 var(--mono);
+  font-weight: 400; color: var(--muted);
 }
-.hero-body p{margin:0 0 10px}
-.hero-actions{
-  margin-top:16px;
-  font-family:var(--mono);
-  font-size:11.5px
+.project .entry-body > p:last-child { font: 12px/1.7 var(--mono); margin-top: 10px; }
+.case-hero { padding: 68px 0 57px; max-width: 780px; }
+.case-hero .hero-title h1 { font-size: clamp(42px, 6vw, 58px); }
+.case-hero .hero-body { max-width: 660px; font-size: 19px; line-height: 1.55; color: var(--muted); }
+.case-hero .hero-actions { margin-top: 26px; }
+.case-hero ~ .section {
+  max-width: 760px;
+  padding: 29px 0 32px;
 }
-.hero-actions p{margin:0}
-.section{
-  padding:27px 0 31px;
-  border-top:1px solid var(--line)
+.case-hero ~ .section > h2 {
+  position: static; width: auto; margin: 0 0 14px;
+  font: 700 23px/1.28 var(--serif);
+  letter-spacing: -.018em;
 }
-.section>h2{
-  margin:0 0 16px;
-  font-family:var(--mono);
-  font-size:12px;
-  line-height:1.35;
-  font-weight:700;
-  letter-spacing:.065em;
-  text-transform:uppercase
+.case-hero ~ .section p { max-width: 69ch; margin: 0 0 16px; }
+.case-hero ~ .section p:last-child { margin-bottom: 0; }
+.case-hero ~ .section ul { padding-left: 20px; }
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 21px 0 0;
+  color: var(--muted);
+  font: 11px/1.6 var(--mono);
 }
-.section>p{
-  max-width:720px;
-  margin:0 0 12px
-}
-.section>p:last-child{margin-bottom:0}
-#systems>p:nth-of-type(2){
-  margin:17px 0;
-  padding:9px 11px;
-  border:1px solid var(--line);
-  background:var(--paper);
-  overflow-x:auto;
-  white-space:nowrap
-}
-#systems>p:nth-of-type(2) code{
-  color:var(--muted);
-  font-size:11px
-}
-#systems ul{
-  list-style:none;
-  margin:18px 0;
-  padding:0;
-  border-top:1px solid var(--line)
-}
-#systems li{
-  margin:0;
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  font-size:15px
-}
-#systems li strong{
-  display:inline-block;
-  min-width:128px;
-  font-family:var(--mono);
-  font-size:10.5px;
-  letter-spacing:.035em;
-  text-transform:uppercase
-}
-.entry{
-  display:grid;
-  grid-template-columns:var(--meta) minmax(0,1fr);
-  gap:22px;
-  padding:16px 0;
-  border-top:1px dotted var(--line)
-}
-.section>.entry:first-of-type{
-  margin-top:5px;
-  border-top:0
-}
-.entry-meta{
-  padding-top:2px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  line-height:1.45
-}
-.entry-meta span{display:block}
-.entry-meta span+span{margin-top:4px}
-.entry-body h3{
-  margin:0 0 5px;
-  font-family:var(--serif);
-  font-size:17px;
-  line-height:1.3
-}
-.entry-body p{margin:6px 0 0}
-.entry-body ul{margin:8px 0 0;padding-left:20px}
-.entry-body a{display:inline}
-.project .entry-body>p:first-of-type{color:var(--text)}
-.project .entry-body>p strong{
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:.02em
-}
-.footer{
-  padding:22px 0 0;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px
-}
-.footer p{margin:0}
-@media(max-width:680px){
-  body{font-size:15.5px}
-  .site-shell{width:min(calc(100% - 28px),var(--max))}
-  .site-nav{
-    align-items:flex-start;
-    gap:5px 11px;
-    padding-top:18px
+.footer p { margin: 0; }
+@media (max-width: 750px) {
+  .site-shell { width: min(calc(100% - 34px), var(--width)); }
+  .site-nav { padding: 17px 0 13px; gap: 5px 13px; font-size: 11px; }
+  .site-nav a:first-child { flex-basis: 100%; margin: 0 0 4px; }
+  .hero { padding: 34px 0 30px; }
+  .hero-photo { width: 104px; height: 104px; margin: 0 0 12px 17px; }
+  .hero-title h1 { font-size: clamp(30px, 6vw, 40px); }
+  .hero-body { font-size: 16px; }
+  .section { padding: 23px 0 27px; }
+  .section > h2 {
+    position: static; width: auto; margin: 0 0 15px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
   }
-  .site-nav a:first-child{
-    flex-basis:100%;
-    margin:0 0 3px
-  }
-  .hero{padding:31px 0 25px}
-  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
-  .hero-body{font-size:16px}
-  .entry{
-    grid-template-columns:1fr;
-    gap:5px;
-    padding:14px 0
-  }
-  .entry-meta span{display:inline}
-  .entry-meta span+span:before{content:" · "}
-  #systems>p:nth-of-type(2){white-space:normal}
-  #systems li strong{
-    display:block;
-    min-width:0;
-    margin-bottom:2px
-  }
+  .entry { grid-template-columns: 1fr; gap: 3px; padding: 16px 0; }
+  .entry-meta span { display: inline; }
+  .entry-meta span + span::before { content: " · "; }
+  .entry-meta span + span { margin-top: 0; }
+  .case-hero { padding: 43px 0 37px; }
+  .case-hero .hero-title h1 { font-size: clamp(38px, 9vw, 48px); }
+  .case-hero .hero-body { font-size: 17px; }
+  .case-hero ~ .section > h2 { font-size: 21px; text-transform: none; letter-spacing: -.015em; }
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#11110f;
-    --paper:#171714;
-    --text:#ecece5;
-    --muted:#aaa99e;
-    --line:#3b3b34;
-    --soft:#25251f;
-    --link:#8ab4f8
-  }
+@media (max-width: 390px) {
+  .site-shell { width: calc(100% - 28px); }
+  .hero-photo { width: 88px; height: 88px; }
+  .entry-body h3 { font-size: 18px; }
 }
-@media print{
-  :root{--bg:#fff;--paper:#fff;--text:#000;--muted:#444;--line:#bbb;--link:#000}
-  body{background:#fff;color:#000;font-size:11pt}
-  .site-shell{width:100%;max-width:none;padding:0}
-  .site-nav,.skip-link{display:none}
-  .hero{padding-top:0}
-  a{color:#000}
+@media print {
+  body { color: #000; background: #fff; font-size: 11pt; }
+  .site-shell { width: 100%; max-width: none; padding: 0; }
+  .site-nav, .skip-link { display: none; }
+  .hero { padding-top: 0; }
+  .section { break-inside: auto; }
+  .entry { break-inside: avoid; }
+  a { color: #000; }
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
   <link rel="canonical" href="https://me.christiansoftware.org/pt/">
   <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/en/">
@@ -284,94 +195,82 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="#home">Christian Rafael</a>
-<a href="#systems">Sistemas</a>
 <a href="#projects">Projetos</a>
 <a href="#products">Produtos</a>
-<a href="#research">Pesquisa</a>
+<a href="#research">Publicações</a>
 <a href="#work">Experiência</a>
-<a href="#education">Formação</a>
-<a href="../resume/pt/">CV</a>
-<a href="../resume/christian-rafael-cv-pt.pdf">PDF</a>
-<a href="../en/">EN</a> · <strong>PT</strong></p></nav>
+<a href="/resume/pt/">Currículo</a>
+<a href="/en/">EN</a> · <strong>PT</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Engenheiro de Software · ML Systems · Systems Software" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Engenheiro de Software · ML Systems · Systems Software</p><div class="hero-title"><h1>Christian Rafael de Souza Silva</h1></div><div class="hero-body"><p>Engenheiro de software atuando ao longo da pilha computacional — de aplicações de produção e ML Systems a runtimes, compiladores, máquinas virtuais e sistemas operacionais.</p>
-<p>Trabalho profissionalmente com desenvolvimento de software desde 2012. Este site funciona como um índice dos sistemas que construo, das pesquisas que publico e das áreas técnicas que estudo.</p></div><div class="hero-actions"><p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a> · <a href="https://huggingface.co/christianrss">Hugging Face</a> · <a href="mailto:crafael2030@gmail.com">E-mail</a></p></div></header>
+<header id="home" data-attr-eyebrow="Engenharia de software · sistemas e aprendizado de máquina" class="hero"><img class="hero-photo" src="/assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Engenharia de software · sistemas e aprendizado de máquina</p><div class="hero-title"><h1>Christian Rafael de Souza Silva</h1></div><div class="hero-body"><p>Engenheiro de software com atuação em aplicações corporativas, infraestrutura de aprendizado de máquina e software de sistemas. Desenvolvimento profissional desde 2012; projetos independentes incluem treinamento de modelos de linguagem, runtimes de inferência, compiladores e sistemas operacionais.</p></div><div class="hero-actions"><p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a> · <a href="https://huggingface.co/christianrss">Hugging Face</a> · <a href="mailto:crafael2030@gmail.com">E-mail</a> · <a href="/resume/christian-rafael-cv-pt.pdf">Currículo (PDF)</a></p></div></header>
 
-<section id="systems" class="section"><h2>Mapa de sistemas</h2>
-<p>Uso projetos próprios como um laboratório vertical para compreender a computação de ponta a ponta, e não como demonstrações isoladas.</p>
-<p><code>modelos → inferência → runtime de ML → toolchains / VMs → sistema operacional → hardware</code></p>
-<ul>
-<li><strong>Modelos</strong> — <a href="https://github.com/christianrss/chris-gpt-2">Chris-GPT-2</a>: pré-treinamento, avaliação e reprodutibilidade.</li>
-<li><strong>Inferência</strong> — <a href="https://github.com/christianrss/chris-llama">Chris-Llama</a>: GGUF, tokenização, atenção, KV cache, quantização e execução CPU/GPU.</li>
-<li><strong>Runtime de ML</strong> — <a href="https://github.com/christianrss/chris-torch">Chris-Torch</a>: tensores, autograd, componentes de redes neurais e backends acelerados.</li>
-<li><strong>Toolchains / VMs</strong> — experimentos de compilador, assembler, linker e máquina virtual desenvolvidos em torno do ChrisOS.</li>
-<li><strong>Sistema operacional</strong> — <a href="https://github.com/christianrss/ChrisOS">ChrisOS</a>: kernel, memória, drivers, gráficos, filesystem e infraestrutura de baixo nível.</li>
-<li><strong>Hardware</strong> — engenharia elétrica, eletrônica e robótica como a camada física abaixo da pilha de software.</li>
-</ul>
-<p>Minha atuação profissional fica acima e atravessa essa pilha: sistemas corporativos, APIs, aplicações desktop e web, software fiscal e de varejo, infraestrutura e ferramentas internas de engenharia.</p></section>
+<section id="systems" class="section"><h2>Áreas de atuação</h2>
+<p><strong>Software de produção.</strong> Sistemas de gestão, aplicações fiscais e comerciais, software desktop, APIs e ferramentas de engenharia.</p>
+<p><strong>Aprendizado de máquina.</strong> Pré-treinamento e avaliação de modelos, inferência GGUF, computação com tensores e execução em GPU.</p>
+<p><strong>Software de sistemas.</strong> Sistema operacional x86-64, ferramentas de compilação, máquinas virtuais e desenvolvimento de memória, drivers e gráficos.</p></section>
 
 <section id="projects" class="section"><h2>Projetos selecionados</h2>
 <article id="chrisos" data-attr-period="2025 —" data-attr-label="Sistemas operacionais" class="entry project"><div class="entry-meta"><span>2025 —</span><span>Sistemas operacionais</span></div><div class="entry-body"><h3>ChrisOS</h3>
-<p>Sistema operacional experimental x86-64 e playground de baixo nível para desenvolvimento do zero de kernel, memória, drivers, gráficos, filesystem, compiladores, assemblers, linkers, máquinas virtuais e componentes de emulação.</p>
+<p>Sistema operacional experimental x86-64 com desenvolvimento de kernel, gerenciamento de memória, drivers, gráficos e sistemas de arquivos; também utilizado em trabalhos de compiladores e máquinas virtuais.</p>
 <p><strong>C · C++ · x86-64 · OSDev · compiladores</strong></p>
 <p><a href="https://github.com/christianrss/ChrisOS">Código</a> · <a href="https://os.christiansoftware.org">Documentação</a></p></div></article>
 
 <article id="chris-gpt-2" data-attr-period="2026" data-attr-label="Pré-treinamento de LLM" class="entry project"><div class="entry-meta"><span>2026</span><span>Pré-treinamento de LLM</span></div><div class="entry-body"><h3>Chris-GPT-2</h3>
-<p>GPT-2 de 124,5M parâmetros treinado do zero em aproximadamente 10 bilhões de tokens FineWeb-Edu utilizando 4× NVIDIA A100, com artefatos reproduzíveis e exportação SafeTensors/GGUF.</p>
+<p>GPT-2 124M pré-treinado em aproximadamente 10 bilhões de tokens FineWeb-Edu com quatro GPUs NVIDIA A100. Artefatos de treinamento e modelos em SafeTensors/GGUF estão disponíveis.</p>
 <p><strong>Python · PyTorch · CUDA · NCCL · treinamento distribuído</strong></p>
 <p><a href="https://github.com/christianrss/chris-gpt-2">Código</a> · <a href="https://huggingface.co/christianrss/chris-gpt-2-124m">Modelo</a> · <a href="https://huggingface.co/christianrss/chris-gpt-2-124m-GGUF">GGUF</a></p></div></article>
 
 <article id="chris-llama" data-attr-period="2026 —" data-attr-label="Inferência de LLM" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Inferência de LLM</span></div><div class="entry-body"><h3>Chris-Llama</h3>
-<p>Runtime experimental de inferência de LLM em C para estudar carregamento GGUF, tokenização, atenção, KV cache, quantização, layout de memória e execução CPU/GPU sem esconder a implementação atrás de um grande framework.</p>
+<p>Runtime de inferência em C: carregamento GGUF, tokenização, atenção, KV cache, quantização e execução CPU/GPU.</p>
 <p><strong>C · GGUF · inferência · quantização · CPU/GPU</strong></p>
 <p><a href="https://github.com/christianrss/chris-llama">Código</a></p></div></article>
 
 <article id="chris-torch" data-attr-period="2026 —" data-attr-label="Sistemas de deep learning" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Sistemas de deep learning</span></div><div class="entry-body"><h3>Chris-Torch</h3>
-<p>Framework de deep learning orientado ao estudo, desenvolvido do zero com tensores, diferenciação automática, componentes de redes neurais, otimizadores e backends de execução acelerada.</p>
+<p>Implementação de deep learning com tensores, diferenciação automática, otimizadores e backends de execução acelerada.</p>
 <p><strong>C++ · Python · autograd · redes neurais · GPU</strong></p>
 <p><a href="https://github.com/christianrss/chris-torch">Código</a></p></div></article>
 
 <article id="engineering-manual" data-attr-period="2026 —" data-attr-label="Referência de ciência da computação" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Referência de ciência da computação</span></div><div class="entry-body"><h3>Engineering Manual</h3>
-<p>Referência independente e bilíngue de ciência da computação e engenharia de software, com conteúdos fundamentais sobre estruturas de dados, algoritmos, sistemas operacionais, bancos de dados e projeto de sistemas. Desenvolvida com publicação estática, busca textual, trilhas estruturadas de estudo, validação editorial e deploy automatizado.</p>
+<p>Referência técnica bilíngue de algoritmos, estruturas de dados, sistemas operacionais, bancos de dados e projeto de sistemas, com trilhas organizadas e artigos pesquisáveis.</p>
 <p><strong>Python · Jinja2 · Markdown · JavaScript · GitHub Actions</strong></p>
 <p><a href="https://manual.christiansoftware.org/pt/">Acessar</a> · <a href="https://github.com/christianrss/manual">Código</a></p></div></article>
 
 <article id="marginal-thinking" data-attr-period="2026 —" data-attr-label="Plataforma de pesquisa" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Plataforma de pesquisa</span></div><div class="entry-body"><h3>Marginal Thinking</h3>
-<p>Plataforma independente de pesquisa sobre macroeconomia, mercados, geopolítica, tecnologia e sistemas globais, com relatórios recorrentes, pesquisas por país, bases estruturais e análise de fontes primárias.</p>
+<p>Publicação de pesquisa sobre macroeconomia, geopolítica e tecnologia, com perfis de países, relatórios recorrentes e análise de fontes primárias.</p>
 <p><strong>Economia · dados · pesquisa · publicação</strong></p>
 <p><a href="https://marginalthinking.org/">Acessar</a> · <a href="https://github.com/logicvisionai/marginalthinking">Código</a></p></div></article>
 
 <article id="sharpex" data-attr-period="2026 —" data-attr-label="Software de mercados" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Software de mercados</span></div><div class="entry-body"><h3>SharpEx</h3>
-<p>Workspace de inteligência de mercados e carteiras combinando múltiplos portfólios, dados multiativos, ativos digitais, métricas de risco ajustadas e integração com pesquisa estrutural.</p>
+<p>Aplicação de dados de mercado e carteiras para acompanhamento multiativos, métricas de risco e análise por portfólio.</p>
 <p><strong>JavaScript · Cloudflare Workers · dados de mercado · análise de risco</strong></p></div></article>
 </section>
 
 <section id="products" class="section"><h2>Engenharia de produtos</h2>
-<p>Estes projetos demonstram arquitetura de aplicações, sistemas em tempo real, colaboração local-first e engenharia desktop. Os estudos vinculados apresentam apenas a arquitetura pública; detalhes de implementação e operação permanecem privados.</p>
-<article id="velis" data-attr-period="2026 —" data-attr-label="Colaboração local-first" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Colaboração local-first</span></div><div class="entry-body"><h3>Velis</h3>
-<p>Workspace colaborativo de documentos, tarefas e equipes. A arquitetura integra persistência local, sincronização entre dispositivos e serviços compartilhados, equilibrando continuidade offline e coordenação.</p>
-<p><strong>TypeScript · Aplicações web · Sistemas local-first · Colaboração</strong></p>
-<p><a href="https://velis.vu/">Produto</a> · <a href="/projects/pt/velis/">Estudo de arquitetura</a></p></div></article>
+<p>Aplicações de colaboração, vídeo ao vivo, gestão comercial, ferramentas desktop e educação online.</p>
+<article id="velis" data-attr-period="2026 —" data-attr-label="Colaboração offline" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Colaboração offline</span></div><div class="entry-body"><h3>Velis</h3>
+<p>Documentos, tarefas e workspaces colaborativos com persistência local e sincronização entre dispositivos.</p>
+<p><strong>TypeScript · local-first · edição colaborativa</strong></p>
+<p><a href="https://velis.vu/">Produto</a> · <a href="/projects/pt/velis/">Nota técnica</a></p></div></article>
 
-<article id="kaduo" data-attr-period="2026 —" data-attr-label="Sistemas de mídia em tempo real" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Sistemas de mídia em tempo real</span></div><div class="entry-body"><h3>Kaduo</h3>
-<p>Plataforma de comércio social e vídeo que combina estúdio de produção no navegador, composição de lives, publicação e reprodução de mídia, recursos para criadores e participação do público em tempo real.</p>
-<p><strong>WebRTC · APIs de mídia do navegador · Canvas · TypeScript · Aplicações em tempo real</strong></p>
-<p><a href="https://kaduo.shop/">Produto</a> · <a href="/projects/pt/kaduo/">Estudo de arquitetura</a></p></div></article>
+<article id="kaduo" data-attr-period="2026 —" data-attr-label="Vídeo ao vivo" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Vídeo ao vivo</span></div><div class="entry-body"><h3>Kaduo</h3>
+<p>Produção de lives no navegador, composição de vídeo, elementos gráficos, interação com a audiência e comércio durante transmissões.</p>
+<p><strong>TypeScript · WebRTC · Canvas · processamento de mídia</strong></p>
+<p><a href="https://kaduo.shop/">Produto</a> · <a href="/projects/pt/kaduo/">Nota técnica</a></p></div></article>
 
-<article id="eviz" data-attr-period="2026 —" data-attr-label="SaaS comercial" class="entry project"><div class="entry-meta"><span>2026 —</span><span>SaaS comercial</span></div><div class="entry-body"><h3>Eviz</h3>
-<p>SaaS de identidade profissional e CRM que conecta perfis e páginas públicas a captação de leads, contatos e fluxos comerciais por meio de serviços de aplicação com responsabilidades distintas.</p>
-<p><strong>Aplicações web · SaaS · CRM · Dados relacionais</strong></p>
-<p><a href="https://www.eviz.me/">Produto</a> · <a href="/projects/pt/eviz/">Estudo de arquitetura</a></p></div></article>
+<article id="eviz" data-attr-period="2026 —" data-attr-label="Aplicações comerciais" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Aplicações comerciais</span></div><div class="entry-body"><h3>Eviz</h3>
+<p>Cartões digitais e landing pages integrados à captação de leads, registros de contatos e operações de CRM.</p>
+<p><strong>Aplicações web · bancos relacionais · CRM</strong></p>
+<p><a href="https://www.eviz.me/">Produto</a> · <a href="/projects/pt/eviz/">Nota técnica</a></p></div></article>
 
-<article id="chris-cleaner" data-attr-period="2026 —" data-attr-label="Engenharia desktop e de sistemas" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Engenharia desktop e de sistemas</span></div><div class="entry-body"><h3>Chris Cleaner</h3>
-<p>Utilitário desktop para análise do uso de disco, catalogação de arquivos e limpeza com controle do usuário. A arquitetura separa adaptadores do sistema operacional, processamento em segundo plano, armazenamento e interface.</p>
-<p><strong>C# · .NET · Software desktop · Sistemas de arquivos · Concorrência</strong></p>
-<p><a href="https://christiansoftware.org/">Site do produto</a> · <a href="/projects/pt/chris-cleaner/">Estudo de arquitetura</a></p></div></article>
+<article id="chris-cleaner" data-attr-period="2026 —" data-attr-label="Desktop e sistemas de arquivos" class="entry project"><div class="entry-meta"><span>2026 —</span><span>Desktop e sistemas de arquivos</span></div><div class="entry-body"><h3>Chris Cleaner</h3>
+<p>Análise do uso de disco e catalogação de arquivos com varredura em segundo plano e recursos nativos do sistema operacional.</p>
+<p><strong>C# · .NET · Avalonia · APIs de arquivos</strong></p>
+<p><a href="https://christiansoftware.org/">Produto</a> · <a href="/projects/pt/chris-cleaner/">Nota técnica</a></p></div></article>
 
-<article id="logv-learn" data-attr-period="2026" data-attr-label="Plataforma educacional" class="entry project"><div class="entry-meta"><span>2026</span><span>Plataforma educacional</span></div><div class="entry-body"><h3>LOGV Learn</h3>
-<p>Plataforma para publicação de cursos, progresso dos estudantes e matrículas. A aplicação separa conteúdo educacional, identidade, acesso comercial e experiência de aprendizagem como domínios.</p>
-<p><strong>Next.js · TypeScript · Plataformas educacionais · Transações</strong></p>
-<p><a href="/projects/pt/logv-learn/">Estudo de arquitetura</a></p></div></article>
+<article id="logv-learn" data-attr-period="2026" data-attr-label="Aplicações educacionais" class="entry project"><div class="entry-meta"><span>2026</span><span>Aplicações educacionais</span></div><div class="entry-body"><h3>LOGV Learn</h3>
+<p>Administração de cursos, aulas, progresso de alunos e matrículas pagas em uma aplicação web.</p>
+<p><strong>Next.js · TypeScript · fluxos transacionais</strong></p>
+<p><a href="/projects/pt/logv-learn/">Nota técnica</a></p></div></article>
 </section>
 
 <section id="research" class="section"><h2>Pesquisa e escrita técnica</h2>
@@ -418,11 +317,10 @@ code{
 <p><strong>Engenharia de aplicações:</strong> .NET, React, Laravel, APIs REST, PostgreSQL, MySQL, Redis, DDD, CQRS e testes automatizados.</p>
 <p><strong>Infraestrutura:</strong> Git, GitHub Actions, Cloudflare, AWS, DigitalOcean e Linux/Windows Server.</p></section>
 
-<section id="contact" class="section"><h2>Links</h2>
-<p><a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a> · <a href="https://huggingface.co/christianrss">Hugging Face</a> · <a href="mailto:crafael2030@gmail.com">E-mail</a></p>
-<p>Para uma versão profissional compacta, consulte o <a href="../resume/pt/">currículo em HTML</a> ou <a href="../resume/christian-rafael-cv-pt.pdf">baixe o PDF</a>.</p></section>
+<section id="contact" class="section"><h2>Contato</h2>
+<p><a href="mailto:crafael2030@gmail.com">E-mail</a> · <a href="https://github.com/christianrss">GitHub</a> · <a href="https://www.linkedin.com/in/christianrss/">LinkedIn</a> · <a href="../resume/pt/">Currículo</a> · <a href="../resume/christian-rafael-cv-pt.pdf">PDF</a></p></section>
 
-<footer class="footer"><p><a href="../en/">English</a> · Português · HTML estático · MDS · atualizado em 2026-10-10.</p></footer>
+<footer class="footer"><p>Christian Rafael de Souza Silva · <a href="/en/">English</a> · <a href="#home">Início</a></p></footer>
 </main></div>
   
 </body>

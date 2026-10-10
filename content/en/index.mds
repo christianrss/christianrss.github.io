@@ -127,17 +127,17 @@ A local-first workspace for documents, tasks, boards, files and team communicati
 
 **Next.js · NestJS · TypeScript · PostgreSQL · Redis · IndexedDB · WebSockets**
 
-[Product](https://velis.vu/)
+[Product](https://velis.vu/) · [Engineering case study](/projects/en/velis/)
 :::
 
-::: project period="2026 —" label="Social commerce"
+::: project period="2026 —" label="Real-time media · social commerce"
 ### Kaduo
-A social-commerce platform integrating storefronts, catalog, carts, checkout, short-form content and live shopping. Its backend separates domain, application and infrastructure concerns; seller analytics covers event ingestion, deduplication and funnels, while real-time services support shopping interactions and a controlled AI-assisted shopping interface.
+A social-commerce and live-video engineering platform. Its device-camera studio composites video, text, images, products, coupons and chat into a Canvas capture stream, then publishes over WebRTC/WHIP through a dedicated media bridge and OvenMediaEngine to Mux. The broader platform includes resumable video uploads, creator recording, real-time chat, event analytics and modular commerce services.
 
-**NestJS · React · TypeScript · Prisma · PostgreSQL · Redis · Socket.IO**
+**WebRTC · WHIP · OvenMediaEngine · Mux · MediaRecorder · Canvas · NestJS · React · PostgreSQL · Redis**
 
-[Product](https://kaduo.shop/)
-:::
+[Product](https://kaduo.shop/) · [Engineering case study](/projects/en/kaduo/)
+::
 
 ::: project period="2026 —" label="CRM and SaaS"
 ### Eviz
@@ -145,7 +145,7 @@ A multi-account digital identity and relationship-management SaaS spanning busin
 
 **NestJS · React · TypeScript · Prisma · PostgreSQL · Cloudflare R2 · Stripe / Asaas**
 
-[Product](https://www.eviz.me/)
+[Product](https://www.eviz.me/) · [Engineering case study](/projects/en/eviz/)
 :::
 
 ::: project period="2026 —" label="Desktop systems"
@@ -154,7 +154,7 @@ A desktop disk-analysis and cleanup utility with native Windows filesystem enume
 
 **C# · .NET 8 · Avalonia · Win32 / P/Invoke · LiteDB**
 
-[Product website](https://christiansoftware.org/)
+[Product website](https://christiansoftware.org/) · [Engineering case study](/projects/en/chris-cleaner/)
 :::
 
 ::: project period="2026" label="Learning platform"
@@ -162,6 +162,8 @@ A desktop disk-analysis and cleanup utility with native Windows filesystem enume
 A course-management platform with lessons, progress tracking, administrative publishing tools and paid enrollment. Built around a Next.js application, Prisma persistence, Clerk authentication and Asaas payment flows and webhooks.
 
 **Next.js · TypeScript · Prisma · PostgreSQL · Clerk · Asaas**
+
+[Engineering case study](/projects/en/logv-learn/)
 :::
 :::
 

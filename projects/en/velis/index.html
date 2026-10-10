@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Velis — Collaboration / local-first</title>
-    <meta name="description" content="A collaborative workspace designed around documents that remain editable when the network is unavailable.">
+  <title>Velis — Architecture and technologies</title>
+    <meta name="description" content="Local-first workspace with collaborative editing and synchronization across devices.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,29 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/en/#products">Products</a>
 <a href="/projects/pt/velis/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Collaboration / local-first" class="hero case-hero"><p class="hero-eyebrow">Collaboration / local-first</p><div class="hero-title"><h1>Velis</h1></div><div class="hero-body"><p>A collaborative workspace designed around documents that remain editable when the network is unavailable.</p></div><div class="hero-actions"><p><a href="https://velis.vu/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
+<header id="home" data-attr-eyebrow="Local-first collaboration" class="hero case-hero"><p class="hero-eyebrow">Local-first collaboration</p><div class="hero-title"><h1>Velis</h1></div><div class="hero-body"><p>Local-first workspace with collaborative editing and synchronization across devices.</p></div><div class="hero-actions"><p><a href="https://velis.vu/">Product</a> · <a href="/en/#products">Portfolio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>Local state</h2>
-<p>In an offline-capable editor, the first durable copy of a change cannot depend on a successful request to the server. Velis maintains local workspace state and retains pending changes for later exchange with the shared service.</p>
-<p>This changes the application model: loading a document, modifying it and synchronizing it are distinct operations. The user can continue editing during a temporary disconnection without treating the network as the only place where work exists.</p></section>
+<section id="architecture" class="section"><h2>Architecture</h2>
+<p>Velis combines a web workspace, device-local persistence and application services for shared work.</p>
+<ul>
+<li><strong>Workspace:</strong> documents, notes, tasks, editor surfaces and shared resources.</li>
+<li><strong>Local persistence:</strong> browser-side data and pending changes retained for offline editing.</li>
+<li><strong>Synchronization:</strong> exchange of local changes and remote updates through application services.</li>
+<li><strong>Collaborative editing:</strong> operation-based document updates and real-time collaboration modules.</li>
+<li><strong>Server:</strong> workspace management, access to shared resources, persistent data and event delivery.</li>
+</ul>
+<p>The editing interface uses local state while the synchronization layer connects device changes to shared application data.</p></section>
 
-<section id="topic-2" class="section"><h2>Synchronization</h2>
-<p>Reconnecting creates two separate problems: repeated delivery and concurrent edits. The synchronization path therefore has to recognize changes already handled and make conflicts explicit. Collaboration on structured content also requires rules for the order in which operations become visible.</p>
-<p>Rather than moving entire documents after each keystroke, the editor works with smaller editing operations. That increases flexibility, but the behavior under simultaneous structural edits is harder to establish than single-user editing.</p></section>
+<section id="technologies" class="section"><h2>Technologies</h2>
+<ul>
+<li><strong>Web:</strong> Next.js, React, TypeScript, Zustand.</li>
+<li><strong>Local storage:</strong> IndexedDB and Dexie.</li>
+<li><strong>Collaboration:</strong> Yjs, WebSocket and Socket.IO.</li>
+<li><strong>Backend:</strong> NestJS, Prisma, PostgreSQL.</li>
+<li><strong>Messaging and services:</strong> Redis.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Engineering boundary</h2>
-<p>The application separates local persistence, editing behavior, synchronization and workspace permissions. Real-time notifications complement synchronization; they are not a substitute for the durable exchange of changes.</p>
-<p>Tests exist for selected offline synchronization, conflict and concurrent-operation scenarios. The remaining question for any local-first product is convergence under sustained, adversarial editing across devices, not whether a connected editor can save a page.</p></section>
-
-<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/velis/">Português</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">Products</a> · <a href="/projects/pt/velis/">Português</a></p></footer>
 </main></div>
   
 </body>

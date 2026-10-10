@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>LOGV Learn — Educação / aplicações web</title>
-    <meta name="description" content="Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.">
+  <title>LOGV Learn — Arquitetura e tecnologias</title>
+    <meta name="description" content="Plataforma web de cursos, conteúdo educacional, progresso dos estudantes e matrículas.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,30 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/pt/#products">Produtos</a>
 <a href="/projects/en/logv-learn/">English</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Educação / aplicações web" class="hero case-hero"><p class="hero-eyebrow">Educação / aplicações web</p><div class="hero-title"><h1>LOGV Learn</h1></div><div class="hero-body"><p>Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.</p></div><div class="hero-actions"><p><a href="/pt/#products">Voltar aos produtos</a></p></div></header>
+<header id="home" data-attr-eyebrow="Plataforma educacional" class="hero case-hero"><p class="hero-eyebrow">Plataforma educacional</p><div class="hero-title"><h1>LOGV Learn</h1></div><div class="hero-body"><p>Plataforma web de cursos, conteúdo educacional, progresso dos estudantes e matrículas.</p></div><div class="hero-actions"><p><a href="/pt/#products">Portfólio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>Conteúdo e aprendizagem</h2>
-<p>O modelo de conteúdo distingue curso, módulos e aulas. Na administração, o trabalho é editar e publicar esses materiais; para o aluno, o importante é acessar o conteúdo, retomar os estudos e preservar o progresso.</p>
-<p>Essa separação importa porque quem edita uma aula e quem já a concluiu possuem necessidades e permissões diferentes sobre o mesmo material.</p></section>
+<section id="architecture" class="section"><h2>Arquitetura</h2>
+<p>A LOGV Learn é uma aplicação web organizada em gestão de cursos, experiência de aprendizagem e matrículas comerciais.</p>
+<ul>
+<li><strong>Gestão de cursos:</strong> cursos, módulos, aulas e publicação de conteúdo didático.</li>
+<li><strong>Experiência do aluno:</strong> reprodução de conteúdo e registros de progresso.</li>
+<li><strong>Identidade:</strong> contas de usuários e acesso autenticado.</li>
+<li><strong>Matrículas:</strong> fluxos de compra e integração com pagamentos.</li>
+<li><strong>Persistência:</strong> modelos relacionais para informações de cursos, usuários e matrículas.</li>
+</ul>
+<p>A administração dos cursos e a experiência do aluno compartilham serviços e dados persistidos pela aplicação.</p></section>
 
-<section id="topic-2" class="section"><h2>Matrícula e acesso</h2>
-<p>A matrícula paga introduz uma fronteira assíncrona. A cobrança pode começar em uma requisição e ser confirmada depois. A aplicação educacional precisa relacionar esse resultado ao registro de quem possui direito de acesso ao curso.</p>
-<p>Uma única aplicação web pode abrigar essas responsabilidades sem transformar publicação, progresso e cobrança em um fluxo indiferenciado.</p></section>
+<section id="technologies" class="section"><h2>Tecnologias</h2>
+<ul>
+<li><strong>Aplicação:</strong> Next.js, React e TypeScript.</li>
+<li><strong>Banco de dados:</strong> PostgreSQL e Prisma.</li>
+<li><strong>Autenticação:</strong> Clerk.</li>
+<li><strong>Edição e reprodução de conteúdo:</strong> TipTap e Vidstack.</li>
+<li><strong>Pagamentos:</strong> integração com Asaas.</li>
+<li><strong>Armazenamento de arquivos:</strong> SDK Amazon S3.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Considerações de engenharia</h2>
-<p>As principais questões de consistência envolvem notificações repetidas de pagamento, alterações na situação da matrícula e progresso que deve permanecer disponível em outra sessão. A autorização não pode depender apenas do que a interface do cliente exibe.</p>
-<p>O repositório examinado contém esses fluxos de aplicação, mas a revisão não demonstrou cobertura automatizada abrangente do ciclo completo entre pagamento e acesso.</p></section>
-
-<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Todos os produtos</a> · <a href="/projects/en/logv-learn/">English</a></p></footer>
+<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Produtos</a> · <a href="/projects/en/logv-learn/">English</a></p></footer>
 </main></div>
   
 </body>

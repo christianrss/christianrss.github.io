@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Velis — Colaboração / local-first</title>
-    <meta name="description" content="Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.">
+  <title>Velis — Arquitetura e tecnologias</title>
+    <meta name="description" content="Workspace local-first com edição colaborativa e sincronização entre dispositivos.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,29 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/pt/#products">Produtos</a>
 <a href="/projects/en/velis/">English</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Colaboração / local-first" class="hero case-hero"><p class="hero-eyebrow">Colaboração / local-first</p><div class="hero-title"><h1>Velis</h1></div><div class="hero-body"><p>Workspace colaborativo em que documentos continuam editáveis mesmo quando a conexão está indisponível.</p></div><div class="hero-actions"><p><a href="https://velis.vu/">Site do produto</a> · <a href="/pt/#products">Voltar aos produtos</a></p></div></header>
+<header id="home" data-attr-eyebrow="Colaboração local-first" class="hero case-hero"><p class="hero-eyebrow">Colaboração local-first</p><div class="hero-title"><h1>Velis</h1></div><div class="hero-body"><p>Workspace local-first com edição colaborativa e sincronização entre dispositivos.</p></div><div class="hero-actions"><p><a href="https://velis.vu/">Produto</a> · <a href="/pt/#products">Portfólio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>Estado local</h2>
-<p>Em um editor capaz de trabalhar offline, a primeira cópia persistente de uma alteração não pode depender de uma requisição bem-sucedida ao servidor. O Velis mantém o estado local do workspace e conserva alterações pendentes para sincronização posterior.</p>
-<p>Isso modifica o modelo da aplicação: abrir, editar e sincronizar um documento são operações distintas. Uma interrupção temporária de rede não precisa interromper a edição nem transformar o servidor no único lugar em que o trabalho existe.</p></section>
+<section id="architecture" class="section"><h2>Arquitetura</h2>
+<p>O Velis reúne uma aplicação web, persistência local no dispositivo e serviços de colaboração.</p>
+<ul>
+<li><strong>Workspace:</strong> documentos, notas, tarefas, editores e recursos compartilhados.</li>
+<li><strong>Persistência local:</strong> armazenamento no navegador e retenção de alterações para trabalho offline.</li>
+<li><strong>Sincronização:</strong> troca de alterações locais e atualizações remotas com os serviços da aplicação.</li>
+<li><strong>Edição colaborativa:</strong> operações sobre documentos e módulos de colaboração em tempo real.</li>
+<li><strong>Servidor:</strong> gerenciamento de workspaces, recursos compartilhados, persistência e distribuição de eventos.</li>
+</ul>
+<p>A interface de edição trabalha com estado local; a camada de sincronização conecta essas alterações aos dados compartilhados.</p></section>
 
-<section id="topic-2" class="section"><h2>Sincronização</h2>
-<p>Na reconexão surgem dois problemas diferentes: entrega repetida e edições concorrentes. O mecanismo precisa reconhecer alterações já processadas e explicitar conflitos. Em conteúdo estruturado, também é necessário definir em que ordem as operações passam a ser observadas pelos demais participantes.</p>
-<p>Em vez de transmitir o documento inteiro após cada modificação, o editor trabalha com operações menores. A granularidade melhora a colaboração, mas torna o comportamento de edições estruturais simultâneas mais difícil de validar.</p></section>
+<section id="technologies" class="section"><h2>Tecnologias</h2>
+<ul>
+<li><strong>Web:</strong> Next.js, React, TypeScript e Zustand.</li>
+<li><strong>Armazenamento local:</strong> IndexedDB e Dexie.</li>
+<li><strong>Colaboração:</strong> Yjs, WebSocket e Socket.IO.</li>
+<li><strong>Backend:</strong> NestJS, Prisma e PostgreSQL.</li>
+<li><strong>Mensageria e serviços:</strong> Redis.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Fronteiras de engenharia</h2>
-<p>Persistência local, regras de edição, sincronização e permissões do workspace possuem responsabilidades distintas. Eventos em tempo real complementam a sincronização; não substituem a troca durável de alterações.</p>
-<p>Há testes para cenários selecionados de sincronização offline, conflitos e operações concorrentes. O desafio central de um produto local-first é preservar convergência sob edições simultâneas e conexões instáveis, e não apenas salvar uma página quando há rede.</p></section>
-
-<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Todos os produtos</a> · <a href="/projects/en/velis/">English</a></p></footer>
+<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Produtos</a> · <a href="/projects/en/velis/">English</a></p></footer>
 </main></div>
   
 </body>

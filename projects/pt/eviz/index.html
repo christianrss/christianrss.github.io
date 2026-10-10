@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Eviz — SaaS / identidade profissional</title>
-    <meta name="description" content="Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.">
+  <title>Eviz — Arquitetura e tecnologias</title>
+    <meta name="description" content="SaaS de cartões digitais, landing pages, captação de leads e CRM.">
   <style>:root {
   color-scheme: light;
   --bg: #fff;
@@ -198,21 +198,29 @@ code { font: .82em var(--mono); overflow-wrap: anywhere; }
 <a href="/pt/#products">Produtos</a>
 <a href="/projects/en/eviz/">English</a></p></nav>
 
-<header id="home" data-attr-eyebrow="SaaS / identidade profissional" class="hero case-hero"><p class="hero-eyebrow">SaaS / identidade profissional</p><div class="hero-title"><h1>Eviz</h1></div><div class="hero-body"><p>Cartões digitais e páginas públicas conectados à captação de contatos e à gestão de relacionamento.</p></div><div class="hero-actions"><p><a href="https://www.eviz.me/">Site do produto</a> · <a href="/pt/#products">Voltar aos produtos</a></p></div></header>
+<header id="home" data-attr-eyebrow="SaaS e CRM" class="hero case-hero"><p class="hero-eyebrow">SaaS e CRM</p><div class="hero-title"><h1>Eviz</h1></div><div class="hero-body"><p>SaaS de cartões digitais, landing pages, captação de leads e CRM.</p></div><div class="hero-actions"><p><a href="https://www.eviz.me/">Produto</a> · <a href="/pt/#products">Portfólio</a></p></div></header>
 
-<section id="topic-1" class="section"><h2>Da publicação ao CRM</h2>
-<p>Um cartão digital ou uma landing page pública é apenas uma etapa do relacionamento. O visitante acessa a página, utiliza um canal de contato ou envia um formulário; a informação passa a integrar um fluxo de acompanhamento. A Eviz trata publicação e gestão de contatos como partes do mesmo produto.</p>
-<p>A aplicação atende, portanto, dois contextos distintos: conteúdo aberto ao visitante e ferramentas autenticadas de operação comercial.</p></section>
+<section id="architecture" class="section"><h2>Arquitetura</h2>
+<p>A Eviz conecta páginas comerciais públicas à administração de contas e aos processos de relacionamento com clientes.</p>
+<ul>
+<li><strong>Publicação:</strong> cartões digitais, landing pages e conteúdo configurável.</li>
+<li><strong>Interações públicas:</strong> formulários e canais de contato associados às páginas.</li>
+<li><strong>CRM:</strong> registros de leads, contatos e atividades comerciais.</li>
+<li><strong>Serviços da aplicação:</strong> identidade, contas, publicação, formulários, registros comerciais e cobrança.</li>
+<li><strong>Persistência:</strong> dados relacionais acessados pelos serviços de backend.</li>
+</ul>
+<p>As páginas públicas e a área autenticada de gerenciamento utilizam os mesmos domínios da aplicação em interfaces distintas.</p></section>
 
-<section id="topic-2" class="section"><h2>Limites entre módulos</h2>
-<p>Apresentação de páginas, captação de leads, histórico de contatos e registros comerciais têm responsabilidades diferentes. Um modelo compartilhado permite relacioná-las sem fazer cada funcionalidade depender de todos os detalhes das demais.</p>
-<p>Uma aplicação SaaS modular é uma escolha adequada para esse domínio. Transformar cada funcionalidade em um serviço independente acrescentaria complexidade operacional sem, necessariamente, resolver um problema real de escala.</p></section>
+<section id="technologies" class="section"><h2>Tecnologias</h2>
+<ul>
+<li><strong>Frontend:</strong> React, TypeScript, Vite e TipTap.</li>
+<li><strong>Backend:</strong> NestJS, TypeScript e APIs REST.</li>
+<li><strong>Dados:</strong> Prisma e PostgreSQL.</li>
+<li><strong>Recursos em tempo real:</strong> Socket.IO.</li>
+<li><strong>Pagamentos:</strong> integrações com Stripe e Asaas.</li>
+</ul></section>
 
-<section id="topic-3" class="section"><h2>Dados e verificação</h2>
-<p>Os pontos críticos são a atribuição correta dos registros às respectivas contas, a previsibilidade da publicação e a transferência consistente das informações captadas até o CRM. Essas propriedades exigem testes de integração, não apenas testes isolados de componentes.</p>
-<p>O código examinado contém testes de módulos selecionados. A revisão não estabeleceu cobertura ponta a ponta completa para publicação, processos comerciais e fluxos de contato.</p></section>
-
-<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Todos os produtos</a> · <a href="/projects/en/eviz/">English</a></p></footer>
+<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Produtos</a> · <a href="/projects/en/eviz/">English</a></p></footer>
 </main></div>
   
 </body>

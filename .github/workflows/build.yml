@@ -77,10 +77,10 @@ jobs:
             grep -q "projects/en/$project/" en/index.html
             grep -q "projects/pt/$project/" pt/index.html
           done
-          grep -q "WHIP" projects/en/kaduo/index.html
-          grep -q "WHIP" projects/pt/kaduo/index.html
-          grep -q "Evidências de testes" projects/pt/kaduo/index.html
-          grep -q "Evidence of tests" projects/en/kaduo/index.html
+          grep -q "Architecture overview" projects/en/kaduo/index.html
+          grep -q "Visão geral da arquitetura" projects/pt/kaduo/index.html
+          grep -q "Quality strategy and evidence" projects/en/kaduo/index.html
+          grep -q "Qualidade e evidências" projects/pt/kaduo/index.html
           for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn"; do
             grep -q "$product" en/index.html
             grep -q "$product" pt/index.html

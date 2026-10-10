@@ -1,6 +1,6 @@
 ---
-title: LOGV Learn — Educação / aplicações web
-description: Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.
+title: LOGV Learn — Arquitetura e tecnologias
+description: Plataforma web de cursos, conteúdo educacional, progresso dos estudantes e matrículas.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,43 @@ theme: ../../../themes/portfolio
 [English](/projects/en/logv-learn/)
 :::
 
-::: case-hero home eyebrow="Educação / aplicações web"
+::: case-hero home eyebrow="Plataforma educacional"
 
 --- title
 # LOGV Learn
 
 --- body
-Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.
+Plataforma web de cursos, conteúdo educacional, progresso dos estudantes e matrículas.
 
 --- actions
-[Voltar aos produtos](/pt/#products)
+[Portfólio](/pt/#products)
 :::
 
-::: section topic-1
-## Conteúdo e aprendizagem
+::: section architecture
+## Arquitetura
 
-O modelo de conteúdo distingue curso, módulos e aulas. Na administração, o trabalho é editar e publicar esses materiais; para o aluno, o importante é acessar o conteúdo, retomar os estudos e preservar o progresso.
+A LOGV Learn é uma aplicação web organizada em gestão de cursos, experiência de aprendizagem e matrículas comerciais.
 
-Essa separação importa porque quem edita uma aula e quem já a concluiu possuem necessidades e permissões diferentes sobre o mesmo material.
+- **Gestão de cursos:** cursos, módulos, aulas e publicação de conteúdo didático.
+- **Experiência do aluno:** reprodução de conteúdo e registros de progresso.
+- **Identidade:** contas de usuários e acesso autenticado.
+- **Matrículas:** fluxos de compra e integração com pagamentos.
+- **Persistência:** modelos relacionais para informações de cursos, usuários e matrículas.
+
+A administração dos cursos e a experiência do aluno compartilham serviços e dados persistidos pela aplicação.
 :::
 
-::: section topic-2
-## Matrícula e acesso
+::: section technologies
+## Tecnologias
 
-A matrícula paga introduz uma fronteira assíncrona. A cobrança pode começar em uma requisição e ser confirmada depois. A aplicação educacional precisa relacionar esse resultado ao registro de quem possui direito de acesso ao curso.
-
-Uma única aplicação web pode abrigar essas responsabilidades sem transformar publicação, progresso e cobrança em um fluxo indiferenciado.
-:::
-
-::: section topic-3
-## Considerações de engenharia
-
-As principais questões de consistência envolvem notificações repetidas de pagamento, alterações na situação da matrícula e progresso que deve permanecer disponível em outra sessão. A autorização não pode depender apenas do que a interface do cliente exibe.
-
-O repositório examinado contém esses fluxos de aplicação, mas a revisão não demonstrou cobertura automatizada abrangente do ciclo completo entre pagamento e acesso.
+- **Aplicação:** Next.js, React e TypeScript.
+- **Banco de dados:** PostgreSQL e Prisma.
+- **Autenticação:** Clerk.
+- **Edição e reprodução de conteúdo:** TipTap e Vidstack.
+- **Pagamentos:** integração com Asaas.
+- **Armazenamento de arquivos:** SDK Amazon S3.
 :::
 
 ::: footer
-[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/logv-learn/)
+[Christian Rafael](/pt/) · [Produtos](/pt/#products) · [English](/projects/en/logv-learn/)
 :::

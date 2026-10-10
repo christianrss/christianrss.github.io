@@ -1,0 +1,68 @@
+---
+title: Chris Cleaner — Native Filesystem Indexing — Engineering Case Study
+description: Technical case study of Chris Cleaner — Native Filesystem Indexing; architecture, trade-offs, test evidence and limitations.
+lang: en
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfolio](/en/)
+[All products](/en/#products)
+[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Português](/projects/pt/chris-cleaner/) · **EN**
+:::
+
+::: hero home eyebrow="Desktop · Windows internals"
+
+--- title
+# Chris Cleaner — Native Filesystem Indexing
+
+--- body
+An Avalonia/.NET desktop utility that combines disk cataloging, heuristic cleanup and optional background indexing service, with a separate multilingual distribution website.
+
+--- actions
+[Back to projects](/en/#products) · [Português](/projects/pt/chris-cleaner/)
+
+:::
+
+::: section architecture
+## System boundary and architecture
+
+The desktop application targets .NET 8 and uses Avalonia for cross-platform UI. A scanner produces file metadata into bounded concurrent channels; a catalog/index store, a checkpoint service and a UI view-model consume the results. Windows-specific adapters use native enumeration APIs, NTFS journal tracking and platform APIs for virtual-memory operations. An optional Windows service refreshes the catalog while the UI is closed.
+
+A separate React/Vite `christian-software-web` frontend handles product presentation, SEO and licensing/purchase flows; it is not the filesystem indexing engine.
+:::
+
+::: section implementation
+## Implementation choices
+
+The scanner declares channel capacities of 8,192 file entries and 2,048 directories with bounded waiting, supporting backpressure under large directory trees. Reparse points are skipped to reduce recursion traps. The resume checkpoint is persisted under application data. Windows USN Journal handling checks reset/rollback by comparing journal identity and next sequence number. The application README also describes a compact binary index and LiteDB for local state.
+:::
+
+::: section alternatives
+## Alternatives and trade-offs
+
+A naive recursive filesystem walk is simpler but less responsive and less scalable for giant trees. An NTFS Master File Table/USN-based path can be faster on supported Windows volumes but needs privilege and filesystem-specific fallback. SQLite could replace LiteDB/binary index with mature query primitives at the cost of adapting the persistence model. A platform-native WPF UI would narrow distribution compared with Avalonia.
+:::
+
+::: section testing
+## Evidence of tests
+
+Source inspection confirmed `FileScannerService.cs`, `CatalogScanCheckpointService.cs`, `WindowsUsnJournalMonitorService.cs` and Windows index-service classes. No dedicated automated test suite or recorded benchmark results were identified from the repository tree, so correctness and speed cannot be claimed from tests. The README documents local run, self-contained publishing and installation.
+:::
+
+::: section limitations
+## Known limits and next validation
+
+Deletion safety is the highest-priority risk. Test deny-lists of protected directories, symbolic links/junctions, TOCTOU races, locked files, privilege transitions and rollback/recovery. Create disposable-disk fixtures with 1M+ entries and compare enumeration time, memory, checkpoint restore and index consistency. Windows-only NTFS optimizations must degrade safely on Linux and other filesystems. Do not present cleanup or performance improvements as measured until repeatable benchmarks exist.
+:::
+
+::: section evidence
+## Source inventory
+
+`ChrisCleaner/Services/FileScannerService.cs`; `ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs`; `ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs`; `ChrisCleaner/Services/CatalogScanCheckpointService.cs`; `ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs`; `ChrisCleaner/README.md`; `christian-software-web/src/lib/seo.ts`.
+:::
+
+::: footer
+Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+:::

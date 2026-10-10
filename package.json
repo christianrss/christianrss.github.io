@@ -3,9 +3,11 @@
   "version": "2.0.0",
   "private": true,
   "description": "Multilingual MDS-authored technical portfolio and professional resume.",
-  "engines": {"node": ">=20.19"},
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
-    "check": "mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds",
+    "check": "mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds && mds check content/en/projects/kaduo.mds && mds check content/pt/projects/kaduo.mds && mds check content/en/projects/velis.mds && mds check content/pt/projects/velis.mds && mds check content/en/projects/eviz.mds && mds check content/pt/projects/eviz.mds && mds check content/en/projects/chris-cleaner.mds && mds check content/pt/projects/chris-cleaner.mds && mds check content/en/projects/logv-learn.mds && mds check content/pt/projects/logv-learn.mds",
     "build": "node scripts/build.mjs",
     "pdf": "node scripts/render-pdf.mjs",
     "build:all": "npm run check && npm run build && npm run pdf",

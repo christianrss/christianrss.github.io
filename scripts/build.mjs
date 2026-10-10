@@ -10,6 +10,32 @@ const pages = [
   {input:"content/pt/resume.mds",theme:"themes/resume",output:"resume/pt/index.html",canonical:"https://me.christiansoftware.org/resume/pt/",locale:"pt_BR",alternates:{en:"https://me.christiansoftware.org/resume/en/","pt-BR":"https://me.christiansoftware.org/resume/pt/"}}
 ];
 
+// Long-form product engineering case studies share the portfolio theme and SEO contract.
+const caseStudySlugs = ["kaduo", "velis", "eviz", "chris-cleaner", "logv-learn"];
+for (const slug of caseStudySlugs) {
+  const enUrl = `https://me.christiansoftware.org/projects/en/${slug}/`;
+  const ptUrl = `https://me.christiansoftware.org/projects/pt/${slug}/`;
+  const alternates = {en: enUrl, "pt-BR": ptUrl};
+  pages.push(
+    {
+      input: `content/en/projects/${slug}.mds`,
+      theme: "themes/portfolio",
+      output: `projects/en/${slug}/index.html`,
+      canonical: enUrl,
+      locale: "en_US",
+      alternates,
+    },
+    {
+      input: `content/pt/projects/${slug}.mds`,
+      theme: "themes/portfolio",
+      output: `projects/pt/${slug}/index.html`,
+      canonical: ptUrl,
+      locale: "pt_BR",
+      alternates,
+    },
+  );
+}
+
 for (const page of pages) {
   await mkdir(dirname(page.output), {recursive:true});
   execFileSync(mds,["build",page.input,"--theme",resolve(page.theme),"--output",page.output],{stdio:"inherit"});

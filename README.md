@@ -15,6 +15,7 @@ The site is authored in [MDS](https://github.com/ziyu/mds), compiled to static H
 - `/resume/christian-rafael-cv-en.pdf` — generated English PDF.
 - `/resume/christian-rafael-cv-pt.pdf` — generated Portuguese PDF.
 - `/` — lightweight language router.
+- `/projects/en/{slug}/`, `/projects/pt/{slug}/` — bilingual technical case studies for Velis, Kaduo, Eviz, Chris Cleaner and LOGV Learn.
 
 ## Source of truth
 
@@ -22,6 +23,7 @@ The site is authored in [MDS](https://github.com/ziyu/mds), compiled to static H
 - `content/pt/index.mds`
 - `content/en/resume.mds`
 - `content/pt/resume.mds`
+- `content/en/projects/*.mds` and `content/pt/projects/*.mds` — individual technical case studies, source-file evidence and explicit test/measurement limitations.
 
 Themes:
 
@@ -52,7 +54,7 @@ npm run edit:pt
 
 ## Deployment
 
-GitHub Actions validates all MDS sources, renders static HTML, generates both PDFs with headless Chromium, verifies language/SEO invariants and commits generated artifacts. GitHub Pages continues to publish from the repository root on `main`.
+GitHub Actions validates all MDS sources and ten engineering case-study pages, renders static HTML, generates both PDFs with headless Chromium, verifies language/SEO invariants and commits generated artifacts. GitHub Pages continues to publish from the repository root on `main`.
 
 The runtime website itself ships no frontend framework.
 

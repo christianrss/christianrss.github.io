@@ -66,6 +66,21 @@ jobs:
           grep -q "Mapa de sistemas" pt/index.html
           grep -q "Product engineering" en/index.html
           grep -q "Engenharia de produtos" pt/index.html
+
+          for project in kaduo velis eviz chris-cleaner logv-learn; do
+            test -s "projects/en/$project/index.html"
+            test -s "projects/pt/$project/index.html"
+            grep -q 'hreflang="pt-BR"' "projects/en/$project/index.html"
+            grep -q 'hreflang="en"' "projects/pt/$project/index.html"
+            grep -q "projects/en/$project/" sitemap.xml
+            grep -q "projects/pt/$project/" sitemap.xml
+            grep -q "projects/en/$project/" en/index.html
+            grep -q "projects/pt/$project/" pt/index.html
+          done
+          grep -q "WHIP" projects/en/kaduo/index.html
+          grep -q "WHIP" projects/pt/kaduo/index.html
+          grep -q "Evidências de testes" projects/pt/kaduo/index.html
+          grep -q "Evidence of tests" projects/en/kaduo/index.html
           for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn"; do
             grep -q "$product" en/index.html
             grep -q "$product" pt/index.html
@@ -107,6 +122,8 @@ jobs:
             resume/pt/index.html
             resume/christian-rafael-cv-en.pdf
             resume/christian-rafael-cv-pt.pdf
+            projects/en/*/index.html
+            projects/pt/*/index.html
             package-lock.json
           )
 

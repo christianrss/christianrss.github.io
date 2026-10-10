@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Christian Rafael de Souza Silva">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
+  <title>Chris Cleaner — Native Filesystem Indexing — Engineering Case Study</title>
+    <meta name="description" content="Technical case study of Chris Cleaner — Native Filesystem Indexing; architecture, trade-offs, test evidence and limitations.">
+  <style>:root{
+  color-scheme:light dark;
+  --bg:#fbfbf8;
+  --paper:#ffffff;
+  --text:#171713;
+  --muted:#62625a;
+  --line:#cfcfc7;
+  --soft:#ecece6;
+  --link:#0645ad;
+  --max:790px;
+  --meta:122px;
+  --serif:Georgia,"Times New Roman",Times,serif;
+  --sans:Arial,Helvetica,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.58;
+  text-rendering:optimizeLegibility
+}
+a{
+  color:var(--link);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:.16em
+}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+code{
+  font-family:var(--mono);
+  font-size:.82em
+}
+.site-shell{
+  width:min(calc(100% - 34px),var(--max));
+  margin:0 auto;
+  padding-bottom:48px
+}
+.skip-link{
+  position:fixed;
+  left:10px;
+  top:10px;
+  z-index:100;
+  transform:translateY(-180%);
+  padding:6px 9px;
+  background:var(--text);
+  color:var(--bg);
+  font-family:var(--mono);
+  font-size:12px
+}
+.skip-link:focus{transform:translateY(0)}
+.site-nav{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:6px 14px;
+  margin:0;
+  padding:24px 0 13px;
+  border-bottom:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.5
+}
+.site-nav p{display:contents}
+.site-nav a,.site-nav strong{white-space:nowrap}
+.site-nav a:first-child{
+  margin-right:auto;
+  color:var(--text);
+  font-weight:700;
+  text-decoration:none
+}
+.site-nav strong{font-weight:700}
+.hero{
+  padding:38px 0 30px
+}
+.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
+.hero::after{content:"";display:block;clear:both}
+.hero-eyebrow{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10.5px;
+  line-height:1.4;
+  letter-spacing:.06em;
+  text-transform:uppercase
+}
+.hero-title h1{
+  max-width:680px;
+  margin:0;
+  font-family:var(--serif);
+  font-size:clamp(30px,5.2vw,42px);
+  font-weight:700;
+  line-height:1.06;
+  letter-spacing:-.025em
+}
+.hero-body{
+  max-width:710px;
+  margin-top:18px;
+  font-size:17px
+}
+.hero-body p{margin:0 0 10px}
+.hero-actions{
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:11.5px
+}
+.hero-actions p{margin:0}
+.section{
+  padding:27px 0 31px;
+  border-top:1px solid var(--line)
+}
+.section>h2{
+  margin:0 0 16px;
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:.065em;
+  text-transform:uppercase
+}
+.section>p{
+  max-width:720px;
+  margin:0 0 12px
+}
+.section>p:last-child{margin-bottom:0}
+#systems>p:nth-of-type(2){
+  margin:17px 0;
+  padding:9px 11px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  overflow-x:auto;
+  white-space:nowrap
+}
+#systems>p:nth-of-type(2) code{
+  color:var(--muted);
+  font-size:11px
+}
+#systems ul{
+  list-style:none;
+  margin:18px 0;
+  padding:0;
+  border-top:1px solid var(--line)
+}
+#systems li{
+  margin:0;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15px
+}
+#systems li strong{
+  display:inline-block;
+  min-width:128px;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.035em;
+  text-transform:uppercase
+}
+.entry{
+  display:grid;
+  grid-template-columns:var(--meta) minmax(0,1fr);
+  gap:22px;
+  padding:16px 0;
+  border-top:1px dotted var(--line)
+}
+.section>.entry:first-of-type{
+  margin-top:5px;
+  border-top:0
+}
+.entry-meta{
+  padding-top:2px;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px;
+  line-height:1.45
+}
+.entry-meta span{display:block}
+.entry-meta span+span{margin-top:4px}
+.entry-body h3{
+  margin:0 0 5px;
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.3
+}
+.entry-body p{margin:6px 0 0}
+.entry-body ul{margin:8px 0 0;padding-left:20px}
+.entry-body a{display:inline}
+.project .entry-body>p:first-of-type{color:var(--text)}
+.project .entry-body>p strong{
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em
+}
+.footer{
+  padding:22px 0 0;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px
+}
+.footer p{margin:0}
+@media(max-width:680px){
+  body{font-size:15.5px}
+  .site-shell{width:min(calc(100% - 28px),var(--max))}
+  .site-nav{
+    align-items:flex-start;
+    gap:5px 11px;
+    padding-top:18px
+  }
+  .site-nav a:first-child{
+    flex-basis:100%;
+    margin:0 0 3px
+  }
+  .hero{padding:31px 0 25px}
+  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
+  .hero-body{font-size:16px}
+  .entry{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:14px 0
+  }
+  .entry-meta span{display:inline}
+  .entry-meta span+span:before{content:" · "}
+  #systems>p:nth-of-type(2){white-space:normal}
+  #systems li strong{
+    display:block;
+    min-width:0;
+    margin-bottom:2px
+  }
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#11110f;
+    --paper:#171714;
+    --text:#ecece5;
+    --muted:#aaa99e;
+    --line:#3b3b34;
+    --soft:#25251f;
+    --link:#8ab4f8
+  }
+}
+@media print{
+  :root{--bg:#fff;--paper:#fff;--text:#000;--muted:#444;--line:#bbb;--link:#000}
+  body{background:#fff;color:#000;font-size:11pt}
+  .site-shell{width:100%;max-width:none;padding:0}
+  .site-nav,.skip-link{display:none}
+  .hero{padding-top:0}
+  a{color:#000}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+  <link rel="canonical" href="https://me.christiansoftware.org/projects/en/chris-cleaner/">
+  <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/projects/en/chris-cleaner/">
+  <link rel="alternate" hreflang="pt-BR" href="https://me.christiansoftware.org/projects/pt/chris-cleaner/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://me.christiansoftware.org/projects/en/chris-cleaner/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="generator" content="MDS">
+  <meta property="og:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <meta name="twitter:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Christian Rafael de Souza Silva","url":"https://me.christiansoftware.org/","jobTitle":"Software Engineer","sameAs":["https://github.com/christianrss","https://www.linkedin.com/in/christianrss/","https://huggingface.co/christianrss"],"knowsAbout":["Machine Learning Systems","AI Infrastructure","Large Language Models","Operating Systems","Compilers","GPU Computing"]}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJZ32MBJRQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJZ32MBJRQ');</script>
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
+  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
+<a href="/en/#products">All products</a>
+<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/projects/pt/chris-cleaner/">Português</a> · <strong>EN</strong></p></nav>
+
+<header id="home" data-attr-eyebrow="Desktop · Windows internals" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Desktop · Windows internals</p><div class="hero-title"><h1>Chris Cleaner — Native Filesystem Indexing</h1></div><div class="hero-body"><p>An Avalonia/.NET desktop utility that combines disk cataloging, heuristic cleanup and optional background indexing service, with a separate multilingual distribution website.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/chris-cleaner/">Português</a></p></div></header>
+
+<section id="architecture" class="section"><h2>System boundary and architecture</h2>
+<p>The desktop application targets .NET 8 and uses Avalonia for cross-platform UI. A scanner produces file metadata into bounded concurrent channels; a catalog/index store, a checkpoint service and a UI view-model consume the results. Windows-specific adapters use native enumeration APIs, NTFS journal tracking and platform APIs for virtual-memory operations. An optional Windows service refreshes the catalog while the UI is closed.</p>
+<p>A separate React/Vite <code>christian-software-web</code> frontend handles product presentation, SEO and licensing/purchase flows; it is not the filesystem indexing engine.</p></section>
+
+<section id="implementation" class="section"><h2>Implementation choices</h2>
+<p>The scanner declares channel capacities of 8,192 file entries and 2,048 directories with bounded waiting, supporting backpressure under large directory trees. Reparse points are skipped to reduce recursion traps. The resume checkpoint is persisted under application data. Windows USN Journal handling checks reset/rollback by comparing journal identity and next sequence number. The application README also describes a compact binary index and LiteDB for local state.</p></section>
+
+<section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
+<p>A naive recursive filesystem walk is simpler but less responsive and less scalable for giant trees. An NTFS Master File Table/USN-based path can be faster on supported Windows volumes but needs privilege and filesystem-specific fallback. SQLite could replace LiteDB/binary index with mature query primitives at the cost of adapting the persistence model. A platform-native WPF UI would narrow distribution compared with Avalonia.</p></section>
+
+<section id="testing" class="section"><h2>Evidence of tests</h2>
+<p>Source inspection confirmed <code>FileScannerService.cs</code>, <code>CatalogScanCheckpointService.cs</code>, <code>WindowsUsnJournalMonitorService.cs</code> and Windows index-service classes. No dedicated automated test suite or recorded benchmark results were identified from the repository tree, so correctness and speed cannot be claimed from tests. The README documents local run, self-contained publishing and installation.</p></section>
+
+<section id="limitations" class="section"><h2>Known limits and next validation</h2>
+<p>Deletion safety is the highest-priority risk. Test deny-lists of protected directories, symbolic links/junctions, TOCTOU races, locked files, privilege transitions and rollback/recovery. Create disposable-disk fixtures with 1M+ entries and compare enumeration time, memory, checkpoint restore and index consistency. Windows-only NTFS optimizations must degrade safely on Linux and other filesystems. Do not present cleanup or performance improvements as measured until repeatable benchmarks exist.</p></section>
+
+<section id="evidence" class="section"><h2>Source inventory</h2>
+<p><code>ChrisCleaner/Services/FileScannerService.cs</code>; <code>ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs</code>; <code>ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs</code>; <code>ChrisCleaner/Services/CatalogScanCheckpointService.cs</code>; <code>ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs</code>; <code>ChrisCleaner/README.md</code>; <code>christian-software-web/src/lib/seo.ts</code>.</p></section>
+
+<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+</main></div>
+  
+</body>
+</html>

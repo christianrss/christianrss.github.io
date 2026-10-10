@@ -1,68 +1,53 @@
 ---
-title: LOGV Learn — Arquitetura de Plataforma Educacional
-description: Criação de cursos, progresso do estudante e matrículas comerciais.
+title: LOGV Learn — Educação / aplicações web
+description: Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfólio](/pt/)
-[Projetos](/pt/#products)
-[English](/projects/en/logv-learn/) · **PT**
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/logv-learn/)
 :::
 
-::: hero home eyebrow="Arquitetura pública"
+::: case-hero home eyebrow="Educação / aplicações web"
 
 --- title
-# LOGV Learn — Arquitetura de Plataforma Educacional
+# LOGV Learn
 
 --- body
-Criação de cursos, progresso do estudante e matrículas comerciais.
+Publicação de cursos, progresso de estudo e matrículas pagas em uma aplicação educacional.
 
 --- actions
-[Voltar aos projetos](/pt/#products) · [English](/projects/en/logv-learn/)
-
+[Voltar aos produtos](/pt/#products)
 :::
 
-::: section architecture
-## Visão geral da arquitetura
+::: section topic-1
+## Conteúdo e aprendizagem
 
-A LOGV Learn organiza conteúdo didático, experiência de aprendizagem e acesso a cursos em uma aplicação web. A arquitetura pública é apresentada por quatro domínios:
+O modelo de conteúdo distingue curso, módulos e aulas. Na administração, o trabalho é editar e publicar esses materiais; para o aluno, o importante é acessar o conteúdo, retomar os estudos e preservar o progresso.
 
-- **Gestão de conteúdo:** cursos, módulos, aulas e publicação.
-- **Experiência de aprendizagem:** matrícula, reprodução, progresso e interação.
-- **Identidade e autorização:** contas e diferenciação entre acesso administrativo e estudantil.
-- **Ciclo comercial:** início de compra, confirmação do pagamento e direito de acesso ao curso.
-
-Os fluxos compartilham persistência de aplicação, mas exigem regras de negócio e validações próprias.
+Essa separação importa porque quem edita uma aula e quem já a concluiu possuem necessidades e permissões diferentes sobre o mesmo material.
 :::
 
-::: section engineering
-## Decisões e compromissos
+::: section topic-2
+## Matrícula e acesso
 
-Uma aplicação coesa facilita a consistência entre catálogo e experiência do aluno. Entretanto, eventos de pagamento são assíncronos e precisam ser reconciliados com a matrícula. Identidade, direitos de acesso e navegação de conteúdo continuam sendo responsabilidades conceitualmente distintas, ainda que operem na mesma aplicação.
+A matrícula paga introduz uma fronteira assíncrona. A cobrança pode começar em uma requisição e ser confirmada depois. A aplicação educacional precisa relacionar esse resultado ao registro de quem possui direito de acesso ao curso.
+
+Uma única aplicação web pode abrigar essas responsabilidades sem transformar publicação, progresso e cobrança em um fluxo indiferenciado.
 :::
 
-::: section alternatives
-## Alternativas arquiteturais
+::: section topic-3
+## Considerações de engenharia
 
-Um sistema de ensino hospedado reduz desenvolvimento e operação, mas limita personalização. Serviços independentes de cobrança e autorização ampliam o isolamento, porém aumentam a quantidade de sistemas a operar. Um monólito modular pode equilibrar simplicidade e evolução quando as fronteiras entre domínios permanecem explícitas e testáveis.
-:::
+As principais questões de consistência envolvem notificações repetidas de pagamento, alterações na situação da matrícula e progresso que deve permanecer disponível em outra sessão. A autorização não pode depender apenas do que a interface do cliente exibe.
 
-::: section verification
-## Qualidade e evidências
-
-O código contém fluxos de aprendizagem e cobrança, mas não foi demonstrada, nesta revisão, uma suíte automatizada abrangente. O estudo descreve práticas necessárias de validação sem afirmar que testes de aceitação foram aprovados.
-
-A cobertura deve incluir publicação, regras de acesso, continuidade do progresso, estados de pagamento, cancelamentos, notificações duplicadas e usabilidade. Detalhes financeiros, credenciais de provedores e eventuais defeitos de implementação permanecem apenas na documentação de engenharia privada.
-:::
-
-::: section constraints
-## Limites e evolução
-
-O conteúdo educacional precisa manter acessibilidade e consistência entre navegadores, enquanto o acesso pago depende de eventos assíncronos confiáveis. Privacidade, acessibilidade, suporte e recuperação compreensível para o aluno são partes importantes da arquitetura. Os detalhes operacionais internos foram intencionalmente omitidos.
+O repositório examinado contém esses fluxos de aplicação, mas a revisão não demonstrou cobertura automatizada abrangente do ciclo completo entre pagamento e acesso.
 :::
 
 ::: footer
-Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
+[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/logv-learn/)
 :::

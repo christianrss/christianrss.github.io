@@ -7,264 +7,175 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Kaduo — Real-Time Media and Social Commerce</title>
-    <meta name="description" content="Browser video production, live media delivery and commerce-aware interactions.">
-  <style>:root{
-  color-scheme:light dark;
-  --bg:#fbfbf8;
-  --paper:#ffffff;
-  --text:#171713;
-  --muted:#62625a;
-  --line:#cfcfc7;
-  --soft:#ecece6;
-  --link:#0645ad;
-  --max:790px;
-  --meta:122px;
-  --serif:Georgia,"Times New Roman",Times,serif;
-  --sans:Arial,Helvetica,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace
+  <title>Kaduo — Media systems / social commerce</title>
+    <meta name="description" content="Live video production in the browser, integrated with the commercial activity taking place around a broadcast.">
+  <style>:root {
+  color-scheme: light;
+  --bg: #fff;
+  --paper: #fff;
+  --text: #171d24;
+  --muted: #59636f;
+  --rule: #d9dee2;
+  --link: #164b83;
+  --width: 940px;
+  --sans: Arial, Helvetica, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--serif);
-  font-size:16px;
-  line-height:1.58;
-  text-rendering:optimizeLegibility
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-a{
-  color:var(--link);
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:.16em
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .17em;
 }
-a:hover{text-decoration-thickness:2px}
-a:focus-visible{outline:2px solid var(--link);outline-offset:3px}
-code{
-  font-family:var(--mono);
-  font-size:.82em
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+code { font: .82em var(--mono); overflow-wrap: anywhere; }
+.site-shell { width: min(calc(100% - 52px), var(--width)); margin: 0 auto; padding-bottom: 65px; }
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 20; padding: 8px 12px;
+  transform: translateY(-170%); background: var(--text); color: #fff;
+  font: 12px var(--mono);
 }
-.site-shell{
-  width:min(calc(100% - 34px),var(--max));
-  margin:0 auto;
-  padding-bottom:48px
+.skip-link:focus { transform: none; }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px 20px;
+  border-bottom: 1px solid var(--rule);
+  padding: 26px 0 17px;
+  font: 12px/1.55 var(--mono);
 }
-.skip-link{
-  position:fixed;
-  left:10px;
-  top:10px;
-  z-index:100;
-  transform:translateY(-180%);
-  padding:6px 9px;
-  background:var(--text);
-  color:var(--bg);
-  font-family:var(--mono);
-  font-size:12px
+.site-nav p { display: contents; }
+.site-nav a, .site-nav strong { white-space: nowrap; }
+.site-nav a:first-child { color: var(--text); font-weight: 700; margin-right: auto; text-decoration: none; }
+.site-nav strong { font-weight: 700; }
+.hero { padding: 53px 0 49px; }
+.hero::after { content: ""; display: block; clear: both; }
+.hero-photo {
+  float: right; width: 145px; height: 145px; object-fit: cover;
+  margin: 2px 0 18px 32px; border: 1px solid var(--rule);
 }
-.skip-link:focus{transform:translateY(0)}
-.site-nav{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:6px 14px;
-  margin:0;
-  padding:24px 0 13px;
-  border-bottom:1px solid var(--line);
-  font-family:var(--mono);
-  font-size:11px;
-  line-height:1.5
+.hero-eyebrow {
+  margin: 0 0 17px;
+  font: 11px/1.5 var(--mono);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.site-nav p{display:contents}
-.site-nav a,.site-nav strong{white-space:nowrap}
-.site-nav a:first-child{
-  margin-right:auto;
-  color:var(--text);
-  font-weight:700;
-  text-decoration:none
+.hero-title h1 {
+  max-width: 740px; margin: 0;
+  font: 700 clamp(32px, 5.4vw, 46px)/1.1 var(--serif);
+  letter-spacing: -.027em;
 }
-.site-nav strong{font-weight:700}
-.hero{
-  padding:38px 0 30px
+.hero-body { max-width: 700px; margin-top: 22px; font-size: 17px; line-height: 1.66; }
+.hero-body p { margin: 0 0 12px; }
+.hero-actions { margin-top: 19px; font: 12px/1.7 var(--mono); }
+.hero-actions p { margin: 0; }
+.section {
+  border-top: 1px solid var(--rule);
+  padding: 32px 0 38px 176px;
+  position: relative;
 }
-.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
-.hero::after{content:"";display:block;clear:both}
-.hero-eyebrow{
-  margin:0 0 12px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10.5px;
-  line-height:1.4;
-  letter-spacing:.06em;
-  text-transform:uppercase
+.section > h2 {
+  position: absolute; left: 0; top: 36px; width: 145px;
+  margin: 0; font: 700 12px/1.45 var(--mono);
+  letter-spacing: .02em; color: var(--text);
 }
-.hero-title h1{
-  max-width:680px;
-  margin:0;
-  font-family:var(--serif);
-  font-size:clamp(30px,5.2vw,42px);
-  font-weight:700;
-  line-height:1.06;
-  letter-spacing:-.025em
+.section > p { max-width: 70ch; margin: 0 0 13px; }
+.section > p:last-child { margin-bottom: 0; }
+.section > ul { margin: 9px 0 15px; padding-left: 19px; }
+.section > ul li { margin: 6px 0; }
+.section > p strong { color: var(--text); }
+.entry {
+  display: grid; grid-template-columns: 102px minmax(0,1fr);
+  gap: 22px; padding: 17px 0 19px;
+  border-top: 1px solid var(--rule);
 }
-.hero-body{
-  max-width:710px;
-  margin-top:18px;
-  font-size:17px
+.section > .entry:first-of-type { border-top: 0; padding-top: 7px; }
+.entry-meta { font: 11px/1.5 var(--mono); color: var(--muted); padding-top: 3px; }
+.entry-meta span { display: block; }
+.entry-meta span + span { margin-top: 5px; }
+.entry-body { min-width: 0; }
+.entry-body h3 { margin: 0 0 6px; font: 700 19px/1.35 var(--serif); letter-spacing: -.012em; }
+.entry-body p { margin: 5px 0 0; max-width: 66ch; }
+.entry-body ul { padding-left: 18px; margin: 9px 0 0; }
+.project .entry-body > p strong {
+  font: 11px/1.6 var(--mono);
+  font-weight: 400; color: var(--muted);
 }
-.hero-body p{margin:0 0 10px}
-.hero-actions{
-  margin-top:16px;
-  font-family:var(--mono);
-  font-size:11.5px
+.project .entry-body > p:last-child { font: 12px/1.7 var(--mono); margin-top: 10px; }
+.case-hero { padding: 68px 0 57px; max-width: 780px; }
+.case-hero .hero-title h1 { font-size: clamp(42px, 6vw, 58px); }
+.case-hero .hero-body { max-width: 660px; font-size: 19px; line-height: 1.55; color: var(--muted); }
+.case-hero .hero-actions { margin-top: 26px; }
+.case-hero ~ .section {
+  max-width: 760px;
+  padding: 29px 0 32px;
 }
-.hero-actions p{margin:0}
-.section{
-  padding:27px 0 31px;
-  border-top:1px solid var(--line)
+.case-hero ~ .section > h2 {
+  position: static; width: auto; margin: 0 0 14px;
+  font: 700 23px/1.28 var(--serif);
+  letter-spacing: -.018em;
 }
-.section>h2{
-  margin:0 0 16px;
-  font-family:var(--mono);
-  font-size:12px;
-  line-height:1.35;
-  font-weight:700;
-  letter-spacing:.065em;
-  text-transform:uppercase
+.case-hero ~ .section p { max-width: 69ch; margin: 0 0 16px; }
+.case-hero ~ .section p:last-child { margin-bottom: 0; }
+.case-hero ~ .section ul { padding-left: 20px; }
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 21px 0 0;
+  color: var(--muted);
+  font: 11px/1.6 var(--mono);
 }
-.section>p{
-  max-width:720px;
-  margin:0 0 12px
-}
-.section>p:last-child{margin-bottom:0}
-#systems>p:nth-of-type(2){
-  margin:17px 0;
-  padding:9px 11px;
-  border:1px solid var(--line);
-  background:var(--paper);
-  overflow-x:auto;
-  white-space:nowrap
-}
-#systems>p:nth-of-type(2) code{
-  color:var(--muted);
-  font-size:11px
-}
-#systems ul{
-  list-style:none;
-  margin:18px 0;
-  padding:0;
-  border-top:1px solid var(--line)
-}
-#systems li{
-  margin:0;
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  font-size:15px
-}
-#systems li strong{
-  display:inline-block;
-  min-width:128px;
-  font-family:var(--mono);
-  font-size:10.5px;
-  letter-spacing:.035em;
-  text-transform:uppercase
-}
-.entry{
-  display:grid;
-  grid-template-columns:var(--meta) minmax(0,1fr);
-  gap:22px;
-  padding:16px 0;
-  border-top:1px dotted var(--line)
-}
-.section>.entry:first-of-type{
-  margin-top:5px;
-  border-top:0
-}
-.entry-meta{
-  padding-top:2px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  line-height:1.45
-}
-.entry-meta span{display:block}
-.entry-meta span+span{margin-top:4px}
-.entry-body h3{
-  margin:0 0 5px;
-  font-family:var(--serif);
-  font-size:17px;
-  line-height:1.3
-}
-.entry-body p{margin:6px 0 0}
-.entry-body ul{margin:8px 0 0;padding-left:20px}
-.entry-body a{display:inline}
-.project .entry-body>p:first-of-type{color:var(--text)}
-.project .entry-body>p strong{
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:.02em
-}
-.footer{
-  padding:22px 0 0;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px
-}
-.footer p{margin:0}
-@media(max-width:680px){
-  body{font-size:15.5px}
-  .site-shell{width:min(calc(100% - 28px),var(--max))}
-  .site-nav{
-    align-items:flex-start;
-    gap:5px 11px;
-    padding-top:18px
+.footer p { margin: 0; }
+@media (max-width: 750px) {
+  .site-shell { width: min(calc(100% - 34px), var(--width)); }
+  .site-nav { padding: 17px 0 13px; gap: 5px 13px; font-size: 11px; }
+  .site-nav a:first-child { flex-basis: 100%; margin: 0 0 4px; }
+  .hero { padding: 34px 0 30px; }
+  .hero-photo { width: 104px; height: 104px; margin: 0 0 12px 17px; }
+  .hero-title h1 { font-size: clamp(30px, 6vw, 40px); }
+  .hero-body { font-size: 16px; }
+  .section { padding: 23px 0 27px; }
+  .section > h2 {
+    position: static; width: auto; margin: 0 0 15px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
   }
-  .site-nav a:first-child{
-    flex-basis:100%;
-    margin:0 0 3px
-  }
-  .hero{padding:31px 0 25px}
-  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
-  .hero-body{font-size:16px}
-  .entry{
-    grid-template-columns:1fr;
-    gap:5px;
-    padding:14px 0
-  }
-  .entry-meta span{display:inline}
-  .entry-meta span+span:before{content:" · "}
-  #systems>p:nth-of-type(2){white-space:normal}
-  #systems li strong{
-    display:block;
-    min-width:0;
-    margin-bottom:2px
-  }
+  .entry { grid-template-columns: 1fr; gap: 3px; padding: 16px 0; }
+  .entry-meta span { display: inline; }
+  .entry-meta span + span::before { content: " · "; }
+  .entry-meta span + span { margin-top: 0; }
+  .case-hero { padding: 43px 0 37px; }
+  .case-hero .hero-title h1 { font-size: clamp(38px, 9vw, 48px); }
+  .case-hero .hero-body { font-size: 17px; }
+  .case-hero ~ .section > h2 { font-size: 21px; text-transform: none; letter-spacing: -.015em; }
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#11110f;
-    --paper:#171714;
-    --text:#ecece5;
-    --muted:#aaa99e;
-    --line:#3b3b34;
-    --soft:#25251f;
-    --link:#8ab4f8
-  }
+@media (max-width: 390px) {
+  .site-shell { width: calc(100% - 28px); }
+  .hero-photo { width: 88px; height: 88px; }
+  .entry-body h3 { font-size: 18px; }
 }
-@media print{
-  :root{--bg:#fff;--paper:#fff;--text:#000;--muted:#444;--line:#bbb;--link:#000}
-  body{background:#fff;color:#000;font-size:11pt}
-  .site-shell{width:100%;max-width:none;padding:0}
-  .site-nav,.skip-link{display:none}
-  .hero{padding-top:0}
-  a{color:#000}
+@media print {
+  body { color: #000; background: #fff; font-size: 11pt; }
+  .site-shell { width: 100%; max-width: none; padding: 0; }
+  .site-nav, .skip-link { display: none; }
+  .hero { padding-top: 0; }
+  .section { break-inside: auto; }
+  .entry { break-inside: avoid; }
+  a { color: #000; }
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
   <link rel="canonical" href="https://me.christiansoftware.org/projects/en/kaduo/">
   <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/projects/en/kaduo/">
@@ -282,45 +193,29 @@ code{
 </head>
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
-  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">Projects</a>
-<a href="/projects/pt/kaduo/">Português</a> · <strong>EN</strong></p></nav>
+  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">Christian Rafael</a>
+<a href="/en/#projects">Projects</a>
+<a href="/en/#products">Products</a>
+<a href="/projects/pt/kaduo/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Kaduo — Real-Time Media and Social Commerce</h1></div><div class="hero-body"><p>Browser video production, live media delivery and commerce-aware interactions.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/kaduo/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Media systems / social commerce" class="hero case-hero"><p class="hero-eyebrow">Media systems / social commerce</p><div class="hero-title"><h1>Kaduo</h1></div><div class="hero-body"><p>Live video production in the browser, integrated with the commercial activity taking place around a broadcast.</p></div><div class="hero-actions"><p><a href="https://kaduo.shop/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
 
-<section id="architecture" class="section"><h2>Architecture overview</h2>
-<p>Kaduo brings social commerce, video publishing and live shopping into one product, while treating media delivery and business transactions as distinct domains. The public description follows logical responsibilities rather than exposing infrastructure topology.</p>
-<ul>
-<li><strong>Creator experience:</strong> device capture, video preview, live visual composition and production controls.</li>
-<li><strong>Media workflow:</strong> media publishing, ingestion, processing or forwarding, delivery and playback.</li>
-<li><strong>Commerce workflow:</strong> sellers, catalogs, featured products, transactions and customer interactions.</li>
-<li><strong>Real-time experience:</strong> live conversation, audience-facing events and status updates.</li>
-<li><strong>Data and operations:</strong> product state, creator settings, event analysis and operational observability.</li>
-</ul>
-<p>These domains are connected by application interfaces, but video transport is conceptually independent from the order lifecycle.</p></section>
+<section id="topic-1" class="section"><h2>The studio</h2>
+<p>A live broadcast begins with the device's camera and microphone. The production interface handles preview, framing and visual elements that must appear in the transmitted image: captions, product information, promotional graphics and selected audience interactions.</p>
+<p>The key distinction is between <strong>drawing over a video player</strong> and <strong>composing the video itself</strong>. Kaduo uses browser media capabilities to produce a composed outgoing stream; supported graphics are therefore part of the broadcast image.</p></section>
 
-<section id="engineering" class="section"><h2>Real-time video and production studio</h2>
-<p>The production studio supports camera and microphone capture and live composition. Visual elements such as titles, images, product information, promotional graphics and audience interactions can be arranged while the creator is broadcasting. Rendering occurs in the media-production workflow so that supported visual elements become part of the outgoing video rather than only the creator's preview.</p>
-<p>The broader platform includes recording and publishing shorter videos, live sessions, playback experiences and controls for broadcast quality. Protocol-based media transport such as WebRTC supports interactive publication. Specific network routes, provider configurations, credentials, deployment topology and operational parameters are intentionally not published.</p></section>
+<section id="topic-2" class="section"><h2>Media and commerce</h2>
+<p>The media path has different requirements from the shopping path. Video needs continuous transport, timing and adaptive handling of network conditions; catalog, orders and promotional information need transactional consistency. Mixing those responsibilities would make both harder to change.</p>
+<p>The system also covers recorded short-form video and audience interaction during live sessions. The studio can be used from a camera-equipped device without requiring a separate desktop production application.</p></section>
 
-<section id="alternatives" class="section"><h2>Design choices and trade-offs</h2>
-<p><strong>Client-side composition:</strong> reduces the need for a dedicated server-side graphics renderer for each creator session, but requires careful performance and browser-compatibility engineering.</p>
-<p><strong>Separate media and commerce responsibilities:</strong> live video can evolve independently from catalog and checkout rules. The cost is coordinating state that viewers see with the media timeline.</p>
-<p><strong>Dedicated real-time interaction channel:</strong> audience events and studio controls should not rely on the bandwidth and lifecycle of the video stream alone.</p>
-<p><strong>Protocol-oriented integrations:</strong> open media standards improve interoperability, while external services introduce platform and operational dependencies.</p></section>
+<section id="topic-3" class="section"><h2>The engineering trade-off</h2>
+<p>Browser-side composition keeps production close to the camera and makes visual adjustments immediate. It also makes rendering dependent on browser capabilities and the device's available processing power. A server-side compositor would offer a more uniform rendering environment, at the cost of additional processing infrastructure.</p>
+<p>Current engineering work focuses on separating device selection, capture configuration, composed-media assembly and transmission monitoring. Those boundaries can be tested independently; broadcast reliability still requires testing on physical devices and real networks.</p></section>
 
-<section id="verification" class="section"><h2>Alternative architectures</h2>
-<p>A server-side compositor could provide more controlled rendering and advanced production workflows, at the cost of computational capacity and increased operations. A fully managed broadcast stack would simplify infrastructure ownership but reduce control over the authoring experience. An external-encoder-only approach would suit professional studios while excluding some creators who prefer broadcasting directly from a phone or browser. These are architectural comparisons, not claims about the project's development history.</p></section>
+<section id="topic-4" class="section"><h2>Verification</h2>
+<p>Isolated regression tests cover selected media-processing rules, input selection and stream composition. A production frontend build is checked in CI. Those checks do not establish end-to-end latency or the number of viewers a deployment can sustain. Those claims require instrumented broadcasts and measurements under defined network conditions.</p></section>
 
-<section id="constraints" class="section"><h2>Quality strategy and evidence</h2>
-<p>The private codebase includes unit tests around portions of media lifecycle handling and event processing. Their existence was reviewed, but the complete product test suites, throughput and end-to-end broadcast reliability were not independently executed or measured for this public case study.</p>
-<p>A sound validation program covers capture permissions, supported browsers and devices, composition correctness, playback, network interruptions, recording and upload recovery, cross-device interaction and accessibility. Published measurements should include test methodology, hardware and network conditions; this page intentionally does not claim specific latency, uptime or audience capacity.</p></section>
-
-<section id="more" class="section"><h2>Boundaries and maturity</h2>
-<p>Media quality depends on capture hardware, browser capabilities and network conditions. Interactive graphics create a trade-off between visual richness and smooth frames. Distribution, storage and business operations have different scaling characteristics, so each requires independent capacity planning.</p>
-<p>The architecture described here is a technical overview. It is not a public audit of internal controls, dependencies, security posture or production service levels.</p></section>
-
-<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/kaduo/">Português</a></p></footer>
 </main></div>
   
 </body>

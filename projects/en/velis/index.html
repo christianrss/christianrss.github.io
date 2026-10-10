@@ -7,264 +7,175 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Velis — Local-First Collaboration Architecture</title>
-    <meta name="description" content="Offline-capable workspaces and multi-device information consistency.">
-  <style>:root{
-  color-scheme:light dark;
-  --bg:#fbfbf8;
-  --paper:#ffffff;
-  --text:#171713;
-  --muted:#62625a;
-  --line:#cfcfc7;
-  --soft:#ecece6;
-  --link:#0645ad;
-  --max:790px;
-  --meta:122px;
-  --serif:Georgia,"Times New Roman",Times,serif;
-  --sans:Arial,Helvetica,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace
+  <title>Velis — Collaboration / local-first</title>
+    <meta name="description" content="A collaborative workspace designed around documents that remain editable when the network is unavailable.">
+  <style>:root {
+  color-scheme: light;
+  --bg: #fff;
+  --paper: #fff;
+  --text: #171d24;
+  --muted: #59636f;
+  --rule: #d9dee2;
+  --link: #164b83;
+  --width: 940px;
+  --sans: Arial, Helvetica, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--serif);
-  font-size:16px;
-  line-height:1.58;
-  text-rendering:optimizeLegibility
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-a{
-  color:var(--link);
-  text-decoration:underline;
-  text-decoration-thickness:1px;
-  text-underline-offset:.16em
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .17em;
 }
-a:hover{text-decoration-thickness:2px}
-a:focus-visible{outline:2px solid var(--link);outline-offset:3px}
-code{
-  font-family:var(--mono);
-  font-size:.82em
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+code { font: .82em var(--mono); overflow-wrap: anywhere; }
+.site-shell { width: min(calc(100% - 52px), var(--width)); margin: 0 auto; padding-bottom: 65px; }
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 20; padding: 8px 12px;
+  transform: translateY(-170%); background: var(--text); color: #fff;
+  font: 12px var(--mono);
 }
-.site-shell{
-  width:min(calc(100% - 34px),var(--max));
-  margin:0 auto;
-  padding-bottom:48px
+.skip-link:focus { transform: none; }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px 20px;
+  border-bottom: 1px solid var(--rule);
+  padding: 26px 0 17px;
+  font: 12px/1.55 var(--mono);
 }
-.skip-link{
-  position:fixed;
-  left:10px;
-  top:10px;
-  z-index:100;
-  transform:translateY(-180%);
-  padding:6px 9px;
-  background:var(--text);
-  color:var(--bg);
-  font-family:var(--mono);
-  font-size:12px
+.site-nav p { display: contents; }
+.site-nav a, .site-nav strong { white-space: nowrap; }
+.site-nav a:first-child { color: var(--text); font-weight: 700; margin-right: auto; text-decoration: none; }
+.site-nav strong { font-weight: 700; }
+.hero { padding: 53px 0 49px; }
+.hero::after { content: ""; display: block; clear: both; }
+.hero-photo {
+  float: right; width: 145px; height: 145px; object-fit: cover;
+  margin: 2px 0 18px 32px; border: 1px solid var(--rule);
 }
-.skip-link:focus{transform:translateY(0)}
-.site-nav{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  gap:6px 14px;
-  margin:0;
-  padding:24px 0 13px;
-  border-bottom:1px solid var(--line);
-  font-family:var(--mono);
-  font-size:11px;
-  line-height:1.5
+.hero-eyebrow {
+  margin: 0 0 17px;
+  font: 11px/1.5 var(--mono);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-.site-nav p{display:contents}
-.site-nav a,.site-nav strong{white-space:nowrap}
-.site-nav a:first-child{
-  margin-right:auto;
-  color:var(--text);
-  font-weight:700;
-  text-decoration:none
+.hero-title h1 {
+  max-width: 740px; margin: 0;
+  font: 700 clamp(32px, 5.4vw, 46px)/1.1 var(--serif);
+  letter-spacing: -.027em;
 }
-.site-nav strong{font-weight:700}
-.hero{
-  padding:38px 0 30px
+.hero-body { max-width: 700px; margin-top: 22px; font-size: 17px; line-height: 1.66; }
+.hero-body p { margin: 0 0 12px; }
+.hero-actions { margin-top: 19px; font: 12px/1.7 var(--mono); }
+.hero-actions p { margin: 0; }
+.section {
+  border-top: 1px solid var(--rule);
+  padding: 32px 0 38px 176px;
+  position: relative;
 }
-.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
-.hero::after{content:"";display:block;clear:both}
-.hero-eyebrow{
-  margin:0 0 12px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10.5px;
-  line-height:1.4;
-  letter-spacing:.06em;
-  text-transform:uppercase
+.section > h2 {
+  position: absolute; left: 0; top: 36px; width: 145px;
+  margin: 0; font: 700 12px/1.45 var(--mono);
+  letter-spacing: .02em; color: var(--text);
 }
-.hero-title h1{
-  max-width:680px;
-  margin:0;
-  font-family:var(--serif);
-  font-size:clamp(30px,5.2vw,42px);
-  font-weight:700;
-  line-height:1.06;
-  letter-spacing:-.025em
+.section > p { max-width: 70ch; margin: 0 0 13px; }
+.section > p:last-child { margin-bottom: 0; }
+.section > ul { margin: 9px 0 15px; padding-left: 19px; }
+.section > ul li { margin: 6px 0; }
+.section > p strong { color: var(--text); }
+.entry {
+  display: grid; grid-template-columns: 102px minmax(0,1fr);
+  gap: 22px; padding: 17px 0 19px;
+  border-top: 1px solid var(--rule);
 }
-.hero-body{
-  max-width:710px;
-  margin-top:18px;
-  font-size:17px
+.section > .entry:first-of-type { border-top: 0; padding-top: 7px; }
+.entry-meta { font: 11px/1.5 var(--mono); color: var(--muted); padding-top: 3px; }
+.entry-meta span { display: block; }
+.entry-meta span + span { margin-top: 5px; }
+.entry-body { min-width: 0; }
+.entry-body h3 { margin: 0 0 6px; font: 700 19px/1.35 var(--serif); letter-spacing: -.012em; }
+.entry-body p { margin: 5px 0 0; max-width: 66ch; }
+.entry-body ul { padding-left: 18px; margin: 9px 0 0; }
+.project .entry-body > p strong {
+  font: 11px/1.6 var(--mono);
+  font-weight: 400; color: var(--muted);
 }
-.hero-body p{margin:0 0 10px}
-.hero-actions{
-  margin-top:16px;
-  font-family:var(--mono);
-  font-size:11.5px
+.project .entry-body > p:last-child { font: 12px/1.7 var(--mono); margin-top: 10px; }
+.case-hero { padding: 68px 0 57px; max-width: 780px; }
+.case-hero .hero-title h1 { font-size: clamp(42px, 6vw, 58px); }
+.case-hero .hero-body { max-width: 660px; font-size: 19px; line-height: 1.55; color: var(--muted); }
+.case-hero .hero-actions { margin-top: 26px; }
+.case-hero ~ .section {
+  max-width: 760px;
+  padding: 29px 0 32px;
 }
-.hero-actions p{margin:0}
-.section{
-  padding:27px 0 31px;
-  border-top:1px solid var(--line)
+.case-hero ~ .section > h2 {
+  position: static; width: auto; margin: 0 0 14px;
+  font: 700 23px/1.28 var(--serif);
+  letter-spacing: -.018em;
 }
-.section>h2{
-  margin:0 0 16px;
-  font-family:var(--mono);
-  font-size:12px;
-  line-height:1.35;
-  font-weight:700;
-  letter-spacing:.065em;
-  text-transform:uppercase
+.case-hero ~ .section p { max-width: 69ch; margin: 0 0 16px; }
+.case-hero ~ .section p:last-child { margin-bottom: 0; }
+.case-hero ~ .section ul { padding-left: 20px; }
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 21px 0 0;
+  color: var(--muted);
+  font: 11px/1.6 var(--mono);
 }
-.section>p{
-  max-width:720px;
-  margin:0 0 12px
-}
-.section>p:last-child{margin-bottom:0}
-#systems>p:nth-of-type(2){
-  margin:17px 0;
-  padding:9px 11px;
-  border:1px solid var(--line);
-  background:var(--paper);
-  overflow-x:auto;
-  white-space:nowrap
-}
-#systems>p:nth-of-type(2) code{
-  color:var(--muted);
-  font-size:11px
-}
-#systems ul{
-  list-style:none;
-  margin:18px 0;
-  padding:0;
-  border-top:1px solid var(--line)
-}
-#systems li{
-  margin:0;
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  font-size:15px
-}
-#systems li strong{
-  display:inline-block;
-  min-width:128px;
-  font-family:var(--mono);
-  font-size:10.5px;
-  letter-spacing:.035em;
-  text-transform:uppercase
-}
-.entry{
-  display:grid;
-  grid-template-columns:var(--meta) minmax(0,1fr);
-  gap:22px;
-  padding:16px 0;
-  border-top:1px dotted var(--line)
-}
-.section>.entry:first-of-type{
-  margin-top:5px;
-  border-top:0
-}
-.entry-meta{
-  padding-top:2px;
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  line-height:1.45
-}
-.entry-meta span{display:block}
-.entry-meta span+span{margin-top:4px}
-.entry-body h3{
-  margin:0 0 5px;
-  font-family:var(--serif);
-  font-size:17px;
-  line-height:1.3
-}
-.entry-body p{margin:6px 0 0}
-.entry-body ul{margin:8px 0 0;padding-left:20px}
-.entry-body a{display:inline}
-.project .entry-body>p:first-of-type{color:var(--text)}
-.project .entry-body>p strong{
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:.02em
-}
-.footer{
-  padding:22px 0 0;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-family:var(--mono);
-  font-size:10px
-}
-.footer p{margin:0}
-@media(max-width:680px){
-  body{font-size:15.5px}
-  .site-shell{width:min(calc(100% - 28px),var(--max))}
-  .site-nav{
-    align-items:flex-start;
-    gap:5px 11px;
-    padding-top:18px
+.footer p { margin: 0; }
+@media (max-width: 750px) {
+  .site-shell { width: min(calc(100% - 34px), var(--width)); }
+  .site-nav { padding: 17px 0 13px; gap: 5px 13px; font-size: 11px; }
+  .site-nav a:first-child { flex-basis: 100%; margin: 0 0 4px; }
+  .hero { padding: 34px 0 30px; }
+  .hero-photo { width: 104px; height: 104px; margin: 0 0 12px 17px; }
+  .hero-title h1 { font-size: clamp(30px, 6vw, 40px); }
+  .hero-body { font-size: 16px; }
+  .section { padding: 23px 0 27px; }
+  .section > h2 {
+    position: static; width: auto; margin: 0 0 15px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
   }
-  .site-nav a:first-child{
-    flex-basis:100%;
-    margin:0 0 3px
-  }
-  .hero{padding:31px 0 25px}
-  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
-  .hero-body{font-size:16px}
-  .entry{
-    grid-template-columns:1fr;
-    gap:5px;
-    padding:14px 0
-  }
-  .entry-meta span{display:inline}
-  .entry-meta span+span:before{content:" · "}
-  #systems>p:nth-of-type(2){white-space:normal}
-  #systems li strong{
-    display:block;
-    min-width:0;
-    margin-bottom:2px
-  }
+  .entry { grid-template-columns: 1fr; gap: 3px; padding: 16px 0; }
+  .entry-meta span { display: inline; }
+  .entry-meta span + span::before { content: " · "; }
+  .entry-meta span + span { margin-top: 0; }
+  .case-hero { padding: 43px 0 37px; }
+  .case-hero .hero-title h1 { font-size: clamp(38px, 9vw, 48px); }
+  .case-hero .hero-body { font-size: 17px; }
+  .case-hero ~ .section > h2 { font-size: 21px; text-transform: none; letter-spacing: -.015em; }
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#11110f;
-    --paper:#171714;
-    --text:#ecece5;
-    --muted:#aaa99e;
-    --line:#3b3b34;
-    --soft:#25251f;
-    --link:#8ab4f8
-  }
+@media (max-width: 390px) {
+  .site-shell { width: calc(100% - 28px); }
+  .hero-photo { width: 88px; height: 88px; }
+  .entry-body h3 { font-size: 18px; }
 }
-@media print{
-  :root{--bg:#fff;--paper:#fff;--text:#000;--muted:#444;--line:#bbb;--link:#000}
-  body{background:#fff;color:#000;font-size:11pt}
-  .site-shell{width:100%;max-width:none;padding:0}
-  .site-nav,.skip-link{display:none}
-  .hero{padding-top:0}
-  a{color:#000}
+@media print {
+  body { color: #000; background: #fff; font-size: 11pt; }
+  .site-shell { width: 100%; max-width: none; padding: 0; }
+  .site-nav, .skip-link { display: none; }
+  .hero { padding-top: 0; }
+  .section { break-inside: auto; }
+  .entry { break-inside: avoid; }
+  a { color: #000; }
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
   <link rel="canonical" href="https://me.christiansoftware.org/projects/en/velis/">
   <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/projects/en/velis/">
@@ -282,39 +193,26 @@ code{
 </head>
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
-  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">Projects</a>
-<a href="/projects/pt/velis/">Português</a> · <strong>EN</strong></p></nav>
+  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">Christian Rafael</a>
+<a href="/en/#projects">Projects</a>
+<a href="/en/#products">Products</a>
+<a href="/projects/pt/velis/">Português</a></p></nav>
 
-<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Velis — Local-First Collaboration Architecture</h1></div><div class="hero-body"><p>Offline-capable workspaces and multi-device information consistency.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/velis/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Collaboration / local-first" class="hero case-hero"><p class="hero-eyebrow">Collaboration / local-first</p><div class="hero-title"><h1>Velis</h1></div><div class="hero-body"><p>A collaborative workspace designed around documents that remain editable when the network is unavailable.</p></div><div class="hero-actions"><p><a href="https://velis.vu/">Product website</a> · <a href="/en/#products">All products</a></p></div></header>
 
-<section id="architecture" class="section"><h2>Architecture overview</h2>
-<p>Velis is a workspace for documents, tasks, structured notes and collaboration. Its architectural center is the local-first model: users can create and manipulate information locally while synchronization coordinates changes across connected clients.</p>
-<ul>
-<li><strong>Client experience:</strong> editing, navigation and workspace interactions.</li>
-<li><strong>Local data layer:</strong> durable device-side state and pending changes.</li>
-<li><strong>Synchronization layer:</strong> orderly exchange of local updates and server changes.</li>
-<li><strong>Application services:</strong> collaboration permissions, workspace operations and integrations.</li>
-<li><strong>Shared persistence and events:</strong> authoritative service-side state and collaboration notifications.</li>
-</ul>
-<p>Local persistence and real-time updates have complementary responsibilities rather than being interchangeable.</p></section>
+<section id="topic-1" class="section"><h2>Local state</h2>
+<p>In an offline-capable editor, the first durable copy of a change cannot depend on a successful request to the server. Velis maintains local workspace state and retains pending changes for later exchange with the shared service.</p>
+<p>This changes the application model: loading a document, modifying it and synchronizing it are distinct operations. The user can continue editing during a temporary disconnection without treating the network as the only place where work exists.</p></section>
 
-<section id="engineering" class="section"><h2>Engineering decisions</h2>
-<p>A local-first architecture improves continuity when connectivity is unstable. Synchronization must account for retries, duplicate deliveries and conflicting edits. The editing layer uses operation-oriented concepts and keeps document manipulation separate from transport concerns.</p>
-<p>The service architecture also distinguishes workspace membership from actions on particular resources. Only these conceptual boundaries are published; internal permission policies and synchronization mechanics remain private.</p></section>
+<section id="topic-2" class="section"><h2>Synchronization</h2>
+<p>Reconnecting creates two separate problems: repeated delivery and concurrent edits. The synchronization path therefore has to recognize changes already handled and make conflicts explicit. Collaboration on structured content also requires rules for the order in which operations become visible.</p>
+<p>Rather than moving entire documents after each keystroke, the editor works with smaller editing operations. That increases flexibility, but the behavior under simultaneous structural edits is harder to establish than single-user editing.</p></section>
 
-<section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
-<p>A server-first design reduces local-state complexity but depends more heavily on consistent connectivity. Whole-document replacement is simpler to implement, yet more prone to overwrite conflicts. Operation-based collaboration can support finer-grained updates, but it requires carefully defined convergence properties and a clear user experience when edits conflict.</p>
-<p>An established collaboration framework can reduce implementation risk but may constrain storage and editor contracts. These are relevant alternatives, not a reconstructed history of project decisions.</p></section>
+<section id="topic-3" class="section"><h2>Engineering boundary</h2>
+<p>The application separates local persistence, editing behavior, synchronization and workspace permissions. Real-time notifications complement synchronization; they are not a substitute for the durable exchange of changes.</p>
+<p>Tests exist for selected offline synchronization, conflict and concurrent-operation scenarios. The remaining question for any local-first product is convergence under sustained, adversarial editing across devices, not whether a connected editor can save a page.</p></section>
 
-<section id="verification" class="section"><h2>Quality strategy and evidence</h2>
-<p>The private repository contains tests covering portions of synchronization behavior, conflict cases and convergence of concurrent editing operations. Those source tests were inspected, not re-run for this public documentation.</p>
-<p>Further validation should combine randomized concurrent edit sequences, offline/online transition tests, multi-browser scenarios, schema evolution and data-loss checks. No specific synchronization latency, consistency guarantee across all features or production uptime is claimed here.</p></section>
-
-<section id="constraints" class="section"><h2>Constraints and roadmap</h2>
-<p>Device storage capacity, stale data, large documents, long offline periods and simultaneous edits are important engineering constraints. The next architectural challenge is maintaining predictable behavior while expanding collaboration features and workload scale. Internal implementation details and specific operational weaknesses are excluded from this public summary.</p></section>
-
-<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p><a href="/en/">Christian Rafael</a> · <a href="/en/#products">All products</a> · <a href="/projects/pt/velis/">Português</a></p></footer>
 </main></div>
   
 </body>

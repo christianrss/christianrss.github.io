@@ -1,0 +1,68 @@
+---
+title: Chris Cleaner — Indexação Nativa de Sistemas de Arquivos — Estudo Técnico
+description: Documentação técnica de Chris Cleaner — Indexação Nativa de Sistemas de Arquivos; arquitetura, alternativas, testes e limitações.
+lang: pt-BR
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfólio](/pt/)
+[Todos os produtos](/pt/#products)
+[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[English](/projects/en/chris-cleaner/) · **PT**
+:::
+
+::: hero home eyebrow="Desktop · internals do Windows"
+
+--- title
+# Chris Cleaner — Indexação Nativa de Sistemas de Arquivos
+
+--- body
+Utilitário .NET/Avalonia de análise, catalogação e limpeza de discos, com acesso nativo ao Windows e serviço opcional de indexação. O site Christian Software é sua camada comercial separada.
+
+--- actions
+[Voltar aos projetos](/pt/#products) · [English](/projects/en/chris-cleaner/)
+
+:::
+
+::: section architecture
+## Escopo e arquitetura
+
+O aplicativo desktop usa .NET 8 e Avalonia. O scanner cataloga metadados em canais concorrentes limitados, enquanto armazenamento de índice, checkpoints e view-models materializam o estado. Adaptações Windows utilizam enumeração nativa, monitoramento do NTFS USN Journal e APIs de memória virtual. O serviço Windows opcional mantém o índice atualizado sem a interface aberta.
+
+O repositório `christian-software-web` implementa um site React/Vite multilíngue de distribuição, apresentação e licenciamento; não é o mecanismo de varredura de arquivos.
+:::
+
+::: section implementation
+## Decisões de implementação
+
+O scanner define capacidades de 8.192 arquivos e 2.048 diretórios, com bloqueio quando os canais estão cheios: mecanismo explícito de backpressure. Ignora reparse points para reduzir ciclos acidentais. Checkpoints são serializados em AppData. O monitor do USN Journal identifica reinícios do journal e retrocessos de sequência; o README também descreve índice binário compacto e LiteDB para estado local.
+:::
+
+::: section alternatives
+## Alternativas e compensações
+
+Percorrer diretórios recursivamente é mais simples, porém pode custar mais tempo e memória. APIs específicas de NTFS podem acelerar indexação, com custo de privilégios e fallback em outros filesystems. SQLite substituiria LiteDB/índice customizado com uma camada SQL mais conhecida, mas exigiria outra modelagem. WPF seria específico do Windows; Avalonia preserva a possibilidade de interface em Linux.
+:::
+
+::: section testing
+## Evidências de testes
+
+A inspeção confirmou implementações em `FileScannerService.cs`, `CatalogScanCheckpointService.cs`, `WindowsUsnJournalMonitorService.cs` e serviços Windows. Não identifiquei suíte dedicada de testes automatizados nem benchmarks reprodutíveis na árvore do repositório. O README documenta compilação, publicação e instalador. A existência do código não demonstra ganhos de velocidade ou segurança absoluta.
+:::
+
+::: section limitations
+## Limites e validação
+
+A limpeza é potencialmente destrutiva: exigir testes de caminhos protegidos, junctions e symlinks, condições TOCTOU, arquivos bloqueados, permissões e recuperação. Usar volumes descartáveis com milhões de entradas para medir tempo, memória, restauração de checkpoints e consistência do índice. Otimizações NTFS devem degradar com segurança em Linux ou filesystems não suportados. Comparar configurações e registrar ambiente antes de publicar indicadores.
+:::
+
+::: section evidence
+## Arquivos examinados
+
+`ChrisCleaner/Services/FileScannerService.cs`; `ChrisCleaner/Services/WindowsNativeDirectoryEnumeratorService.cs`; `ChrisCleaner/Services/WindowsUsnJournalMonitorService.cs`; `ChrisCleaner/Services/CatalogScanCheckpointService.cs`; `ChrisCleaner/Services/WindowsCatalogIndexHostedService.cs`; `ChrisCleaner/README.md`; `christian-software-web/src/lib/seo.ts`.
+:::
+
+::: footer
+Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+:::

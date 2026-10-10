@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Velis — Offline-First Collaboration Architecture — Engineering Case Study</title>
-    <meta name="description" content="Technical case study of Velis — Offline-First Collaboration Architecture; architecture, trade-offs, test evidence and limitations.">
+  <title>Velis — Local-First Collaboration Architecture</title>
+    <meta name="description" content="Offline-capable workspaces and multi-device information consistency.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,32 +283,38 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">All products</a>
-<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/en/#products">Projects</a>
 <a href="/projects/pt/velis/">Português</a> · <strong>EN</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Local-first applications" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Local-first applications</p><div class="hero-title"><h1>Velis — Offline-First Collaboration Architecture</h1></div><div class="hero-body"><p>A workspace for structured documents, boards, tasks and communication built around local persistence and asynchronous synchronization.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/velis/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Velis — Local-First Collaboration Architecture</h1></div><div class="hero-body"><p>Offline-capable workspaces and multi-device information consistency.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/velis/">Português</a></p></div></header>
 
-<section id="architecture" class="section"><h2>System boundary and architecture</h2>
-<p>A TypeScript monorepo hosts a Next.js application, a NestJS API and shared contracts, backed by PostgreSQL/Prisma, Redis and browser IndexedDB. The product has editing, workspace governance, file handling, chat and billing subsystems. The offline sync path is distinct from the real-time notification path.</p>
-<p><strong>Data flow:</strong> user edit → local IndexedDB mutation queue → coalescing and size-constrained batches → API push → per-mutation acceptance/conflict record → server event cursor → pull and local projection. The application also uses WebSockets for near-real-time updates. Local edits must be durable before the network is available.</p></section>
+<section id="architecture" class="section"><h2>Architecture overview</h2>
+<p>Velis is a workspace for documents, tasks, structured notes and collaboration. Its architectural center is the local-first model: users can create and manipulate information locally while synchronization coordinates changes across connected clients.</p>
+<ul>
+<li><strong>Client experience:</strong> editing, navigation and workspace interactions.</li>
+<li><strong>Local data layer:</strong> durable device-side state and pending changes.</li>
+<li><strong>Synchronization layer:</strong> orderly exchange of local updates and server changes.</li>
+<li><strong>Application services:</strong> collaboration permissions, workspace operations and integrations.</li>
+<li><strong>Shared persistence and events:</strong> authoritative service-side state and collaboration notifications.</li>
+</ul>
+<p>Local persistence and real-time updates have complementary responsibilities rather than being interchangeable.</p></section>
 
-<section id="implementation" class="section"><h2>Implementation choices</h2>
-<p>The client sync engine batches at most 80 mutations and a roughly 450 kB serialized payload per batch, retries transient statuses and keeps explicit conflict states. The API unit tests show processed-mutation idempotency and conflict outcomes. A document editor includes an operation log, a command bus and a kernel that orders operations by logical clock and dependencies. Tests simulate three concurrent replicas and random operation ordering. Access policies distinguish workspace membership and page-level actions.</p></section>
+<section id="engineering" class="section"><h2>Engineering decisions</h2>
+<p>A local-first architecture improves continuity when connectivity is unstable. Synchronization must account for retries, duplicate deliveries and conflicting edits. The editing layer uses operation-oriented concepts and keeps document manipulation separate from transport concerns.</p>
+<p>The service architecture also distinguishes workspace membership from actions on particular resources. Only these conceptual boundaries are published; internal permission policies and synchronization mechanics remain private.</p></section>
 
 <section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
-<p>Alternatives for the synchronization layer include periodic full-document replacement (simpler, more conflicting writes), event-sourced append logs (strong audit trail with compaction needs), and external CRDT frameworks such as Yjs (mature collaborative primitives but different editor/data contracts). The repository contains an operation-based convergence kernel; it must not be described as proof that every document feature is fully conflict-free. Redis pub/sub improves event distribution but introduces operational dependency.</p></section>
+<p>A server-first design reduces local-state complexity but depends more heavily on consistent connectivity. Whole-document replacement is simpler to implement, yet more prone to overwrite conflicts. Operation-based collaboration can support finer-grained updates, but it requires carefully defined convergence properties and a clear user experience when edits conflict.</p>
+<p>An established collaboration framework can reduce implementation risk but may constrain storage and editor contracts. These are relevant alternatives, not a reconstructed history of project decisions.</p></section>
 
-<section id="testing" class="section"><h2>Evidence of tests</h2>
-<p><code>apps/web/src/lib/sync-engine.test.ts</code> uses fake IndexedDB to test retries, pulls and client-to-client updates. <code>apps/web/src/components/editor/core/crdt-kernel.test.ts</code> checks convergence with three replicas and randomized command streams. <code>apps/api/src/sync/sync.service.test.ts</code> checks idempotency and conflicts. Other tests cover auth, billing and selected canvas/drive features. This is source-level test evidence, not a fresh test run or published coverage metric.</p></section>
+<section id="verification" class="section"><h2>Quality strategy and evidence</h2>
+<p>The private repository contains tests covering portions of synchronization behavior, conflict cases and convergence of concurrent editing operations. Those source tests were inspected, not re-run for this public documentation.</p>
+<p>Further validation should combine randomized concurrent edit sequences, offline/online transition tests, multi-browser scenarios, schema evolution and data-loss checks. No specific synchronization latency, consistency guarantee across all features or production uptime is claimed here.</p></section>
 
-<section id="limitations" class="section"><h2>Known limits and next validation</h2>
-<p>The README notes that a simple strict last-write-wins strategy should evolve when collaboration density increases. Potential weak spots include concurrent structural edits, schema migrations while offline, IndexedDB quotas, replay ordering after reconnect, conflict UX and authorization changes during disconnection. Measure p95 synchronization latency, multi-device convergence under partitions, request duplication, data loss and editor correctness under randomized operations; publish artifacts and CI logs before claiming reliability.</p></section>
+<section id="constraints" class="section"><h2>Constraints and roadmap</h2>
+<p>Device storage capacity, stale data, large documents, long offline periods and simultaneous edits are important engineering constraints. The next architectural challenge is maintaining predictable behavior while expanding collaboration features and workload scale. Internal implementation details and specific operational weaknesses are excluded from this public summary.</p></section>
 
-<section id="evidence" class="section"><h2>Source inventory</h2>
-<p><code>apps/web/src/lib/sync-engine.ts</code>; <code>apps/web/src/components/editor/core/crdt-kernel.ts</code>; <code>apps/web/src/components/editor/core/command-bus.ts</code>; <code>apps/api/src/sync/sync.service.ts</code>; <code>apps/api/src/common/access-policy.service.ts</code>; relevant <code>*.test.ts</code> files and <code>README.md</code>.</p></section>
-
-<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
 </main></div>
   
 </body>

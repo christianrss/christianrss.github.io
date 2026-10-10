@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Kaduo — Real-Time Media and Social Commerce — Engineering Case Study</title>
-    <meta name="description" content="Technical case study of Kaduo — Real-Time Media and Social Commerce; architecture, trade-offs, test evidence and limitations.">
+  <title>Kaduo — Real-Time Media and Social Commerce</title>
+    <meta name="description" content="Browser video production, live media delivery and commerce-aware interactions.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,62 +283,44 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">All products</a>
-<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/en/#products">Projects</a>
 <a href="/projects/pt/kaduo/">Português</a> · <strong>EN</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="Real-time media · social commerce" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Real-time media · social commerce</p><div class="hero-title"><h1>Kaduo — Real-Time Media and Social Commerce</h1></div><div class="hero-body"><p>A commerce system whose distinctive engineering work is the browser-based live production studio, authenticated WebRTC ingest, media relay and commerce-aware video composition. This case study records what the code establishes, what it does not, and how to validate it.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/kaduo/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Kaduo — Real-Time Media and Social Commerce</h1></div><div class="hero-body"><p>Browser video production, live media delivery and commerce-aware interactions.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/kaduo/">Português</a></p></div></header>
 
-<section id="architecture" class="section"><h2>System boundary and architecture</h2>
-<p>The platform comprises a React/Vite client, a NestJS application API, PostgreSQL for transactional data, Redis for supporting services, ClickHouse for analytics, a separate Node media bridge, OvenMediaEngine (OME), and external video services. Docker Compose defines these components but does not itself prove production availability.</p>
+<section id="architecture" class="section"><h2>Architecture overview</h2>
+<p>Kaduo brings social commerce, video publishing and live shopping into one product, while treating media delivery and business transactions as distinct domains. The public description follows logical responsibilities rather than exposing infrastructure topology.</p>
 <ul>
-<li><strong>Live publishing path:</strong> device camera/microphone → browser Canvas compositing → <code>canvas.captureStream()</code> with original audio tracks → <code>RTCPeerConnection</code> offer → authenticated WHIP endpoint in the Node bridge → OvenMediaEngine WebRTC ingest → OME RTMP push → Mux ingest → playback.</li>
-<li><strong>Control plane:</strong> NestJS manages live sessions, stream ownership, status transitions, temporary publish tokens and encrypted stream keys. Socket.IO delivers studio status and telemetry events.</li>
-<li><strong>Recorded media:</strong> browser MediaRecorder captures videos; tus uploads use 5 MiB chunks and retries. Bunny integration handles managed video uploads, playback and webhooks.</li>
-<li><strong>Commerce plane:</strong> catalog, stores, carts, coupons, chat, live products, seller analytics and shopping-agent actions remain in application services rather than in the raw video transport.</li>
-</ul></section>
-
-<section id="implementation" class="section"><h2>Live compositor and studio</h2>
-<p>The device-camera studio renders a source-video frame into a 2D Canvas and applies ordered visual layers: text, images, ambient effects, product/coupon overlays, live chat, view counters and coupon effects. The canvas track and unmodified source audio tracks form the outgoing stream. Canvas composition means the effects are present in the transmitted pixels, not only as browser-side display elements.</p>
-<p>The studio code also contains aspect-ratio and quality controls, device switching, scene presets, layout history and drag interactions, network statistics and WebSocket-mediated studio telemetry. The embedded-text feature is controlled by build/runtime flags; the repository documents verification in the <code>device_camera</code> workflow, not external-encoder mode. The large studio component contains roughly 11,000 lines; this creates a concrete maintainability and testability risk.</p></section>
-
-<section id="alternatives" class="section"><h2>Engineering decisions visible in source</h2>
-<ul>
-<li><strong>Browser compositing rather than a server-side renderer:</strong> avoids a separate real-time graphics renderer for device broadcasts and keeps the editing experience near the capture source; the trade-off is device CPU/GPU and browser compatibility.</li>
-<li><strong>WHIP/WebRTC ingress with OME-to-Mux push:</strong> separates low-latency browser publishing from managed playback and distribution. The bridge holds ephemeral sessions in a process-local map.</li>
-<li><strong>Short-lived publication credentials:</strong> the backend generates a random token, stores its hash and associates it with an expiring studio session; the bridge compares hashes with timing-safe comparison.</li>
-<li><strong>Decoupled recording/upload path:</strong> MediaRecorder and tus address short-form media separately from live ingest.</li>
-<li><strong>Structured domain/application/infrastructure layers:</strong> helps isolate commerce semantics from streaming transport. The separation is visible in module paths; its complete enforcement was not independently audited.</li>
-</ul></section>
-
-<section id="testing" class="section"><h2>Alternatives and trade-offs</h2>
-<p>The following are engineering comparisons, <strong>not documented historical choices</strong> of the author.</p>
-<ul>
-<li>Server-side FFmpeg/GStreamer mixing could improve rendering consistency and multi-camera control, but requires transcoding infrastructure and more operational work.</li>
-<li>Direct RTMP via OBS handles external encoders and advanced production; a camera-native web studio reduces friction on phones. The application exposes both transmission modes.</li>
-<li>Managed ingest end-to-end (without OME) could reduce self-hosted infrastructure, but would change the browser publication path and provider coupling.</li>
-<li>A dedicated media control database/Redis store could preserve ephemeral sessions across bridge restarts, unlike the present in-memory map.</li>
-</ul></section>
-
-<section id="limitations" class="section"><h2>Evidence of tests and reproducibility</h2>
-<p><strong>Source-level evidence (tests were inspected, not executed here):</strong></p>
-<ul>
-<li><code>backend/test/streaming.controller.spec.ts</code> — forwarding of signed Mux/Bunny webhook raw bodies and rejection when raw bodies are missing.</li>
-<li><code>backend/test/manage-live-stream-webhooks.spec.ts</code> — malformed payloads and invalid webhook signatures.</li>
-<li><code>backend/test/ads-delivery-event.utils.spec.ts</code> and <code>backend/test/analytics-events.spec.ts</code> — analytics-related unit coverage.</li>
-<li><code>docs/live-embedded-text.md</code> — manual smoke-test procedure confirming embedded text in the <em>published</em> stream.</li>
-<li><code>docker-compose.yml</code> and <code>media-server/oven/Server.xml</code> — deployment topology and codec/profile configuration (H.264, AAC).</li>
+<li><strong>Creator experience:</strong> device capture, video preview, live visual composition and production controls.</li>
+<li><strong>Media workflow:</strong> media publishing, ingestion, processing or forwarding, delivery and playback.</li>
+<li><strong>Commerce workflow:</strong> sellers, catalogs, featured products, transactions and customer interactions.</li>
+<li><strong>Real-time experience:</strong> live conversation, audience-facing events and status updates.</li>
+<li><strong>Data and operations:</strong> product state, creator settings, event analysis and operational observability.</li>
 </ul>
-<p>Run backend tests using the repository's <code>test:unit</code> script after provisioning dependencies. For true streaming verification, add a controlled browser/device matrix and an isolated OME + Mux staging environment; record timestamps, jitter, failures, CPU and end-to-end latency.</p></section>
+<p>These domains are connected by application interfaces, but video transport is conceptually independent from the order lifecycle.</p></section>
 
-<section id="evidence" class="section"><h2>Limits, risks and next measurements</h2>
-<p>Not yet established by the inspected evidence: actual audience concurrency, p95 glass-to-glass latency, encoder CPU under overlays, transcoding cost, uptime or auto-recovery across service restarts. OME uses a <code>latest</code> container tag; pinned artifacts are preferable. The bridge's session state is in memory, so restart behavior and horizontal scaling need deliberate design. The Canvas path should have frame-budget and memory profiling, especially on low-end phones. Browser-dependent camera permissions/codec support require a compatibility matrix.</p>
-<p><strong>Prioritized validation:</strong> automated unit tests for compositor pure functions; browser integration tests of scene changes and capture; WHIP renegotiation and reconnect tests; signature/expiry and token-reuse abuse cases; soak test at 30/60 FPS; 1/10/100 concurrent publishing sessions; CDN playback measurements; production-safe telemetry dashboards. None of these benchmark targets is claimed to have been met.</p></section>
+<section id="engineering" class="section"><h2>Real-time video and production studio</h2>
+<p>The production studio supports camera and microphone capture and live composition. Visual elements such as titles, images, product information, promotional graphics and audience interactions can be arranged while the creator is broadcasting. Rendering occurs in the media-production workflow so that supported visual elements become part of the outgoing video rather than only the creator's preview.</p>
+<p>The broader platform includes recording and publishing shorter videos, live sessions, playback experiences and controls for broadcast quality. Protocol-based media transport such as WebRTC supports interactive publication. Specific network routes, provider configurations, credentials, deployment topology and operational parameters are intentionally not published.</p></section>
 
-<section id="detail-6" class="section"><h2>Source inventory</h2>
-<p><code>frontend/src/pages/DeviceLiveStudio.tsx</code>; <code>frontend/src/features/creator/useVideoRecorder.ts</code>; <code>frontend/src/features/creator/uploadVideoTus.ts</code>; <code>media-server/src/server.js</code>; <code>media-server/oven/Server.xml</code>; <code>backend/src/application/use-cases/streaming/manage-live-stream.use-case.ts</code>; <code>backend/src/infrastructure/services/live-media-bridge.service.ts</code>; <code>backend/src/infrastructure/services/mux-live.service.ts</code>; <code>backend/src/infrastructure/services/bunny-stream.service.ts</code>; <code>backend/src/interfaces/websocket/live-studio.gateway.ts</code>. The repository is private; file paths serve as reviewable evidence for authorized reviewers.</p></section>
+<section id="alternatives" class="section"><h2>Design choices and trade-offs</h2>
+<p><strong>Client-side composition:</strong> reduces the need for a dedicated server-side graphics renderer for each creator session, but requires careful performance and browser-compatibility engineering.</p>
+<p><strong>Separate media and commerce responsibilities:</strong> live video can evolve independently from catalog and checkout rules. The cost is coordinating state that viewers see with the media timeline.</p>
+<p><strong>Dedicated real-time interaction channel:</strong> audience events and studio controls should not rely on the bandwidth and lifecycle of the video stream alone.</p>
+<p><strong>Protocol-oriented integrations:</strong> open media standards improve interoperability, while external services introduce platform and operational dependencies.</p></section>
 
-<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+<section id="verification" class="section"><h2>Alternative architectures</h2>
+<p>A server-side compositor could provide more controlled rendering and advanced production workflows, at the cost of computational capacity and increased operations. A fully managed broadcast stack would simplify infrastructure ownership but reduce control over the authoring experience. An external-encoder-only approach would suit professional studios while excluding some creators who prefer broadcasting directly from a phone or browser. These are architectural comparisons, not claims about the project's development history.</p></section>
+
+<section id="constraints" class="section"><h2>Quality strategy and evidence</h2>
+<p>The private codebase includes unit tests around portions of media lifecycle handling and event processing. Their existence was reviewed, but the complete product test suites, throughput and end-to-end broadcast reliability were not independently executed or measured for this public case study.</p>
+<p>A sound validation program covers capture permissions, supported browsers and devices, composition correctness, playback, network interruptions, recording and upload recovery, cross-device interaction and accessibility. Published measurements should include test methodology, hardware and network conditions; this page intentionally does not claim specific latency, uptime or audience capacity.</p></section>
+
+<section id="more" class="section"><h2>Boundaries and maturity</h2>
+<p>Media quality depends on capture hardware, browser capabilities and network conditions. Interactive graphics create a trade-off between visual richness and smooth frames. Distribution, storage and business operations have different scaling characteristics, so each requires independent capacity planning.</p>
+<p>The architecture described here is a technical overview. It is not a public audit of internal controls, dependencies, security posture or production service levels.</p></section>
+
+<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
 </main></div>
   
 </body>

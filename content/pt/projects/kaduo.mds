@@ -1,24 +1,23 @@
 ---
-title: Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social — Estudo Técnico
-description: Documentação técnica de Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social; arquitetura, alternativas, testes e limitações.
+title: Kaduo — Engenharia de Mídia em Tempo Real e Comércio Social
+description: Produção de vídeo no navegador, distribuição de lives e interações comerciais em tempo real.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfólio](/pt/)
-[Todos os produtos](/pt/#products)
-[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[Projetos](/pt/#products)
 [English](/projects/en/kaduo/) · **PT**
 :::
 
-::: hero home eyebrow="Mídia em tempo real · comércio social"
+::: hero home eyebrow="Arquitetura pública"
 
 --- title
-# Kaduo — Engenharia de Vídeo em Tempo Real e Comércio Social
+# Kaduo — Engenharia de Mídia em Tempo Real e Comércio Social
 
 --- body
-A Kaduo combina comércio social e uma infraestrutura própria de produção de lives no navegador, controle de sessões, ingestão WebRTC e distribuição de vídeo. Este estudo distingue código existente, decisões de implementação, alternativas, evidências e pontos ainda não validados.
+Produção de vídeo no navegador, distribuição de lives e interações comerciais em tempo real.
 
 --- actions
 [Voltar aos projetos](/pt/#products) · [English](/projects/en/kaduo/)
@@ -26,73 +25,61 @@ A Kaduo combina comércio social e uma infraestrutura própria de produção de 
 :::
 
 ::: section architecture
-## Escopo e arquitetura
+## Visão geral da arquitetura
 
-A aplicação reúne frontend React/Vite, API NestJS, PostgreSQL transacional, Redis, ClickHouse analítico, um media bridge em Node, OvenMediaEngine e provedores externos de vídeo. O `docker-compose.yml` define os serviços e sua conectividade; não constitui prova isolada de disponibilidade em produção.
+A Kaduo reúne comércio social, publicação de vídeos e vendas em transmissões ao vivo, mantendo responsabilidades de mídia e transações comerciais conceitualmente separadas. A descrição pública enfatiza as camadas lógicas, sem revelar topologia ou detalhes de infraestrutura.
 
-- **Transmissão ao vivo:** câmera e microfone → renderização em Canvas com efeitos → `canvas.captureStream()` + trilhas de áudio originais → oferta `RTCPeerConnection`/WHIP → media bridge autenticado → ingestão WebRTC no OvenMediaEngine → encaminhamento RTMP → Mux → reprodução.
-- **Plano de controle:** NestJS verifica proprietário, estados, sessões de estúdio, expiração de tokens e chaves de transmissão; Socket.IO distribui eventos, estados e telemetria.
-- **Gravações:** MediaRecorder para vídeos curtos e uploads retomáveis em partes de 5 MiB usando tus, com tentativas de recuperação; Bunny Stream para fluxos gerenciados de vídeo e webhooks.
-- **Comércio:** catálogo, lojas, carrinhos, cupons, chat e analytics de lojistas permanecem em serviços do domínio comercial, separados do tráfego bruto de vídeo.
+- **Experiência do criador:** captura de dispositivos, prévia, composição visual ao vivo e controles de produção.
+- **Fluxo de mídia:** publicação, ingestão, processamento ou encaminhamento, distribuição e reprodução.
+- **Fluxo comercial:** vendedores, catálogos, produtos em destaque, transações e relacionamento.
+- **Interação em tempo real:** conversas e eventos de audiência, além de atualizações de estado.
+- **Dados e operação:** estado dos produtos, configurações do estúdio, análise de eventos e observabilidade.
+
+Esses domínios se integram por interfaces da aplicação, mas o transporte de vídeo possui requisitos diferentes do processamento de pedidos.
 :::
 
-::: section implementation
-## Compositor visual e Live Studio
+::: section engineering
+## Vídeo em tempo real e estúdio de produção
 
-O componente `DeviceLiveStudio.tsx` captura frames de uma fonte de vídeo e aplica camadas em uma ordem de desenho: base de vídeo, efeitos de imagem, textos configuráveis, overlays de imagem, efeitos de cena, produtos e cupons, mensagens do chat, contadores de audiência e animações. A trilha de vídeo composta sai do Canvas e é anexada ao fluxo de áudio original. Portanto, os elementos são **embutidos nos pixels transmitidos** e não apenas renderizados na interface do público.
+O estúdio permite capturar câmera e microfone e compor uma transmissão durante sua execução. Textos, imagens, informações de produtos, elementos promocionais e interações com a audiência podem integrar a composição do vídeo. Nas funcionalidades suportadas, a composição visual participa do fluxo de mídia enviado ao público; não se limita à prévia do transmissor.
 
-O estúdio possui perfis de resolução/FPS, troca de dispositivos, presets de cenas, reposicionamento visual, histórico de arraste, efeitos e métricas de conexão. Há funcionalidades condicionadas por flags, incluindo textos embutidos, documentadas para o modo `device_camera`; não há evidência equivalente para o modo de encoder externo. O arquivo principal do estúdio ultrapassa 11 mil linhas, criando risco concreto de acoplamento e dificuldades de teste.
+A plataforma contempla também gravação e publicação de vídeos curtos, sessões ao vivo, experiências de reprodução e controles de qualidade. Padrões de comunicação de mídia, como WebRTC, favorecem a publicação interativa. Endereços de serviços, configurações de provedores, credenciais, topologia de implantação e parâmetros operacionais não são divulgados.
 :::
 
 ::: section alternatives
-## Decisões de engenharia observáveis
+## Decisões e compromissos técnicos
 
-- **Composição em Canvas no cliente:** dispensa um compositor gráfico adicional no servidor para transmissões por câmera e permite resposta imediata durante a edição. Em contrapartida, a capacidade do dispositivo e do navegador afeta FPS, consumo e estabilidade.
-- **WHIP/WebRTC no ingresso e RTMP para distribuição:** separa a publicação pelo navegador do serviço gerenciado de reprodução e distribuição.
-- **Autorização temporária:** o backend cria token aleatório, grava hash e tempo de validade; o bridge verifica o token com comparação em tempo constante.
-- **Rotas de mídia distintas:** transmissão ao vivo, gravação MediaRecorder e uploads via tus/Bunny resolvem necessidades diferentes.
-- **Backend em camadas:** o código possui entidades, casos de uso, repositórios e infraestrutura separados. O grau de isolamento arquitetural ainda precisa ser verificado por testes e dependências automatizadas.
+**Composição no cliente:** permite edição visual responsiva sem exigir um renderizador gráfico exclusivo no servidor para cada produtor, mas depende do desempenho do dispositivo e da compatibilidade do navegador.
+
+**Separação entre mídia e comércio:** transmissão, catálogo e checkout podem evoluir com responsabilidades distintas; em contrapartida, o estado comercial apresentado ao público deve ser coordenado com a experiência de vídeo.
+
+**Canal dedicado à interação:** mensagens, eventos e controles de estúdio possuem necessidades diferentes das trilhas de áudio e vídeo.
+
+**Integrações orientadas por padrões:** protocolos amplamente adotados favorecem interoperabilidade; serviços externos introduzem dependências técnicas e operacionais.
 :::
 
-::: section testing
-## Alternativas e compensações
+::: section verification
+## Arquiteturas alternativas
 
-São comparações técnicas, **não decisões históricas comprovadas** do desenvolvimento:
-
-- Compositor em FFmpeg/GStreamer no servidor: maior uniformidade de renderização e controle multicâmera, em troca de custo de transcodificação e manutenção.
-- OBS/RTMP: adequado a encoders externos e operação profissional; o estúdio WebRTC reduz a barreira para uso em dispositivos móveis. O código oferece os dois modos.
-- Ingestão totalmente gerenciada sem OvenMediaEngine: reduz infraestrutura própria, mas aumenta acoplamento ao provedor e altera o caminho de publicação.
-- Armazenar sessões do media bridge em Redis/SQL: permitiria recuperação e múltiplas instâncias; atualmente elas são mantidas em um `Map` no processo.
+Um compositor no servidor ofereceria renderização mais uniforme e possibilidades profissionais avançadas, mas demandaria capacidade computacional e operação adicional. Uma infraestrutura totalmente gerenciada reduziria o esforço operacional, ao custo de menor controle sobre o estúdio. Uma solução baseada apenas em encoders externos facilitaria produção profissional, porém dificultaria a entrada de criadores que transmitem pelo navegador ou celular. São comparações arquiteturais, não afirmações sobre decisões históricas do projeto.
 :::
 
-::: section limitations
-## Evidências de testes e reprodução
+::: section constraints
+## Qualidade e evidências disponíveis
 
-**Evidências identificadas no repositório; não executei as suítes neste levantamento:**
+O código privado contém testes unitários em partes do tratamento do ciclo de vida das mídias e do processamento de eventos. A existência desses testes foi verificada, mas a suíte completa, a capacidade simultânea e a confiabilidade de transmissões ponta a ponta não foram executadas ou medidas nesta documentação pública.
 
-- `backend/test/streaming.controller.spec.ts`: encaminhamento de corpo bruto de webhooks e rejeição quando indisponível.
-- `backend/test/manage-live-stream-webhooks.spec.ts`: casos de assinatura inválida e payload malformado de Mux/Bunny.
-- `backend/test/analytics-events.spec.ts`: cobertura pontual de eventos analíticos.
-- `docs/live-embedded-text.md`: roteiro manual para observar texto embutido no vídeo publicado, não apenas na prévia.
-- `media-server/oven/Server.xml`: perfil H.264/AAC; `docker-compose.yml`: topologia para reproduzir localmente.
-
-Para reproduzir: provisionar variáveis não secretas, PostgreSQL/Redis/ClickHouse, bridge/OME e credenciais de homologação, subir o Compose, rodar `npm run test:unit` no backend e executar uma live `device_camera` até a reprodução pública. Registrar logs, FPS, RTT, jitter, perda de pacotes, CPU e latência ponta a ponta. O roteiro é proposto, não afirma que esses indicadores já foram medidos.
+A estratégia adequada envolve testar permissões de captura, diferentes navegadores e dispositivos, fidelidade da composição visual, reprodução, interrupções de rede, recuperação de gravações e uploads, interação entre clientes e acessibilidade. Qualquer métrica publicada deverá informar metodologia, hardware e condições de rede. Esta página não atribui latência, disponibilidade ou capacidade de audiência sem evidência.
 :::
 
-::: section evidence
-## Limitações, riscos e próximos testes
+::: section more
+## Limites e maturidade
 
-Não foram comprovadas, nesta análise estática, simultaneidade suportada, p95 de latência vidro-a-vidro, estabilidade após reinício do bridge, custo por hora, taxa de falhas ou desempenho dos filtros visuais em celulares modestos. O uso da tag `latest` para OvenMediaEngine dificulta repetibilidade. Sessões em memória não sobrevivem ao reinício e dificultam escala horizontal.
+A qualidade da mídia varia conforme dispositivo, navegador e conexão. Efeitos gráficos devem equilibrar riqueza visual e estabilidade de quadros. Transporte, distribuição, armazenamento e operações comerciais têm perfis diferentes de escala e devem ser avaliados independentemente.
 
-**Validação prioritária:** testes automatizados de funções puras do compositor; testes de navegador com permissões e cenas; expiração/reuso indevido do token WHIP; reconexões; medição de orçamento de quadro a 30/60 FPS; ensaios com 1/10/100 publicadores; matriz de dispositivos e codecs; monitoramento da distribuição e da reprodução. Esses números são metas de ensaio, não resultados medidos.
-:::
-
-::: section detail-6
-## Arquivos examinados
-
-`frontend/src/pages/DeviceLiveStudio.tsx`; `frontend/src/features/creator/useVideoRecorder.ts`; `frontend/src/features/creator/uploadVideoTus.ts`; `media-server/src/server.js`; `media-server/oven/Server.xml`; `backend/src/application/use-cases/streaming/manage-live-stream.use-case.ts`; `backend/src/infrastructure/services/live-media-bridge.service.ts`; `backend/src/infrastructure/services/mux-live.service.ts`; `backend/src/infrastructure/services/bunny-stream.service.ts`; `backend/src/interfaces/websocket/live-studio.gateway.ts`. Os repositórios são privados: os caminhos são referências para revisão autorizada.
+Este documento é uma visão arquitetural pública, não uma auditoria dos controles internos, dependências, segurança ou níveis de serviço em produção.
 :::
 
 ::: footer
-Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
 :::

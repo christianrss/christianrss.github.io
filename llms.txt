@@ -18,15 +18,15 @@ Selected work:
 - Marginal Thinking: https://marginalthinking.org/
 
 Selected commercial / applied engineering:
-- Velis (offline-first collaboration, sync, real-time editing): https://velis.vu/
-- Kaduo (social commerce, live shopping, seller analytics): https://kaduo.shop/
+- Velis (local-first workspace architecture): https://velis.vu/
+- Kaduo (live media, creator studio and commerce): https://kaduo.shop/
 - Eviz (digital business cards, CRM, landing pages): https://www.eviz.me/
-- Chris Cleaner (native Windows disk indexing and desktop cleanup): https://christiansoftware.org/
-- LOGV Learn (course platform, learning progress, payment integration): https://me.christiansoftware.org/en/#products
+- Chris Cleaner (desktop filesystem architecture): https://christiansoftware.org/
+- LOGV Learn (course and enrollment architecture): https://me.christiansoftware.org/en/#products
 
 The commercial repositories are private. Product URLs lead to public-facing sites, not public source code.
 
-Architecture, engineering decisions, trade-offs, limitations and test evidence (bilingual):
+Public architecture, engineering trade-offs and high-level quality strategy (bilingual):
 - kaduo: https://me.christiansoftware.org/projects/en/kaduo/ (PT: https://me.christiansoftware.org/projects/pt/kaduo/)
 - velis: https://me.christiansoftware.org/projects/en/velis/ (PT: https://me.christiansoftware.org/projects/pt/velis/)
 - eviz: https://me.christiansoftware.org/projects/en/eviz/ (PT: https://me.christiansoftware.org/projects/pt/eviz/)
@@ -38,3 +38,5 @@ Professional résumé:
 - Portuguese HTML: https://me.christiansoftware.org/resume/pt/
 - English PDF: https://me.christiansoftware.org/resume/christian-rafael-cv-en.pdf
 - Portuguese PDF: https://me.christiansoftware.org/resume/christian-rafael-cv-pt.pdf
+
+Disclosure: These public studies intentionally omit private source paths, privileged operations, security implementation details, credentials, private integrations, internal service addresses and unverified performance claims. Internal documentation is stored separately in private repositories.

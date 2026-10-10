@@ -119,54 +119,53 @@ A market and portfolio-intelligence workspace combining multi-portfolio accounti
 ::: section products
 ## Product engineering
 
-Selected commercial and applied software. These projects complement the systems and ML work above with application architecture, data consistency, integrations and operational tooling. Their source repositories are private; links below point to public product sites.
+These products demonstrate application architecture, real-time systems, local-first collaboration and desktop engineering. The links below contain public, architecture-level case studies; implementation and operational details remain private.
 
 ::: project period="2026 —" label="Local-first collaboration"
 ### Velis
-A local-first workspace for documents, tasks, boards, files and team communication. The implementation includes IndexedDB-backed offline mutations with batch replay and retry handling, an operation-based collaborative editor with deterministic convergence tests, WebSocket updates and resource-level access policies.
+Collaborative workspace for documents, tasks and team workflows. The architecture connects local persistence, multi-device synchronization and shared application services, balancing offline continuity with coordination.
 
-**Next.js · NestJS · TypeScript · PostgreSQL · Redis · IndexedDB · WebSockets**
+**TypeScript · Web applications · Local-first systems · Collaboration**
 
-[Product](https://velis.vu/) · [Engineering case study](/projects/en/velis/)
+[Product](https://velis.vu/) · [Architecture case study](/projects/en/velis/)
 :::
 
-::: project period="2026 —" label="Real-time media · social commerce"
+::: project period="2026 —" label="Real-time media systems"
 ### Kaduo
-A social-commerce and live-video engineering platform. Its device-camera studio composites video, text, images, products, coupons and chat into a Canvas capture stream, then publishes over WebRTC/WHIP through a dedicated media bridge and OvenMediaEngine to Mux. The broader platform includes resumable video uploads, creator recording, real-time chat, event analytics and modular commerce services.
+Social-commerce and video platform combining a browser-based production studio, live video composition, media publication and playback with shopping experiences, creator tools and real-time audience participation.
 
-**WebRTC · WHIP · OvenMediaEngine · Mux · MediaRecorder · Canvas · NestJS · React · PostgreSQL · Redis**
+**WebRTC · Browser media APIs · Canvas · TypeScript · Real-time applications**
 
-[Product](https://kaduo.shop/) · [Engineering case study](/projects/en/kaduo/)
+[Product](https://kaduo.shop/) · [Architecture case study](/projects/en/kaduo/)
 :::
 
-::: project period="2026 —" label="CRM and SaaS"
+::: project period="2026 —" label="Business SaaS"
 ### Eviz
-A multi-account digital identity and relationship-management SaaS spanning business cards, landing pages, forms, lead capture, CRM, proposals and commercial workflows. Engineering work includes authenticated APIs, public publishing flows, contact synchronization, analytics and integrations for payments and media storage.
+Digital business identity and CRM SaaS connecting public-facing profiles and pages with lead capture, contact management and commercial workflows through modular application services.
 
-**NestJS · React · TypeScript · Prisma · PostgreSQL · Cloudflare R2 · Stripe / Asaas**
+**Web applications · SaaS · CRM · Relational data**
 
-[Product](https://www.eviz.me/) · [Engineering case study](/projects/en/eviz/)
+[Product](https://www.eviz.me/) · [Architecture case study](/projects/en/eviz/)
 :::
 
-::: project period="2026 —" label="Desktop systems"
+::: project period="2026 —" label="Desktop and systems engineering"
 ### Chris Cleaner
-A desktop disk-analysis and cleanup utility with native Windows filesystem enumeration, NTFS USN Journal monitoring, resumable catalog scans, binary indexing, an optional background Windows service and safety rules for cleanup operations. A separate multilingual Christian Software storefront supports the product's distribution and licensing.
+Desktop utility focused on disk usage analysis, filesystem cataloging and user-controlled cleanup. Its architecture separates native system adapters, background processing, persistence and user-interface responsibilities.
 
-**C# · .NET 8 · Avalonia · Win32 / P/Invoke · LiteDB**
+**C# · .NET · Desktop software · Filesystems · Concurrency**
 
-[Product website](https://christiansoftware.org/) · [Engineering case study](/projects/en/chris-cleaner/)
+[Product website](https://christiansoftware.org/) · [Architecture case study](/projects/en/chris-cleaner/)
 :::
 
-::: project period="2026" label="Learning platform"
+::: project period="2026" label="Education platform"
 ### LOGV Learn
-A course-management platform with lessons, progress tracking, administrative publishing tools and paid enrollment. Built around a Next.js application, Prisma persistence, Clerk authentication and Asaas payment flows and webhooks.
+Learning platform for course publication, student progress and enrollment. The application separates learning content, identity, commercial access and learner experience as business domains.
 
-**Next.js · TypeScript · Prisma · PostgreSQL · Clerk · Asaas**
+**Next.js · TypeScript · Education platforms · Transactions**
 
-[Engineering case study](/projects/en/logv-learn/)
+[Architecture case study](/projects/en/logv-learn/)
 :::
 :::
-
 ::: section research
 ## Research & technical writing
 

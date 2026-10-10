@@ -1,24 +1,23 @@
 ---
-title: LOGV Learn — Cursos, Progresso e Cobrança — Estudo Técnico
-description: Documentação técnica de LOGV Learn — Cursos, Progresso e Cobrança; arquitetura, alternativas, testes e limitações.
+title: LOGV Learn — Arquitetura de Plataforma Educacional
+description: Criação de cursos, progresso do estudante e matrículas comerciais.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
 [← Portfólio](/pt/)
-[Todos os produtos](/pt/#products)
-[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[Projetos](/pt/#products)
 [English](/projects/en/logv-learn/) · **PT**
 :::
 
-::: hero home eyebrow="Educação · transações web"
+::: hero home eyebrow="Arquitetura pública"
 
 --- title
-# LOGV Learn — Cursos, Progresso e Cobrança
+# LOGV Learn — Arquitetura de Plataforma Educacional
 
 --- body
-Plataforma Next.js de cursos que integra conteúdo, progresso do aluno, autenticação, gestão administrativa e matrícula paga.
+Criação de cursos, progresso do estudante e matrículas comerciais.
 
 --- actions
 [Voltar aos projetos](/pt/#products) · [English](/projects/en/logv-learn/)
@@ -26,41 +25,44 @@ Plataforma Next.js de cursos que integra conteúdo, progresso do aluno, autentic
 :::
 
 ::: section architecture
-## Escopo e arquitetura
+## Visão geral da arquitetura
 
-Next.js App Router implementa páginas de alunos/administradores e server actions. Prisma/PostgreSQL modela usuários, cursos, módulos, aulas, compras e progresso. Clerk provê autenticação; Asaas gera cobranças e envia webhooks que concedem ou revogam acesso. Componentes React exibem player, comentários e painéis administrativos.
+A LOGV Learn organiza conteúdo didático, experiência de aprendizagem e acesso a cursos em uma aplicação web. A arquitetura pública é apresentada por quatro domínios:
+
+- **Gestão de conteúdo:** cursos, módulos, aulas e publicação.
+- **Experiência de aprendizagem:** matrícula, reprodução, progresso e interação.
+- **Identidade e autorização:** contas e diferenciação entre acesso administrativo e estudantil.
+- **Ciclo comercial:** início de compra, confirmação do pagamento e direito de acesso ao curso.
+
+Os fluxos compartilham persistência de aplicação, mas exigem regras de negócio e validações próprias.
 :::
 
-::: section implementation
-## Decisões de implementação
+::: section engineering
+## Decisões e compromissos
 
-Separação inicial entre gestão de cursos e progresso por server actions e recebimento de callbacks via API routes. Isso favorece uma implantação monolítica compacta, mas o domínio de pagamentos precisa de regras, transações e testes isolados para prevenir inconsistências de matrícula.
+Uma aplicação coesa facilita a consistência entre catálogo e experiência do aluno. Entretanto, eventos de pagamento são assíncronos e precisam ser reconciliados com a matrícula. Identidade, direitos de acesso e navegação de conteúdo continuam sendo responsabilidades conceitualmente distintas, ainda que operem na mesma aplicação.
 :::
 
 ::: section alternatives
-## Alternativas e compensações
+## Alternativas arquiteturais
 
-Usar um LMS pronto reduziria esforço operacional, mas limitaria personalizações. Um serviço especializado de direitos de acesso desacoplaria cobrança e aulas, ao custo de mais infraestrutura. Manter compras em Prisma é simples inicialmente, desde que idempotência, unicidade e transações cubram entregas assíncronas e repetidas.
+Um sistema de ensino hospedado reduz desenvolvimento e operação, mas limita personalização. Serviços independentes de cobrança e autorização ampliam o isolamento, porém aumentam a quantidade de sistemas a operar. Um monólito modular pode equilibrar simplicidade e evolução quando as fronteiras entre domínios permanecem explícitas e testáveis.
 :::
 
-::: section testing
-## Evidências e defeito identificado
+::: section verification
+## Qualidade e evidências
 
-Foram examinados `src/actions/course-progress.ts`, `src/actions/payment.ts`, `src/app/api/webhooks/asaas/route.ts` e `prisma/schema.prisma`. Não encontrei testes dedicados na árvore do repositório. No webhook Asaas, a comparação `PAYMET_RECEIVED` diverge da cláusula `PAYMENT_RECEIVED`, indicando provável defeito lógico a confirmar com teste. Não há evidência suficiente para considerar os fluxos de pagamento validados.
+O código contém fluxos de aprendizagem e cobrança, mas não foi demonstrada, nesta revisão, uma suíte automatizada abrangente. O estudo descreve práticas necessárias de validação sem afirmar que testes de aceitação foram aprovados.
+
+A cobertura deve incluir publicação, regras de acesso, continuidade do progresso, estados de pagamento, cancelamentos, notificações duplicadas e usabilidade. Detalhes financeiros, credenciais de provedores e eventuais defeitos de implementação permanecem apenas na documentação de engenharia privada.
 :::
 
-::: section limitations
-## Limites e validação
+::: section constraints
+## Limites e evolução
 
-Criar testes de autenticidade do webhook, proteção contra replay, autorização de matrícula, reembolso, idempotência e concorrência nas entregas. Cobrir PIX/cartão, confirmação, chargeback/refund, eventos duplicados e falhas de banco. O comando de build usa `set` típico do Windows e precisa ser portável para integração contínua Linux.
-:::
-
-::: section evidence
-## Arquivos examinados
-
-`src/app/api/webhooks/asaas/route.ts`; `src/actions/payment.ts`; `src/actions/course-progress.ts`; `src/app/(with-layout)/admin/`; `prisma/schema.prisma`; `package.json`.
+O conteúdo educacional precisa manter acessibilidade e consistência entre navegadores, enquanto o acesso pago depende de eventos assíncronos confiáveis. Privacidade, acessibilidade, suporte e recuperação compreensível para o aluno são partes importantes da arquitetura. Os detalhes operacionais internos foram intencionalmente omitidos.
 :::
 
 ::: footer
-Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
 :::

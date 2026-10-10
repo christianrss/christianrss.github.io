@@ -7,8 +7,8 @@
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
-  <title>Eviz — Multi-Tenant CRM and Publishing SaaS — Engineering Case Study</title>
-    <meta name="description" content="Technical case study of Eviz — Multi-Tenant CRM and Publishing SaaS; architecture, trade-offs, test evidence and limitations.">
+  <title>Eviz — Business Identity and CRM SaaS</title>
+    <meta name="description" content="Digital profiles, content publishing and relationship management.">
   <style>:root{
   color-scheme:light dark;
   --bg:#fbfbf8;
@@ -283,31 +283,38 @@ code{
 <body>
   <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
   <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/en/">← Portfolio</a>
-<a href="/en/#products">All products</a>
-<a href="/resume/christian-rafael-cv-en.pdf">PDF résumé</a>
+<a href="/en/#products">Projects</a>
 <a href="/projects/pt/eviz/">Português</a> · <strong>EN</strong></p></nav>
 
-<header id="home" data-attr-eyebrow="CRM · publishing · SaaS" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">CRM · publishing · SaaS</p><div class="hero-title"><h1>Eviz — Multi-Tenant CRM and Publishing SaaS</h1></div><div class="hero-body"><p>A multi-account business-identity application spanning digital cards, public landing pages, lead capture, CRM and paid services.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/eviz/">Português</a></p></div></header>
+<header id="home" data-attr-eyebrow="Public architecture" class="hero"><img class="hero-photo" src="../assets/christian-rafael-photo.jpg" alt="Christian Rafael de Souza Silva" width="148" height="148" fetchpriority="high" decoding="async"><p class="hero-eyebrow">Public architecture</p><div class="hero-title"><h1>Eviz — Business Identity and CRM SaaS</h1></div><div class="hero-body"><p>Digital profiles, content publishing and relationship management.</p></div><div class="hero-actions"><p><a href="/en/#products">Back to projects</a> · <a href="/projects/pt/eviz/">Português</a></p></div></header>
 
-<section id="architecture" class="section"><h2>System boundary and architecture</h2>
-<p>The backend uses NestJS, Prisma and configurable relational storage. React/Vite implements the web interface. The API is split into auth, companies, cards, landing pages, forms, leads, CRM, proposals, notifications, payments and privacy modules. Public landing and card reads have a different access profile than authenticated editor and CRM operations.</p></section>
+<section id="architecture" class="section"><h2>Architecture overview</h2>
+<p>Eviz combines digital professional profiles, published landing pages, lead acquisition and customer relationship workflows in a SaaS product.</p>
+<p>Its major responsibilities are:</p>
+<ul>
+<li>identity and account management;</li>
+<li>editing and publishing digital pages and cards;</li>
+<li>forms, lead intake and relationship records;</li>
+<li>commercial workflows and external services;</li>
+<li>analytics and administrative capabilities.</li>
+</ul>
+<p>The public site does not document private tenancy boundaries, internal schemas or integration credentials.</p></section>
 
-<section id="implementation" class="section"><h2>Implementation choices</h2>
-<p>Landing page configuration uses typed sections, media and action objects with theme, navigation and capture settings; the publication layer resolves public slugs and analytics. CRM stores contacts, interactions, opportunities, tags and attachments, and exposes synchronization operations with conflict reporting. Integrations include object storage through a Cloudflare R2 service and payment flows via Asaas/Stripe. Roles, JWT refresh tokens and rate-limiting guards appear in the API.</p></section>
+<section id="engineering" class="section"><h2>Decisions and trade-offs</h2>
+<p>The platform links the publishing experience with the relationship-management process, reducing handoffs between separate systems. A configurable presentation model supports different page types while sharing a common application layer.</p>
+<p>The trade-off is greater coupling among publishing, customer data and commercial workflows. Separating domain responsibilities and treating public-read experiences differently from authenticated editing improves conceptual clarity.</p></section>
 
-<section id="alternatives" class="section"><h2>Alternatives and trade-offs</h2>
-<p>A generic CMS could replace the bespoke landing builder but would limit native coupling with lead capture and cards. A third-party CRM could shorten time-to-market while creating data-model and tenancy dependencies. Using one large service per domain simplifies initial coordination but can increase cognitive complexity; <code>landings.service.ts</code> and <code>crm.service.ts</code> are substantial and invite use-case extraction.</p></section>
+<section id="alternatives" class="section"><h2>Alternative architectures</h2>
+<p>A hosted CMS plus third-party CRM would reduce custom development but introduce workflow fragmentation and integration dependency. Separate microservices could isolate scaling and delivery, at the cost of distributed-state and operational complexity. A modular application backend is a reasonable middle ground where domain boundaries are explicit and measured.</p></section>
 
-<section id="testing" class="section"><h2>Evidence of tests</h2>
-<p>NestJS Jest specs are present for auth, users, companies, cards and pricing. The <code>backend/test/app.e2e-spec.ts</code> file is a scaffold for the default GET route, <strong>not</strong> evidence of complete end-to-end verification of registration, payments, CRM and landing publication. No coverage report or passing CI run was validated in this review.</p></section>
+<section id="verification" class="section"><h2>Quality strategy and evidence</h2>
+<p>The private backend contains unit tests for selected core modules. Available end-to-end coverage is limited in the inspected sources; therefore this page does not claim complete verification of payment, publishing or CRM workflows.</p>
+<p>The validation agenda covers account isolation, publication lifecycle, form capture, record consistency, integration errors, accessibility and privacy requirements. No customer volume, conversion or production performance is asserted without audited data.</p></section>
 
-<section id="limitations" class="section"><h2>Known limits and next validation</h2>
-<p>Priorities: ensure tenant isolation with adversarial authorization tests, idempotent webhook processing, per-domain service modularization, public-form spam resistance, data-subject request workflows and privacy review of event tracking. Add integration tests for card publishing, capture→CRM linkage, lead deduplication and failed payments; measure ingestion throughput and rollback behavior.</p></section>
+<section id="constraints" class="section"><h2>Constraints and evolution</h2>
+<p>Content publishing, user permissions, transactions and privacy obligations have different failure and regulatory profiles. Evolving the system requires contract tests between domains, stronger end-to-end coverage and observable operational behavior, without exposing internal safeguards publicly.</p></section>
 
-<section id="evidence" class="section"><h2>Source inventory</h2>
-<p><code>backend/src/landings/landings.service.ts</code>; <code>backend/src/crm/crm.service.ts</code>; <code>backend/src/auth/</code>; <code>backend/src/payments/</code>; <code>backend/src/privacy/</code>; <code>backend/src/upload/r2.service.ts</code>; <code>backend/test/app.e2e-spec.ts</code>; <code>frontend/src/</code>.</p></section>
-
-<footer class="footer"><p>Engineering case study · source inspected 2026-10-10 · code repositories private · <a href="/en/">Portfolio</a></p></footer>
+<footer class="footer"><p>Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · <a href="/en/">Portfolio</a></p></footer>
 </main></div>
   
 </body>

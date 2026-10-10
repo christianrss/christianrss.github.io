@@ -1,0 +1,66 @@
+---
+title: Eviz — Arquitetura SaaS de CRM e Publicação — Estudo Técnico
+description: Documentação técnica de Eviz — Arquitetura SaaS de CRM e Publicação; arquitetura, alternativas, testes e limitações.
+lang: pt-BR
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfólio](/pt/)
+[Todos os produtos](/pt/#products)
+[Currículo PDF](/resume/christian-rafael-cv-pt.pdf)
+[English](/projects/en/eviz/) · **PT**
+:::
+
+::: hero home eyebrow="CRM · publicação · SaaS"
+
+--- title
+# Eviz — Arquitetura SaaS de CRM e Publicação
+
+--- body
+Aplicação multi-conta de identidade profissional, cartões digitais, landing pages, captura de leads e gestão de relacionamento.
+
+--- actions
+[Voltar aos projetos](/pt/#products) · [English](/projects/en/eviz/)
+
+:::
+
+::: section architecture
+## Escopo e arquitetura
+
+Backend NestJS, Prisma e banco relacional, com frontend React/Vite. A API é organizada em módulos de autenticação, empresas, cartões, páginas, formulários, leads, CRM, propostas, notificações, pagamentos e privacidade. A publicação pública de cartões e páginas usa fluxos diferentes da edição autenticada e das operações do CRM.
+:::
+
+::: section implementation
+## Decisões de implementação
+
+Landing pages têm objetos tipados de seção, mídia, botões, estilos, navegação, captação e analytics. O CRM registra contatos, interações, oportunidades, tags e anexos, com operações de sincronização e sinalização de conflitos. Serviços de integração incluem Cloudflare R2 para mídia, Stripe/Asaas para pagamentos e controles de acesso por JWT e papéis. O código evidencia a modelagem desses fluxos, mas não atesta implantação de todas as integrações.
+:::
+
+::: section alternatives
+## Alternativas e compensações
+
+Um CMS externo reduziria o custo do construtor de páginas, mas limitaria o acoplamento direto com cartão, formulário e lead. Um CRM terceirizado aceleraria a entrega, porém imporia dependência comercial e de modelo de dados. Concentrar fluxos em serviços grandes pode facilitar a primeira versão, mas `landings.service.ts` e `crm.service.ts` justificam extração gradual de casos de uso menores.
+:::
+
+::: section testing
+## Evidências de testes
+
+Existem testes Jest para módulos como usuários, cartões, empresas, autenticação e precificação. Entretanto, `backend/test/app.e2e-spec.ts` valida somente a rota padrão de exemplo, portanto **não demonstra cobertura ponta a ponta dos fluxos comerciais**. Não identifiquei evidência de cobertura consolidada ou execução recente bem-sucedida nesta revisão.
+:::
+
+::: section limitations
+## Limites e validação
+
+Priorizar isolamento entre contas com testes adversariais de autorização; idempotência de webhooks; tratamento de spam em formulários públicos; auditoria de rastreamento/consentimento; e modularização dos serviços. Criar testes integrados de publicação, captura de lead até CRM, deduplicação, cobrança falha, cancelamento e eliminação de dados pessoais. Publicar métricas reais somente após aferição.
+:::
+
+::: section evidence
+## Arquivos examinados
+
+`backend/src/landings/landings.service.ts`; `backend/src/crm/crm.service.ts`; `backend/src/auth/`; `backend/src/payments/`; `backend/src/privacy/`; `backend/src/upload/r2.service.ts`; `backend/test/app.e2e-spec.ts`; `frontend/src/`.
+:::
+
+::: footer
+Estudo técnico · código inspecionado em 10/10/2026 · repositórios privados · [Portfólio](/pt/)
+:::

@@ -1,6 +1,6 @@
 ---
-title: Eviz — SaaS / business identity
-description: Digital business cards and public pages linked to lead capture and relationship management.
+title: Eviz — Architecture and technologies
+description: SaaS for digital business cards, landing pages, lead capture and CRM.
 lang: en
 theme: ../../../themes/portfolio
 ---
@@ -12,42 +12,42 @@ theme: ../../../themes/portfolio
 [Português](/projects/pt/eviz/)
 :::
 
-::: case-hero home eyebrow="SaaS / business identity"
+::: case-hero home eyebrow="SaaS and CRM"
 
 --- title
 # Eviz
 
 --- body
-Digital business cards and public pages linked to lead capture and relationship management.
+SaaS for digital business cards, landing pages, lead capture and CRM.
 
 --- actions
-[Product website](https://www.eviz.me/) · [All products](/en/#products)
+[Product](https://www.eviz.me/) · [Portfolio](/en/#products)
 :::
 
-::: section topic-1
-## From publishing to CRM
+::: section architecture
+## Architecture
 
-A public business card or landing page is one end of a longer process. A visitor opens the page, follows a contact action or submits a form; the resulting information enters a workflow where it can be organized and followed up. Eviz treats publishing and relationship management as parts of that same product.
+Eviz connects public business pages to account management and customer relationship workflows.
 
-The experience therefore spans two very different contexts: public content intended for visitors and authenticated tools used by the account owner.
+- **Page publishing:** digital cards, landing pages and configurable content.
+- **Public interactions:** forms and contact channels associated with published pages.
+- **CRM:** lead and contact records, commercial activities and related workflows.
+- **Application services:** identity, accounts, publishing, forms, business records and billing.
+- **Persistence:** relational data accessed through the backend.
+
+The public pages and the authenticated management interface use the same application domains through distinct web experiences.
 :::
 
-::: section topic-2
-## Application boundaries
+::: section technologies
+## Technologies
 
-Page presentation, lead collection, contact history and commercial records are separate concerns. A shared application model makes it possible to connect them without requiring every feature to know the details of the others.
-
-A modular SaaS application is a practical choice here. Splitting every capability into an independently deployed service could add operational complexity before there is evidence that the individual workloads require it.
-:::
-
-::: section topic-3
-## Data and verification
-
-The important properties are correct ownership of business records, predictable publication behavior and reliable transfer of information from public forms to the working CRM. Those properties require more than isolated component tests.
-
-The reviewed code contains tests for selected application modules. Complete end-to-end coverage of publication, commercial processing and contact workflows has not been established by this review.
+- **Frontend:** React, TypeScript, Vite, TipTap.
+- **Backend:** NestJS, TypeScript, REST APIs.
+- **Data:** Prisma, PostgreSQL.
+- **Real-time features:** Socket.IO.
+- **Payments:** Stripe and Asaas integrations.
 :::
 
 ::: footer
-[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/eviz/)
+[Christian Rafael](/en/) · [Products](/en/#products) · [Português](/projects/pt/eviz/)
 :::

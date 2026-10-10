@@ -78,6 +78,8 @@ code{
 .hero{
   padding:38px 0 30px
 }
+.hero-photo{float:right;display:block;width:148px;height:148px;object-fit:cover;margin:2px 0 15px 22px;border:1px solid var(--line)}
+.hero::after{content:"";display:block;clear:both}
 .hero-eyebrow{
   margin:0 0 12px;
   color:var(--muted);
@@ -216,6 +218,7 @@ code{
     margin:0 0 3px
   }
   .hero{padding:31px 0 25px}
+  .hero-photo{width:110px;height:110px;margin:0 0 10px 15px}
   .hero-body{font-size:16px}
   .entry{
     grid-template-columns:1fr;

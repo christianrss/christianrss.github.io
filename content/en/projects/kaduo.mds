@@ -1,6 +1,6 @@
 ---
-title: Kaduo — Media systems / social commerce
-description: Live video production in the browser, integrated with the commercial activity taking place around a broadcast.
+title: Kaduo — Architecture and technologies
+description: Social commerce, short-form video and live broadcasting with a browser-based production studio.
 lang: en
 theme: ../../../themes/portfolio
 ---
@@ -12,48 +12,42 @@ theme: ../../../themes/portfolio
 [Português](/projects/pt/kaduo/)
 :::
 
-::: case-hero home eyebrow="Media systems / social commerce"
+::: case-hero home eyebrow="Real-time media"
 
 --- title
 # Kaduo
 
 --- body
-Live video production in the browser, integrated with the commercial activity taking place around a broadcast.
+Social commerce, short-form video and live broadcasting with a browser-based production studio.
 
 --- actions
-[Product website](https://kaduo.shop/) · [All products](/en/#products)
+[Product](https://kaduo.shop/) · [Portfolio](/en/#products)
 :::
 
-::: section topic-1
-## The studio
+::: section architecture
+## Architecture
 
-A live broadcast begins with the device's camera and microphone. The production interface handles preview, framing and visual elements that must appear in the transmitted image: captions, product information, promotional graphics and selected audience interactions.
+Kaduo is organized around three areas: a social and commercial application, a media pipeline and a live production interface.
 
-The key distinction is between **drawing over a video player** and **composing the video itself**. Kaduo uses browser media capabilities to produce a composed outgoing stream; supported graphics are therefore part of the broadcast image.
+- **Application:** creator profiles, feeds, product catalog, shopping interactions and live-session management.
+- **Production studio:** camera and microphone capture, Canvas composition, scene elements and a video track generated from the composed image.
+- **Live media:** WebRTC publication, media ingestion, distribution and playback.
+- **Recorded media:** browser recording, video uploads and video-on-demand playback.
+- **Real-time interactions:** live chat, audience events and studio status updates.
+
+The video stream and the commercial application exchange session and product information through application services.
 :::
 
-::: section topic-2
-## Media and commerce
+::: section technologies
+## Technologies
 
-The media path has different requirements from the shopping path. Video needs continuous transport, timing and adaptive handling of network conditions; catalog, orders and promotional information need transactional consistency. Mixing those responsibilities would make both harder to change.
-
-The system also covers recorded short-form video and audience interaction during live sessions. The studio can be used from a camera-equipped device without requiring a separate desktop production application.
-:::
-
-::: section topic-3
-## The engineering trade-off
-
-Browser-side composition keeps production close to the camera and makes visual adjustments immediate. It also makes rendering dependent on browser capabilities and the device's available processing power. A server-side compositor would offer a more uniform rendering environment, at the cost of additional processing infrastructure.
-
-Current engineering work focuses on separating device selection, capture configuration, composed-media assembly and transmission monitoring. Those boundaries can be tested independently; broadcast reliability still requires testing on physical devices and real networks.
-:::
-
-::: section topic-4
-## Verification
-
-Isolated regression tests cover selected media-processing rules, input selection and stream composition. A production frontend build is checked in CI. Those checks do not establish end-to-end latency or the number of viewers a deployment can sustain. Those claims require instrumented broadcasts and measurements under defined network conditions.
+- **Frontend:** React, TypeScript, Vite, Canvas API, MediaStream, MediaRecorder.
+- **Live video:** WebRTC, WHIP, OvenMediaEngine, Mux.
+- **Video uploads and playback:** tus, Bunny Stream.
+- **Application services:** NestJS, WebSocket / Socket.IO.
+- **Data:** PostgreSQL, Prisma, Redis, ClickHouse.
 :::
 
 ::: footer
-[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/kaduo/)
+[Christian Rafael](/en/) · [Products](/en/#products) · [Português](/projects/pt/kaduo/)
 :::

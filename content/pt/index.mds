@@ -115,7 +115,7 @@ Documentos, tarefas e workspaces colaborativos com persistência local e sincron
 
 **TypeScript · local-first · edição colaborativa**
 
-[Produto](https://velis.vu/) · [Nota técnica](/projects/pt/velis/)
+[Produto](https://velis.vu/) · [Arquitetura e tecnologias](/projects/pt/velis/)
 :::
 
 ::: project period="2026 —" label="Vídeo ao vivo"
@@ -124,7 +124,7 @@ Produção de lives no navegador, composição de vídeo, elementos gráficos, i
 
 **TypeScript · WebRTC · Canvas · processamento de mídia**
 
-[Produto](https://kaduo.shop/) · [Nota técnica](/projects/pt/kaduo/)
+[Produto](https://kaduo.shop/) · [Arquitetura e tecnologias](/projects/pt/kaduo/)
 :::
 
 ::: project period="2026 —" label="Aplicações comerciais"
@@ -133,7 +133,7 @@ Cartões digitais e landing pages integrados à captação de leads, registros d
 
 **Aplicações web · bancos relacionais · CRM**
 
-[Produto](https://www.eviz.me/) · [Nota técnica](/projects/pt/eviz/)
+[Produto](https://www.eviz.me/) · [Arquitetura e tecnologias](/projects/pt/eviz/)
 :::
 
 ::: project period="2026 —" label="Desktop e sistemas de arquivos"
@@ -142,7 +142,7 @@ Análise do uso de disco e catalogação de arquivos com varredura em segundo pl
 
 **C# · .NET · Avalonia · APIs de arquivos**
 
-[Produto](https://christiansoftware.org/) · [Nota técnica](/projects/pt/chris-cleaner/)
+[Produto](https://christiansoftware.org/) · [Arquitetura e tecnologias](/projects/pt/chris-cleaner/)
 :::
 
 ::: project period="2026" label="Aplicações educacionais"
@@ -151,7 +151,7 @@ Administração de cursos, aulas, progresso de alunos e matrículas pagas em uma
 
 **Next.js · TypeScript · fluxos transacionais**
 
-[Nota técnica](/projects/pt/logv-learn/)
+[Arquitetura e tecnologias](/projects/pt/logv-learn/)
 :::
 :::
 

@@ -1,0 +1,66 @@
+---
+title: LOGV Learn — Courses, Enrollment and Billing — Engineering Case Study
+description: Technical case study of LOGV Learn — Courses, Enrollment and Billing; architecture, trade-offs, test evidence and limitations.
+lang: en
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[← Portfolio](/en/)
+[All products](/en/#products)
+[PDF résumé](/resume/christian-rafael-cv-en.pdf)
+[Português](/projects/pt/logv-learn/) · **EN**
+:::
+
+::: hero home eyebrow="Education · transactional web"
+
+--- title
+# LOGV Learn — Courses, Enrollment and Billing
+
+--- body
+A Next.js course platform bringing content management, progress tracking, authentication and paid access together.
+
+--- actions
+[Back to projects](/en/#products) · [Português](/projects/pt/logv-learn/)
+
+:::
+
+::: section architecture
+## System boundary and architecture
+
+Next.js App Router serves learner/admin pages and server actions. Prisma/PostgreSQL defines users, courses, modules, lessons, purchases and progress. Clerk manages authentication and an Asaas integration provisions payment requests; incoming provider webhook events attempt to grant or revoke access. React/TanStack Query components implement lesson playback, comments and backoffice screens.
+:::
+
+::: section implementation
+## Implementation choices
+
+The platform separates course authoring and learner progression into server actions; API route handlers own payment and authentication callbacks. This simplifies a compact monolithic deployment, but payment lifecycle and access control must be treated as an independently testable domain.
+:::
+
+::: section alternatives
+## Alternatives and trade-offs
+
+A hosted LMS reduces operational effort but limits product-specific workflows. An external billing entitlement service can improve isolation; keeping purchase rows in Prisma is simpler for an early application. PostgreSQL transactions and idempotency constraints are essential when asynchronous webhooks modify enrollment.
+:::
+
+::: section testing
+## Evidence and concrete defect
+
+The inspected tree contains `src/actions/course-progress.ts`, `src/actions/payment.ts`, `src/app/api/webhooks/asaas/route.ts`, and `prisma/schema.prisma`. No project test files were identified in the tree. In the Asaas handler the comparison string `PAYMET_RECEIVED` differs from the switch case `PAYMENT_RECEIVED`; this appears to be a reachable logic defect, subject to test confirmation. Code presence is not evidence of payment correctness.
+:::
+
+::: section limitations
+## Known limits and next validation
+
+Focus on webhook signature validation, replay protection, paid enrollment authorization, refund semantics and idempotency under simultaneous deliveries. Add unit and integration tests for PIX and card cases, grant-on-confirmation, refund rollback, duplicate deliveries and database failures. The package build command uses the Windows `set` shell syntax and should be made cross-platform for Linux CI.
+:::
+
+::: section evidence
+## Source inventory
+
+`src/app/api/webhooks/asaas/route.ts`; `src/actions/payment.ts`; `src/actions/course-progress.ts`; `src/app/(with-layout)/admin/`; `prisma/schema.prisma`; `package.json`.
+:::
+
+::: footer
+Engineering case study · source inspected 2026-10-10 · code repositories private · [Portfolio](/en/)
+:::

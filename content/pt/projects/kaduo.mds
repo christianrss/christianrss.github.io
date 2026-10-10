@@ -1,85 +1,59 @@
 ---
-title: Kaduo — Engenharia de Mídia em Tempo Real e Comércio Social
-description: Produção de vídeo no navegador, distribuição de lives e interações comerciais em tempo real.
+title: Kaduo — Sistemas de mídia / comércio social
+description: Produção de vídeo ao vivo no navegador, integrada às operações comerciais que acontecem durante a transmissão.
 lang: pt-BR
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfólio](/pt/)
-[Projetos](/pt/#products)
-[English](/projects/en/kaduo/) · **PT**
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/kaduo/)
 :::
 
-::: hero home eyebrow="Arquitetura pública"
+::: case-hero home eyebrow="Sistemas de mídia / comércio social"
 
 --- title
-# Kaduo — Engenharia de Mídia em Tempo Real e Comércio Social
+# Kaduo
 
 --- body
-Produção de vídeo no navegador, distribuição de lives e interações comerciais em tempo real.
+Produção de vídeo ao vivo no navegador, integrada às operações comerciais que acontecem durante a transmissão.
 
 --- actions
-[Voltar aos projetos](/pt/#products) · [English](/projects/en/kaduo/)
-
+[Site do produto](https://kaduo.shop/) · [Voltar aos produtos](/pt/#products)
 :::
 
-::: section architecture
-## Visão geral da arquitetura
+::: section topic-1
+## O estúdio
 
-A Kaduo reúne comércio social, publicação de vídeos e vendas em transmissões ao vivo, mantendo responsabilidades de mídia e transações comerciais conceitualmente separadas. A descrição pública enfatiza as camadas lógicas, sem revelar topologia ou detalhes de infraestrutura.
+A transmissão começa com a câmera e o microfone do dispositivo. A interface de produção controla prévia, enquadramento e elementos visuais que precisam integrar a imagem enviada: textos, informações de produtos, peças promocionais e interações selecionadas da audiência.
 
-- **Experiência do criador:** captura de dispositivos, prévia, composição visual ao vivo e controles de produção.
-- **Fluxo de mídia:** publicação, ingestão, processamento ou encaminhamento, distribuição e reprodução.
-- **Fluxo comercial:** vendedores, catálogos, produtos em destaque, transações e relacionamento.
-- **Interação em tempo real:** conversas e eventos de audiência, além de atualizações de estado.
-- **Dados e operação:** estado dos produtos, configurações do estúdio, análise de eventos e observabilidade.
-
-Esses domínios se integram por interfaces da aplicação, mas o transporte de vídeo possui requisitos diferentes do processamento de pedidos.
+Há uma diferença técnica entre **desenhar elementos sobre o player** e **compor o próprio vídeo**. A Kaduo utiliza recursos de mídia do navegador para produzir um fluxo composto. Nas funcionalidades suportadas, os elementos gráficos fazem parte da imagem transmitida.
 :::
 
-::: section engineering
-## Vídeo em tempo real e estúdio de produção
+::: section topic-2
+## Vídeo e comércio
 
-O estúdio permite capturar câmera e microfone e compor uma transmissão durante sua execução. Textos, imagens, informações de produtos, elementos promocionais e interações com a audiência podem integrar a composição do vídeo. Nas funcionalidades suportadas, a composição visual participa do fluxo de mídia enviado ao público; não se limita à prévia do transmissor.
+O fluxo de mídia tem exigências distintas das operações comerciais. Vídeo depende de transporte contínuo, temporização e adaptação às condições da rede; catálogo, pedidos e informações promocionais dependem de consistência transacional. Unificar essas responsabilidades aumentaria o acoplamento entre dois domínios com requisitos diferentes.
 
-A plataforma contempla também gravação e publicação de vídeos curtos, sessões ao vivo, experiências de reprodução e controles de qualidade. Padrões de comunicação de mídia, como WebRTC, favorecem a publicação interativa. Endereços de serviços, configurações de provedores, credenciais, topologia de implantação e parâmetros operacionais não são divulgados.
+A plataforma também contempla vídeos curtos gravados e interação com o público nas lives. A produção pode ocorrer diretamente em um dispositivo com câmera, sem exigir um aplicativo de transmissão desktop.
 :::
 
-::: section alternatives
-## Decisões e compromissos técnicos
+::: section topic-3
+## A escolha de arquitetura
 
-**Composição no cliente:** permite edição visual responsiva sem exigir um renderizador gráfico exclusivo no servidor para cada produtor, mas depende do desempenho do dispositivo e da compatibilidade do navegador.
+A composição no navegador mantém o processamento próximo da câmera e permite ajustes visuais imediatos. A contrapartida é a dependência do desempenho do dispositivo e das capacidades do navegador. Um compositor no servidor ofereceria ambiente de renderização mais uniforme, mas exigiria infraestrutura adicional.
 
-**Separação entre mídia e comércio:** transmissão, catálogo e checkout podem evoluir com responsabilidades distintas; em contrapartida, o estado comercial apresentado ao público deve ser coordenado com a experiência de vídeo.
-
-**Canal dedicado à interação:** mensagens, eventos e controles de estúdio possuem necessidades diferentes das trilhas de áudio e vídeo.
-
-**Integrações orientadas por padrões:** protocolos amplamente adotados favorecem interoperabilidade; serviços externos introduzem dependências técnicas e operacionais.
+O trabalho de engenharia concentra-se na separação entre seleção de dispositivos, configuração da captura, montagem do fluxo composto e acompanhamento da transmissão. Essas partes podem ser testadas isoladamente; a confiabilidade de uma live completa exige ensaios em dispositivos e redes reais.
 :::
 
-::: section verification
-## Arquiteturas alternativas
+::: section topic-4
+## Verificação
 
-Um compositor no servidor ofereceria renderização mais uniforme e possibilidades profissionais avançadas, mas demandaria capacidade computacional e operação adicional. Uma infraestrutura totalmente gerenciada reduziria o esforço operacional, ao custo de menor controle sobre o estúdio. Uma solução baseada apenas em encoders externos facilitaria produção profissional, porém dificultaria a entrada de criadores que transmitem pelo navegador ou celular. São comparações arquiteturais, não afirmações sobre decisões históricas do projeto.
-:::
-
-::: section constraints
-## Qualidade e evidências disponíveis
-
-O código privado contém testes unitários em partes do tratamento do ciclo de vida das mídias e do processamento de eventos. A existência desses testes foi verificada, mas a suíte completa, a capacidade simultânea e a confiabilidade de transmissões ponta a ponta não foram executadas ou medidas nesta documentação pública.
-
-A estratégia adequada envolve testar permissões de captura, diferentes navegadores e dispositivos, fidelidade da composição visual, reprodução, interrupções de rede, recuperação de gravações e uploads, interação entre clientes e acessibilidade. Qualquer métrica publicada deverá informar metodologia, hardware e condições de rede. Esta página não atribui latência, disponibilidade ou capacidade de audiência sem evidência.
-:::
-
-::: section more
-## Limites e maturidade
-
-A qualidade da mídia varia conforme dispositivo, navegador e conexão. Efeitos gráficos devem equilibrar riqueza visual e estabilidade de quadros. Transporte, distribuição, armazenamento e operações comerciais têm perfis diferentes de escala e devem ser avaliados independentemente.
-
-Este documento é uma visão arquitetural pública, não uma auditoria dos controles internos, dependências, segurança ou níveis de serviço em produção.
+Testes de regressão isolados cobrem regras selecionadas de processamento de mídia, escolha de dispositivos e composição de trilhas. O frontend também passa por verificação de build em CI. Esses resultados não comprovam latência de ponta a ponta nem capacidade de audiência; tais indicadores dependem de transmissões instrumentadas sob condições de rede definidas.
 :::
 
 ::: footer
-Estudo público de arquitetura. Detalhes de implementação, auditoria e segurança permanecem privados. · 2026-10-10 · [Portfólio](/pt/)
+[Christian Rafael](/pt/) · [Todos os produtos](/pt/#products) · [English](/projects/en/kaduo/)
 :::

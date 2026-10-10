@@ -64,6 +64,14 @@ jobs:
           grep -q "Systems map" en/index.html
           grep -q "Projetos selecionados" pt/index.html
           grep -q "Mapa de sistemas" pt/index.html
+          grep -q "Product engineering" en/index.html
+          grep -q "Engenharia de produtos" pt/index.html
+          for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn"; do
+            grep -q "$product" en/index.html
+            grep -q "$product" pt/index.html
+          done
+          grep -q "Velis" resume/en/index.html resume/pt/index.html
+          grep -q "Chris Cleaner" resume/en/index.html resume/pt/index.html
           grep -q "Professional Resume" resume/en/index.html
           grep -q "Currículo Profissional" resume/pt/index.html
           grep -q 'hreflang="pt-BR"' en/index.html

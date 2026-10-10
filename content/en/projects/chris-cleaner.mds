@@ -1,71 +1,53 @@
 ---
-title: Chris Cleaner — Desktop and Filesystem Engineering
-description: Native disk analysis, background processing and conservative cleanup.
+title: Chris Cleaner — Desktop / filesystems
+description: Disk analysis and file cataloging with native system integration and background processing.
 lang: en
 theme: ../../../themes/portfolio
 ---
 
 ::: nav primary
-[← Portfolio](/en/)
-[Projects](/en/#products)
-[Português](/projects/pt/chris-cleaner/) · **EN**
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/chris-cleaner/)
 :::
 
-::: hero home eyebrow="Public architecture"
+::: case-hero home eyebrow="Desktop / filesystems"
 
 --- title
-# Chris Cleaner — Desktop and Filesystem Engineering
+# Chris Cleaner
 
 --- body
-Native disk analysis, background processing and conservative cleanup.
+Disk analysis and file cataloging with native system integration and background processing.
 
 --- actions
-[Back to projects](/en/#products) · [Português](/projects/pt/chris-cleaner/)
-
+[Product website](https://christiansoftware.org/) · [All products](/en/#products)
 :::
 
-::: section architecture
-## Architecture overview
+::: section topic-1
+## Scanning at scale
 
-Chris Cleaner is a desktop application for understanding disk usage, organizing file information and providing configurable cleanup workflows. The architecture separates desktop presentation from filesystem access, catalog processing, local persistence and operating-system adapters.
+A disk catalog is built from a large number of filesystem entries whose metadata is not always cheap to collect. Chris Cleaner separates enumeration from the interface, allowing information to arrive incrementally instead of waiting for an entire volume to be scanned.
 
-- **Desktop interface:** dashboards, filtering, task management and confirmation experiences.
-- **Filesystem services:** file discovery, metadata analysis and operating-system-specific capabilities.
-- **Catalog processing:** background enumeration, indexing and incremental state maintenance.
-- **Local storage:** application preferences, catalog metadata and process continuity.
-- **Safety boundary:** evaluation and user confirmation before potentially destructive operations.
-
-The commercial website is a distribution and product-information layer; it is not the filesystem engine.
+Bounded concurrent work is useful here: producers cannot fill memory indefinitely when indexing or presentation is slower than file discovery.
 :::
 
-::: section engineering
-## Engineering decisions
+::: section topic-2
+## Native capabilities
 
-Asynchronous processing and bounded work queues support responsive interaction during large scans. Abstracting platform-specific operations allows shared application logic to run with different desktop environments and capabilities.
+The application uses .NET and a desktop interface, with system-specific adapters for operations that cannot be expressed through a generic cross-platform API. On Windows, filesystem facilities support incremental observation and catalog maintenance.
 
-Incremental catalog maintenance can reduce repeated full scans; however, native filesystem features require compatibility fallbacks and careful lifecycle management. Exact operating-system calls and internal safety rules are not disclosed in this public description.
+This leaves an explicit portability boundary. A feature available on one filesystem or operating system may require a different implementation—or a simpler fallback—elsewhere.
 :::
 
-::: section alternatives
-## Alternatives and trade-offs
+::: section topic-3
+## Cleanup is a separate responsibility
 
-A direct synchronous directory walk is easier to reason about but may degrade the user experience on large volumes. A database-centric index can simplify queries, while custom compact storage may optimize a specialized access pattern. A Windows-specific UI offers native integration; a cross-platform UI framework favors portability at the cost of adaptation.
-:::
+Finding a file and deciding to remove it are not the same operation. Disk analysis should remain useful independently of cleanup. Any destructive workflow needs clear user review and conservative defaults.
 
-::: section verification
-## Quality strategy and evidence
-
-The private codebase contains implementation evidence of concurrent scanning, catalog continuity and platform adapters. A comprehensive automated test suite and reproducible performance benchmark were not independently verified during the review; this page does not claim measured speedups or deletion safety.
-
-A responsible validation plan uses disposable test volumes, permission variations, large directory trees, interrupted scans and confirmation flows. Destructive operations require particularly conservative testing and clear user communication.
-:::
-
-::: section constraints
-## Constraints and evolution
-
-Filesystem features vary by operating system, permissions and file format. Performance depends on storage hardware and the size and structure of the tree being examined. Platform coverage, indexing accuracy and cautious cleanup remain primary engineering concerns. Operational and security internals are not published.
+The code includes concurrent scanning and catalog-related components. Repeatable performance measurements and comprehensive deletion-safety tests were not established during the review, so no quantitative speed or safety claim is made.
 :::
 
 ::: footer
-Public architecture case study. Implementation, audit and security details remain private. · 2026-10-10 · [Portfolio](/en/)
+[Christian Rafael](/en/) · [All products](/en/#products) · [Português](/projects/pt/chris-cleaner/)
 :::

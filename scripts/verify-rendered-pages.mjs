@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { chromium } from 'playwright';
 
-const slugs = ['kaduo', 'velis', 'eviz', 'chris-cleaner', 'logv-learn'];
+const slugs = ['kaduo', 'velis', 'eviz', 'chris-cleaner', 'logv-learn', 'domine-a-guitarra'];
 const routes = [
   '/en/', '/pt/', '/resume/en/', '/resume/pt/',
   ...slugs.flatMap(slug => [`/projects/en/${slug}/`, `/projects/pt/${slug}/`]),

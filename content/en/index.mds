@@ -153,6 +153,15 @@ Course administration, lessons, student progress and paid enrollment in a web ap
 
 [Website](https://learn.logv.com.br/) · [Architecture and technologies](/projects/en/logv-learn/)
 :::
+
+::: project period="2026" label="Music education"
+### Domine a Guitarra
+Free guitar-learning platform with structured lessons, interactive chord diagrams, tablature playback, rhythm exercises and ear training.
+
+**Astro · TypeScript · Web Audio API · music theory**
+
+[Website](https://domineaguitarra.com.br/) · [Architecture and technologies](/projects/en/domine-a-guitarra/) · [Source](https://github.com/logicvisionai/domineaguitarra)
+:::
 :::
 
 ::: section research

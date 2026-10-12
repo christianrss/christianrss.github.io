@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Christian Rafael de Souza Silva">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#fbfbf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#11110f" media="(prefers-color-scheme: dark)">
+  <title>Domine a Guitarra — Arquitetura e tecnologias</title>
+    <meta name="description" content="Plataforma gratuita de ensino de guitarra com diagramas interativos, tablaturas e áudio no navegador.">
+  <style>:root {
+  color-scheme: light;
+  --bg: #fff;
+  --paper: #fff;
+  --text: #171d24;
+  --muted: #59636f;
+  --rule: #d9dee2;
+  --link: #164b83;
+  --width: 940px;
+  --sans: Arial, Helvetica, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .17em;
+}
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+code { font: .82em var(--mono); overflow-wrap: anywhere; }
+.site-shell { width: min(calc(100% - 52px), var(--width)); margin: 0 auto; padding-bottom: 65px; }
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 20; padding: 8px 12px;
+  transform: translateY(-170%); background: var(--text); color: #fff;
+  font: 12px var(--mono);
+}
+.skip-link:focus { transform: none; }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px 20px;
+  border-bottom: 1px solid var(--rule);
+  padding: 26px 0 17px;
+  font: 12px/1.55 var(--mono);
+}
+.site-nav p { display: contents; }
+.site-nav a, .site-nav strong { white-space: nowrap; }
+.site-nav a:first-child { color: var(--text); font-weight: 700; margin-right: auto; text-decoration: none; }
+.site-nav strong { font-weight: 700; }
+.hero { padding: 53px 0 49px; }
+.hero::after { content: ""; display: block; clear: both; }
+.hero-photo {
+  float: right; width: 145px; height: 145px; object-fit: cover;
+  margin: 2px 0 18px 32px; border: 1px solid var(--rule);
+}
+.hero-eyebrow {
+  margin: 0 0 17px;
+  font: 11px/1.5 var(--mono);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-title h1 {
+  max-width: 740px; margin: 0;
+  font: 700 clamp(32px, 5.4vw, 46px)/1.1 var(--serif);
+  letter-spacing: -.027em;
+}
+.hero-body { max-width: 700px; margin-top: 22px; font-size: 17px; line-height: 1.66; }
+.hero-body p { margin: 0 0 12px; }
+.hero-actions { margin-top: 19px; font: 12px/1.7 var(--mono); }
+.hero-actions p { margin: 0; }
+.section {
+  border-top: 1px solid var(--rule);
+  padding: 32px 0 38px 176px;
+  position: relative;
+}
+.section > h2 {
+  position: absolute; left: 0; top: 36px; width: 145px;
+  margin: 0; font: 700 12px/1.45 var(--mono);
+  letter-spacing: .02em; color: var(--text);
+}
+.section > p { max-width: 70ch; margin: 0 0 13px; }
+.section > p:last-child { margin-bottom: 0; }
+.section > ul { margin: 9px 0 15px; padding-left: 19px; }
+.section > ul li { margin: 6px 0; }
+.section > p strong { color: var(--text); }
+.entry {
+  display: grid; grid-template-columns: 102px minmax(0,1fr);
+  gap: 22px; padding: 17px 0 19px;
+  border-top: 1px solid var(--rule);
+}
+.section > .entry:first-of-type { border-top: 0; padding-top: 7px; }
+.entry-meta { font: 11px/1.5 var(--mono); color: var(--muted); padding-top: 3px; }
+.entry-meta span { display: block; }
+.entry-meta span + span { margin-top: 5px; }
+.entry-body { min-width: 0; }
+.entry-body h3 { margin: 0 0 6px; font: 700 19px/1.35 var(--serif); letter-spacing: -.012em; }
+.entry-body p { margin: 5px 0 0; max-width: 66ch; }
+.entry-body ul { padding-left: 18px; margin: 9px 0 0; }
+.project .entry-body > p strong {
+  font: 11px/1.6 var(--mono);
+  font-weight: 400; color: var(--muted);
+}
+.project .entry-body > p:last-child { font: 12px/1.7 var(--mono); margin-top: 10px; }
+.case-hero { padding: 68px 0 57px; max-width: 780px; }
+.case-hero .hero-title h1 { font-size: clamp(42px, 6vw, 58px); }
+.case-hero .hero-body { max-width: 660px; font-size: 19px; line-height: 1.55; color: var(--muted); }
+.case-hero .hero-actions { margin-top: 26px; }
+.case-hero ~ .section {
+  max-width: 760px;
+  padding: 29px 0 32px;
+}
+.case-hero ~ .section > h2 {
+  position: static; width: auto; margin: 0 0 14px;
+  font: 700 23px/1.28 var(--serif);
+  letter-spacing: -.018em;
+}
+.case-hero ~ .section p { max-width: 69ch; margin: 0 0 16px; }
+.case-hero ~ .section p:last-child { margin-bottom: 0; }
+.case-hero ~ .section ul { padding-left: 20px; }
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 21px 0 0;
+  color: var(--muted);
+  font: 11px/1.6 var(--mono);
+}
+.footer p { margin: 0; }
+@media (max-width: 750px) {
+  .site-shell { width: min(calc(100% - 34px), var(--width)); }
+  .site-nav { padding: 17px 0 13px; gap: 5px 13px; font-size: 11px; }
+  .site-nav a:first-child { flex-basis: 100%; margin: 0 0 4px; }
+  .hero { padding: 34px 0 30px; }
+  .hero-photo { width: 104px; height: 104px; margin: 0 0 12px 17px; }
+  .hero-title h1 { font-size: clamp(30px, 6vw, 40px); }
+  .hero-body { font-size: 16px; }
+  .section { padding: 23px 0 27px; }
+  .section > h2 {
+    position: static; width: auto; margin: 0 0 15px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
+  }
+  .entry { grid-template-columns: 1fr; gap: 3px; padding: 16px 0; }
+  .entry-meta span { display: inline; }
+  .entry-meta span + span::before { content: " · "; }
+  .entry-meta span + span { margin-top: 0; }
+  .case-hero { padding: 43px 0 37px; }
+  .case-hero .hero-title h1 { font-size: clamp(38px, 9vw, 48px); }
+  .case-hero .hero-body { font-size: 17px; }
+  .case-hero ~ .section > h2 { font-size: 21px; text-transform: none; letter-spacing: -.015em; }
+}
+@media (max-width: 390px) {
+  .site-shell { width: calc(100% - 28px); }
+  .hero-photo { width: 88px; height: 88px; }
+  .entry-body h3 { font-size: 18px; }
+}
+@media print {
+  body { color: #000; background: #fff; font-size: 11pt; }
+  .site-shell { width: 100%; max-width: none; padding: 0; }
+  .site-nav, .skip-link { display: none; }
+  .hero { padding-top: 0; }
+  .section { break-inside: auto; }
+  .entry { break-inside: avoid; }
+  a { color: #000; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+  <link rel="canonical" href="https://me.christiansoftware.org/projects/pt/domine-a-guitarra/">
+  <link rel="alternate" hreflang="en" href="https://me.christiansoftware.org/projects/en/domine-a-guitarra/">
+  <link rel="alternate" hreflang="pt-BR" href="https://me.christiansoftware.org/projects/pt/domine-a-guitarra/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://me.christiansoftware.org/projects/pt/domine-a-guitarra/">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary">
+  <meta name="generator" content="MDS">
+  <meta property="og:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <meta name="twitter:image" content="https://me.christiansoftware.org/assets/christian-rafael-photo.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Christian Rafael de Souza Silva","url":"https://me.christiansoftware.org/","jobTitle":"Software Engineer","sameAs":["https://github.com/christianrss","https://www.linkedin.com/in/christianrss/","https://huggingface.co/christianrss"],"knowsAbout":["Machine Learning Systems","AI Infrastructure","Large Language Models","Operating Systems","Compilers","GPU Computing"]}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJZ32MBJRQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-YJZ32MBJRQ');</script>
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content / Pular para conteúdo</a>
+  <div class="site-shell"><main class="page"><nav id="primary" class="site-nav" aria-label="Navigation / Navegação"><p><a href="/pt/">Christian Rafael</a>
+<a href="/pt/#projects">Projetos</a>
+<a href="/pt/#products">Produtos</a>
+<a href="/projects/en/domine-a-guitarra/">English</a></p></nav>
+
+<header id="home" data-attr-eyebrow="Educação musical interativa" class="hero case-hero"><p class="hero-eyebrow">Educação musical interativa</p><div class="hero-title"><h1>Domine a Guitarra</h1></div><div class="hero-body"><p>Plataforma gratuita de ensino de guitarra que reúne aulas estruturadas, ferramentas de teoria musical e prática no navegador.</p></div><div class="hero-actions"><p><a href="https://domineaguitarra.com.br/">Site</a> · <a href="https://github.com/logicvisionai/domineaguitarra">Código</a> · <a href="/pt/#products">Portfólio</a></p></div></header>
+
+<section id="architecture" class="section"><h2>Arquitetura</h2>
+<p>A plataforma disponibiliza aulas geradas estaticamente e ferramentas musicais executadas no navegador.</p>
+<ul>
+<li><strong>Currículo:</strong> módulos, aulas e trilhas de aprendizagem publicados a partir de conteúdos Markdown.</li>
+<li><strong>Domínio musical:</strong> modelos TypeScript para notas, intervalos, acordes, digitações, ritmos e progressões.</li>
+<li><strong>Componentes interativos:</strong> diagramas de acordes e braço da guitarra, tablaturas com reprodução sincronizada e exercícios rítmicos.</li>
+<li><strong>Áudio:</strong> síntese musical via Web Audio API para exemplos reproduzíveis e treinamento auditivo.</li>
+<li><strong>Estudo individual:</strong> armazenamento local do navegador para preferências, anotações e progresso.</li>
+<li><strong>Publicação:</strong> geração de site estático com integração entre GitHub e Cloudflare.</li>
+</ul>
+<p>Os exercícios, diagramas e a reprodução de áudio compartilham dados musicais estruturados.</p></section>
+
+<section id="technologies" class="section"><h2>Tecnologias</h2>
+<ul>
+<li><strong>Framework web:</strong> Astro com geração estática.</li>
+<li><strong>Linguagem e conteúdo:</strong> TypeScript e Markdown.</li>
+<li><strong>Áudio:</strong> Web Audio API.</li>
+<li><strong>Interface:</strong> componentes Astro reutilizáveis com interação no navegador.</li>
+<li><strong>Hospedagem e publicação:</strong> GitHub e Cloudflare.</li>
+</ul></section>
+
+<footer class="footer"><p><a href="/pt/">Christian Rafael</a> · <a href="/pt/#products">Produtos</a> · <a href="/projects/en/domine-a-guitarra/">English</a></p></footer>
+</main></div>
+  
+</body>
+</html>

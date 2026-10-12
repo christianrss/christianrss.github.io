@@ -7,7 +7,7 @@
     "node": ">=20.19"
   },
   "scripts": {
-    "check": "npm run check:editorial && npm run check:public && mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds && mds check content/en/projects/kaduo.mds && mds check content/pt/projects/kaduo.mds && mds check content/en/projects/velis.mds && mds check content/pt/projects/velis.mds && mds check content/en/projects/eviz.mds && mds check content/pt/projects/eviz.mds && mds check content/en/projects/chris-cleaner.mds && mds check content/pt/projects/chris-cleaner.mds && mds check content/en/projects/logv-learn.mds && mds check content/pt/projects/logv-learn.mds",
+    "check": "npm run check:editorial && npm run check:public && mds check content/en/index.mds && mds check content/pt/index.mds && mds check content/en/resume.mds && mds check content/pt/resume.mds && mds check content/en/projects/kaduo.mds && mds check content/pt/projects/kaduo.mds && mds check content/en/projects/velis.mds && mds check content/pt/projects/velis.mds && mds check content/en/projects/eviz.mds && mds check content/pt/projects/eviz.mds && mds check content/en/projects/chris-cleaner.mds && mds check content/pt/projects/chris-cleaner.mds && mds check content/en/projects/logv-learn.mds && mds check content/pt/projects/logv-learn.mds && mds check content/en/projects/domine-a-guitarra.mds && mds check content/pt/projects/domine-a-guitarra.mds",
     "build": "node scripts/build.mjs",
     "pdf": "node scripts/render-pdf.mjs",
     "build:all": "npm run check && npm run build && npm run pdf",

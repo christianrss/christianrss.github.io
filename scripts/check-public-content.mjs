@@ -8,7 +8,7 @@ for (const slug of slugs) {
 
 const forbidden = [
   ['private source file path', /\b(?:backend|frontend|media-server|apps)\/(?:src\/)?[\w.-]+(?:\/[\w.-]+){1,}/i],
-  ['private product source URL', /https?:\/\/(?:www\.)?github\.com\/logicvisionai\/(?:kaduo|velis-web|eviz-card|chris-cleaner|logv-learn|christian-software-web)(?:\/|\b)/i],
+  ['private product source URL', /https?:\/\/(?:www\.)?github\.com\/logicvisionai\/(?:kaduo|velis-web|eviz-card|chris-cleaner|logv-learn|christian-software-web|domineaguitarra)(?:\/|\b)/i],
   ['secret or credential assignment', /\b[A-Z][A-Z0-9_]*(?:SECRET|TOKEN|PASSWORD|API_KEY)\s*=/],
   ['internal address or localhost', /\b(?:localhost|127\.0\.0\.1|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})\b/i],
   ['implementation or configuration filename', /\b(?:docker-compose\.ya?ml|Server\.xml|\.env(?:\.[\w-]+)?|[\w.-]+\.(?:spec|test)\.(?:ts|tsx|js))\b/i],

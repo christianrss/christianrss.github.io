@@ -1,0 +1,54 @@
+---
+title: Domine a Guitarra — Architecture and technologies
+description: Free guitar education platform with interactive chord diagrams, tablature playback and browser-based audio.
+lang: en
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[Christian Rafael](/en/)
+[Projects](/en/#projects)
+[Products](/en/#products)
+[Português](/projects/pt/domine-a-guitarra/)
+:::
+
+::: case-hero home eyebrow="Interactive music education"
+
+--- title
+# Domine a Guitarra
+
+--- body
+Free guitar-learning platform combining structured lessons, music-theory tools and browser-based practice.
+
+--- actions
+[Website](https://domineaguitarra.com.br/) · [Source](https://github.com/logicvisionai/domineaguitarra) · [Portfolio](/en/#products)
+:::
+
+::: section architecture
+## Architecture
+
+The platform serves statically generated lesson pages alongside client-side musical tools.
+
+- **Curriculum:** modular lessons and study paths, authored as Markdown content.
+- **Music domain:** TypeScript models for notes, intervals, chords, voicings, rhythm patterns and progressions.
+- **Interactive components:** chord and fretboard diagrams, synchronized tablature playback and rhythm exercises.
+- **Audio:** browser-based synthesis through the Web Audio API for playable examples and ear-training exercises.
+- **Student workspace:** browser-local storage for study preferences, annotations and progress.
+- **Publishing:** static-site builds deployed through GitHub and Cloudflare.
+
+Music exercises, diagrams and audio playback share structured musical data rather than separately authored representations.
+:::
+
+::: section technologies
+## Technologies
+
+- **Web framework:** Astro with static output.
+- **Language and content:** TypeScript and Markdown.
+- **Audio:** Web Audio API.
+- **Interface:** reusable Astro components with browser-side interaction.
+- **Deployment:** GitHub and Cloudflare.
+:::
+
+::: footer
+[Christian Rafael](/en/) · [Products](/en/#products) · [Português](/projects/pt/domine-a-guitarra/)
+:::

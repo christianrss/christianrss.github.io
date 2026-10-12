@@ -23,6 +23,7 @@ Selected commercial / applied engineering:
 - Eviz (digital business cards, CRM, landing pages): https://www.eviz.me/
 - Chris Cleaner (desktop filesystem architecture): https://christiansoftware.org/
 - LOGV Learn (course and enrollment architecture): https://me.christiansoftware.org/en/#products
+- Domine a Guitarra (interactive music education): https://domineaguitarra.com.br/
 
 The commercial repositories are private. Product URLs lead to public-facing sites, not public source code.
 
@@ -32,6 +33,7 @@ Public architecture, engineering trade-offs and high-level quality strategy (bil
 - eviz: https://me.christiansoftware.org/projects/en/eviz/ (PT: https://me.christiansoftware.org/projects/pt/eviz/)
 - chris-cleaner: https://me.christiansoftware.org/projects/en/chris-cleaner/ (PT: https://me.christiansoftware.org/projects/pt/chris-cleaner/)
 - logv-learn: https://me.christiansoftware.org/projects/en/logv-learn/ (PT: https://me.christiansoftware.org/projects/pt/logv-learn/)
+- domine-a-guitarra: https://me.christiansoftware.org/projects/en/domine-a-guitarra/ (PT: https://me.christiansoftware.org/projects/pt/domine-a-guitarra/)
 
 Professional résumé:
 - English HTML: https://me.christiansoftware.org/resume/en/

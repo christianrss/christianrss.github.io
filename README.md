@@ -15,7 +15,7 @@ The site is authored in [MDS](https://github.com/ziyu/mds), compiled to static H
 - `/resume/christian-rafael-cv-en.pdf` — generated English PDF.
 - `/resume/christian-rafael-cv-pt.pdf` — generated Portuguese PDF.
 - `/` — lightweight language router.
-- `/projects/en/{slug}/`, `/projects/pt/{slug}/` — bilingual technical case studies for Velis, Kaduo, Eviz, Chris Cleaner and LOGV Learn.
+- `/projects/en/{slug}/`, `/projects/pt/{slug}/` — bilingual technical case studies for Velis, Kaduo, Eviz, Chris Cleaner, LOGV Learn and Domine a Guitarra.
 
 ## Source of truth
 
@@ -54,7 +54,7 @@ npm run edit:pt
 
 ## Deployment
 
-GitHub Actions validates all MDS sources and ten engineering case-study pages, renders static HTML, generates both PDFs with headless Chromium, verifies language/SEO invariants and commits generated artifacts. GitHub Pages continues to publish from the repository root on `main`.
+GitHub Actions validates all MDS sources and twelve engineering case-study pages, renders static HTML, generates both PDFs with headless Chromium, verifies language/SEO invariants and commits generated artifacts. GitHub Pages continues to publish from the repository root on `main`.
 
 The runtime website itself ships no frontend framework.
 
@@ -67,7 +67,7 @@ English and Portuguese are edited independently. The résumé is a separate prin
 ## Quality gates
 
 - `npm run check` verifies editorial patterns, public disclosure rules and MDS validity.
-- `npm run build` renders both language indexes, both résumés and ten product notes.
+- `npm run build` renders both language indexes, both résumés and twelve product notes.
 - `npm run pdf` renders the résumé PDFs.
 - `npm run verify:site` checks every published route at desktop/mobile widths in Chromium, including loaded portraits, headings and horizontal overflow.
 - GitHub Actions also verifies language alternates, canonical URLs, route presence and publication artifacts.

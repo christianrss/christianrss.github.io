@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
-const slugs = ['kaduo', 'velis', 'eviz', 'chris-cleaner', 'logv-learn'];
+const slugs = ['kaduo', 'velis', 'eviz', 'chris-cleaner', 'logv-learn', 'domine-a-guitarra'];
 const sourceFiles = [
   'content/en/index.mds', 'content/pt/index.mds',
   'content/en/resume.mds', 'content/pt/resume.mds',

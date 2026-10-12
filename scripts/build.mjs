@@ -11,7 +11,7 @@ const pages = [
 ];
 
 // Long-form product engineering case studies share the portfolio theme and SEO contract.
-const caseStudySlugs = ["kaduo", "velis", "eviz", "chris-cleaner", "logv-learn"];
+const caseStudySlugs = ["kaduo", "velis", "eviz", "chris-cleaner", "logv-learn", "domine-a-guitarra"];
 for (const slug of caseStudySlugs) {
   const enUrl = `https://me.christiansoftware.org/projects/en/${slug}/`;
   const ptUrl = `https://me.christiansoftware.org/projects/pt/${slug}/`;

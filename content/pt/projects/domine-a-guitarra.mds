@@ -1,0 +1,54 @@
+---
+title: Domine a Guitarra — Arquitetura e tecnologias
+description: Plataforma gratuita de ensino de guitarra com diagramas interativos, tablaturas e áudio no navegador.
+lang: pt-BR
+theme: ../../../themes/portfolio
+---
+
+::: nav primary
+[Christian Rafael](/pt/)
+[Projetos](/pt/#projects)
+[Produtos](/pt/#products)
+[English](/projects/en/domine-a-guitarra/)
+:::
+
+::: case-hero home eyebrow="Educação musical interativa"
+
+--- title
+# Domine a Guitarra
+
+--- body
+Plataforma gratuita de ensino de guitarra que reúne aulas estruturadas, ferramentas de teoria musical e prática no navegador.
+
+--- actions
+[Site](https://domineaguitarra.com.br/) · [Código](https://github.com/logicvisionai/domineaguitarra) · [Portfólio](/pt/#products)
+:::
+
+::: section architecture
+## Arquitetura
+
+A plataforma disponibiliza aulas geradas estaticamente e ferramentas musicais executadas no navegador.
+
+- **Currículo:** módulos, aulas e trilhas de aprendizagem publicados a partir de conteúdos Markdown.
+- **Domínio musical:** modelos TypeScript para notas, intervalos, acordes, digitações, ritmos e progressões.
+- **Componentes interativos:** diagramas de acordes e braço da guitarra, tablaturas com reprodução sincronizada e exercícios rítmicos.
+- **Áudio:** síntese musical via Web Audio API para exemplos reproduzíveis e treinamento auditivo.
+- **Estudo individual:** armazenamento local do navegador para preferências, anotações e progresso.
+- **Publicação:** geração de site estático com integração entre GitHub e Cloudflare.
+
+Os exercícios, diagramas e a reprodução de áudio compartilham dados musicais estruturados.
+:::
+
+::: section technologies
+## Tecnologias
+
+- **Framework web:** Astro com geração estática.
+- **Linguagem e conteúdo:** TypeScript e Markdown.
+- **Áudio:** Web Audio API.
+- **Interface:** componentes Astro reutilizáveis com interação no navegador.
+- **Hospedagem e publicação:** GitHub e Cloudflare.
+:::
+
+::: footer
+[Christian Rafael](/pt/) · [Produtos](/pt/#products) · [English](/projects/en/domine-a-guitarra/)
+:::

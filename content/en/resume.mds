@@ -109,6 +109,11 @@ Open, bilingual computer science and software engineering reference with full-te
 :::
 
 ::: resume-entry period="2026 —"
+### Domine a Guitarra
+Free interactive guitar-learning platform built with Astro and TypeScript, featuring chord diagrams, tablature playback, ear training and Web Audio synthesis. [Website](https://domineaguitarra.com.br/) · [Source](https://github.com/logicvisionai/domineaguitarra)
+:::
+
+::: resume-entry period="2026 —"
 ### SharpEx
 Market and portfolio-intelligence workspace with multiple portfolios, risk/return metrics, crypto, market data and structural research integration.
 :::

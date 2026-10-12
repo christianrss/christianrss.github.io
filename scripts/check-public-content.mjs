@@ -19,6 +19,11 @@ const forbidden = [
 let failures = 0;
 for (const file of files) {
   const source = await readFile(file, 'utf8');
+  const guitarEntry = source.match(/^### Domine a Guitarra\n([\s\S]*?)(?=^:::)/m);
+  if (guitarEntry && /https?:\/\/(?:www\.)?github\.com\//i.test(guitarEntry[0])) {
+    console.error(`Public disclosure gate: repository link in Domine a Guitarra entry in ${file}`);
+    failures += 1;
+  }
   for (const [description, pattern] of forbidden) {
     if (pattern.test(source)) {
       console.error(`Public disclosure gate: ${description} in ${file}`);

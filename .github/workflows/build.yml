@@ -71,7 +71,7 @@ jobs:
           grep -q "Product engineering" en/index.html
           grep -q "Engenharia de produtos" pt/index.html
 
-          for project in kaduo velis eviz chris-cleaner logv-learn; do
+          for project in kaduo velis eviz chris-cleaner logv-learn domine-a-guitarra; do
             test -s "projects/en/$project/index.html"
             test -s "projects/pt/$project/index.html"
             grep -q 'hreflang="pt-BR"' "projects/en/$project/index.html"
@@ -93,12 +93,13 @@ jobs:
           grep -q "<h2>Arquitetura</h2>" projects/pt/kaduo/index.html
           grep -q "<h2>Technologies</h2>" projects/en/kaduo/index.html
           grep -q "<h2>Tecnologias</h2>" projects/pt/kaduo/index.html
-          for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn"; do
+          for product in "Velis" "Kaduo" "Eviz" "Chris Cleaner" "LOGV Learn" "Domine a Guitarra"; do
             grep -q "$product" en/index.html
             grep -q "$product" pt/index.html
           done
           grep -q "Velis" resume/en/index.html resume/pt/index.html
           grep -q "Chris Cleaner" resume/en/index.html resume/pt/index.html
+          grep -q "Domine a Guitarra" resume/en/index.html resume/pt/index.html
           grep -q "Professional Resume" resume/en/index.html
           grep -q "Currículo Profissional" resume/pt/index.html
           grep -q 'hreflang="pt-BR"' en/index.html

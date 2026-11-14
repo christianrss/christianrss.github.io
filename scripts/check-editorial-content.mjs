@@ -54,6 +54,16 @@ for (const lang of ['en','pt']) {
     }
   }
 }
+// Public-facing Orvio descriptions must stay focused on engineering, not editorial status disclaimers.
+for (const lang of ['en', 'pt']) {
+  for (const kind of ['index', 'resume']) {
+    const path = `content/${lang}/${kind}.mds`;
+    const source = pages[path];
+    if (/\b(?:without flight qualification|flight validation remain pending|under development and validation|sem qualificação de voo|validação física e de voo ainda pendentes|em desenvolvimento e validação)\b/i.test(source)) {
+      errors.push(`${path}: Orvio editorial disclaimer must not appear in public copy`);
+    }
+  }
+}
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

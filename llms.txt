@@ -11,7 +11,7 @@ Canonical profiles:
 
 Selected work:
 - Orvio Labs (systems research, Orvio Core, FPV-001): https://www.orviolabs.com/
-- FPV-001 (experimental compact aircraft): https://www.orviolabs.com/projects/fpv-001/
+- FPV-001 (compact aircraft, embedded electronics and firmware): https://www.orviolabs.com/projects/fpv-001/
 - ChrisOS: https://github.com/christianrss/ChrisOS
 - ChrisOS documentation: https://os.christiansoftware.org
 - Chris-GPT-2: https://github.com/christianrss/chris-gpt-2

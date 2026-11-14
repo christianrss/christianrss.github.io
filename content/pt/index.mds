@@ -1,6 +1,6 @@
 ---
 title: Christian Rafael de Souza Silva — Engenheiro de Software
-description: Engenheiro de software com atuação em ML Systems, infraestrutura de IA, sistemas operacionais, compiladores, runtimes e software de produção.
+description: Engenheiro de software e Chief Scientist da Orvio Labs, com atuação em IA, sistemas embarcados, robótica, eletrônica e software de produção.
 lang: pt-BR
 theme: ../../themes/portfolio
 ---
@@ -15,13 +15,13 @@ theme: ../../themes/portfolio
 [EN](/en/) · **PT**
 :::
 
-::: hero home eyebrow="Engenharia de software · sistemas e aprendizado de máquina"
+::: hero home eyebrow="Engenharia de software · IA · sistemas embarcados"
 
 --- title
 # Christian Rafael de Souza Silva
 
 --- body
-Engenheiro de software com atuação em aplicações corporativas, infraestrutura de aprendizado de máquina e software de sistemas. Desenvolvimento profissional desde 2012; projetos independentes incluem treinamento de modelos de linguagem, runtimes de inferência, compiladores e sistemas operacionais.
+Engenheiro de software com atuação em sistemas de produção, infraestrutura de aprendizado de máquina e software de baixo nível. Na Orvio Labs, sou Chief Scientist e conduzo pesquisa em eletrônica, firmware, robótica e simulação de aeronaves compactas. Desenvolvimento profissional de software desde 2012.
 
 --- actions
 [GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [E-mail](mailto:crafael2030@gmail.com) · [Currículo (PDF)](/resume/christian-rafael-cv-pt.pdf)
@@ -36,10 +36,21 @@ Engenheiro de software com atuação em aplicações corporativas, infraestrutur
 
 **Software de sistemas.** Sistema operacional x86-64, ferramentas de compilação, máquinas virtuais e desenvolvimento de memória, drivers e gráficos.
 
+**Eletrônica e robótica.** Arquitetura de hardware, firmware, integração mecânica e simulação de sistemas autônomos na Orvio Labs.
+
 :::
 
 ::: section projects
 ## Projetos selecionados
+
+::: project period="2026 —" label="Aeronáutica · sistemas embarcados"
+### Orvio Labs
+Laboratório de engenharia dedicado a aeronaves compactas, eletrônica embarcada e software de controle. Como Chief Scientist, lidero a pesquisa de sistemas da plataforma Orvio Core e do programa FPV-001: estruturas modulares, projeto eletrônico, firmware e simulação. O projeto está em desenvolvimento e validação, sem qualificação de voo.
+
+**Engenharia de sistemas · CAD paramétrico · KiCad · C · simulação**
+
+[Laboratório](https://www.orviolabs.com/) · [Programa FPV-001](https://www.orviolabs.com/projects/fpv-001/) · [Simulação de voo e eletrônica](https://www.orviolabs.com/tools/fpv001-lab/)
+:::
 
 ::: project period="2025 —" label="Sistemas operacionais"
 ### ChrisOS
@@ -185,6 +196,13 @@ Estudo de continued pretraining e instruction tuning canônico para um GPT-2 esp
 ::: section work
 ## Experiência
 
+::: entry period="2026 — atual" label="Orvio Labs"
+### Chief Scientist
+Direção de pesquisa de sistemas para projetos de aeronaves compactas e plataformas embarcadas, conectando eletrônica, mecânica, firmware, ferramentas de simulação e documentação técnica. Desenvolvimento da arquitetura compartilhada Orvio Core e do programa experimental FPV-001.
+
+[Orvio Labs](https://www.orviolabs.com/)
+:::
+
 ::: entry period="2023 — atual" label="ITB Equipamentos Elétricos"
 ### Programador de Sistemas de Informação
 Atuo em sistemas internos de gestão e engenharia cobrindo financeiro, contabilidade, PCP e engenharia. A stack inclui C++, Delphi, MySQL, .NET/C#, React e PostgreSQL, com APIs, testes automatizados e padrões arquiteturais como DDD e CQRS.
@@ -238,6 +256,8 @@ Formação técnica em eletrônica, mecânica, automação e sistemas embarcados
 **Sistemas e ML:** Linux, treinamento/inferência de LLMs, computação em GPU, treinamento distribuído, sistemas operacionais, compiladores, máquinas virtuais, emuladores e depuração de baixo nível.
 
 **Engenharia de aplicações:** .NET, React, Laravel, APIs REST, PostgreSQL, MySQL, Redis, DDD, CQRS e testes automatizados.
+
+**Eletrônica e sistemas embarcados:** arquiteturas de alimentação, KiCad, firmware em C, modelagem CAD, simulação e integração de sensores.
 
 **Infraestrutura:** Git, GitHub Actions, Cloudflare, AWS, DigitalOcean e Linux/Windows Server.
 :::

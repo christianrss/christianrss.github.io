@@ -1,6 +1,6 @@
 # Christian Rafael de Souza Silva
 
-Software engineer working across ML systems, AI infrastructure, systems software and production applications.
+Software engineer and Orvio Labs Chief Scientist working across AI, systems software, embedded electronics, robotics and production applications.
 
 Canonical profiles:
 - English: https://me.christiansoftware.org/en/
@@ -10,6 +10,8 @@ Canonical profiles:
 - LinkedIn: https://www.linkedin.com/in/christianrss/
 
 Selected work:
+- Orvio Labs (systems research, Orvio Core, FPV-001): https://www.orviolabs.com/
+- FPV-001 (experimental compact aircraft): https://www.orviolabs.com/projects/fpv-001/
 - ChrisOS: https://github.com/christianrss/ChrisOS
 - ChrisOS documentation: https://os.christiansoftware.org
 - Chris-GPT-2: https://github.com/christianrss/chris-gpt-2

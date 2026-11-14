@@ -12,11 +12,20 @@ theme: ../../themes/resume
 
 Birigui, São Paulo, Brasil · [me.christiansoftware.org](https://me.christiansoftware.org/) · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
 
-Desenvolvimento profissional desde 2012, com experiência em sistemas corporativos, aplicações fiscais e comerciais, APIs e software desktop. Projetos independentes voltados à infraestrutura de ML e programação de sistemas.
+Desenvolvimento de software desde 2012, abrangendo sistemas corporativos, APIs, ML e software de baixo nível. Chief Scientist da Orvio Labs, com pesquisa aplicada a eletrônica, firmware, robótica e aeronaves compactas.
 :::
 
 ::: resume-section
 ## Experiência
+
+::: resume-entry period="2026 — atual"
+### Chief Scientist — Orvio Labs
+**Pesquisa em engenharia de sistemas**
+
+- Direção de pesquisa em aeronaves compactas, eletrônica embarcada e firmware.
+- Desenvolvimento da arquitetura compartilhada Orvio Core e integração mecânica, eletrônica e de software.
+- Programa FPV-001: conceito de aeronave modular, modelagem e simulação; validação física e de voo ainda pendentes. [Laboratório](https://www.orviolabs.com/)
+:::
 
 ::: resume-entry period="nov 2023 — atual"
 ### Programador de Sistemas de Informação — ITB Equipamentos Elétricos
@@ -72,6 +81,11 @@ Desenvolvimento profissional desde 2012, com experiência em sistemas corporativ
 
 ::: resume-section
 ## Projetos selecionados
+
+::: resume-entry period="2026 —"
+### Orvio Labs · FPV-001
+Laboratório de engenharia de sistemas para aeronaves compactas e eletrônica embarcada. Programa FPV-001 e plataforma Orvio Core em desenvolvimento, com simulação e documentação técnica. [Orvio Labs](https://www.orviolabs.com/) · [FPV-001](https://www.orviolabs.com/projects/fpv-001/)
+:::
 
 ::: resume-entry period="2025 —"
 ### ChrisOS
@@ -139,6 +153,8 @@ Plataforma independente de pesquisa macroeconômica, mercados e geopolítica com
 **Linguagens:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.
 
 **ML e sistemas:** treinamento/inferência de LLMs, PyTorch, CUDA, treinamento distribuído, GGUF, quantização, Linux, sistemas operacionais, compiladores, máquinas virtuais e emuladores.
+
+**Eletrônica e robótica:** sistemas embarcados, firmware em C, KiCad, CAD paramétrico e simulação de sistemas físicos.
 
 **Aplicações e infraestrutura:** .NET, React, Laravel, APIs REST, PostgreSQL, MySQL, Redis, DDD, CQRS, GitHub Actions, Cloudflare, AWS e DigitalOcean.
 :::

@@ -100,6 +100,8 @@ jobs:
           grep -q "Velis" resume/en/index.html resume/pt/index.html
           grep -q "Chris Cleaner" resume/en/index.html resume/pt/index.html
           grep -q "Domine a Guitarra" resume/en/index.html resume/pt/index.html
+          grep -q "Orvio Labs" en/index.html pt/index.html resume/en/index.html resume/pt/index.html
+          grep -q "FPV-001" en/index.html pt/index.html resume/en/index.html resume/pt/index.html
           grep -q "Professional Resume" resume/en/index.html
           grep -q "Currículo Profissional" resume/pt/index.html
           grep -q 'hreflang="pt-BR"' en/index.html

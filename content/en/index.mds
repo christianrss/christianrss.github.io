@@ -1,6 +1,6 @@
 ---
 title: Christian Rafael de Souza Silva — Software Engineer
-description: Software engineer working across ML systems, AI infrastructure, operating systems, compilers, runtimes and production software.
+description: Software engineer and Orvio Labs Chief Scientist working across AI, embedded systems, robotics, electronics and production software.
 lang: en
 theme: ../../themes/portfolio
 ---
@@ -15,13 +15,13 @@ theme: ../../themes/portfolio
 [PT](/pt/) · **EN**
 :::
 
-::: hero home eyebrow="Software engineer · systems and machine learning"
+::: hero home eyebrow="Software engineering · AI · embedded systems"
 
 --- title
 # Christian Rafael de Souza Silva
 
 --- body
-Software engineer working on business applications, machine-learning infrastructure and systems software. Professional development since 2012; independent work includes language-model training, inference runtimes, compiler tooling and operating-system development.
+Software engineer working across production applications, machine-learning infrastructure and low-level systems. At Orvio Labs, I serve as Chief Scientist, leading research in electronics, firmware, robotics and compact-aircraft simulation. Professional software development since 2012.
 
 --- actions
 [GitHub](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/) · [Hugging Face](https://huggingface.co/christianrss) · [Email](mailto:crafael2030@gmail.com) · [CV (PDF)](/resume/christian-rafael-cv-en.pdf)
@@ -36,10 +36,21 @@ Software engineer working on business applications, machine-learning infrastruct
 
 **Systems software.** An x86-64 operating system, language toolchains, virtual machines and experiments with memory, drivers and graphics.
 
+**Electronics and robotics.** Hardware architecture, firmware, mechanical integration and simulation of autonomous systems at Orvio Labs.
+
 :::
 
 ::: section projects
 ## Selected projects
+
+::: project period="2026 —" label="Aerospace · embedded systems"
+### Orvio Labs
+Engineering laboratory focused on compact aircraft, embedded electronics and control software. As Chief Scientist, I lead systems research for the Orvio Core platform and FPV-001 program, spanning modular structures, electronics design, firmware and simulation. The aircraft remains under development and validation, without flight qualification.
+
+**Systems engineering · parametric CAD · KiCad · C · simulation**
+
+[Laboratory](https://www.orviolabs.com/) · [FPV-001 program](https://www.orviolabs.com/projects/fpv-001/) · [Flight and electronics simulation](https://www.orviolabs.com/tools/fpv001-lab/)
+:::
 
 ::: project period="2025 —" label="Operating systems"
 ### ChrisOS
@@ -185,6 +196,13 @@ Study of continued pretraining and canonical instruction tuning for a Linux-focu
 ::: section work
 ## Experience
 
+::: entry period="2026 — present" label="Orvio Labs"
+### Chief Scientist
+Lead systems research for compact-aircraft and embedded-platform projects, integrating electronics, mechanics, firmware, simulation tools and technical documentation. Work includes the shared Orvio Core architecture and experimental FPV-001 program.
+
+[Orvio Labs](https://www.orviolabs.com/)
+:::
+
 ::: entry period="2023 — present" label="ITB Equipamentos Elétricos"
 ### Information Systems Programmer
 I work on internal management and engineering systems covering finance, accounting, production planning and engineering. The stack includes C++, Delphi, MySQL, .NET/C#, React and PostgreSQL, with APIs, automated tests and architecture patterns such as DDD and CQRS.
@@ -238,6 +256,8 @@ Technical training across electronics, mechanics, automation and embedded system
 **Systems & ML:** Linux, LLM training/inference, GPU computing, distributed training, operating systems, compilers, virtual machines, emulators and low-level debugging.
 
 **Application engineering:** .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS and automated testing.
+
+**Electronics & embedded systems:** power architectures, KiCad, C firmware, CAD modeling, simulation and sensor integration.
 
 **Infrastructure:** Git, GitHub Actions, Cloudflare, AWS, DigitalOcean and Linux/Windows Server.
 :::

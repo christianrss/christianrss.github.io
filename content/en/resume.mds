@@ -12,11 +12,20 @@ theme: ../../themes/resume
 
 Birigui, São Paulo, Brazil · [me.christiansoftware.org](https://me.christiansoftware.org/) · [crafael2030@gmail.com](mailto:crafael2030@gmail.com) · [github.com/christianrss](https://github.com/christianrss) · [LinkedIn](https://www.linkedin.com/in/christianrss/)
 
-Software development since 2012, with professional experience in enterprise systems, retail and fiscal applications, APIs and desktop software. Independent projects focus on ML infrastructure and systems programming.
+Software development since 2012 across enterprise applications, APIs, ML and low-level systems. Chief Scientist at Orvio Labs, researching electronics, firmware, robotics and compact-aircraft engineering.
 :::
 
 ::: resume-section
 ## Experience
+
+::: resume-entry period="2026 — present"
+### Chief Scientist — Orvio Labs
+**Systems engineering research**
+
+- Lead research in compact aircraft, embedded electronics and firmware.
+- Develop the shared Orvio Core architecture and integrate mechanical, electronic and software subsystems.
+- FPV-001: modular aircraft concept, modeling and simulation; physical and flight validation remain pending. [Laboratory](https://www.orviolabs.com/)
+:::
 
 ::: resume-entry period="Nov 2023 — Present"
 ### Information Systems Programmer — ITB Equipamentos Elétricos
@@ -72,6 +81,11 @@ Software development since 2012, with professional experience in enterprise syst
 
 ::: resume-section
 ## Selected projects
+
+::: resume-entry period="2026 —"
+### Orvio Labs · FPV-001
+Systems engineering laboratory for compact aircraft and embedded electronics. FPV-001 and the shared Orvio Core platform are under development, with simulation and technical documentation. [Orvio Labs](https://www.orviolabs.com/) · [FPV-001](https://www.orviolabs.com/projects/fpv-001/)
+:::
 
 ::: resume-entry period="2025 —"
 ### ChrisOS
@@ -139,6 +153,8 @@ Independent macroeconomics, markets and geopolitics research platform with recur
 **Languages:** C, C++, Python, Rust, C#, Java, Kotlin, JavaScript/TypeScript, PHP, Delphi.
 
 **ML & systems:** LLM training/inference, PyTorch, CUDA, distributed training, GGUF, quantization, Linux, operating systems, compilers, virtual machines and emulators.
+
+**Electronics & robotics:** embedded systems, C firmware, KiCad, parametric CAD and physical-system simulation.
 
 **Applications & infrastructure:** .NET, React, Laravel, REST APIs, PostgreSQL, MySQL, Redis, DDD, CQRS, GitHub Actions, Cloudflare, AWS and DigitalOcean.
 :::
